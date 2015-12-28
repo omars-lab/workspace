@@ -1,0 +1,11 @@
+echo "---------- History ----------"
+cat ~/.bash_history | tail -n 100 | uniq | \
+grep -ve "^\s*cd" | \
+grep -ve "^\s*ls" | \
+grep -ve "^\s*clear" | \
+grep -ve "^\s*subl" | \
+grep -ve "^\s*vi" | \
+grep -ve "^\s*cat" | \
+grep -ve "^\s*atom" | \
+grep -ve "^\s*pwd" | \
+grep -ve '^\s*\w\+$'

@@ -1,0 +1,65 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Omar Eid
+	email = omar_eid21@yahoo.com
+
+[core]
+    editor = vim
+    autocrlf = input
+
+[branch]
+    autosetuprebase = remote
+
+[fetch]
+    recurseSubmodules = true
+
+[push]
+    default = upstream
+
+[alias]
+    a = add
+    b = branch
+    ca = commit -a
+    c = commit
+    cma = commit -a -m
+    cm = commit -m
+    co = checkout
+    d = diff --patience
+    f = fetch
+    l = log --date=local
+    lp = log -p --date=local
+    lga = log --color --graph --decorate --pretty=format:'%Cred%h%Creset -%C(bold black)%d%Creset %s, %Cblue%an, %Cgreen%cr%Creset' --abbrev-commit --date=local --all
+    lg = log --color --graph --decorate --pretty=format:'%Cred%h%Creset -%C(bold black)%d%Creset %s, %Cblue%an, %Cgreen%cr%Creset' --abbrev-commit --date=local
+    p = push
+    r = reset
+    s = status --short --branch
+    t = tag
+    wipe = clean -d -x --force
+
+[status]
+    submodulesummary = true
+
+[diff]
+    submodule = log
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red
+    new = cyan
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+

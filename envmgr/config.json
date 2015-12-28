@@ -1,0 +1,23 @@
+[
+  {
+    "ENV_ID": "ihc-debugging_cc-soltions-demo",
+    "INSIGHTS_HOST": "ihc-debugging-1445112459133.cc-solutions-demo.insights.ai",
+    "MONGO_HOST": "192.168.99.100",
+    "MONGO_PORT": "32768",
+    "NODE_ENV": "development"
+  },
+  {
+    "ENV_ID": "omarstest",
+    "INSIGHTS_HOST": "localhost",
+    "MONGO_HOST": "192.168.99.100",
+    "MONGO_PORT": "27017",
+    "REDIS_HOST": "192.168.99.100",
+    "REDIS_PORT": "32780",
+    "NODE_ENV": "production"
+  },
+  {
+    "ENV_ID": "neo",
+    "NEO_HOST": "192.168.99.100",
+    "NEO_PORT": "7474"
+  }
+]
