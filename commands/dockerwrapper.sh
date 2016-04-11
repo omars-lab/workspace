@@ -48,4 +48,6 @@ function _dockerwrapper(){
   esac
   return 0
 }
-complete -F _dockerwrapper dockerwrapper
+
+# Make sure complete is a command (that we are actually in bash)
+type complete 2>&1 1>/dev/null && complete -F _dockerwrapper dockerwrapper

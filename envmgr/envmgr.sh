@@ -72,7 +72,9 @@ function _envmgr(){
   esac
   return 0
 }
-complete -F _envmgr envmgr
+
+# Make sure complete is a command (that we are actually in bash)
+type complete 2>&1 1>/dev/null && complete -F _envmgr envmgr
 
 # all_envs omarstest
 # keys omarstest

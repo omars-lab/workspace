@@ -61,7 +61,7 @@ set_prompt () {
     PS1+="$White\\\$\!$Reset "
 }
 
-PROMPT_COMMAND='set_prompt'  # old: update_terminal_cwd
+# PROMPT_COMMAND='set_prompt'  # old: update_terminal_cwd
 
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad

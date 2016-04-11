@@ -1,5 +1,3 @@
-alias vidocker="vi $DIRS_GITHUB/mr-uuid/environment/commands/containers.sh"
-
 alias NIFI='docker run -it -v /Users/oeid/bitbucket/cognitivescale/triton/components/dataflow/nifi-nar-bundles/:/code -p 8080 --name nifi nifi:0.3.1 bash'
 
 alias NEO='docker run -d --p 7474:7474 --env=NEO4J_AUTH=none neo4j:2.3.1'
@@ -27,5 +25,3 @@ function BUILD_NIFI(){
   sleep 1
   docker exec nifi service nifi restart
 }
-
-

@@ -45,4 +45,6 @@ function _image_builder(){
   esac
   return 0
 }
-complete -F _image_builder image_builder
+
+# Make sure complete is a command (that we are actually in bash)
+type complete 2>&1 1>/dev/null && complete -F _image_builder image_builder
