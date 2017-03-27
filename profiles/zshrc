@@ -1,0 +1,137 @@
+# set -x
+
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/oeid/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="bira"
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git docker osx python)
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+
+# User configuration
+
+
+export PATH="$HOME/bin"
+export PATH="/usr/local/MacGPG2/bin:$PATH"
+export PATH="/bin:$PATH"
+export PATH="/usr/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/sbin:$PATH"
+export PATH="/usr/sbin:$PATH"
+
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export PATH="/Users/oeid/Projects/virtualenvs/cogenv/bin:$PATH"
+export PATH="/Users/oeid/.nvm/versions/node/v4.2.1/bin:$PATH"
+
+source ~/git/broomar/environment/loader.sh
+
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/Users/oeid/Binaries:$PATH"
+export PATH="/Users/oeid/Binaries/cdap-sdk-4.0.1/bin:$PATH"
+export PATH="/Users/oeid/Binaries/git-2.12.0/bin:$PATH"
+
+export DISABLE_AUTO_TITLE="true"
+setTerminalText () {
+    # Works in bash & zsh
+    # $1 is where we want to set the title
+    #	=> { 0: both, 1: tab, 2: title}
+    local mode=$1 ; shift
+    echo -ne "\033]$mode;$@\007"
+}
+title_terminal () { setTerminalText 2 $@; }
+title_both  () { setTerminalText 0 $@; }
+title  () { setTerminalText 1 $@; }
+
+# Getting all the nix stuff loaded!
+. /Users/oeid/.nix-profile/etc/profile.d/nix.sh
+
+# Loading iterm zsh 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+alias cssh='sshuttle -r oeid@jump.cog-dev.insights.ai:2222 -H -N'
+
+# set -o vi
+
+# source /usr/local/opt/autoenv/activate.sh
+
+# bindkey -M viins \C-R history-incremental-search-backward
+# bindkey -M vicmd \C-R history-incremental-search-backward
+
+# secrets
+# mongo_uri=mongodb://c12e:C0gScal3@aws-us-east-1-portal.12.dblayer.com:10476,aws-us-east-1-portal.13.dblayer.com:11005/macys_rancher_test?ssl=true
+
+# path to the DCOS CLI binary
+#if [[ "$PATH" != *"/Users/oeid/git/cognitivescale/foundataion-dev-1/bin"* ]];
+#  then export PATH=$PATH:/Users/oeid/git/cognitivescale/foundataion-dev-1/bin;
+#fi
+
+# allow ctrl-r to work with terminal vi-Mode
+bindkey -M viins '^r' history-incremental-search-backward
+bindkey -M vicmd '^r' history-incremental-search-backward

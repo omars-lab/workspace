@@ -1,0 +1,20 @@
+source ~/git/broomar/environment/loader.sh
+
+# # path to the DCOS CLI binary
+# if [[ "$PATH" != *"/Users/oeid/git/cognitivescale/foundataion-dev-1/bin"* ]];
+#   then export PATH=$PATH:/Users/oeid/git/cognitivescale/foundataion-dev-1/bin;
+# fi
+
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+#setup terminal tab title
+function title {
+   if [ "$1" ]
+   then
+       unset PROMPT_COMMAND
+       echo -ne "\033]0;${*}\007"
+   else
+       export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+   fi
+}
+if [ -e /Users/oeid/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/oeid/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

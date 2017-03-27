@@ -1,303 +1,44 @@
-vi twisted-client-1/get-poetry.py 
-vi twisted-client-1/get-poetry.py 
-vi twisted-client-1/get-poetry-broken.py 
-vi twisted-client-1/get-poetry.py 
-vi twisted-client-1/get-poetry-broken.py 
-ls
-vi twisted-client-1/get-poetry.py 
-vi twisted-client-1/get-poetry.py 
-vi twisted-client-2/get-poetry.py 
-vi twisted-client-2/get-poetry.py 
-vi twisted-client-2/get-poetry.py 
-vi twisted-client-2/get-poetry-simple.py 
-vi twisted-client-3/get-poetry-simple.py 
-vi twisted-client-3/get-poetry.py 
-vi twisted-failure/failure-examples.py 
-vi twisted-client-3/get-poetry-1.py 
-vi twisted-client-4/get-poetry.py 
-cd ..
-cd ..
-ls
-vi sockets.py
-ls
-vi sockets.py 
-vi sockets.py 
-ls
-ls
-ls
-vi sockets.py 
-vi sockets.py 
-vi sockets.py 
-clear
-ls
-ls
 /Volumes/RSASecurIDUtils411/TokenImporter ; exit;
-ls
-cd /var/log/
-ls
-ls -lrt
-ls -lrt
-ls -lrt
-ls -lrt
-ls -lrt
-ls -lrt
-ls -lrt
-ls -lrt
-ls -lrt
 tail -f system.log
-clear
-sl
-ls
-cd
-clear
 cd twisted-intro/
-ls
-vi twisted-client-1/get-poetry.py 
-vi twisted-client-2/get-poetry-simple.py 
-vi twisted-client-3/get-poetry-simple.py 
-vi twisted-client-3/get-poetry.py 
-vi twisted-client-4/get-poetry.py 
-vi twisted-deferred/deferred-simulator.py 
-python twisted-deferred/deferred-simulator.py 
-vi twisted-client-5/get-poetry-1.py 
-vi twisted-client-6/get-poetry.py 
-xlwaE
-CLEAR
-LS
-l
-ls
-cd
-cd Documents/
-cd Blog/
-ls
-cd sofware\ enginerding/
-ls
-cd tw
-cd python/
-ls
-cd twisted/
-ls
-clear
-ls
-vi notes.txt 
-vi notes.txt 
-ls
-ls -lrt
-tail -f /var/log/system.log
-clear
-sl
-ls
-clear
-sl
-ls
-cd Desktop/
-ls
+python twisted-deferred/deferred-simulator.py
 bash -c "clear && ssh -p 22 -o UserKnownHostsFile=/dev/null -o LogLevel=quiet -o StrictHostKeyChecking=no -i ~/.docker/machine/machines/dev/id_rsa docker@192.168.99.100 -t docker exec -i -t hello-world-nginx sh"
 bash -c "clear && DOCKER_HOST=tcp://192.168.99.100:2376 DOCKER_CERT_PATH=/Users/ome/.docker/machine/machines/dev DOCKER_TLS_VERIFY=1 $SHELL"
-cd 
-vi .ssh/id_dsa.pub 
-clear
-ls
-cd De
-cd Development/
-ls
-cd ..
-ls
-cd Documents/
-ls
-cd ..
-ls
-mkdir Seagate
-mv Seagate/ seagate
-cd seagate/
-ls
-ls
-ls
-ls
-mkdir code
-cd code/
-ls
 git pull git@gitlab.okla.seagate.com:PoolHouse/ddump_decoder.git
 git clone git@gitlab.okla.seagate.com:PoolHouse/ddump_decoder.git
-clear
-ls
-ls
-cd ddump_decoder/
-ls
-clear
-ls
-ls
-vi ddump_decode.py 
-python ddump_decode.py 
-ls
-ls
-vi ddump_decode.py 
-vi ddump_decode.py 
-ls
-ls
-ls -lrt
-cd ..
-ls
-cd ddump_decoder/
-ls
-cd 3.5.0.32/
-ls
-cd ..
-ls
-vi ddump_decode.py 
-clear
-s
-ls
-ls
-vi ddump_decode.py 
-ls
-vi buzzer.py 
-ls
-clear
-ls
-clear
-ls
-clear
-clear
-ls
-ls
-ls
-ls -lrt
-vi ddump_decode.py 
-clear
-ls
-status docker
-start docker
 docker images
 boot2docker -v up
-stop docker
-start docker
 docker images
-clear
-ls
-clear
-ls
 docker shell init
-docker image
 docker images
-clear
-ls
-docker ps
 docker ps
 docker images
-clear
-ls
-ls
-ls
 ifconfig
 ping 10.127.252.217
 ping 192.168.59.3
-vi ~/.profile 
-export DOCKER_HOST=10.127.252.217:2376
-docker images
-vi ~/.profile 
 export DOCKER_HOST="10.127.252.217:2376"
-docker images
-ifconfig
-export DOCKER_HOST="10.127.252.217:2376"
-docker images
-docker ip
-vi ~/.profile 
 boot2docker ip
-ping 192.168.59.103
-
-export DOCKER_HOST=192.168.59.103:2376
-docker images
-clear
-ls
-ifconfig
-ifconfig
-echo $DOCKER_
-echo $DOCKER_HOST 
-clear
-ls
 ps -aef | grep docker
-status docker
-clear
-ls
 docker images
 bash -c "clear && ssh -p 22 -o UserKnownHostsFile=/dev/null -o LogLevel=quiet -o StrictHostKeyChecking=no -i ~/.docker/machine/machines/dev/id_rsa docker@192.168.99.100 -t docker exec -i -t graphite sh"
-man name
-name
-man
-uname 
-cd
-cd Desktop/
-lks
-ls
-vi test.py
-python test.py 
-vim test.py 
-python test.py 
-vim test.py 
-python test.py 
-vim test.py 
-python test.py 
-vim test.py 
-python test.py 
-vim test.py 
-vim test.py 
-python test.py 
-vim test.py 
-python test.py 
-ls
-ls -lrt
-cd
- vi .profile 
-ls
-cd
-ls
-clear
-ls
-status docker
-stop docker
-status docker
+uname
 brew install tcpdump
-tcpdump 
+tcpdump
 tcpdump --help
 tcpdump -i eth0
 sudo tcpdump -i eth0
-ifconfig 
 sudo tcpdump -i en0
-timelimit 
-timelimit -t 10 while [ 1 ] ; do echo hi; sleep 1; done
-timelimit -t 10 while [ 1 ]; do echo hi; sleep 1; done
-timelimit -t 10 while [ 1 -e 1 ] do echo hi; sleep 1; done
-timelimit -t 10 while [ 1 -eq 1 ] do echo hi; sleep 1; done
-timelimit -t 10 while [ 1 -eq 1 ]; echo hi; sleep 1; done
-timelimit -t 10 while [ 1 -eq 1 ]; echo hi; sleep 1; done
-timelimit -t 10 while [ 1 -eq 1 ] do echo hi; sleep 1; done
-timelimit -t 10 while [ 1 -eq 1 ] do echo hi; sleep 1; done
+timelimit
 timelimit -t 10 while [ 1 -eq 1 ]; do echo hi; sleep 1; done
-timelimit -t 10 
+timelimit -t 10
 timelimit -t 10 echo hiu
 timelimit -t 10 tcpdump -i en0
-timelimit -t 10 sudo tcpdump -i en0
 timelimit -t 1 sudo tcpdump -i en0
-timelimit --help
-timelimit -s 1 sudo tcpdump -i en0
-timelimit --help
-timelimit -T 1 sudo tcpdump -i en0
-timelimit -t 1 sudo tcpdump -i en0
-timelimit -t 1 ping 8.8.8.8
 timelimit -t 2 ping 8.8.8.8
-timelimit -t 1 sudo tcpdump -i en0
 timelimit -t 5 sudo tcpdump -i en0
-timelimit --help
 timelimit -t 3 -T 6 sudo tcpdump -i en0
-timelimit -S 3  sudo tcpdump -i en0
 timelimit -s 3  sudo tcpdump -i en0
-timelimit --help
-timelimit -t3 -s4 --help
-timelimit -t 3 -s 4 --help
 timelimit -t 3 -s 4 sudo tcpdump -i en0
-clear
-ls
 tcpdump -D
 tcpdump -c 10 -n -i en0
 sudo tcpdump -c 10 -n -i en0
@@ -307,194 +48,24 @@ tcpdump -i en0 udp
 sudp tcpdump -i en0 udp
 sudo tcpdump -i en0 udp
 sudo tcpdump -i en0 udp | grep -i ssdp
-ls
-lcear
-cd
-cd Desktop/
-ls
-vi test.py 
-vi ssdp.py
 python ssdp.py server 127.0.0.1
-vi ssdp.py
-ifconfig 
+ifconfig
 python ssdp.py server 192.168.1.125
-vi ssdp.py
-clear
-ls
-clear
-ls
-clear
-ls
-cd De
-ls
-cd Development/
-ls
-cd ..
-ls
-cd seagate/
-ls
-cd code/
-ls
-cd ddump_decoder/
-ls
-git status
-vi midplane.py
-ls
-cd ..
-ls
-ls
-mv ddump_decoder/ ddump_decoder_old/
-ls
-ls
 git clone git@gitlab.okla.seagate.com:PoolHouse/ddump_decoder.git
-ls
 cd ddump_decoder
-ls
-ls -lrt
-git status
-git status 
-git checkout omar
-git status
-ls
-ls -lrt
-cd rddump/
-ls
-ls
-cd ..
-ls
-cd ..
-ls
-mv ddump_decoder ~/Development/
-cd ~/Development/
-sl
-ls
-ls
-ls
-cd ddump_decoder/
-ls
-ls
-ls
-cd
-cd Desktop/
-ls
-vagrant Vagrantfile 
+vagrant Vagrantfile
 vagrant init
 vagrant up
-ls
-clear
-ls
-ls
-cd
-clear
-ls
-ls
-cd 
-cd Desktop/
-ls
 vagrant global-status
 vagrant ssh e
-ls
-cd 
-cd Development/
-ls
-cd ddump_decoder/
-ls
-git status
-git add .
-git status
-git pull
-git push origin omar
-git status
-git commit -m "More clean up, added md5 function, added some comments to better understand the code."
-git status
-git push origin omar
-git status
 vagrant ssh
-ls -1
-ls
-cd
-cd Development/ddump_decoder/
-ls -1
 vagrant ssh e
-git status
-cd Development/ddump_decoder/
-ls
-git status
-git add .
-git commit -m "Fixes for html_stuff.py"
-git status
-git push origin omar
-clear
-ls
-cd 
-cd .m2/
-ls
-cd repository/
-ls
-cd com/xensource/
-ls
-cd client-api/
-ls
-cd 6.2.0/
-ls
-ls -lrt
-ls -lrth
-pwd
-ls
-cd ..
-ls
-ls
-cd ..
-cd ..
-ls
-cd doublecloud/
-ls
-cd vijava/
-ls
-cd vijavaguest/
-ls
-cd 5.5/
-ls
 cp vijavaguest-5.5.jar ~/Desktop/
-cd
-ks
-ls
-cd Development/
-ls
-cd ddump_decoder/
-ls
 git status
 ssh jenkins@jenkins.connectloud.com
 ssh cl@jenkins.connectloud.com
-ls
-mv ~/.m2 Documents/Connectloud/m2
-ls
-cd ..
-ls
-cd
-ls
-cd Desktop/
-ls
-vi .labels.swp 
-rm .labels.swp 
-vi .tree.py.swp 
-rm .tree.py.swp 
-vi .thought-train.txt 
-ls
 defaults write com.apple.finder AppleShowAllFiles YES
-cd ~/Library/Application Support/MobileSync/Backup
 cd ~/Library/Application\ Support/MobileSync/Backup/
-ls -lrt
 df -h
 df -h ./
 du -h ./
-ls
-cd
-cd -
-pwd
-clear
-sl
-ls
-clear
-ls
-ls -lrt
