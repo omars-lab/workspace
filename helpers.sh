@@ -26,6 +26,6 @@ function recursive-source(){
 }
 
 # Re-source the bash profile
-function re-source(){
-    source ~/.bash_profile
-}
+# function re-source(){
+#     source ~/.bash_profile
+# }

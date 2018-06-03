@@ -1,0 +1,57 @@
+:syntax enable
+
+set clipboard=unnamedplus
+
+call pathogen#infect()
+
+" http://vim.wikia.com/wiki/Indenting_source_code
+set nocompatible
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+" https://github.com/junegunn/fzf
+" If installed using Homebrew
+set rtp+=/usr/local/opt/fzf
+nnoremap <Tab> :FZF<CR>
+:map <S-\> <C-x><C-f>
+
+" https://github.com/nelstrom/vim-markdown-folding
+nnoremap <S-f> :fold<CR>
+nnoremap <S->> :foldopen<CR>
+nnoremap <S-<> :foldclose<CR>
+
+" https://github.com/tpope/vim-commentary
+:map \ gc<CR>
+
+set guifont=Monaco:h20
+
+" These settings will result in spaces being used for all indentation.
+set noexpandtab
+set shiftwidth=2
+set softtabstop=2
+
+" https://github.com/scrooloose/nerdtree
+" Alt-n
+nnoremap ˜ :NERDTreeToggle<CR>
+" Alt-/
+nnoremap ˜ :NERDTreeToggle<CR>
+" Alt-v - Verical Split
+nnoremap √ :vsp<CR>
+" Alt-h - Horizontal Split
+nnoremap ˙ :sp<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+:map <C-Up> <C-W><Up>
+:map <C-Down> <C-W><Down>
+
+:map <S-Up> <C-W><Up>
+:map <S-Down> <C-W><Down>
+:map <S-Right> <C-W><Right>
+:map <S-Left> <C-W><Left>
+
+" autocmd VimEnter * FZF
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
+

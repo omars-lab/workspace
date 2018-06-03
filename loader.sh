@@ -17,7 +17,10 @@ source $DIRS_ENVIRONMENT/ifttt/functions.sh
 
 recursive-source $DIRS_ENVIRONMENT "loader|theme|bookmarks"
 recursive-source $DIRS_ENVIRONMENT/commands
-recursive-source $DIRS_ENVIRONMENT/c12e ".sh"
+recursive-source $DIRS_ENVIRONMENT/aliases
+recursive-source $DIRS_ENVIRONMENT/scripts
+
+# recursive-source $DIRS_ENVIRONMENT/c12e
 # recursive-source $DIRS_ENVIRONMENT/git
 
 # Python Virtual Env Stuff
@@ -29,7 +32,7 @@ echo ${VIRTUAL_ENV##*/} | grep 'cogenv' || workon cogenv  # virtualenvwrapper co
 # NVM Stuff
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-nvm current | grep 'v4.7.3' || nvm use v4.7.3
+(nvm current | grep 'v4.7.3') || nvm use v4.7.3
 
 # Setup the env
 # envmgr use omarstest
