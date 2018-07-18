@@ -112,59 +112,15 @@ export NVM_DIR="$HOME/.nvm"
 export NPM_TOKEN="eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJzZDFZZGNPTmJGVVdCVDBQYVU2OFQzZ25pbWo2emxLUExaME5XZDhtSV9vIn0.eyJzdWIiOiJqZi1hcnRpZmFjdG9yeUBlYzVlOWIwYy0wMjRlLTQ2YjktOTIzYy02MTc5ZjFjYjY3OWZcL3VzZXJzXC9jMTJlLWRldiIsInNjcCI6Im1lbWJlci1vZi1ncm91cHM6KiBhcGk6KiIsImF1ZCI6ImpmLWFydGlmYWN0b3J5QGVjNWU5YjBjLTAyNGUtNDZiOS05MjNjLTYxNzlmMWNiNjc5ZiIsImlzcyI6ImpmLWFydGlmYWN0b3J5QGVjNWU5YjBjLTAyNGUtNDZiOS05MjNjLTYxNzlmMWNiNjc5ZiIsImlhdCI6MTUxMTIwNDQ4MCwianRpIjoiMWMwMTgyM2QtMWMyNC00MmRhLWE0ZjgtOTBiYTRkYmZiNTQyIn0.FuLgish1oteeBfR1ek8u86EDbGAsjs_QOXDxGFRo6Z8yCMlaKU8VIAqC7Z9J5V8nZk3ziDxeDTQG5khuFSYcAGroFppjGetacTB67FNyoLwMgB5cYdsqP9aswJPfKhqV6HFjrd0coW8itgmN2sP8ZvyGrBZsDGLawC8lFlV1ZkQ8-1Q_eGQVd4IfdAQ2YyuFfAPdeJ-itgcbyuWqw_cdefBDHXjdXzb0ZbNWNibVxIoCLNAkoxCVLFIdV4z7AehR-OYLKygHyh8dXnsg6VdjSEvFaut3X2IUYMV3MkjYMLhD4USlUlxL-9jPcnztEvzpFKrxsVpzwGSUtz7okdhNLw"
 . "/usr/local/opt/nvm/nvm.sh"
 
-# nvm use v4.8.2
 nvm use v6.2.0
 
 precmd_functions=(week_prompt)
 export precmd_functions
 
-
-# ln -s /Users/oeid/git/personal-code/environment/profiles/zshrc .zshrc
-# ln -s /Users/oeid/git/personal-code/environment/profiles/vimrc .vimrc
-# ln -s /Users/oeid/git/personal-code/environment/profiles/bash_profile .bash_profile
-# ╰─$ ln -s /Users/oeid/git/personal-code/environment/profiles/config config
-
 ### Added by the Bluemix CLI
 source /usr/local/Bluemix/bx/zsh_autocomplete
-
-# function cortex_cli_command(){
-#   URL_PATH=$1
-#   shift;
-#   CURRENT_PROFILE=$(cat ~/.cortex/config | jq -r ".currentProfile")
-#   JWT_TOKEN=$(cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".token")
-#   CORTEX_API_ENDPOINT=$(cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".url")
-#   curl -s ${CORTEX_API_ENDPOINT}/${URL_PATH} -H "authorization: Bearer ${JWT_TOKEN}" -H 'content-type: application/json' ${@}
-# }
-
-# function cortex-set-profile() {
-#   cortex configure set-profile ${1}
-#   CURRENT_PROFILE=$(cat ~/.cortex/config | jq -r '.currentProfile')
-#   CURRENT_PROFILE_CONTENT=$(cat ~/.cortex/config | jq -c ".profiles | .[\"${CURRENT_PROFILE}\"]")
-#   cp ~/.cortex/config ~/.cortex/config_bck
-#   cat ~/.cortex/config_bck | jq ".profiles.default |= ${CURRENT_PROFILE_CONTENT}" > ~/.cortex/config
-# }
-
-function _cortex-set-profile() {
-  compadd $(cat ~/.cortex/config | jq -r ".profiles | keys | .[]" | egrep -v '^default$' | xargs echo)
-}
-
-function _cortex(){
-  compadd $(cortex --help | grep '\[cmd\]' | sed 's/\[cmd\].*//g' | egrep -o "[a-zA-Z]+" | xargs echo)
-}
-
-# function cortex-latest-task-status(){
-#    JOB_NAME=$1
-#    LATEST_TASK_ID=$(cortex tasks list ${JOB_NAME} --json | jq '.tasks' | jq 'sort_by(-.createdAt)' | jq -r '.[0].taskId')
-#    # LATEST_TASK_ID=$(cortex tasks list ${JOB_NAME} --json | jq '.tasks' | jq 'map(select(.status != "FAILED")) | sort_by(-.createdAt)' | jq -r '.[0].taskId')
-#    echo "LOGS for ${JOB_NAME} ${LATEST_TASK_ID}"
-#    cortex jobs status ${JOB_NAME}
-#    cortex tasks logs ${JOB_NAME} ${LATEST_TASK_ID}
-#    cortex_cli_command v2/jobs/${JOB_NAME}/tasks/${LATEST_TASK_ID}/logs | jq '.'
-# }
-function _cortex-latest-task-status(){
-  compadd $(cortex jobs list --json | jq -r ".[] | .name" | xargs echo)
-}
 
 compdef _cortex-set-profile cortex-set-profile
 compdef _cortex-latest-task-status cortex-latest-task-status
 compdef _cortex cortex
+

@@ -20,9 +20,6 @@ recursive-source $DIRS_ENVIRONMENT/commands
 recursive-source $DIRS_ENVIRONMENT/aliases
 recursive-source $DIRS_ENVIRONMENT/scripts
 
-# recursive-source $DIRS_ENVIRONMENT/c12e
-# recursive-source $DIRS_ENVIRONMENT/git
-
 # Python Virtual Env Stuff
 export WORKON_HOME=$DIRS_VIRTUAL_ENVS
 source $(which virtualenvwrapper.sh)

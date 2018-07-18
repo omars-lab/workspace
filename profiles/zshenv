@@ -1,0 +1,51 @@
+
+function echo_cortex_cli_command(){
+  URL_PATH=$1
+  shift;
+  CURRENT_PROFILE=$(cat ~/.cortex/config | jq -r ".currentProfile")
+  JWT_TOKEN=$(cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".token")
+  CORTEX_API_ENDPOINT=$(cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".url")
+  bash -c "echo curl -s \'${CORTEX_API_ENDPOINT}/${URL_PATH}\' -H \'authorization: Bearer ${JWT_TOKEN}\' -H \'content-type: application/json\' ${@}"
+}
+
+function cortex_cli_command(){
+  echo_cortex_cli_command ${@} | bash
+}
+
+function cortex-set-profile() {
+  cortex configure set-profile ${1}
+  CURRENT_PROFILE=$(cat ~/.cortex/config | jq -r '.currentProfile')
+  CURRENT_PROFILE_CONTENT=$(cat ~/.cortex/config | jq -c ".profiles | .[\"${CURRENT_PROFILE}\"]")
+  cp ~/.cortex/config ~/.cortex/config_bck
+  cat ~/.cortex/config_bck | jq ".profiles.default |= ${CURRENT_PROFILE_CONTENT}" > ~/.cortex/config
+}
+
+function cortex-latest-task-status(){
+   JOB_NAME=$1
+   LATEST_TASK_ID=$(cortex tasks list ${JOB_NAME} --json | jq '.tasks' | jq 'sort_by(-.createdAt)' | jq -r '.[0].taskId')
+   # LATEST_TASK_ID=$(cortex tasks list ${JOB_NAME} --json | jq '.tasks' | jq 'map(select(.status != "FAILED")) | sort_by(-.createdAt)' | jq -r '.[0].taskId')
+   echo "LOGS for ${JOB_NAME} ${LATEST_TASK_ID}"
+   cortex jobs status ${JOB_NAME}
+   cortex tasks logs ${JOB_NAME} ${LATEST_TASK_ID}
+   cortex_cli_command v2/jobs/${JOB_NAME}/tasks/${LATEST_TASK_ID}/logs | jq '.'
+}
+
+function _cortex-set-profile() {
+  compadd $(cat ~/.cortex/config | jq -r ".profiles | keys | .[]" | egrep -v '^default$' | xargs echo)
+}
+
+function _cortex(){
+  compadd $(cortex --help | grep '\[cmd\]' | sed 's/\[cmd\].*//g' | egrep -o "[a-zA-Z]+" | xargs echo)
+}
+
+function _cortex-latest-task-status(){
+  compadd $(cortex jobs list --json | jq -r ".[] | .name" | xargs echo)
+}
+
+function gocd_encrypt() {
+ echo "${1}" | jq -R '{value: .}' | curl -s 'https://ci.c1.io/go/api/admin/encrypt' -u 'admin:C0gN!T!v3Sc@l3G0Cd' -H 'Accept: application/vnd.go.cd.v1+json' -H 'Content-Type: application/json' -X POST -d @- | jq -r .encrypted_value
+}
+
+function gocd_decrypt() {
+ echo "${1}" | jq -R '{value: .}' | curl -s 'https://ci.c1.io/go/api/admin/decrypt' -u 'admin:C0gN!T!v3Sc@l3G0Cd' -H 'Accept: application/vnd.go.cd.v1+json' -H 'Content-Type: application/json' -X POST -d @- | jq -r .decrypted_value
+}

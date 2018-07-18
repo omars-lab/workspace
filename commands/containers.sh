@@ -1,3 +1,6 @@
+# Commands to start certain servers
+alias START_INFLUX='influxd -config /usr/local/etc/influxdb.conf'
+
 function NIFI() {
   NARS=~/git/cognitivescale/triton/components/dataflow/nifi-nar-bundles/
   docker run -itd --name nifi -p 8080 -v ${NARS}:/code nifi:0.3.1 bash

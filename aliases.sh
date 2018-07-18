@@ -1,8 +1,5 @@
 # A collection of useful aliases
 
-# Commands to start certain servers
-alias START_INFLUX='influxd -config /usr/local/etc/influxdb.conf'
-
 # Custom File Editors
 alias editcontainers="vi ${DIRS_ENVIRONMENT}/commands/containers.sh"
 alias containers="cat ${DIRS_ENVIRONMENT}/commands/containers.sh"
@@ -25,7 +22,7 @@ alias o='popd'
 # Makes a file Executable
 alias x='chmod +x'
 
-# Make tre
+# Make Tree display root nodes ...
 alias tre='tree -C -L 1'
 
 function peek() {
