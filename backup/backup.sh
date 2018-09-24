@@ -79,7 +79,6 @@ function backup_git_dir(){
         | egrep -o 'git@.*' \
         | sed "s/[.]com:/.com${PERSONAL_SUFFIX}:/g" \
         | sed "s/[.]org:/.org${PERSONAL_SUFFIX}:/g" \
-        | tee \ 
         > ${DEST_DIR}/repo.txt
     git -C ${GITDIR} status > ${DEST_DIR}/status.txt
     echo ${0} > ${DEST_DIR}/path.txt
