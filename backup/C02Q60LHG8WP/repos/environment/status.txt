@@ -5,15 +5,16 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   loader.sh
-	modified:   profiles/bash_profile
-	modified:   profiles/config
-	modified:   profiles/zshenv
-	modified:   profiles/zshrc
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	backup/
+	modified:   backup/C02Q60LHG8WP/repos/BusinessBook/repo.txt
+	modified:   backup/C02Q60LHG8WP/repos/PersonalBook/repo.txt
+	modified:   backup/C02Q60LHG8WP/repos/VisaBook/repo.txt
+	modified:   backup/C02Q60LHG8WP/repos/c12e-learning-fp/path.txt
+	modified:   backup/C02Q60LHG8WP/repos/c12e-learning-fp/stashes.txt
+	modified:   backup/C02Q60LHG8WP/repos/c12e-learning-fp/status.txt
+	modified:   backup/C02Q60LHG8WP/repos/environment/status.txt
+	modified:   backup/C02Q60LHG8WP/repos/parse4j/path.txt
+	modified:   backup/C02Q60LHG8WP/repos/parse4j/repo.txt
+	modified:   backup/C02Q60LHG8WP/repos/parse4j/status.txt
+	modified:   backup/backup.sh
 
 no changes added to commit (use "git add" and/or "git commit -a")
