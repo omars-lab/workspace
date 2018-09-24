@@ -1,1 +1,0 @@
-git@bitbucket.org:cognitivescale/generator-cortex.git

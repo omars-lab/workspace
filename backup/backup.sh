@@ -68,11 +68,30 @@ function backup_vim_packages(){
         '{}' "${BACKUP_DIR}/packages/vim" \;
 }
 
+function backup_git_dir(){
+    GITDIR=$(dirname ${1})
+    DEST_DIR=${2}/$(basename ${GITDIR})
+    mkdir -p ${DEST_DIR}
+    # Extract the url, and append -personal (could also determine this by the path of the gitrepo ...)
+    PERSONAL_SUFFIX=$(echo ${GITDIR} | grep -o personal 1>/dev/null && echo -n '-personal' || echo -n '')
+    cat ${GITDIR}/.git/config \
+        | grep 'url =' \
+        | egrep -o 'git@.*' \
+        | sed "s/[.]com:/.com${PERSONAL_SUFFIX}:/g" \
+        | sed "s/[.]org:/.org${PERSONAL_SUFFIX}:/g" \
+        | tee \ 
+        > ${DEST_DIR}/repo.txt
+    git -C ${GITDIR} status > ${DEST_DIR}/status.txt
+    echo ${0} > ${DEST_DIR}/path.txt
+    git -C ${GITDIR} stash list > ${DEST_DIR}/stashes.txt
+    
+}
+export -f backup_git_dir
+
 function backup_git_repos() {
     mkdir -p ${BACKUP_DIR}/repos
     find ~/git -name '.git' -type d -exec bash -c \
-        'GITDIR=$(dirname ${0}); DEST_DIR=${1}/$(basename ${GITDIR}); mkdir -p ${DEST_DIR}; cat ${GITDIR}/.git/config | grep url.= | egrep -o git@.* > ${DEST_DIR}/repo.txt ; git -C ${GITDIR} status > ${DEST_DIR}/status.txt ; echo ${0} > ${DEST_DIR}/path.txt ; git -C ${GITDIR} stash list > ${DEST_DIR}/stashes.txt ' \
-        '{}' "${BACKUP_DIR}/repos" \;
+        'backup_git_dir "${0}" "${1}"' '{}' "${BACKUP_DIR}/repos" \;
     
 }
 
@@ -103,4 +122,5 @@ function backup_mac_app_names(){
 #     && backup_vim_packages \
 #     && backup_git_repos
 
-backup_dot_files  
+# backup_dot_files
+backup_git_repos

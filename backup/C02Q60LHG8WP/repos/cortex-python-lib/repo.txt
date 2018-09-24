@@ -1,1 +1,0 @@
-git@bitbucket.org:cognitivescale/cortex-python-lib.git
