@@ -13,6 +13,7 @@ function backup_dot_files(){
     mkdir -p ${BACKUP_DIR}/dotfiles
     cp ~/.gitignore_global ${BACKUP_DIR}/dotfiles/gitignore_global
     cp ~/.npmrc ${BACKUP_DIR}/dotfiles/npmrc
+    cp -r ~/.ssh ${BACKUP_DIR}/dotfiles/ssh
     cp -r ~/.secrets ${BACKUP_DIR}/dotfiles/secrets
     cp -r ~/.aws ${BACKUP_DIR}/dotfiles/aws
     ls -1 ~/.*hist* | xargs -I {} bash -c \
@@ -74,6 +75,8 @@ function backup_git_repos() {
         '{}' "${BACKUP_DIR}/repos" \;
     
 }
+
+
 # backup executables 
 # backup docker images
 
@@ -91,10 +94,13 @@ function backup_mac_app_names(){
 #     && backup_mac_app_names \
 #     && backup_atom_config \
 #     && backup_brew_config \
+#     && backup_robo3t_config \
 #     && backup_atom_packages \
 #     && backup_brew_packages \
 #     && backup_vim_packages \
 #     && backup_conda_packages \
-#     && backup_virtualenv_packages
+#     && backup_virtualenv_packages \
+#     && backup_vim_packages \
+#     && backup_git_repos
 
-backup_dot_files && backup_robo3t_config && backup_vim_packages && backup_git_repos
+backup_dot_files  

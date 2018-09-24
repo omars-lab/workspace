@@ -1,0 +1,67 @@
+# Look into this if the ssh config file grows out of proportion:
+# http://www.linuxsysadmintutorials.com/multiple-ssh-client-configuration-files/
+
+host *
+  ServerAliveInterval 60
+  ServerAliveCountMax 2
+
+host Github
+  HostName github.com*
+  IdentityFile /Users/oeid/.ssh/github_work
+
+host BitBucket-Work
+  HostName bitbucket.org/omar_eid*
+  User omar_eid
+  IdentityFile /Users/oeid/.ssh/bitbucket
+
+host BitBucket-Personal
+  HostName bitbucket.org/broomar*
+  User broomar
+  IdentityFile /Users/oeid/.ssh/bitbucket-personal
+
+host cti-jumpbox
+  HostName cti-jumpbox
+  User oeid
+  IdentityFile /Users/oeid/.ssh/jumpcloud
+  LocalForward 20000 10.100.3.179:8888
+  LocalForward 2222 10.100.3.179:22
+  LocalForward 2233 10.100.3.226:22
+  LocalForward 3306 10.100.3.226:3306
+  LocalForward 21015 10.100.3.179:11015
+
+host cti-env
+  HostName cti-env
+  User oeid
+  Port 2222
+  IdentityFile /Users/oeid/.ssh/jumpcloud
+
+host cti-env-2
+  HostName cti-env
+  User oeid
+  Port 2233
+  IdentityFile /Users/oeid/.ssh/jumpcloud
+
+host cti-cortex
+  HostName ec2-54-201-13-161.us-west-2.compute.amazonaws.com
+  User ubuntu
+  IdentityFile ~/.ssh/cti-cortex.pem
+
+host cti-jenkins
+  HostName 34.212.131.49
+  User ubuntu
+  IdentityFile ~/.ssh/cti.pem
+
+host cti-jenkins-2
+  HostName 34.212.29.162
+  User ubuntu
+  IdentityFile ~/.ssh/cti.pem
+
+host personal-aws-instance
+  HostName 54.91.11.255
+  User ubuntu
+  IdentityFile ~/.ssh/personal-aws-keys-1.pem
+
+host bwii-runbook-server
+  HostName bw-triage.insights.ai
+  User ubuntu
+  IdentityFile /Users/oeid/.ssh/jumpcloud

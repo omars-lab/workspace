@@ -11374,3 +11374,197 @@ ls
 : 1537799505:0;cat ../.git/config| grep url.= | egrep -o git@*
 : 1537799507:0;cat ../.git/config| grep url.= | egrep -o git@.*
 : 1537799569:0;./backup.sh
+: 1537800333:0;ls
+: 1537800345:0;cat C02Q60LHG8WP/repos/*/stashes.txt 
+: 1537800384:0;grep -ril 'COMP-8-update-the-types-agent-processor' .
+: 1537800410:0;grep -ril 'b309867' .
+: 1537800419:0;grep -ril 'c7e9a79' .
+: 1537800430:0;grep -ril '2f67e07' .
+: 1537800439:0;grep -ril '354cd77' .
+: 1537800447:0;grep -ril '6bd008c' .
+: 1537800456:0;grep -ril '8fcfd05' .
+: 1537800460:0;ls
+: 1537800497:0;cd ..
+: 1537800498:0;ls
+: 1537800515:0;cd ..
+: 1537800516:0;ls
+: 1537800518:0;cd ..
+: 1537800519:0;ls
+: 1537800526:0;cd personal-
+: 1537800530:0;ls personal-*
+: 1537800541:0;ls learning/*
+: 1537807474:0;ls
+: 1537807479:0;cd personal-code/environment
+: 1537807480:0;gs
+: 1537807482:0;git add --all
+: 1537807482:0;gs
+: 1537807494:0;git commit -m "Adding mac backup logic"
+: 1537807494:0;gs
+: 1537807496:0;git pull
+: 1537807501:0;load_personal_keys
+: 1537807504:0;git pull
+: 1537807507:0;git push origin master 
+: 1537807562:0;load_work_keys
+: 1537807652:0;ls
+: 1537807653:0;cd ..
+: 1537807653:0;..
+: 1537807657:0;cd cognitivescale/cortex-courses
+: 1537807657:0;ls
+: 1537807659:0;git pull
+: 1537807661:0;gs
+: 1537807667:0;atom class221,222,223
+: 1537808631:0;ls
+: 1537808633:0;cd ..
+: 1537808638:0;cd cortex5/cortex-
+: 1537808640:0;cd cortex5/
+: 1537808640:0;ls
+: 1537808763:0;gs
+: 1537808765:0;git status
+: 1537808773:0;cd cortex-processors
+: 1537808774:0;ls
+: 1537808793:0;cat financial-services/trader-insights-for-equities/test.sh.local
+: 1537808802:0;grep -ril 'docker' .
+: 1537808813:0;grep -ril 'docker' . 2>/dev/null
+: 1537808818:0;vi build.sh
+: 1537808833:0;vi ./financial-services/client-complaint-classifier/processor-training-status/Makefile
+: 1537808837:0;grep -ril 'docker' . 2>/dev/null
+: 1537808849:0;grep -ri 'docker' . 2>/dev/null
+: 1537808864:0;grep -ri -e 'docker' -e 'curl' . 2>/dev/null
+: 1537808877:0;egrep -ri 'curl.*docker' . 2>/dev/null
+: 1537808887:0;cd ..
+: 1537808889:0;egrep -ri 'curl.*docker' . 2>/dev/null
+: 1537809023:0;ls
+: 1537809027:0;cd bwii-triumph
+: 1537809028:0;ls
+: 1537809030:0;vi Makefile
+: 1537809046:0;ls
+: 1537809047:0;cd ..
+: 1537809048:0;cd industry-data-cortex-agents
+: 1537809049:0;ls
+: 1537809053:0;vi Makefile-common
+: 1537809059:0;ls
+: 1537809060:0;vi Makefile
+: 1537809067:0;cd job
+: 1537809069:0;cd jobs
+: 1537809070:0;ls
+: 1537809073:0;cd cortex/noop
+: 1537809073:0;ls
+: 1537809077:0;..
+: 1537809080:0;cd id-tr-data-pipeline
+: 1537809080:0;ls
+: 1537809086:0;vi Makefile-common
+: 1537809158:0;docker --help
+: 1537809188:0;docker search c12e/cortex-skill-feedback-handler
+: 1537809228:0;wget -q https://registry.hub.docker.com/v1/repositories/c12e/cortex-skill-feedback-handler/tags
+: 1537809297:0;wget https://registry.hub.docker.com/v1/repositories/c12e/cortex-skill-feedback-handler/tags
+: 1537809462:0;ls
+: 1537809463:0;cd
+: 1537809464:0;cd Desktop
+: 1537809471:0;vi test-docker-rest.sh
+: 1537809538:0;x test-docker-rest.sh
+: 1537809541:0;./test-docker-rest.sh
+: 1537809545:0;vi test-docker-rest.sh
+: 1537809563:0;./test-docker-rest.sh
+: 1537809568:0;vi test-docker-rest.sh
+: 1537809578:0;./test-docker-rest.sh
+: 1537809685:0;vi test-docker-rest.sh
+: 1537809724:0;./test-docker-rest.sh
+: 1537809727:0;vi test-docker-rest.sh
+: 1537809738:0;./test-docker-rest.sh
+: 1537809740:0;vi test-docker-rest.sh
+: 1537809788:0;./test-docker-rest.sh
+: 1537809790:0;vi test-docker-rest.sh
+: 1537809800:0;./test-docker-rest.sh
+: 1537809814:0;vi test-docker-rest.sh
+: 1537809821:0;./test-docker-rest.sh
+: 1537809891:0;curl -v https://registry.docker.io/v2/_catalog
+: 1537809899:0;curl -v https://registry-1.docker.io/v2/_catalog
+: 1537809947:0;curl -v https://registry-1.docker.io/v2/c12e/cortex-skills-feedback-handler
+: 1537809955:0;curl -v https://registry-1.docker.io/v2/r/c12e/cortex-skills-feedback-handler
+: 1537809974:0;curl -v https://registry-1.docker.io/v2/r/c12e/cortex-skills-feedback-handler/tags/list
+: 1537810012:0;vi test-docker-rest.sh
+: 1537810062:0;curl https://auth.docker.io/token\?service\=registry.docker.io\&scope\=repository:r/c12e/cortex-skills-feedback-handler:pull
+: 1537810088:0;vi test-docker-rest.sh
+: 1537810242:0;./test-docker-rest.sh
+: 1537810253:0;vi test-docker-rest.sh
+: 1537810282:0;./test-docker-rest.sh
+: 1537810286:0;vi test-docker-rest.sh
+: 1537810334:0;./test-docker-rest.sh
+: 1537810336:0;vi test-docker-rest.sh
+: 1537810339:0;./test-docker-rest.sh
+: 1537810347:0;vi test-docker-rest.sh
+: 1537810364:0;./test-docker-rest.sh
+: 1537810367:0;vi test-docker-rest.sh
+: 1537810372:0;./test-docker-rest.sh
+: 1537810375:0;vi test-docker-rest.sh
+: 1537810452:0;./test-docker-rest.sh
+: 1537810458:0;vi test-docker-rest.sh
+: 1537810465:0;./test-docker-rest.sh
+: 1537810468:0;vi test-docker-rest.sh
+: 1537810475:0;./test-docker-rest.sh
+: 1537810479:0;vi test-docker-rest.sh
+: 1537810505:0;./test-docker-rest.sh
+: 1537810507:0;vi test-docker-rest.sh
+: 1537810534:0;./test-docker-rest.sh
+: 1537810537:0;vi test-docker-rest.sh
+: 1537810568:0;./test-docker-rest.sh
+: 1537810569:0;vi test-docker-rest.sh
+: 1537810582:0;curl -v https://registry-1.docker.io/v2/c12e/cortex-skills-feedback-handler/tags/list
+: 1537810622:0;curl https://auth.docker.io/token\?service=registry.docker.io\&scope=repository:c12e/cortex-skills-feedback-handler:pull
+: 1537810635:0;curl 'https://auth.docker.io/token?service=registry.docker.io&scope=repository:c12e/cortex-skills-feedback-handler:pull'
+: 1537810647:0;vi test-docker-rest.sh
+: 1537810701:0;./test-docker-rest.sh
+: 1537810707:0;vi test-docker-rest.sh
+: 1537810715:0;./test-docker-rest.sh
+: 1537810717:0;vi test-docker-rest.sh
+: 1537810720:0;./test-docker-rest.sh
+: 1537810723:0;vi test-docker-rest.sh
+: 1537810885:0;./test-docker-rest.sh
+: 1537810889:0;vi test-docker-rest.sh
+: 1537810902:0;./test-docker-rest.sh
+: 1537810908:0;vi test-docker-rest.sh
+: 1537810986:0;./test-docker-rest.sh
+: 1537810989:0;vi test-docker-rest.sh
+: 1537811028:0;./test-docker-rest.sh
+: 1537811034:0;vi test-docker-rest.sh
+: 1537811063:0;man curl
+: 1537811130:0;vi test-docker-rest.sh
+: 1537811184:0;./test-docker-rest.sh
+: 1537811203:0;curl -v https://registry-1.docker.io/v2/r/c12e/cortex-skills-feedback-handler/tags/list
+: 1537811213:0;curl -v https://registry-1.docker.io/v2/c12e/cortex-skills-feedback-handler/tags/list
+: 1537811228:0;./test-docker-rest.sh
+: 1537811366:0;vi test-docker-rest.sh
+: 1537811383:0;./test-docker-rest.sh
+: 1537811392:0;vi test-docker-rest.sh
+: 1537811424:0;./test-docker-rest.sh
+: 1537811436:0;vi test-docker-rest.sh
+: 1537811531:0;./test-docker-rest.sh
+: 1537811535:0;vi test-docker-rest.sh
+: 1537811541:0;./test-docker-rest.sh
+: 1537811573:0;vi test-docker-rest.sh
+: 1537811590:0;./test-docker-rest.sh
+: 1537811604:0;vi test-docker-rest.sh
+: 1537811626:0;./test-docker-rest.sh
+: 1537811656:0;vi test-docker-rest.sh
+: 1537811694:0;./test-docker-rest.sh
+: 1537811706:0;atom test-docker-rest.sh
+: 1537811819:0;./test-docker-rest.sh
+: 1537813228:0;which gocd_encrypt
+: 1537813631:0;pbpaste | jq
+: 1537813633:0;pbpaste | jq -c
+: 1537813641:0;pbpaste | jq -c | gocd_encrypt
+: 1537813654:0;which gocd_encrypt
+: 1537813682:0;gocd_encrypt "$(pbpaste | jq -c | gocd_encrypt)"
+: 1537813701:0;history | grep gocd_encrypt
+: 1537813722:0;gocd_encrypt "$(pbpaste | jq -c '.' | base64)"
+: 1537818728:0;ls
+: 1537818732:0;cd ..
+: 1537818733:0;..
+: 1537818734:0;cd personal-code
+: 1537818735:0;ls
+: 1537818737:0;cd environment
+: 1537818737:0;gs
+: 1537820396:0;ls
+: 1537820397:0;atom backup
+: 1537820500:0;cd backup
+: 1537820503:0;./backup.sh
