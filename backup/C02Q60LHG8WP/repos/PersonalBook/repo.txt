@@ -1,1 +1,1 @@
-git@bitbucket.org-personal/broomar/personalbook.git
+git@bitbucket.org-personal:broomar/personalbook.git

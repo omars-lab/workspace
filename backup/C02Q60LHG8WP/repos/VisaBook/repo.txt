@@ -1,1 +1,1 @@
-git@bitbucket.org-personal/broomar/visabook.git
+git@bitbucket.org-personal:broomar/visabook.git
