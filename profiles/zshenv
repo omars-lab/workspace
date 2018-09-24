@@ -1,16 +1,27 @@
 
-function echo_cortex_cli_command(){
+function cortex-get-current-profile()(
+  jq -r ".currentProfile" ~/.cortex/config
+)
+
+function cortex-get-jwt()(
+  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".token"
+)
+
+function cortex-get-endpoint()(
+  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".url"
+)
+
+function cortex_cli_command()(
   URL_PATH=$1
   shift;
-  CURRENT_PROFILE=$(cat ~/.cortex/config | jq -r ".currentProfile")
-  JWT_TOKEN=$(cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".token")
-  CORTEX_API_ENDPOINT=$(cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".url")
-  bash -c "echo curl -s \'${CORTEX_API_ENDPOINT}/${URL_PATH}\' -H \'authorization: Bearer ${JWT_TOKEN}\' -H \'content-type: application/json\' ${@}"
-}
-
-function cortex_cli_command(){
-  echo_cortex_cli_command ${@} | bash
-}
+  CURRENT_PROFILE=$(cortex-get-current-profile)
+  JWT_TOKEN=$(cortex-get-jwt ${CURRENT_PROFILE})
+  CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
+  set -o xtrace
+  curl -s "${CORTEX_API_ENDPOINT}/${URL_PATH}" -H "authorization: Bearer ${JWT_TOKEN}" -H "content-type: application/json" ${@}
+)
 
 function cortex-set-profile() {
   cortex configure set-profile ${1}
@@ -48,4 +59,35 @@ function gocd_encrypt() {
 
 function gocd_decrypt() {
  echo "${1}" | jq -R '{value: .}' | curl -s 'https://ci.c1.io/go/api/admin/decrypt' -u 'admin:C0gN!T!v3Sc@l3G0Cd' -H 'Accept: application/vnd.go.cd.v1+json' -H 'Content-Type: application/json' -X POST -d @- | jq -r .decrypted_value
+}
+
+function utc_now(){
+  date -u +"%Y-%m-%dT%H:%M:%SZ"
+}
+
+function utc_from_seconds(){
+  date -u -r ${1} +"%Y-%m-%dT%H:%M:%SZ"
+}
+
+function utc_from_miliseconds(){
+  utc_from_seconds $(expr ${1} / 1000)
+}
+
+function noteplan_date_now(){
+  date +"@done(%Y-%m-%d %I:%M %p)"
+}
+
+function cortex-studio-dev(){
+  CORTEX_API_URL="https://api.cortex-dev.insights.ai" CORTEX_DOCS_URL="https://docs.cortex-dev.insights.ai" \
+    "/Applications/Cortex Studio - Dev.app/Contents/MacOS/Cortex Studio"
+}
+
+function cortex-studio-stage(){
+  CORTEX_API_URL="https://api.cortex-stage.insights.ai" CORTEX_DOCS_URL="https://docs.cortex-stage.insights.ai" \
+    "/Applications/Cortex Studio - Stage.app/Contents/MacOS/Cortex Studio"
+}
+
+function cortex-studio-prod(){
+  CORTEX_API_URL="https://api.cortex.insights.ai" CORTEX_DOCS_URL="https://docs.cortex.insights.ai" \
+    "/Applications/Cortex Studio - Prod.app/Contents/MacOS/Cortex Studio"
 }

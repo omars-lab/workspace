@@ -1,0 +1,1 @@
+git@github.com:CognitiveScale/cs-rancher-catalog.git

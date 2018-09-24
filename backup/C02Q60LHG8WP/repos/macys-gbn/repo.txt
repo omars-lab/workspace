@@ -1,0 +1,1 @@
+git@github.com:CognitiveScale/macys-gbn.git

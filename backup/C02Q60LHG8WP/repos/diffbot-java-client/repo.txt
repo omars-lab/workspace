@@ -1,0 +1,1 @@
+git@github.com:diffbot/diffbot-java-client.git

@@ -1,0 +1,27 @@
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	deleted:    .DS_Store
+	deleted:    Barclays/.DS_Store
+	deleted:    DockerGBN/.DS_Store
+	deleted:    DockerGBN/gbn/.DS_Store
+	deleted:    DockerGBN/postgbn/.DS_Store
+	deleted:    DockerGBN/pregbn/.DS_Store
+	deleted:    DynIHC/.DS_Store
+	deleted:    GBN/.DS_Store
+	deleted:    GBNwFeedback/.DS_Store
+	deleted:    HEB/.DS_Store
+	deleted:    IBM/.DS_Store
+	deleted:    IHC/.DS_Store
+	deleted:    NPCC/.DS_Store
+	deleted:    NPF/.DS_Store
+	deleted:    deloitte/.DS_Store
+	deleted:    guidedcatering/.DS_Store
+	deleted:    macys/.DS_Store
+	deleted:    tree-viz/.DS_Store
+
+no changes added to commit (use "git add" and/or "git commit -a")

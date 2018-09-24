@@ -1,0 +1,40 @@
+from cortex_client import DatasetsClient
+exit
+exit()
+exit
+exit()
+import typing
+typing.List(1,2,3)
+isinstance(List, typing.List)
+list
+isinstance(list, typing.List)
+isinstance(list(), typing.List)
+type(typing.List)
+type(lsit())
+type(list())
+def adder(x: Int, y:Int) -> Int:
+  return x + y
+def adder(x: Integer, y:Integer) -> Int:
+  return x + y
+int
+def adder(x: int, y:int) -> int:
+  return x + y
+adder(1,2)
+adder(1,"2")
+def adder(x: int, y:int) -> int:
+  return x.append(y)
+def adder(x: int, y:int) -> int:
+  return x.append(y)
+adder(1,"2")
+exit
+exit()
+exit
+exit()
+import uuid
+uuid.uuid4
+uuid.uuid4()
+str(uuid.uuid4())
+exit()
+[0,1,2,3,4,5,6,7,8,9,10][:10]
+exit
+exit()

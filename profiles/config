@@ -60,3 +60,8 @@ host personal-aws-instance
   HostName 54.91.11.255
   User ubuntu
   IdentityFile ~/.ssh/personal-aws-keys-1.pem
+
+host bwii-runbook-server
+  HostName bw-triage.insights.ai
+  User ubuntu
+  IdentityFile /Users/oeid/.ssh/jumpcloud

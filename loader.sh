@@ -22,9 +22,11 @@ recursive-source $DIRS_ENVIRONMENT/scripts
 
 # Python Virtual Env Stuff
 export WORKON_HOME=$DIRS_VIRTUAL_ENVS
+export VIRTUALENVWRAPPER_PYTHON=/Users/oeid/environment/virtualenvs/cogenv/bin/python
 source $(which virtualenvwrapper.sh)
 export PATH="$PATH:$VIRTUAL_ENV/bin"
-echo ${VIRTUAL_ENV##*/} | grep 'cogenv' || workon cogenv  # virtualenvwrapper command
+# echo ${VIRTUAL_ENV##*/} | grep 'cogenv' || workon cogenv  # virtualenvwrapper command
+source activate cogenv3
 
 # NVM Stuff
 export NVM_DIR=~/.nvm

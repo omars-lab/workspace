@@ -1,0 +1,47 @@
+[
+  {
+    title: "GitBooks"
+    paths: [
+      "/Users/oeid/git/personal-code/PersonalBook"
+      "/Users/oeid/git/personal-code/BusinessBook"
+      "/Users/oeid/git/personal-code/VisaBook"
+      "/Users/oeid/git/personal-code/WorkBook"
+    ]
+  }
+  {
+    title: "Desktop"
+    paths: [
+      "/Users/oeid/Desktop"
+    ]
+  }
+  {
+    title: "Notes"
+    paths: [
+      "/Users/oeid/Dropbox/Notes"
+    ]
+  }
+  {
+    title: "Knowledge"
+    paths: [
+      "/Users/oeid/git/broomar/knowledge"
+    ]
+  }
+  {
+    title: "Experiments"
+    paths: [
+      "/Users/oeid/Desktop/Experiments"
+    ]
+  }
+  {
+    title: "learning-fp"
+    paths: [
+      "/Users/oeid/git/cognitivescale/c12e-learning-fp"
+    ]
+  }
+  {
+    title: "CTI"
+    paths: [
+      "/Users/oeid/git/personal-code/WorkBook/cti"
+    ]
+  }
+]

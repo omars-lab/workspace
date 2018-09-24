@@ -1,0 +1,1 @@
+/Users/oeid/git/cognitivescale/cortex-docker-skills/cortex-skill-feed-sourcer/.git

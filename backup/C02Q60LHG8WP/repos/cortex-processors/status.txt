@@ -1,0 +1,24 @@
+On branch develop
+Your branch is up to date with 'origin/develop'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	financial-services/client-complaint-classifier/processor-feedback/src.zip
+	financial-services/client-complaint-classifier/processor-training-status/src.zip
+	financial-services/trader-insights-for-equities/processor-equity-profile-builder/src.zip
+	financial-services/trader-insights-for-equities/processor-feedback/src.zip
+	financial-services/trader-insights-for-equities/processor-insights-generator/generate_insights/src.zip
+	financial-services/trader-insights-for-equities/processor-insights-generator/src.zip
+	financial-services/trader-insights-for-equities/processor-insights-generator/training_status/src.zip
+	financial-services/trader-insights-for-equities/processor-insights-retriever/src.zip
+	financial-services/trader-insights-for-equities/processor-trader-profile-builder/src.zip
+	financial-services/trader-profile-builder/
+	ml/recommendation/collaborative-filtering/predict/action.zip
+	ml/recommendation/collaborative-filtering/train/action.zip
+	nlp/language-detector/lang-detect.zip
+	nlp/sentiment-analysis/python-pattern/action.zip
+	nlp/text-classifier/inquiry/src.zip
+	nlp/text-classifier/train/src.zip
+
+nothing added to commit but untracked files present (use "git add" to track)

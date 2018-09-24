@@ -1,0 +1,24 @@
+* remote origin
+  Fetch URL: https://github.com/scrooloose/nerdtree.git
+  Push  URL: https://github.com/scrooloose/nerdtree.git
+  HEAD branch: master
+  Remote branches:
+    fix_local_issue_on_m-l_#883                         new (next fetch will store in remotes/origin)
+    go_to_vcs_root                                      new (next fetch will store in remotes/origin)
+    master                                              tracked
+    nonstandard-characters                              new (next fetch will store in remotes/origin)
+    refresh_buffers_after_move_folder                   new (next fetch will store in remotes/origin)
+    refs/remotes/origin/SkylerLipthay-master            stale (use 'git remote prune' to remove)
+    refs/remotes/origin/add_path_filter_api             stale (use 'git remote prune' to remove)
+    refs/remotes/origin/alternative-windows-opening-fix stale (use 'git remote prune' to remove)
+    refs/remotes/origin/better_symlink_highlighting     stale (use 'git remote prune' to remove)
+    refs/remotes/origin/expt_add_path_flags_and_git     stale (use 'git remote prune' to remove)
+    refs/remotes/origin/refactor-open                   stale (use 'git remote prune' to remove)
+    refs/remotes/origin/reuse-win-tree                  stale (use 'git remote prune' to remove)
+    refs/remotes/origin/shorten_cascading_dirs          stale (use 'git remote prune' to remove)
+    refs/remotes/origin/update_reuse_option             stale (use 'git remote prune' to remove)
+    refs/remotes/origin/win32unix                       stale (use 'git remote prune' to remove)
+  Local branch configured for 'git pull':
+    master rebases onto remote master
+  Local ref configured for 'git push':
+    master pushes to master (local out of date)
