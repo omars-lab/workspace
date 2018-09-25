@@ -7,11 +7,11 @@
 # The directory that contains all virtual envs:
   export DIRS_VIRTUAL_ENVS=${DIRS_VIRTUAL_ENVS:-${HOME}/Workspace/venvs}
 # The directory that contains the github code:
-  export DIRS_GITHUB=${DIRS_GITHUB:-${HOME}/Workspace/git}
+  export DIRS_GIT=${DIRS_GIT:-${HOME}/Workspace/git}
 # The directoy containing my github environment settings
-  export DIRS_ENVIRONMENT=${DIRS_ENVIRONMENT:-${DIRS_GITHUB}/environment}
+  export DIRS_ENVIRONMENT=${DIRS_ENVIRONMENT:-${DIRS_GIT}/environment}
 # The area where my experiment code lies:
-  export DIRS_PLAGROUND="${DIRS_GITHUB}/playground"
+  export DIRS_PLAGROUND="${DIRS_GIT}/playground"
 # The area where my raw binaries lie:
   export DIR_FOR_BINARIES="${HOME}/Workspace/binaries"
 # The area where my binary refs lie:
