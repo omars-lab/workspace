@@ -11568,3 +11568,290 @@ ls
 : 1537820397:0;atom backup
 : 1537820500:0;cd backup
 : 1537820503:0;./backup.sh
+: 1537820531:0;gs
+: 1537820546:0;git co -- C02Q60LHG8WP/repos/*
+: 1537820547:0;gs
+: 1537820592:0;git add --all
+: 1537820593:0;gs
+: 1537820624:0;rm -rf ~/.ssh/old
+: 1537820625:0;ls
+: 1537820626:0;gs
+: 1537820635:0;git reset HEAD C02Q60LHG8WP/dotfiles/ssh/old/*
+: 1537820636:0;gs
+: 1537820641:0;ls
+: 1537820651:0;rm -rf C02Q60LHG8WP/dotfiles/ssh/old/
+: 1537820652:0;ls
+: 1537820653:0;gs
+: 1537820661:0;git add --all
+: 1537820661:0;gs
+: 1537820669:0;git commit -m "Added ssh config"
+: 1537820669:0;gs
+: 1537820673:0;git pull
+: 1537820680:0;load_personal_keys
+: 1537820681:0;git pull
+: 1537820684:0;git push origin master 
+: 1537821522:0;find ~/git -name '.git' -type d
+: 1537821545:0;find ~/git -name '.git' -type d -exec bash -c 'echo ${0} | grep -o personal' \;
+: 1537821598:0;find ~/git -name '.git' -type d -exec bash -c 'echo ${0} | grep -o personal' '{}' \;
+: 1537821625:0;find ~/git -name '.git' -type d -exec bash -c 'echo ${0}' '{}' \;
+: 1537821670:0;find ~/git -name '.git' -type d -exec bash -c 'echo ${0} | grep -o personal' '{}' \;
+: 1537822023:0;./backup.sh
+: 1537822236:0;echo -n ''
+: 1537822288:0;./backup.sh
+: 1537822348:0;cd
+: 1537822348:0;ls
+: 1537822387:0;cd 
+: 1537822388:0;ls
+: 1537822392:0;cd cd 
+: 1537822393:0;cd 
+: 1537822394:0;cd environment
+: 1537822395:0;ls
+: 1537822396:0;cd ..
+: 1537822400:0;cd git/personal-code/environment
+: 1537822401:0;ls
+: 1537822413:0;gs
+: 1537822453:0;./backup.sh
+: 1537822958:0;lsgs
+: 1537822958:0;gs
+: 1537822965:0;./backup.sh
+: 1537822969:0;ls
+: 1537822971:0;cd backup
+: 1537822972:0;ls
+: 1537822974:0;./backup.sh
+: 1537823027:0;ls
+: 1537823037:0;rm C02Q60LHG8WP/repos/*/repo.txt
+: 1537823039:0;gs
+: 1537823043:0;./backup.sh
+: 1537823209:0;gs
+: 1537823650:0;git add --all
+: 1537823650:0;gs
+: 1537823664:0;git commit -m "Added with personal repo suffix"
+: 1537823664:0;gs
+: 1537823665:0;git pull
+: 1537823668:0;git push origin master 
+: 1537823995:0;ls
+: 1537824117:0;cortex actions list
+: 1537824294:0;gs
+: 1537824328:0;./backup.sh
+: 1537824376:0;gs
+: 1537824378:0;git add --all
+: 1537824379:0;gs
+: 1537824387:0;gitgs
+: 1537824388:0;gs
+: 1537824390:0;git add --all
+: 1537824390:0;gs
+: 1537824396:0;git commit -m "Updated git repo paths"
+: 1537824396:0;gs
+: 1537824397:0;git pull
+: 1537824401:0;git push origin master 
+: 1537824609:0;ls 
+: 1537824615:0;ls ~/git/personal-code
+: 1537824741:0;cat ~/git/personal-code/WorkBook/.git/config
+: 1537824789:0;./backup.sh
+: 1537824875:0;gs
+: 1537824884:0;git add --all
+: 1537824884:0;gs
+: 1537824896:0;git commit -m "Considering repo edge case"
+: 1537824896:0;gs
+: 1537824897:0;git pull
+: 1537824900:0;git push origin master 
+: 1537825000:0;gs
+: 1537825006:0;ls
+: 1537825016:0;cd C02Q60LHG8WP/repos/WorkBook
+: 1537825017:0;ls
+: 1537825020:0;cat repo.txt
+: 1537825206:0;ls
+: 1537825209:0;cd ..
+: 1537825210:0;..
+: 1537825213:0;./backup.sh
+: 1537825312:0;gs
+: 1537825314:0;git add --all
+: 1537825315:0;gs
+: 1537825325:0;git commit -m "Properly forming personal github urls"
+: 1537825325:0;gs
+: 1537825327:0;git pull
+: 1537825330:0;git push origin master 
+: 1537848630:0;ls
+: 1537848632:0;cd ..
+: 1537848632:0;ls
+: 1537848649:0;gs
+: 1537848653:0;git diff
+: 1537848657:0;ls
+: 1537848657:0;cd ..
+: 1537848658:0;ls
+: 1537848659:0;cd ..
+: 1537848659:0;ls
+: 1537848670:0;cd ..
+: 1537848670:0;ls
+: 1537848673:0;cd Binaries
+: 1537848673:0;ls
+: 1537848674:0;ls -la
+: 1537848721:0;ls
+: 1537848745:0;unlink cortex
+: 1537848750:0;unlink cdap
+: 1537848751:0;ls 
+: 1537848752:0;ls -la
+: 1537848801:0;ls
+: 1537848803:0;ls -la
+: 1537848815:0;ls
+: 1537848856:0;rm wsk
+: 1537848856:0;ls
+: 1537848858:0;ls -la
+: 1537849316:0;ls
+: 1537849522:0;atom ~/Desktop/Calendar
+: 1537849552:0;atom /Users/oeid/Library/Mobile\ Documents/iCloud~co~noteplan~NotePlan/Documents/Calendar
+: 1537849579:0;ls
+: 1537849581:0;cd /Users/oeid/Library/Mobile\ Documents/iCloud~co~noteplan~NotePlan/Documents/Calendar
+: 1537849582:0;ls
+: 1537849585:0;ls -1 
+: 1537849672:0;ls
+: 1537849674:0;ls -1
+: 1537849677:0;ls -1 | pbcopy
+: 1537849682:0;cd 
+: 1537849683:0;cd Desktop
+: 1537849683:0;ls
+: 1537849686:0;cd Calendar/
+: 1537849686:0;ls
+: 1537849689:0;rm *.txt
+: 1537849692:0;pbpaste
+: 1537849699:0;pbpaste | xargs -n 1 touch 
+: 1537849700:0;ls
+: 1537849711:0;vi 2.txt
+: 1537849717:0;rm 2.txt
+: 1537849718:0;ls
+: 1537893893:0;dscacheutil -q user -a name 
+: 1537893907:0;dscacheutil -q user -a name oeid
+: 1537894009:0;defaults domains
+: 1537894019:0;defaults domains | tr ',' '\n'
+: 1537894048:0;defaults find iclou
+: 1537894062:0;defaults find oeid@
+: 1537894076:0;defaults find 'Apple Global Domain'
+: 1537894123:0;defaults domains | tr ',' '\n'
+: 1537894228:0;defaults find oeid
+: 1537894310:0;defaults find --help
+: 1537894316:0;defaults find com.apple.iTunes oeid
+: 1537894326:0;defaults com.apple.iTunes oeid
+: 1537894334:0;defaults com.apple.iTunes find oeid
+: 1537894365:0;defaults read com.apple.iTunes MacBuddyStoreID
+: 1537894422:0;defaults domains | tr ',' '\n'
+: 1537894442:0;defaults read iclou
+: 1537894456:0;defaults read com.apple.icloud.fmfd
+: 1537894547:0;defaults read com.apple.preference.general
+: 1537894571:0;defaults read com.apple.coreservices.uiagent
+: 1537894619:0;defaults read com.apple.Preferences
+: 1537894668:0;defaults read co.noteplan.NotePlan
+: 1537894678:0;defaults read co.noteplan
+: 1537894732:0;defaults read com.apple.ServicesMenu.Services
+: 1537894757:0;com.apple.SetupAssistant
+: 1537894761:0;defaults read com.apple.SetupAssistant
+: 1537894776:0;defaults com.apple.UserAccountUpdater
+: 1537894781:0;defaults read com.apple.UserAccountUpdater
+: 1537894789:0;defaults read com.apple.accounts
+: 1537894790:0;defaults read com.apple.accountsd
+: 1537894814:0;defaults read com.apple.account.CloudKi
+: 1537894878:0;defaults read com.apple.accountsd
+: 1537894893:0;defaults read com.apple.cloudd
+: 1537894899:0;defaults read com.apple.commerce
+: 1537894919:0;defaults read com.apple.configurationprofiles.user
+: 1537894941:0;defaults read com.apple.icbaccountsd
+: 1537894947:0;defaults read com.apple.icloud.fmfd.notbackedup
+: 1537894957:0;defaults read com.apple.identityservicesd
+: 1537894967:0;defaults domains | tr ',' '\n'
+: 1537894990:0;defaults read com.apple.identityservicesd
+: 1537895152:0;defaults read cognitivescale
+: 1537895156:0;defaults find cognitivescale
+: 1537896937:0;ls
+: 1537896943:0;cd ..
+: 1537896943:0;ls
+: 1537896946:0;cd Calendar
+: 1537896948:0;atom .
+: 1537902862:0;ls
+: 1537902863:0;cd ..
+: 1537902864:0;..
+: 1537902864:0;l
+: 1537902865:0;cd ..
+: 1537902866:0;ls
+: 1537903590:0;cp -r ~/git/personal-code/environment/backup/C02Q60LHG8WP/repos repos
+: 1537903591:0;cd repos
+: 1537903598:0;ls
+: 1537903818:0;ls BusinessBook
+: 1537903829:0;mr */path.txt */repo.txt */stashes.txt
+: 1537903833:0;rm */path.txt */repo.txt */stashes.txt
+: 1537903834:0;ls
+: 1537903841:0;cat */status.txt
+: 1537903929:0;ls -1 | xargs -I {} bash -c 'echo {}; cat {}/status.txt; echo '
+: 1537904000:0;ls -1 | xargs -I {} bash -c 'echo -----------------------------------; echo {}; cat {}/status.txt; echo '
+: 1537904062:0;ls
+: 1537904066:0;cd 
+: 1537904068:0;cd git
+: 1537904068:0;ls
+: 1537904069:0;cd cognitivescale
+: 1537904069:0;ls
+: 1537904074:0;cd cti-investor-classification
+: 1537904075:0;ls
+: 1537904076:0;cat README.md
+: 1537904088:0;ls
+: 1537904089:0;gs
+: 1537904093:0;git diff
+: 1537904103:0;ls
+: 1537904105:0;gs
+: 1537904113:0;vi main.py
+: 1537904124:0;ls
+: 1537904145:0;git checkout -b omar
+: 1537904146:0;gs
+: 1537904152:0;git add --all
+: 1537904153:0;gs
+: 1537904169:0;git commit -m "Commiting local changes since switching laptops"
+: 1537904169:0;gs
+: 1537904173:0;git pull
+: 1537904178:0;git push -u origin omar
+: 1537904227:0;cd ..
+: 1537904228:0;cd ferrari-data-gen
+: 1537904229:0;ls
+: 1537904229:0;gs
+: 1537904235:0;git add --all
+: 1537904235:0;gs
+: 1537904242:0;git commit -m "Commiting local changes since switching laptops"
+: 1537904243:0;gs
+: 1537904244:0;git pull
+: 1537904247:0;git push origin omar 
+: 1537904261:0;cd ..
+: 1537904273:0;cd ../learning/fpinscala
+: 1537904274:0;git diff
+: 1537904286:0;ls
+: 1537904299:0;vi .git/config
+: 1537904364:0;ls
+: 1537904365:0;cd ..
+: 1537904366:0;ls
+: 1537904368:0;cd ..
+: 1537904369:0;cd cognitivescale
+: 1537904371:0;cd krexp
+: 1537904371:0;ls
+: 1537904373:0;git status
+: 1537904379:0;git co -b omar
+: 1537904381:0;gs
+: 1537904385:0;git add --all
+: 1537904387:0;git commit -m "Commiting local changes since switching laptops"
+: 1537904389:0;ls
+: 1537904390:0;gs
+: 1537904392:0;git pull
+: 1537904398:0;git push -u origin omar
+: 1537904450:0;ls
+: 1537904761:0;cd 
+: 1537904764:0;cd Binaries
+: 1537904765:0;ls
+: 1537904767:0;ls -la
+: 1537904815:0;open .
+: 1537905110:0;ls
+: 1537905199:0;whence -pm '*'\
+
+: 1537905211:0;whence -pm '*' | sort | uniq\
+
+: 1537905304:0;ls
+: 1537905304:0;cd 
+: 1537905308:0;cd git/cognitivescale/env
+: 1537905313:0;cd git/personal-code/environment
+: 1537905314:0;ls
+: 1537905316:0;cd backup
+: 1537905316:0;ls
+: 1537905319:0;./backup.sh
