@@ -48,24 +48,12 @@ plugins=(git docker osx python antigen)
 # User configuration
 
 source /Users/oeid/Workspace/git/environment/loader.sh
+source ${ZSH}/oh-my-zsh.sh
 source ~/.oh-my-zsh/plugins/antigen/antigen.zsh
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
-
-export PATH="$HOME/bin"
-export PATH="/usr/local/MacGPG2/bin:$PATH"
-export PATH="/bin:$PATH"
-export PATH="/usr/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
-export PATH="/sbin:$PATH"
-export PATH="/usr/sbin:$PATH"
-export PATH="/Users/oeid/Library/Python/3.5/bin:$PATH"
-export PATH="${DIR_FOR_BINARIES}/miniconda3/bin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -95,29 +83,27 @@ export LANG=en_US.UTF-8
 # Getting all the nix stuff loaded!
 # . /Users/oeid/.nix-profile/etc/profile.d/nix.sh
 
-# Brew doesnt like this being set
-unset SSL_CERT_FILE
+# Unset Var that throws Brew off
+  unset SSL_CERT_FILE
 
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+# Load Auto Jump
+  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-# Loading iterm zsh
-source "${DIR_FOR_BINARIES}/iterm2_shell_integration.zsh"
+# Loading iterm zsh integration
+  source "${DIR_FOR_BINARIES}/iterm2_shell_integration.zsh"
 
-alias cssh='sshuttle -r oeid@jump.cog-dev.insights.ai:2222 -H -N'
+# Activate Virtual Envs
+  nvm use v8.9.2
+  echo "Activating Conda Env: [cogenv3]" && source activate cogenv3
+
+# Load zsh completion scripts
+  compdef _cortex-set-profile cortex-set-profile
+  compdef _cortex-latest-task-status cortex-latest-task-status
+  compdef _cortex cortex
 
 # set -o vi
 
-# source /usr/local/opt/autoenv/activate.sh
-
-export NPM_TOKEN="eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJzZDFZZGNPTmJGVVdCVDBQYVU2OFQzZ25pbWo2emxLUExaME5XZDhtSV9vIn0.eyJzdWIiOiJqZi1hcnRpZmFjdG9yeUBlYzVlOWIwYy0wMjRlLTQ2YjktOTIzYy02MTc5ZjFjYjY3OWZcL3VzZXJzXC9jMTJlLWRldiIsInNjcCI6Im1lbWJlci1vZi1ncm91cHM6KiBhcGk6KiIsImF1ZCI6ImpmLWFydGlmYWN0b3J5QGVjNWU5YjBjLTAyNGUtNDZiOS05MjNjLTYxNzlmMWNiNjc5ZiIsImlzcyI6ImpmLWFydGlmYWN0b3J5QGVjNWU5YjBjLTAyNGUtNDZiOS05MjNjLTYxNzlmMWNiNjc5ZiIsImlhdCI6MTUxMTIwNDQ4MCwianRpIjoiMWMwMTgyM2QtMWMyNC00MmRhLWE0ZjgtOTBiYTRkYmZiNTQyIn0.FuLgish1oteeBfR1ek8u86EDbGAsjs_QOXDxGFRo6Z8yCMlaKU8VIAqC7Z9J5V8nZk3ziDxeDTQG5khuFSYcAGroFppjGetacTB67FNyoLwMgB5cYdsqP9aswJPfKhqV6HFjrd0coW8itgmN2sP8ZvyGrBZsDGLawC8lFlV1ZkQ8-1Q_eGQVd4IfdAQ2YyuFfAPdeJ-itgcbyuWqw_cdefBDHXjdXzb0ZbNWNibVxIoCLNAkoxCVLFIdV4z7AehR-OYLKygHyh8dXnsg6VdjSEvFaut3X2IUYMV3MkjYMLhD4USlUlxL-9jPcnztEvzpFKrxsVpzwGSUtz7okdhNLw"
-
-nvm use v8.9.2
+# source $(brew --prefix autoenv)/activate.sh
 
 ### Added by the Bluemix CLI
 # source /usr/local/Bluemix/bx/zsh_autocomplete
-
-compdef _cortex-set-profile cortex-set-profile
-compdef _cortex-latest-task-status cortex-latest-task-status
-compdef _cortex cortex
-
-echo "Activating Conda Env: [cogenv3]" && source activate cogenv3

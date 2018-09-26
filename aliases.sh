@@ -3,6 +3,37 @@
 alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
 alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
 
+function cd(){
+  # Smarter CD ...
+  # If no path specified ... cd ...
+  if [ -z "$@" ];
+  then
+    # echo just cd-ing
+    builtin cd ${@}
+  else
+    # If full path ... cd ...
+    if [[ $(eval echo "$@") = /* ]];
+    then
+      # echo just cd-ing
+      builtin cd ${@}
+    else
+      # If relative path ...
+      # Jump only if relative dir doesnt exist locally
+      if [ ! -d "$@" ];
+      then
+        # echo jumping
+        j $@
+      else
+        # echo just cd-ing
+        builtin cd ${@}
+      fi
+    fi
+  fi
+}
+
+alias cdworkspace=$(DIRS_WORKSPACE)
+alias cdworkspace=$(DIRS_WORKSPACE)
+
 # Custom File Editors
 alias editcontainers="vi ${DIRS_ENVIRONMENT}/commands/containers.sh"
 alias containers="cat ${DIRS_ENVIRONMENT}/commands/containers.sh"
@@ -27,6 +58,13 @@ alias x='chmod +x'
 
 # Make Tree display root nodes ...
 alias tre='tree -C -L 1'
+
+# alias cssh='sshuttle -r oeid@jump.cog-dev.insights.ai:2222 -H -N'
+
+alias cssh-cortex-develop='sshuttle -r oeid@jump.cortex-develop.insights.ai:2222 -H -N'
+alias cssh-cortex-stage='sshuttle -r oeid@jump.cortex-stage.insights.ai:2222 -H -N'
+alias cssh-cortex-prod='sshuttle -r oeid@jump.cortex-prod.insights.ai:2222 -H -N'
+alias cssh-cortex-advprod='sshuttle -r oeid@jump.cortex-advprod.insights.ai:2222 -H -N'
 
 function peek() {
   grep -rl "${1}" . | fzf --preview "grep -b3 -a3 ${1} {}"
