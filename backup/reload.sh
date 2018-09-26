@@ -42,4 +42,14 @@ function copy_secrets(){
     cp -r ${BACKUP_DIR}/aws ~/.aws
 }
 
-relink
+function install_vim(){
+    echo "Follow instructions here: https://github.com/tpope/vim-pathogen"
+}
+
+function install_vim_bundles(){
+    cat ${BACKUP_DIR}/packages/vim/*.txt | grep 'Fetch URL:' | sed -E 's#https?://.*.(com|org)/##g' | sed 's#[^:]*: *##g' \
+        | xargs -I {} bash -c 'mkdir ${1}/$(basename ${0}); git clone git@github.com:${0} "${1}"' '{}' "${HOME}/.vim/bundles/"
+}
+
+# relink
+install_vim_bundles
