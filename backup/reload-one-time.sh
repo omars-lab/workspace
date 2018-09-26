@@ -44,11 +44,18 @@ function install_nvm_versions()(
     nvm install v6.2.0
 )
 
+function install_virtual_envs(){
+  conda create -n cogenv3 python=3.6
+  conda create -n cogenv python=2.7
+}
+
 function copy_secrets(){
     cp -r ${BACKUP_DIR}/secrets ~/.secrets
     cp -r ${BACKUP_DIR}/ssh ~/.ssh
     cp -r ${BACKUP_DIR}/aws ~/.aws
 }
+
+install_virtual_envs
 
 #    install_zsh_iterm_integration \
 # && install_nvm_versions \

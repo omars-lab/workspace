@@ -1,7 +1,7 @@
 # A collection of useful aliases
 
 alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
-alias atom="/Applications/Atom.app/Contents/Resources/app/atom"
+alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
 
 # Custom File Editors
 alias editcontainers="vi ${DIRS_ENVIRONMENT}/commands/containers.sh"

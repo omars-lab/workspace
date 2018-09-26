@@ -21,7 +21,7 @@ function recursive-source(){
     $SILENT || echo "Recursively Sourcing $rdir, ignoring: $ignore"
     for i in $(ls -c1 $rdir | grep -e ".*[.]sh" | grep -vE "$ignore"); do
         $SILENT || echo Sourcing $rdir/$i;
-        source $rdir/$i;
+        source $rdir/$i ;
     done
 }
 

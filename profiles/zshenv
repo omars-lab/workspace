@@ -91,3 +91,6 @@ function cortex-studio-prod(){
   CORTEX_API_URL="https://api.cortex.insights.ai" CORTEX_DOCS_URL="https://docs.cortex.insights.ai" \
     "/Applications/Cortex Studio - Prod.app/Contents/MacOS/Cortex Studio"
 }
+
+
+precmd_functions=(week_prompt)

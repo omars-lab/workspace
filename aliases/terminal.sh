@@ -12,7 +12,6 @@ title_both  () { setTerminalText 0 $@; }
 title  () { setTerminalText 1 $@; }
 
 function week_prompt(){
-  echo "___________________________________"
   echo "{\"now\":\"$(date +%Y-%m-%dT%H:%M:%S%z)\",\"utcnow:\":\"$(date -u +%Y-%m-%dT%H:%M:%S%z)\",\"cortex\":\"$(jq -r '.currentProfile' ${HOME}/.cortex/config)\"}"
 }
 

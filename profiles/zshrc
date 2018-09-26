@@ -43,10 +43,13 @@ plugins=(git docker osx python antigen)
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
+# ------------------------------------------------------------------------------
 
 # User configuration
 
+source /Users/oeid/Workspace/git/environment/loader.sh
 source ~/.oh-my-zsh/plugins/antigen/antigen.zsh
+
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
@@ -59,8 +62,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/sbin:$PATH"
 export PATH="/usr/sbin:$PATH"
 export PATH="/Users/oeid/Library/Python/3.5/bin:$PATH"
-export PATH="/Users/oeid/miniconda3/bin:$PATH"
-
+export PATH="${DIR_FOR_BINARIES}/miniconda3/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -96,11 +98,9 @@ export LANG=en_US.UTF-8
 # Brew doesnt like this being set
 unset SSL_CERT_FILE
 
-source /Users/oeid/Workspace/git/environment/loader.sh
-
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-# Loading iterm zsh 
+# Loading iterm zsh
 source "${DIR_FOR_BINARIES}/iterm2_shell_integration.zsh"
 
 alias cssh='sshuttle -r oeid@jump.cog-dev.insights.ai:2222 -H -N'
@@ -111,13 +111,7 @@ alias cssh='sshuttle -r oeid@jump.cog-dev.insights.ai:2222 -H -N'
 
 export NPM_TOKEN="eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJzZDFZZGNPTmJGVVdCVDBQYVU2OFQzZ25pbWo2emxLUExaME5XZDhtSV9vIn0.eyJzdWIiOiJqZi1hcnRpZmFjdG9yeUBlYzVlOWIwYy0wMjRlLTQ2YjktOTIzYy02MTc5ZjFjYjY3OWZcL3VzZXJzXC9jMTJlLWRldiIsInNjcCI6Im1lbWJlci1vZi1ncm91cHM6KiBhcGk6KiIsImF1ZCI6ImpmLWFydGlmYWN0b3J5QGVjNWU5YjBjLTAyNGUtNDZiOS05MjNjLTYxNzlmMWNiNjc5ZiIsImlzcyI6ImpmLWFydGlmYWN0b3J5QGVjNWU5YjBjLTAyNGUtNDZiOS05MjNjLTYxNzlmMWNiNjc5ZiIsImlhdCI6MTUxMTIwNDQ4MCwianRpIjoiMWMwMTgyM2QtMWMyNC00MmRhLWE0ZjgtOTBiYTRkYmZiNTQyIn0.FuLgish1oteeBfR1ek8u86EDbGAsjs_QOXDxGFRo6Z8yCMlaKU8VIAqC7Z9J5V8nZk3ziDxeDTQG5khuFSYcAGroFppjGetacTB67FNyoLwMgB5cYdsqP9aswJPfKhqV6HFjrd0coW8itgmN2sP8ZvyGrBZsDGLawC8lFlV1ZkQ8-1Q_eGQVd4IfdAQ2YyuFfAPdeJ-itgcbyuWqw_cdefBDHXjdXzb0ZbNWNibVxIoCLNAkoxCVLFIdV4z7AehR-OYLKygHyh8dXnsg6VdjSEvFaut3X2IUYMV3MkjYMLhD4USlUlxL-9jPcnztEvzpFKrxsVpzwGSUtz7okdhNLw"
 
-# NVM Stuff ...
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix)/opt/nvm/nvm.sh"
 nvm use v8.9.2
-
-precmd_functions=(week_prompt)
-export precmd_functions
 
 ### Added by the Bluemix CLI
 # source /usr/local/Bluemix/bx/zsh_autocomplete
@@ -126,3 +120,4 @@ compdef _cortex-set-profile cortex-set-profile
 compdef _cortex-latest-task-status cortex-latest-task-status
 compdef _cortex cortex
 
+echo "Activating Conda Env: [cogenv3]" && source activate cogenv3

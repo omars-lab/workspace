@@ -20,18 +20,17 @@ recursive-source ${DIRS_ENVIRONMENT}/commands
 recursive-source ${DIRS_ENVIRONMENT}/aliases
 recursive-source ${DIRS_ENVIRONMENT}/scripts
 
-# Python Virtual Env Stuff
-export WORKON_HOME=${DIRS_VIRTUAL_ENVS}
-export VIRTUALENVWRAPPER_PYTHON="${DIRS_VIRTUAL_ENVS}/cogenv/bin/python"
-source $(which virtualenvwrapper.sh)
-export PATH="$PATH:$VIRTUAL_ENV/bin"
+# Python Virtual Env Stuff (Using Conda Instead ...)
+# export WORKON_HOME=${DIRS_VIRTUAL_ENVS}
+# export VIRTUALENVWRAPPER_PYTHON="${DIRS_VIRTUAL_ENVS}/cogenv/bin/python"
+# source $(which virtualenvwrapper.sh)
+
+# export PATH="$PATH:$VIRTUAL_ENV/bin"
 # echo ${VIRTUAL_ENV##*/} | grep 'cogenv' || workon cogenv  # virtualenvwrapper command
-source activate cogenv3
 
 # NVM Stuff
-export NVM_DIR=~/.nvm
+export NVM_DIR=${DIR_FOR_BINARIES}/nvm
 source $(brew --prefix nvm)/nvm.sh
-(nvm current | grep 'v4.7.3') || nvm use v4.7.3
 
 # Setup the env
 # envmgr use omarstest
