@@ -30,6 +30,9 @@ function install_sym_links(){
     symlink_by_force ${DIRS_ENVIRONMENT}/profiles/vimrc "${HOME}/.vimrc"
     symlink_by_force ${DIRS_ENVIRONMENT}/profiles/zshenv "${HOME}/.zshenv"
     symlink_by_force ${DIRS_ENVIRONMENT}/profiles/zshrc "${HOME}/.zshrc"
+    symlink_by_force ${DIRS_ENVIRONMENT}/backup/C02Q60LHG8WP/dotfiles/cortex "${HOME}/.cortex"
+    symlink_by_force ${DIRS_ENVIRONMENT}/backup/C02Q60LHG8WP/dotfiles/secrets "${HOME}/.secrets"
+    symlink_by_force ${DIRS_ENVIRONMENT}/backup/C02Q60LHG8WP/dotfiles/aws "${HOME}/.aws"
 }
 
-   install_sym_links
+install_sym_links
