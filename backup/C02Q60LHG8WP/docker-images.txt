@@ -1,16 +1,16 @@
 REPOSITORY                                                      TAG                                IMAGE ID            CREATED             SIZE
-redash_server                                                   latest                             7070382493d6        5 days ago          1.08GB
-redash_worker                                                   latest                             7070382493d6        5 days ago          1.08GB
-freeboard                                                       latest                             79d7c303fca3        5 days ago          700MB
+redash_server                                                   latest                             7070382493d6        6 days ago          1.08GB
+redash_worker                                                   latest                             7070382493d6        6 days ago          1.08GB
+freeboard                                                       latest                             79d7c303fca3        6 days ago          700MB
 oeidcs/fpi-courseware                                           e04d3e3.dirty-profiles             d510db5f3c11        7 days ago          219MB
 oeidcs/fpi-courseware                                           e04d3e3.dirty-feedback             bf36a953bdea        7 days ago          219MB
 oeidcs/fpi-courseware                                           2f44f27.dirty-insights             09513a16356c        7 days ago          219MB
 oeidcs/fpi-courseware                                           e04d3e3-insights                   09513a16356c        7 days ago          219MB
 oeidcs/fpi-courseware                                           2f44f27-insights                   17bf5c0ec2c7        7 days ago          219MB
 c12e/cortex-skill-feed-sourcer                                  93a3a73.dirty-default              3e7a6041deba        8 days ago          362MB
-metabase/metabase                                               latest                             27079751a8a0        11 days ago         250MB
-docker.elastic.co/kibana/kibana                                 6.4.1                              55cc7d125643        11 days ago         704MB
-docker.elastic.co/elasticsearch/elasticsearch                   6.4.1                              86c6e080644a        11 days ago         828MB
+metabase/metabase                                               latest                             27079751a8a0        12 days ago         250MB
+docker.elastic.co/kibana/kibana                                 6.4.1                              55cc7d125643        12 days ago         704MB
+docker.elastic.co/elasticsearch/elasticsearch                   6.4.1                              86c6e080644a        12 days ago         828MB
 grafana/grafana                                                 latest                             920eb69ade2a        2 weeks ago         245MB
 node                                                            6                                  f64a15ead359        2 weeks ago         659MB
 c12e/id-tr-extraction                                           historic-etl-v1                    e73f25d5d708        4 weeks ago         3.92GB
@@ -25,10 +25,10 @@ docker-expr                                                     latest          
 c12e/trader-insights-generator                                  2207487.dirty                      356024b96cdd        2 months ago        228MB
 c12e/cortex-skill-json-transformer                              7fc7320                            69e2bf79e5a4        2 months ago        89.6MB
 oeidcs/test-repo                                                jq-f402476.dirty                   69e2bf79e5a4        2 months ago        89.6MB
-private-registry.cortex.insights.ai:5000/c12e/newspaper-skill   f402476.dirty                      7c708e93be22        2 months ago        358MB
 c12e/cortex-skill-feed-sourcer                                  5272121                            7c708e93be22        2 months ago        358MB
 oeidcs/test-repo                                                5272121                            7c708e93be22        2 months ago        358MB
 oeidcs/test-repo                                                f402476.dirty                      7c708e93be22        2 months ago        358MB
+private-registry.cortex.insights.ai:5000/c12e/newspaper-skill   f402476.dirty                      7c708e93be22        2 months ago        358MB
 testing-local-container                                         latest                             b670c3eff3a6        2 months ago        358MB
 debian                                                          jessie-slim                        7c1b08041938        3 months ago        79.2MB
 oeidcs/test-repo                                                v2                                 4ce1860f0707        3 months ago        81.2MB

@@ -1688,7 +1688,6 @@ redo_prebinding
 refer
 reindexdb
 reject
-relink
 renice
 repairHomePermissions
 repc
@@ -1926,6 +1925,8 @@ symbols
 symbolscache
 symcryptrun
 symilar
+symlink_by_force
+symlink_if_dne
 sync
 syncqt.pl
 sysadminctl

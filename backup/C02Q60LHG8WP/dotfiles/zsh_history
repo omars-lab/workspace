@@ -11855,3 +11855,110 @@ ls
 : 1537905316:0;cd backup
 : 1537905316:0;ls
 : 1537905319:0;./backup.sh
+: 1537905381:0;docker images -q
+: 1537905400:0;gs
+: 1537905404:0;git add --all
+: 1537905405:0;gs
+: 1537905631:0;git add --all
+: 1537905631:0;gs
+: 1537905639:0;git commit -m "More changes to backup"
+: 1537905639:0;gs
+: 1537905640:0;git pull
+: 1537905645:0;load_personal_keys
+: 1537905646:0;git pull
+: 1537905650:0;git push origin master 
+: 1537907130:0;gs
+: 1537907136:0;cd 
+: 1537907139:0;cd git
+: 1537907141:0;cd personal-code
+: 1537907142:0;ls
+: 1537907143:0;cd environment
+: 1537907143:0;ls
+: 1537907145:0;gs
+: 1537907236:0;gils
+: 1537907237:0;ls
+: 1537907238:0;atom .
+: 1537907318:0;ls
+: 1537907320:0;cd 
+: 1537907323:0;cd Desktop
+: 1537907326:0;mkdir bash-expr
+: 1537907327:0;cd bash-expr
+: 1537907329:0;vi a.sh
+: 1537907345:0;vi b.sh
+: 1537907355:0;x a.sh
+: 1537907358:0;vi a.sh
+: 1537907362:0;vi b.sh
+: 1537907372:0;./a.sh
+: 1537908168:0;gs
+: 1537908170:0;..
+: 1537908171:0;cd 
+: 1537908172:0;cd git
+: 1537908173:0;cd cognitivescale
+: 1537908173:0;ls
+: 1537908175:0;cd env
+: 1537908180:0;cd ..
+: 1537908181:0;cd personal-code
+: 1537908182:0;cd environment
+: 1537908182:0;ls
+: 1537908183:0;gs
+: 1537908185:0;git add --all
+: 1537908185:0;gs
+: 1537908195:0;git commit -m "Getting things setup for new laptop"
+: 1537908196:0;gs
+: 1537908197:0;git pull
+: 1537908203:0;load_personal_keys
+: 1537908205:0;git pull
+: 1537908209:0;git push origin master 
+: 1537908365:0;gs
+: 1537908367:0;git add --all
+: 1537908367:0;gs
+: 1537908371:0;git commit -m "More updates"
+: 1537908372:0;git pull
+: 1537908375:0;git push origin master 
+: 1537908582:0;ls -la
+: 1537908589:0;ls -la ~/.vim
+: 1537908598:0;ls -la
+: 1537908609:0;ls
+: 1537908612:0;cd backup
+: 1537908612:0;ls
+: 1537908614:0;cd 
+: 1537908616:0;cd ~/.vim
+: 1537908618:0;df -u
+: 1537908620:0;du -h
+: 1537908646:0;ls
+: 1537908649:0;cd ..
+: 1537908649:0;ls
+: 1537908654:0;zip --help
+: 1537909049:0;ls
+: 1537909053:0;cd 
+: 1537909054:0;cd git
+: 1537909056:0;cd personal-code
+: 1537909056:0;ls
+: 1537909058:0;cd environment
+: 1537909058:0;ls
+: 1537909062:0;cd backup
+: 1537909069:0;ls
+: 1537909075:0;./reload.sh 
+: 1537909079:0;./reload.sh C02Q60LHG8WP
+: 1537909082:0;x reload.sh
+: 1537909083:0;./reload.sh C02Q60LHG8WP
+: 1537909510:0;vi ~/git/cognitivescale/id-tr-data-pipeline/base-containers/c12e/id-tr-monitor/build.sh
+: 1537909623:0;basename 1/2
+: 1537927307:0;gs
+: 1537927308:0;git diff
+: 1537927317:0;g
+: 1537927317:0;sgs
+: 1537927319:0;gs
+: 1537927320:0;git add --all
+: 1537927320:0;gs
+: 1537927329:0;git commit -m "Added vim install to reload.sh"
+: 1537927330:0;gs
+: 1537927332:0;git pull
+: 1537927334:0;git push origin master 
+: 1537933349:0;ls
+: 1537933478:0;git pull
+: 1537933502:0;ls ~/.cortex
+: 1537933507:0;ls
+: 1537933518:0;cat ~/.cortex/_cortex-completion
+: 1537933624:0;ls
+: 1537933628:0;./backup.sh

@@ -5,24 +5,18 @@ host *
   ServerAliveInterval 60
   ServerAliveCountMax 2
 
-host github.com
-  HostName github.com
-  User git
+host Github
+  HostName github.com*
   IdentityFile /Users/oeid/.ssh/github_work
 
-host bitbucket.org
-  HostName bitbucket.org
-  User git
+host BitBucket-Work
+  HostName bitbucket.org/omar_eid*
+  User omar_eid
   IdentityFile /Users/oeid/.ssh/bitbucket
 
-host github.com-personal
-  HostName github.com
-  User git
-  IdentityFile /Users/oeid/.ssh/github
-
-host bitbucket.org-personal
-  HostName bitbucket.org
-  User git
+host BitBucket-Personal
+  HostName bitbucket.org/broomar*
+  User broomar
   IdentityFile /Users/oeid/.ssh/bitbucket-personal
 
 host cti-jumpbox

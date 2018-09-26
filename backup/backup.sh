@@ -17,9 +17,10 @@ function backup_dot_files(){
     mkdir -p ${BACKUP_DIR}/dotfiles
     cp ~/.gitignore_global ${BACKUP_DIR}/dotfiles/gitignore_global
     cp ~/.npmrc ${BACKUP_DIR}/dotfiles/npmrc
-    cp -r ~/.ssh ${BACKUP_DIR}/dotfiles/ssh
-    cp -r ~/.secrets ${BACKUP_DIR}/dotfiles/secrets
-    cp -r ~/.aws ${BACKUP_DIR}/dotfiles/aws
+    cp -r ~/.ssh/ ${BACKUP_DIR}/dotfiles/ssh/
+    cp -r ~/.secrets/ ${BACKUP_DIR}/dotfiles/secrets/
+    cp -r ~/.cortex/ ${BACKUP_DIR}/dotfiles/cortex/
+    cp -r ~/.aws/ ${BACKUP_DIR}/dotfiles/aws/
     ls -1 ~/.*hist* | xargs -I {} bash -c \
         'cp ${0} "${1}/$(basename ${0} | sed s/^.//g)" ' '{}' "${BACKUP_DIR}/dotfiles/"
 }
