@@ -8,7 +8,7 @@ source common.sh
 
 export BACKUP_DIR=${DIRS_ENVIRONMENT}/backup/${1:-$(get_uniq_mac_id)}
 
-function relink(){
+function install_sym_links(){
     echo ${DIR_FOR_BINARIES:?DIR_FOR_BINARIES required.}
     echo ${DIR_FOR_BINARY_REFS:?DIR_FOR_BINARY_REFS required.}
     echo ${DIRS_GIT:?DIRS_GIT required.}
@@ -32,24 +32,4 @@ function relink(){
     symlink_by_force ${DIRS_ENVIRONMENT}/profiles/zshrc "${HOME}/.zshrc"
 }
 
-function install_node_packages(){
-    apm install $(cat ${BACKUP_DIR}/packages/atom.txt)
-}
-
-function copy_secrets(){
-    cp -r ${BACKUP_DIR}/secrets ~/.secrets
-    cp -r ${BACKUP_DIR}/ssh ~/.ssh
-    cp -r ${BACKUP_DIR}/aws ~/.aws
-}
-
-function install_vim(){
-    echo "Follow instructions here: https://github.com/tpope/vim-pathogen"
-}
-
-function install_vim_bundles(){
-    cat ${BACKUP_DIR}/packages/vim/*.txt | grep 'Fetch URL:' | sed -E 's#https?://.*.(com|org)/##g' | sed 's#[^:]*: *##g' \
-        | xargs -I {} bash -c 'mkdir ${1}/$(basename ${0}); git clone git@github.com:${0} "${1}"' '{}' "${HOME}/.vim/bundles/"
-}
-
-# relink
-install_vim_bundles
+   install_sym_links
