@@ -38,8 +38,8 @@ function backup_brew_config()(
 
 function backup_robo3t_config()(
     # This was located initially in .3T/robo-3t/1.1.1/robo3t.json
-    mkdir -p ${BACKUP_DIR}/configs/robo3t
-    cp ~/.3T/robo-3t/1.1.1/robo3t.json config.json
+    mkdir -p ${BACKUP_DIR}/configs/robo3t/1.1.1
+    cp ~/.3T/robo-3t/1.1.1/robo3t.json ${BACKUP_DIR}/configs/robo3t/1.1.1/robo3t.json
 )
 
 function backup_atom_packages(){
