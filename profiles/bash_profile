@@ -1,8 +1,8 @@
-source ~/git/broomar/environment/loader.sh
+source ~/Workspace/git/environment/loader.sh
 
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-if [ -e /Users/oeid/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/oeid/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# if [ -e /Users/oeid/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/oeid/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # added by Miniconda3 installer
 # export PATH="/Users/oeid/miniconda3/bin:$PATH"

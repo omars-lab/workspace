@@ -1,38 +1,4 @@
-# A collection of useful aliases
-
-alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
-alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
-
-function cd(){
-  # Smarter CD ...
-  # If no path specified ... cd ...
-  if [ -z "$@" ];
-  then
-    # echo just cd-ing
-    builtin cd ${@}
-  else
-    # If full path ... cd ...
-    if [[ $(eval echo "$@") = /* ]];
-    then
-      # echo just cd-ing
-      builtin cd ${@}
-    else
-      # If relative path ...
-      # Jump only if relative dir doesnt exist locally
-      if [ ! -d "$@" ];
-      then
-        # echo jumping
-        j $@
-      else
-        # echo just cd-ing
-        builtin cd ${@}
-      fi
-    fi
-  fi
-}
-
-alias cdworkspace=$(DIRS_WORKSPACE)
-alias cdworkspace=$(DIRS_WORKSPACE)
+# A collection of useful aliases that have yet to be organized ...
 
 # Custom File Editors - Didnt end up using these ...
 # alias editcontainers="vi ${DIRS_ENVIRONMENT}/commands/containers.sh"
@@ -42,30 +8,3 @@ alias cdworkspace=$(DIRS_WORKSPACE)
 # alias editbookmarks="vi ${DIRS_ENVIRONMENT}/bookmarks.sh"
 # alias bookmarks="cat ${DIRS_ENVIRONMENT}/bookmarks.sh"
 # alias editaliases="vi ${DIRS_ENVIRONMENT}/aliases.sh"
-
-# Ease directory traversal. Shouldnt need to go up more than 5 dirs
-alias .1='push ../'
-alias .2='.1; .1;'
-alias .3='.2; .1;'
-alias .4='.3; .1;'
-alias .5='.4; .1;'
-
-alias p='pushd'
-alias o='popd'
-
-# Makes a file Executable
-alias x='chmod +x'
-
-# Make Tree display root nodes ...
-alias tre='tree -C -L 1'
-
-# alias cssh='sshuttle -r oeid@jump.cog-dev.insights.ai:2222 -H -N'
-
-alias cssh-cortex-develop='sshuttle -r oeid@jump.cortex-develop.insights.ai:2222 -H -N'
-alias cssh-cortex-stage='sshuttle -r oeid@jump.cortex-stage.insights.ai:2222 -H -N'
-alias cssh-cortex-prod='sshuttle -r oeid@jump.cortex-prod.insights.ai:2222 -H -N'
-alias cssh-cortex-advprod='sshuttle -r oeid@jump.cortex-advprod.insights.ai:2222 -H -N'
-
-function peek() {
-  grep -rl "${1}" . | fzf --preview "grep -b3 -a3 ${1} {}"
-}

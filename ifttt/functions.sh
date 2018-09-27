@@ -1,13 +1,43 @@
-function idea() { maker_with_args track idea "$@" }
-function desire() { maker_with_args track desire "$@" }
-function goal() { maker_with_args track goal "$@" }
-function task() { maker_with_args track task "$@" }
-function note() { maker_with_args track note "$@" }
-function tought() { maker_with_args track tought "$@" }
-function quote() { maker_with_args track quote "$@" }
-function work() { maker_with_args track work "$@" }
-function quran() { maker_with_args track quran "$@" }
-function interrupt() { maker_with_args track interrupt "$@" }
+function idea(){
+  maker_with_args track idea "$@"
+}
+
+function desire(){
+  maker_with_args track desire "$@"
+}
+
+function goal(){
+  maker_with_args track goal "$@"
+}
+
+function task(){
+  maker_with_args track task "$@"
+}
+
+function note(){
+  maker_with_args track note "$@"
+}
+
+function tought(){
+  maker_with_args track tought "$@"
+}
+
+function quote(){
+  maker_with_args track quote "$@"
+}
+
+function work(){
+  maker_with_args track work "$@"
+}
+
+function quran(){
+  maker_with_args track quran "$@"
+}
+
+function interrupt(){
+  maker_with_args track interrupt "$@"
+}
+
 
 #function idea() { maker_with_args track idea "$@" }
 #function note() { maker_with_args track note "$@" }
