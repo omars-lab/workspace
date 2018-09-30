@@ -1,0 +1,1 @@
+- [x] Get Sales check number from receipt and schedule delivery of sofas {they have not been scheduled yet, sales check is in email ...} @done(2017-12-07 11:22)

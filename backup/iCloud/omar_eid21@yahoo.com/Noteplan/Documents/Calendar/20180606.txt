@@ -1,0 +1,11 @@
+- [x] From Costco, Check out Glasses ... @done(2018-06-07 12:34 PM)
+
+- [x] Figure out what to do about perscription sun glasses @done(2018-06-07 12:43 PM)
+	- [x] See if I can use hsa for sunglasses @done(2018-06-07 12:43 PM)
+	- [x] See if we can do glasses lenses in Lebanon {we can} @done(2018-05-31 11:56)
+	- [-] Buy extra frame sunglasses {Costco has similar ones ... just get them from there ...}
+		- [-] @WhenWeGetToLebanon get perscription sunglasses lenses
+
+- [x] #Maintain the coffee machine @done(2018-06-07 12:46 PM)
+	- [x] Clean oil on coffee machine @done(2018-06-07 12:46 PM)
+	- [x] Decalcify the coffee machine @done(2018-06-07 12:46 PM)

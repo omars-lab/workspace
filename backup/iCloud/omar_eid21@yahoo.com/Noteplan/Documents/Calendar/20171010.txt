@@ -1,0 +1,3 @@
+- [x] Call the NVC and figure out if they are still processing the case @done(2017-10-11 00:05)
+- [x] Go to dar el chimal and get button box @done(2017-10-11 00:05)
+- [x] Go to dar el chimal and see if there are bags to pack chocolate @done(2017-10-11 00:05)

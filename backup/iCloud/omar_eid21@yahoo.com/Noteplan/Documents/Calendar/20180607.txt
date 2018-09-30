@@ -1,0 +1,3 @@
+
+- [x] From Costco, Return Pants  @done(2018-06-07 22:14)
+- [x] From Costco, Order Glasses @done(2018-06-07 22:14)

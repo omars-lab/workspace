@@ -1,0 +1,7 @@
+- [ ] Buy Sara Michael Kors Purse from macys
+	- [ ] Spend Macys Birthday credit
+	- [ ] Spend $50 from Sara's aunt
+
+- [ ] Look to donate to APA
+- [x] Add a specifics section to the envrioments sourcing files to source specific things per laptop ... like different dirs ... based off serial num @done(2018-09-30 01:55 PM)
+- [ ] Backup dropbox folder form old work mac

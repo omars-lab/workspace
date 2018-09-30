@@ -1,0 +1,4 @@
+- [x] Go to HMart @done(2018-04-21 12:44)
+- [x] Update P1 Historic Queries @done(2018-04-21 12:45)
+- [x] Update Daily P1 Quereis @done(2018-04-21 12:45)
+- [x] Figure out if we want to go to dallas ... @done(2018-04-21 12:47) {in Ramadan inshalla}

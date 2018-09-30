@@ -1,0 +1,219 @@
+# What are my processes?
+
+What processes do i need to establish?
+What processes are inefficient?
+
+A process is the context in which I use my tools ...
+	How often do I evaluate the tools I use within a process?
+	What metrics do I have on a process ...
+		How do I measure if each process is meeting its purpose ...
+			What is the purpose of each of my processes?
+
+## How will I keep myself organized?
+- [ ] How will I track how organized I am?
+- [x] Clean up all the notes I have on my laptop @done(2018-01-02 21:45)
+	- [x] Clean up the notes in NotePlan @done(2018-01-02 11:25)
+		- [x] Setup a script to setup a folder structure for my noteplan notes... @done(2018-01-02 11:25)
+		- [x] Get a good apple script going to "mark a todo as complete" and give it a good keyboard shortcut @done(2018-01-02 11:54)
+		- [x] Get a good apple script going to "mark a todo as canceled" and give it a good keyboard shortcut
+#Plan #Process #Organization
+
+## How will I regularly remind myself?
+- [ ] What options do I have to set up recurring reminders?
+	- [-] Should I use google reminders? {No, ... its nice, but it doesnt sync with noteplan since noteplan only accetps events currently. }
+	- [-] Should I use the recurring reminders in noteplan? {I can ... but I have to remeber to recreate them every year .... there is no effective way to undo/change them}
+	- [-] Can I add any recurring events in google calendar to my reminders in Noteplan? @done(2018-01-02 11:26)
+		- #@THOUGHT I can add events ... but they are not todos ... they are just statements ... this is good for reminding myself of a certain event happening on a certain day ...I would need a catalog of actions to take when certain events happen. For example ... an event may be the end of the month ... and the catalog would be ... at the end of the month ... pay bills ..
+	- [ ] I can create a script to replicate notes tagged with @daily, @monthly, ... to replicate them to the proper days ...
+		- [ ] I may even be able to add a catalog to the script to react to events in google calendar ... ie ... if I have a task tagged with @inVirginia and I have a event for @inVirginia in google ... then the tasks expand ...
+#Plan #Process #Todo
+
+# How will I identify my personal issues / impediments?
+- [ ] Get document together explaining my total tracking / automation process ...
+	- [ ] What are the metrics I am trying to drive? What are the charts that I want to see on my personal dashboard?
+	- [ ] what are the things I need/want to track ... 
+	- [ ] Figure out how I will design things ... what app will I use ... 
+		- [ ] What design language will I use ...
+- [ ] I need to classify the kinds of questions I am asking on a daily basis ... I need my personal taxonomy ...
+- [ ] I need to research metric aggregation frameworks ...
+- [ ] #@THOUGHT I should have "recordings" and "views" ...
+	- A recording is something that I enter per day and there can be multiple entries of it per day ...(read 3 pages of book x, read 1 page of book y)
+	- A view is something that aggregates recordings ... how many pages did I read in a day? how many pages did I read in a week?
+		- These can be computed on different intervals ... every day, every week, every year ...
+	- [ ] #@THOUGHT I should be able to scrub my todos to get recordings ... this means I record tasks in a very specific way ... or have many different ways of recording the same task ...
+- #@THOUGHT @2017-10-20 - I need to set concrete tasks per day ... read 10 pages of quran ... review 1 page of quran ... 
+- #@THOUGHT @2017-10-20 - Should I bucket the thoughts I have per week? i.e how should I store them? I can still have daily, weekly, monthly, yearly views ...
+#Plan #Process #Metrics
+
+
+# How will I manage my actions?
+- [ ] What should I be working on? 
+	- [ ] What should I be doing? 
+	- [ ] What should I be spending my time on?
+	- [ ] What Ideas should I act on?
+		- [ ] #@IDEA Should I develop my own personal bar code system? {Truely measure myself!}
+- [ ] Am I spending my time productively?
+	- [ ] How much time am I wasting?
+#Plan #Actions
+
+
+# What is my note taking process?
+- [ ] What should I do for diagram based notes?
+	- [ ] What tool should I use for these?
+		- [ ] Should I be able to edit these with the ipad?
+
+- [ ] How will I archive questions that have been answered in NotePlan?
+	- [ ] Should I move them over to MindNode???
+
+# How will I expand my education?
+- [[What books should I be reading?]]
+
+- [ ] Determine how I will advance my islamic education
+	- [ ] Why do I want to advance my islamic education ...
+- [ ] Determine how I will expand my programming education ... 
+	- [ ] Why do I want to advance my programming education ...
+
+- [ ] Should I get better at planning?
+	- [ ] What are the different planning frameworks?
+		- [ ] What is the difference between scrum or kanban?
+	- [ ] Start reading a book on planning techniques ...
+- [ ] Should I get better at product management?
+	- [ ] Read "Product Manager's Handbook"
+- [ ] Should I become an accredited architect?
+	- [ ] Why should I become accredited? (for credibility? to learn more?)
+	- [ ] Get certified as an AWS Developer: https://aws.amazon.com/certification/certified-developer-associate/
+	- [ ] Get certified as a TOGAF architect: 
+	- [ ] What are the different arch accreditations?
+	- [ ] Read up on TOGAF
+	- [ ] Should i read other enterprise architects books
+	- [x] Buy TOGAF course @done(2017-10-11 23:06)
+	- [-] Should I take a TOGAF course (I already bought 2 courses on UDEMY)
+- [ ] Should read a book on analytics/ml?
+- [ ] Should I be reading the same materials MBA students read?
+	- [ ] Check out dudes summary of his entire MBA course: https://www.udemy.com/an-entire-mba-in-1-courseaward-winning-business-school-prof/learn/v4/t/lecture/4589926?start=0
+- [ ] Should read up on distributed systems?
+	- [ ] https://news.ycombinator.com/item?id=13311124
+#Plan #Education 
+
+# How will I track myself?
+- [ ] Should I track myself in an automated fashion?
+	- [ ] What technology should I use to automate my personal tracking process?
+- [ ] Should I track how I am spending my time?
+	- [ ] Should I track how much time I am spending on each web site?
+- [ ] Should I track my thoughts?
+	- [ ] What kinds of thoughts should I track?
+		- [ ] Should I track my fears?
+			- [ ] What should I capture with each fear? 
+				- [ ] What opportunities it will cost me?
+				- [ ] What insecurities I have within myself? ...
+			- [ ] What metrics can be extracted from my fears?
+				- [ ] How many times do I fear doing something a week? a month? a year? 
+		- [ ] Should I track my excuses?
+			- [ ] What should I capture with each excuse? 
+			- [ ] What metrics can be extracted from my excuses?
+				- [ ] How many times do I excuse myself our of doing something a week? a month? a year? 
+		- [ ] Should I track my ideas?
+			- [ ] What should I capture with each idea? 
+			- [ ] What metrics can be extracted from my ideas?
+				- [ ] How many ideas do I have a week? a month? a year? 
+		- [ ] Should I track my decisions?
+			- [ ] What should I capture with each decision? 
+			- [ ] What metrics can be extracted from my decisions?
+				- [ ] How many decisions I have per day? how many were good ...?
+		- [ ] Should I track my assumptions?
+
+- [ ] What kind of metric dashboard should I setup for myself?
+	- [ ] Look into the google analytics dashboard ...
+
+# How will I improve myself?
+	Generally, these will be a collection of micro tasks done every day to improve myself ...
+	This document is more with the intention of outlining the higher goals and evaluate if these are the sets of things I truely should currently be focusing on ...
+- [ ] Do I need to improve these aspects of my life on a daily basis?
+	- [ ] If so, what recurring action do I need to take for each aspect?
+
+- [ ] @2017-10-21 Get better at planning [[What questions should a plan address?]]
+	- [ ] What is the science of planning?
+- [ ] @2017-10-21 Get closer to my creator
+- [ ] @2017-10-21 Get better at deducing business value of a comapny ... 
+	- [ ] Does having good product management mean your product will succede? What are the statistics for this? If not, why even bother?
+- [ ] @2017-10-21 Get better at architecture
+- [ ] @2017-10-21 Get better at programming
+
+i.e What action am I taking?
+
+- [ ] What do I need to learn?
+- [ ] What projects am I working on?
+	- [ ] Should I continue working on my scala app?
+		- [ ] Should I make an android app?
+- [ ] What ideas am I curating?
+- [ ] What personal metrics am I tracking?
+- [ ] What principles am I extracting?
+- [ ] What things am I reflecting on?
+
+# How will I plan my habits?
+
+- [ ] How will I track my habits?
+
+- [ ] Why should I even track my habits?
+	- [ ] How will this help me?
+	- [ ] What about my habits should I be tracking
+
+- [ ] What habits do I have?
+	- [ ] What habits should I keep?
+	- [ ] What habits should I break?
+	- [ ] What metrics can I track to help make/break habits?
+
+- [ ] Figure out habit app ... 
+	- [ ] Figure out how I can extract data from habbit app ... 
+	- [ ] Figure out how I can integrate output of habbit app ....
+	- [ ] Figure out how I can automatically extract and upload thingy for habbit app
+
+#Plan #Habits #Metrics
+
+# How will I maintain myself?
+- [ ] Doc Attribute: Why are habits / maintenence important?
+- [ ] Create Maintence Calendar in Google
+- [ ] Record Habit of extracting exercize info from the Concept2 since Im not turning on bluetooth to save battery ...
+- [ ] Record Habit of Tracking how much I paid baba back vs how much is left
+- [ ] Record Room Maintnence Items
+	- [ ] Always have exercize socks in the exercise room
+	- [ ] Always have lysol wipes in exercise room
+- [ ] Set Maintenence schedule
+	- [ ] Set up a script to create maintenence events in googel ...
+	- [ ] Figure out a way where I make sure I run the script once a month / once a year / ...
+	- [ ] Figure out how to define a repeatable job? 
+	- [ ] Figure out what self maintenence I need to do?
+	- [ ] Look into noteplan callback action to automate notes ...
+	- [ ] Set up Maintenence for the Coffee Machine ..
+		- [ ] Make sure the replace the charcoal filter every three months {starting Feb 20th}
+		- [ ] Make sure clean it in Vinegar every X months ... {starting Feb 20th}
+			- [ ] Read manual and see what needs to be done ...
+		- [ ] Buy Capsules from Amazon
+		- [ ] Buy white vinegar
+	- [ ] Setup Maintenence for Car
+	- [ ] Setup Maintenece for house (AC / Filters / Water Heater ... )
+	- [ ] Setup Maintenence for Reverse Osmosis System ... 
+		- [ ] Buy filters from Amazon ...
+	- [ ] Setup Maintenence for Concept2 .. 
+	- [ ] Setup Maintenece for Me ...
+- [ ] Record the fact that I need to always ... save receipts for HSA
+- [ ] Record New Maintnence Habit: 
+	- [ ] Always wipe rower with lysol after exercizing
+- [ ] Record New Maintenece Habit: 
+	- [ ] Figure out what 200hrs of usage means and oil the rower then ... 
+- [ ] Record New Maintenence Habit:
+	- [ ] Replace filters on RO system
+- [ ] Record New Inventory of Objects we have ... (rower ...)
+
+# What metrics am I keeping track of?
+- [x] Gather all my metric ideas into a spreadsheet https://docs.google.com/spreadsheets/d/1-85tLI5ifm6vljBuOuyTLov5J1awxIiqzcF1WRGopYw/edit?usp=sharing @done(2017-10-22 18:12) 
+- [x] #@THOUGHT @2017-10-20 Number of questions I ask per day @done(2017-10-22 18:12)
+- [x] #@THOUGHT @2017-10-20 The number of questions I answer per day .. @done(2017-10-22 18:12)
+- [x] #@THOUGHT @2017-10-20 Number of pages I read a day @done(2017-10-22 18:12)
+- [x] #@THOUGHT @2017-10-20 Number of chapters I read a day ... @done(2017-10-22 18:12)
+- [x] #@THOUGHT @2017-10-20 How many thoughts I have per day @done(2017-10-22 18:12)
+
+# How will I develop my personal daily framework?
+- [ ] Need to setup a framework for success for yaryur
+- [ ] See if someone has set this up ...
+- [ ] How do you evalute a frame work?

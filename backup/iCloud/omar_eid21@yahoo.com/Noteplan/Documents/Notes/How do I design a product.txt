@@ -1,0 +1,6 @@
+How do I design a product?
+
+
+- [ ] What answers does each capability address?
+- [ ] What capabilities do we really need?
+	- [ ] Have we verified capabilities with teams?

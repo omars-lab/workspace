@@ -1,0 +1,7 @@
+- [x] Ask seller for replacement cup on Amazon @done(2018-02-27 17:11)
+- [x] Mark being Out for Yaryurs Medical Appointment @done(2018-02-27 17:11)
+- [x] Mark being out for registering for sara's classes ... @done(2018-02-27 17:11)
+- [x] Figure out how to ATT autopay @done(2018-02-27 17:22)
+- [x] Setup ATT autopay @done(2018-02-27 17:22)
+- [x] Redeem ATT credit @done(2018-02-27 17:22)
+- [x] Mark break on Monday, 12th of March @done(2018-02-27 23:09)

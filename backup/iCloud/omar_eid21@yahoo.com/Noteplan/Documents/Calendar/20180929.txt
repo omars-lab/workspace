@@ -1,0 +1,28 @@
+- [ ] Go to target for double sided tape, snacks for yara, baby wipes
+- [ ] Take Sara to jack allens kitchen
+
+- [ ] Think about getting nest thermostat
+- [ ] Do exercise on the rowing machine
+	- [ ] Clean up shoes
+
+- [ ] Take Sara to Inka Chicken
+- [ ] Take Sara to Steeping Room
+- [ ] Take Sara to Outback 
+- [ ] Take Sara to Red Lobster
+- [ ] Take Sara to Fish Place
+
+- [ ] Setup script to do backup every time I log in in the morning, noon, evening ...
+	- [ ] Make sure stuff in icloud are synced to git repo for work
+		- [ ] Have a sam linked git dir ... can git work off of sym links???
+		- [ ] Get iCloud email command line `defaults read com.apple.iTunes MacBuddyStoreID`
+
+- [ ] Install the door wrapper at home ...
+- [ ] Vacuum front of house
+- [ ] See if I should get next Thats so raven series for Sara
+
+- [ ] Make sure Sara is interacting with people more
+- [ ] Keep track of all the Surahs I am reading in prayer ...
+- [ ] Keep track of what I am listening to on drives
+
+- [ ] Figure out where/when we should picnic
+- [ ] Look to donate to rohingya https://www.unrefugees.org/what-we-do/

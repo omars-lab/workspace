@@ -1,0 +1,32 @@
+# What should I recurringly do?
+
+
+# What are my weekly goals?
+@2017-11-06's week's goals
+- [ ] Harvest Notes
+- [ ] Harvest Thinking ...
+- [ ] Begin Coding
+- [ ] Get Dev Env going with Data ...
+- [ ] Finalize Agenda
+- [ ] Understand all docs needed ...
+- [ ] Game plan for tackling this month ...
+
+# What should I do daily?
+- [ ] Remind Sara to eat a teaspoon of honey
+- [ ] Remind Sara to study english
+
+# What should I do every month?
+- [ ] Copy data from fitbit
+- [ ] See how my spending is this month
+- [ ] Pay my bills
+- [ ] See if I need to do any car maintnence
+
+# What is my weekly planning ritual?
+- [ ] Reflect on last week ...
+- [ ] High Level overview of things I should do this week
+- [ ] Current points I should stress to myself?
+- [ ] What impediments are there this week {personal, work, family, ...}
+- [ ] Where will I store / document these ...?
+	- [ ] I should list my weekly goals at the begining of the week.
+	- [ ] I should make a report of my progress at the end of the week.
+	- [ ] I should list out what I learned this week

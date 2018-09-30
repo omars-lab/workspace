@@ -1,0 +1,4 @@
+- [x] Make sure the nature conservancy is canceled @done(2018-01-16 11:12)
+- [x] Pay water bill {looks like it was already paid ...} @done(2018-01-18 10:41)
+- [x] Call the house people and see how many garage remotes we got {sounds like baba already did this}
+- [x] Call Macys and see if the sofas are in the warehouse @done(2018-01-18 00:18)

@@ -1,0 +1,4 @@
+- [x] Pay water bill @done(2018-03-21 00:40)
+- [x] Check if watch shipped {it didnt} @done(2018-03-21 00:35)
+- [x] Book hair appointment @done(2018-03-21 00:35)
+- [x] Go to target and pick up jeans @done(2018-03-23 12:58)

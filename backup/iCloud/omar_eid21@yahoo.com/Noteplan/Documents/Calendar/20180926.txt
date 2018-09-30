@@ -1,0 +1,6 @@
+- [x] Book apple store appointment @done(2018-09-26 10:05 PM)
+- [x] Check out decking online @done(2018-09-26 10:06 PM)
+- [x] Go to Ikea for decking @done(2018-09-26 10:06 PM)
+	- [x] Figure out how much decking we need @done(2018-09-26 10:06 PM)
+	- [x] Buy decking from ikea @done(2018-09-26 10:06 PM)
+- [x] Get outdoor seating from target @done(2018-09-27 00:39)

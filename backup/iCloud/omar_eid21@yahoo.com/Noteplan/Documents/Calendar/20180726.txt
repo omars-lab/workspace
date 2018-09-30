@@ -1,0 +1,15 @@
+- [x] Call macys and try to order small nike jacket for Sara @done(2018-07-26 10:42 PM)
+
+- [x] Get gift for Omar and Amar @done(2018-08-02 10:52 AM)
+	- [-] Should we get them night light? {we got them a jacket from hilfiger}
+
+- #Thought @Thought @done(2018-07-25 09:33 AM) Where do I fit into the world? What is my value add? How will society use me? What difference am I making? What is my functionality?
+	- [ ] I should do use case designing on myself!
+	- [ ] I am my best product!
+
+- #Thought @Thought @done(2018-07-25 09:33 AM) Documenters (along with the rest of us) need to know who their audience is to do their work right
+	- [ ] Do most people know why it is they are doing what they are doing?
+
+- #Thought @Thought @done(2018-07-25 09:33 AM) Good Interview prep is actually hosting interviews ... #Interviews
+	- Interview questions might be tweaked to simulate the workplace and how well someone might fit into it ...
+		- For example, a vague, requirementless question might be given to see how much digging someone does before they journey into solving the problem ...

@@ -1,0 +1,5 @@
+- [x] Add trip order to document ... @done(2017-09-11 20:16)
+- [x] Verify with Baba that we moved to Dallas on July 4th 2000 @done(2017-09-11 20:16)
+- [x] Figure out when we were in new york ... @done(2017-09-11 20:16)
+- [x] Recharge my phone @done(2017-09-11 20:16)
+- [x] Get Water, Shaysh, Bread, Tide, Toast, Mortadel, Mkhalal, Samoun, Lettuce @done(2017-09-11 20:16)

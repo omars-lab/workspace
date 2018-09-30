@@ -1,0 +1,28 @@
+What is my Learning Plan?
+Tinker with software technologies that interest me
+Determine the user priented focus of sifferent companies
+	Identify the goals of major companies
+	Identify the users majors companies are trying to add  value to
+	Identify the architectural systems each company has put together to acheive specific goals
+	Breakdown each of the different architectures encountered 
+	Discover similar patterns between different architectural systems
+Capture different classifcations of software work
+	identify artficats that are relevant to each phase
+	identify developer tools for each phase
+	identify where this work belongs in the software process
+		Read up on software processes
+	identify systems relevabt to each poop of work
+Figure out how much time I am going to spend learning
+	Figure out when I ahould learn each day and for how long
+Make a gantt chart of my learnings ...
+	See if there is a way to do this in excel
+	
+What books do I want to read?
+What concepts do i want to learn about?
+What certifcations do i want to work on?
+what links do I want to read?
+
+What are my need?
+What are my interests?
+Why is it important for me to learn?
+...

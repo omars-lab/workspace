@@ -1,0 +1,13 @@
+What projects should I work on?
+- This note should tie into the "what do I want to do" note plus the "what do I want to learn about"?
+	- I should work on projects that push me to explore the things I want to do and the stuff I want to learn ...
+	
+- [ ] I need to capture the purpose of each notes ... and the dependencies in between them ... 
+	- What is each note intended to encode?
+
+
+- [ ] Potentially Fun Projects ...
+	- [ ] Make a set of notebooks of myself ...
+		- [ ] Make a calendar heat map of my productivity
+			- [ ] Make the heat map have a per month option ...!
+		- [ ] Make a thought heat map (of when I am having thoughts ...)

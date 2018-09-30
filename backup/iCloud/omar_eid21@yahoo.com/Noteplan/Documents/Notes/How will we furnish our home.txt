@@ -1,0 +1,402 @@
+# What will we do for our home?
+
+- What furniture should we buy?
+- What services should we subscribe to?
+
+- [ ] Figure out what to do for shower mold
+
+- [ ] What will be our outdoor seating arrangement?
+	- [ ] Should we get a grill?
+		- [ ] Look into BBQ grills: https://www.bbqguys.com/bbq-grills-smokers/portable-table-top-charcoal-grills
+			- [ ] Gas or Charcoal? Smoker?
+	- [ ] Should we plant anything?
+		- [ ] Look into drip irrigation system for outside { https://www.amazon.com/Raindrip-R560DP-Automatic-Container-Hanging/dp/B00J2NRUBI?keywords=drip+irrigation+system&qid=1537124777&sr=8-6&ref=sr_1_6 }
+
+- [ ] Get a Ring and Install it at the front of the house ...
+	- [ ] Figure out what the voltage is for our mechanical chime to see if we should get a ring pro ...
+		- Cons of having a ring based on electricity - if the power goes out ... it goes out ... but if the power goes out .. the internet will go out ... so what good is it ...
+		- Pros of having a ring based on electricity - 
+	- [ ] Think about getting the one with the chime ...
+		- [ ] If the wifi fails ... its useless?
+
+- [ ] Turn the sprinklers on
+	- [ ] Figure out when we are supposed to turn them on in Williamson County
+	- [ ] Figure out what happened with the ants ...
+
+- [ ] Figure out how to hang eid family art
+- [ ] Pest control around the house
+	- [ ] Kill ants outside our house ...
+	- [ ] Spray front of the house with bug repellant ...
+
+- [ ] Figure out how to hang Saras mother's day gift
+
+- [ ] Look into a thin Bezel Monitor with a Rasberry Pi as clock / dashboard ... 
+	- [ ] Or maybe even PIP in the tv ...
+
+- [ ] Get shower organizer ...
+
+- [ ] What are some things we are double thinking at home?
+	- [ ] Should we get stronger lights?
+	- [ ] Should we get an hdmi splitter?
+	- [ ] Do we need more clothes hangers?
+	- [ ] Should we get matress protectors for twin beds?
+
+- [ ] What should we do for the patio?
+	- [x] Get Water Hose @done(2018-05-18 10:57)
+	- [ ] Figure out what Plant Stuff
+	- [ ] Should we get artificial grass decore?
+	- [ ] What outdoor seating arangement should we get?
+
+- [ ] What thing for Shoes should we get {We need a place to put shoes}
+	- [x] We might have found something good for the shoes at ikea ... @done(2018-04-22 11:34)
+
+- [ ] Think about filling empty space in the house
+	- [ ] Think about bench/seating in front of the house? {really liked low bench we saw at home goods}
+	- [ ] Look into the homegoods chairs
+	- [ ] Look into another bench ...
+
+- [ ] Investigate bright lights for kitchen
+- [ ] Investigate buying receipt/paper scanner
+- [ ] Before yara grows up, we need to have books on the house
+
+- [ ] What should I do with my google router?
+	- [ ] Test the internet wired at the house ...
+		- [ ] Get the dongle adaptor ...
+
+- [ ] What do we still need to get for the house?
+	- [ ] From Amazon get Automatic clock
+	- [ ] From {Amazon,Frys} get cable managent system for tv
+	- [ ] From Amazon, get cable management system for desk
+	- [ ] From Amazon, get pencil management system
+	- [ ] From Amazon, get decor rocks and decor balls
+	- [ ] From {Amazon,Home Depot}, get towel holder for kitchen
+	- [ ] From {HomeGoods,Marshalls,Ross} and get big plate dryer
+	- [x] From {Marshalls,Ross,HomeGoods} and get hot pot pad for table
+	- [x] Figure out everything we need that sara wrote down @done(2018-05-18 10:57)
+	- [x] From {IKEA,Target} look for a cabinet system @done(2018-05-18 10:57)
+
+- [ ] What do we still need to do at the house?’
+	- [ ] Go to our house and clean it...
+	- [ ] Go to house and install locks
+	- [ ] Go to house and install putty in blind holes
+		- [ ] Watch videos on how to do this 
+
+- [ ] What are we still thinking about in the house?
+	- [ ] Should I get any sensor to help tell me if the garage is closed?
+	- [ ] Should I get a workstation in the garage?
+	- [ ] Where should we put the recycle and trash other than the garage?
+	- [ ] Where should we put the big trash can?
+	- [ ] What should we do for the outside patio/garden?
+	- [ ] What decor should we get?
+		- [ ] Go to target for decor
+		- [ ] Open a target card if needed
+	- [ ] What motivational stuff will we put on my wall in our bedroom?
+	- [ ] Are we going to hang the mirror in our bedroom?
+
+- [ ] What will be our security setup?
+	- [ ] What security pad should we get?
+		- [ ] Should we wait for the ring protect?
+		- [ ] Should we turn the ipad into this?
+	- [ ] How many motion sensors do we need?
+		- [ ] What motion sensors should we get?
+		- [ ] Where should we install them?
+		- [ ] What should we integrate them with?{lights/siren}
+	- [ ] What flood light should we get?
+		- [ ] Get motion sensor food lights for the house
+
+- [ ] What do we need to do for second bedroom?
+	- [ ] Should we get matress protector for guest bedroom?
+	- [ ] Get toilet space saver thingy we saw at Ross...
+
+- [ ] What should we do for garage?
+	- [ ] Get shoe rack thing from amazon ... https://www.amazon.com/Seville-Classics-3-Tier-Utility-Pewter/dp/B002QB1DE8/ref=sr_1_4?ie=UTF8&qid=1513620090&sr=8-4&keywords=seville+classics+shoe+rack
+	- [ ] Look into getting a tools space setup
+
+- [ ] Get Decor for the house {What accessories do we want for our house ...?}
+	* [ ] What lamps should we get for the living room?
+		- [ ] Get 1 big lamp for salon
+	- [ ] Should we get the plant hanger from IKEA: http://www.ikea.com/us/en/catalog/products/90206252/
+	- [ ] Should we get the project 62 lamps we saw at target?
+	- [ ] We need a clock for the wall
+		- [ ] Does Target have the project 62 clock in silver instead of gold?
+	- [ ] What do we need for a coffee station?
+	- [ ] What rugs do we need to get for the house?
+		- [ ] Look for rugs for the living room 
+		- [ ] Look for rugs for the desk/office {especially a mat for the office}
+	- [ ] What should we do about the shrubs/gardening infront of the house?
+	- [ ] What coffee table should we get?
+
+- [ ] What do we still need for the kitchen?
+	* [ ] Get spice rack
+	* [ ] Get set of wooden utensils for cooking
+	- [ ] Go to HomeGoods and get the mortar thing?
+	- [ ] Go to HomeGoods and get honey thing?
+	- [ ] Think about the pans at Costco
+
+- [ ] What organization/container units do we need for the house?
+	* [x] What organizational units do we need for the kitchen? @done(2018-01-24 23:38)
+	* [ ] Do we need an organizational unit in yaryurs closet?
+	* [ ] Do we need an organizational unit in yaryurs room for toys? Books?
+	* [ ] Where will we put out shoes?
+
+
+
+- [ ] What are our daily shopping lists?
+	- [ ] Where do I get coffee from? {Whole Foods}?
+	- [ ] Where do we get milk from? How often?
+
+- [ ] Figure out what home services we should subscribe to ... {how can we optimize subscription refunds ...}
+	- [ ] Figure out what produce/products to subscribe to ...
+		- [ ] Can we save if we subscribe on Amazon? 
+	- [ ] Should we get a security plan for the house?
+		- [ ] Should we just get cameras with cloud storage?
+	* [ ] What recurring subscriptions am I ready to make? {coffee, water, Kleenex, ...}
+		* [ ] Am I truely saving money?
+		* [ ] When does the amazon savings/discount expire?
+		- [ ] What are the requirements?
+	- [x] See if we can get a Nestle 5 gallon water subscribtion .. {installed ro system instead} @done(2018-04-22 11:50)
+	- [x] See what we should get for internet ... {att fiber} @done(2018-04-22 11:50)
+	- [x] Should we get tv service for the house? @done(2018-04-22 11:51)
+		- [x] Hulu @done(2018-04-22 11:50)
+		- [x] Netflix @done(2018-04-22 11:50)
+		- [x] Figure out how to get arabic chanels for Sara {got a sling account for a year} @done(2017-12-25 13:38)
+
+- [ ] What should we do for our outside setup?
+	- [ ] We need chairs for outside garden
+	- [ ] We need a waterfall for garden
+	- [ ] Should we get outdoor curtains with a ceiling rod?
+	- [ ] What should we do for the back yard seating for the house?
+	- [ ] What should we do about backyard garden in the house?
+
+# What security system should we get our house?
+
+- Are monthly fees required?
+- Does it need internet/elecriticty to opperate?
+
+- [ ] What are our options?
+	- [ ] Look into scout: https://www.scoutalarm.com/?utm_campaign=Branded_Relaunch_2017&utm_source=google&utm_medium=cpc&utm_content=232371696708&utm_term=scoutalarm&gclid=EAIaIQobChMIoq2q8bO32AIVm7rACh2WVwDvEAAYASAAEgLHvvD_BwE
+	- [ ] Look into ring protect: https://ring.com/protect
+- [ ] For each of the options:
+	- [ ] How much will each option cost? ...
+	- [ ] What is the range of each of the compatible sensors?
+	- [ ] Do the sensors work with homekit?
+	- [ ] What hubs do the sensors work with?
+		- [ ] What is the difference between each of the hubs?
+
+- [ ] How many sensors do we need?
+	- [ ] Where will we install window sensors?
+		- [ ] Should we install a window sensor in the guest room?
+	- [ ] Where will we install motion sensors?
+
+- [ ] Should I get colorable light bulbs so they can flash red/green when the system is armed/disarmed?
+
+
+# Done ------------------
+
+- [x] Get Lighting for the hosue @done(2018-04-22 11:56)
+	- [x] Should we get the hue light strip? {nah ...} @done(2018-04-22 11:56)
+	- [x] What light bulbs we want for the house ... @done(2018-02-05 20:43)
+		- [-] Ask Baba if these are good bulbs: https://www.amazon.com/dp/B074M9CC6P/ref=sspa_dk_detail_3?th=1
+		- [x] Should we get iOS lights for the whole house???  @done(2018-01-01 01:23) {yes}
+		- [x] Should we get the ikea dimmable lights? {no} @done(2018-01-01 01:23)
+
+- [x] What do we need for our tv setup? @done(2018-04-22 11:57)
+
+- [x] What do we need to do for second bedroom? @done(2018-04-22 11:55)
+	- [x] What should we do for a rising desk? @done(2018-01-01 00:43)
+		- [x] Should we get the sit stand desk we saw at ikea  {want to buy this guy: http://www.ikea.com/us/en/catalog/products/S29084966/} @done(2017-12-31 15:29)
+	- [x] Get a second bed for the guest room @done(2018-01-22 13:48)
+	- [x] Get a mattress for the bed. @done(2018-02-05 20:41)
+	- [x] We need bedding sheets for guest room @done(2018-02-05 20:41)
+
+- [x] What do we still need to move to the house? @done(2018-04-22 11:54)
+	- [x] Get belkin travel charger thing from house  @done(2018-04-22 11:54)
+	- [x] Start moving unused clothes to our house ... @done(2018-02-05 20:41)
+	- [x] Move majority of the things over to the new house @done(2018-01-01 01:03)
+
+- [x] Think about desk at house @done(2018-04-22 11:36)
+	- [x] Should we get a standalone desk? @done(2018-04-22 11:36)
+	- [x] Should we get a portable desk for the living room? @done(2018-04-22 11:36)
+		- [x] Investigate portable desk {no, not enough space} @done(2018-04-22 11:37)
+
+- [x] What will be our security setup? @done(2018-04-22 11:55)
+	- [x] Buy locks for the house @done(2018-01-22 13:48)
+		- [x] Install locks for the house @done(2018-04-22 11:46)
+	- [x] Make sure the locks for our new house are set / have been reprogrammed @done(2018-01-01 01:04)
+	- [x] What camera system should we get @done(2018-01-01 00:40)
+		- [x] Should we get a security camera for the house @done(2018-01-01 01:13) {yes, just 2 at each door}
+			- [x] Look for something with solar charging pad ... @done(2018-01-01 00:40)
+		- [-] Install security camera for the house {we ended up returning them}
+			- [-] Will people not want to steal the camera ...? {make sure its installed in a way they cant ...}
+
+- [-] What stools should we get? {wait until the couches come} {not enough space in the house ...}
+	- [-] https://www.houzz.com/product/23604916-juno-adjustable-height-massage-stool-with-wheels-vanilla-white-contemporary-bar-stools-and-counter-stools
+	- [-] Should we get the bar stools at ikea {we liked these: http://www.ikea.com/us/en/catalog/products/70246089/}
+	- [-] Should we get the bar stools target has on sale right now: {}
+	- [-] Can we put a cover on the stool from bed bath? {https://www.bedbathandbeyond.com/store/product/seville-classics-ultrahd-cushioned-pneumatic-swivel-work-stool/1062292139?Keyword=seville+bar+stool}
+
+- [x] What desk should I get? @done(2018-04-22 11:53)
+	- #@THOUGHT Get a manually lifting desk - increases lifespan ... and it takes the same amount of time to lift anyways
+	- [-] Should I get this desk from bed bath? https://www.bedbathandbeyond.com/store/product/bell-39-o-adjustable-height-desk/3322019
+	- [-] 	Does best buy sell liftable desks? {it does ...}
+	- [x] Should I move the desk I currently have? {nah ... I want a lifting desk} @done(2017-12-21 13:27)
+	- [x] Should I look on craigslist for new desk? {dont feel like taking apart a desk and putting and back together again} @done(2017-12-21 13:27)
+
+- [x] Install tv wall mount in the house @done(2018-04-22 11:48)
+- [x] Get the hydrophobic cover sheet ... for the tuft mattress @done(2018-04-22 11:49)
+- [x] We need towels for all the bathrooms @done(2018-01-01 01:02)
+- [x] We need cloth hangers for the closet @done(2018-01-01 01:02)
+- [x] We need bedding sheets for our room @done(2018-01-01 00:46)
+- [x] Drill hole in console table {we ended up returning these} @done(2018-01-24 23:39)
+	- [x] Get rotary tools @done(2018-01-24 23:38)
+- [x] Get lightening to hdmi @done(2018-01-01 01:05)
+- [x] Need 4k hdmi cables @done(2018-01-01 01:06)
+- [x] Need power socket splitter @done(2018-01-01 01:06)
+
+- [x] Get essential utilities for the house @done(2018-01-01 01:03)
+	- [x] Buy Iron for our house @done(2018-01-01 01:03)
+	- [x] We need a toaster oven for the kitchen @done(2018-01-01 01:03)
+		- [x] Should we get the breville toaster? {we got it} @done(2018-01-24 23:40)
+
+- [x] Buy Secondaries for the house ... @done(2018-01-01 01:07)
+	- [x] Get stepping stool for sara @done(2017-12-31 15:29)
+	- [-] Ask Mama/Babas if we can take the roku? {we got our own sling account, dont need it}
+	- [-] Get a used Apple TV {bought a new one at best buy}
+	- [x] Buy a Nest {should I return this?} @done(2017-11-24 11:22)
+	- [x] Buy a Body Scale @done(2017-11-24 11:22)
+	- [x] Buy a food scale @done(2017-11-26 09:51)
+	- [x] Should we get a sous vide cooker? @done(2018-01-01 00:46)
+
+* [x] How should we decorate yaras room? @done(2018-01-24 23:40)
+	* [x] Should we have a seating area in her room? {We put the big bear in it} @done(2018-01-24 23:39)
+
+* [x] What batroom accessories do we need? @done(2018-01-01 00:47)
+	* [x] We need soap dispensers for the bathrooms @done(2018-01-01 00:47)
+	* [x] We need trash cans for the bathrooms @done(2018-01-01 00:47)
+	* [x] We need squeegees for the bathrroms @done(2018-01-01 00:47)
+	* [x] We need bidets for the bathrooms @done(2017-12-05 23:07)
+	* [x] We need toilet paper holders for the bathrooms @done(2018-01-01 00:47)
+
+- [x] What are the proper tools I need to install the blinds? {already installed blind, Steve gave us his kit} @done(2018-01-01 01:11)
+	* [-] Get a triangle to make sure the blinds are straight ...
+	* [-] Drill bit for wood anchor @done(2018-01-01 01:11) {baba already had, get eventually}
+	- [-] Wrench and screw driver {get eventually} @done(2018-01-01 01:11)
+
+- [-] Should we get curtain rods from amazon? {got them all from home goods}
+
+- [x] Measure and record each window size ... so we know what kinds of blinds we need ... @done(2017-12-05 23:12)
+- [x] Gather the things we want to take to our house @done(2017-12-05 23:13)
+- [x] Get 2 small lamps for room @done(2017-12-26 00:19)
+- [x] Get bathroom set for our room ... @done(2017-12-26 00:19)
+
+- [x] Get a better idea of the essential furniture we want ... @done(2017-12-25 13:38)
+	- [x] Take Sara to Macys @done(2017-11-26 09:49)
+	- [x] Take Sara to Costco/Sams {the costco and sams near our house dont really have any in-store furniture} @done(2017-11-26 09:44)
+	- [-] Call Costco and see if any have beds on display ... {already bought a bed}
+	- [x] Take Sara to Lowes {went to Home Depot instead} @done(2017-12-05 23:14)
+	- [x] Take Sara to Home Depot {for blinds} @done(2017-12-05 23:14)
+	- [x] Take Sara to Crate and Barrel {for silverwear} @done(2017-12-05 23:14)
+	- [-] Take Sara to Zgallery {or nah ... }
+	- [x] Take Sara to Home Depot {locks, and led lights ...}
+	- [x] Take Sara to IKEA {for coffee tables and stools ...} @done(2017-12-22 11:24)
+
+- [x] Buy Essential Furniture for the house @done(2017-12-25 13:38)
+	- [x] Buy a Washer and dryer with warrantyd @done(2017-11-24 11:22)
+	- [x] Buy a Fridge with Warranty @done(2017-11-24 11:22)
+	- [x] Buy a TV + Wall mount @done(2017-11-24 11:21)
+	- [x] Buy a Router @done(2017-11-24 11:21)
+	- [x] Buy a bed @done(2017-12-05 23:16)
+	- [x] Buy Mattress for the bed @done(2017-12-25 13:38)
+
+- [x] We need utensil set for the kitchen @done(2017-12-26 00:24)
+- [x] We need mats for bathroom @done(2017-12-26 00:22)
+- [x] We need curtain for yaras bathroom @done(2017-12-25 14:16)
+- [x] We need trashcans for bathroom @done(2017-12-25 14:16)
+- [x] We need soap dispenser set for bathroom @done(2017-12-25 14:16)
+
+- [x] Take the crib to the house @done(2017-12-26 00:21)
+	- [x] Install it @done(2017-12-26 00:21)
+
+- [x] Take Sara to furniture places @done(2017-12-25 14:17)
+	- [x] Take Sara to HomeGood @done(2017-12-25 14:17)
+	- [x] Take Sara to Ross @done(2017-12-25 14:17)
+	- [x] Take Sara to TJ Max + Marshall @done(2017-12-25 14:17)
+	- [x] Take Sara to Ikea @done(2017-12-25 14:17)
+
+- [x] Get trash cans for the rooms @done(2017-12-25 14:17)
+* [x] We need coffee table @done(2017-12-26 00:24)
+* [x] Where should we get our matress from? @done(2017-12-26 00:24)
+* [x] What lamps should we get for the master bed? @done(2017-12-26 00:25)
+- [x] Get Silicone Brush for butter ... @done(2017-12-26 00:26)
+- [x] Get plug splitter for kitchen for 4 plugs instead of 2 @done(2017-12-26 00:26)
+
+- [x] Buy Blinds for the house  @done(2017-12-05 23:15)
+- [-] Should we buy kitchen island extension? {we could use the tv thing with table ...}
+	
+* [-] @whenNawalsCribComes Complete the set? {got dresser from ikea and planning on putting changing pad on top of it}
+	* [-] https://www.target.com/p/delta-children-174-bentley-6-drawer-dresser/-/A-15291708#lnk=newtab ,
+	* [-] https://www.target.com/p/delta-children-174-bentley-changing-table/-/A-15291709#lnk=newtab 
+
+- [x] What should we put above our bed? {we ended up getting a world map from homegoods} @done(2018-02-05 20:39)
+	* [-] Look into getting Islamic caligraphy for the wall above our bed 
+		* [x] Check out etsy for ideas @done(2018-02-05 20:40)
+	- [-] Look into hanging bamboo for wall
+	- [-] Look into plant squares on wall ...
+	- [-] Look into hanging lights for the wall
+	- [-] Should we get wall decor for our bed from Amazon?
+
+- [x] What pots/pans do we need? @done(2018-04-22 11:47)
+	- [x] Get bowls for kitchen @done(2018-04-22 11:47)
+	- [x] Get spatula for eggs @done(2018-02-05 20:42)
+	- [x] Get pair of frying woks @done(2018-02-05 20:43)
+- [x] Install padding for the kitchen cabinets? @done(2018-04-22 11:46)
+	* [x] Get mesh padding from ross @done(2018-01-01 01:08)
+	* [x] See if I should get a cutting board to help cut the padding ... @done(2018-01-01 01:08)
+- [x] Should we get knife set? {We will use mamas knife set for now} @done(2018-01-22 13:49)
+* [x] Get set of stainless steel utensils @done(2018-01-01 00:47)
+- [x] Go to house and install shelf under tv @done(2018-04-22 11:46)
+- [x] Go to house and install velcro for curtains @done(2018-04-22 11:39)
+- [x] Go to house and raise yaryurs crib @done(2018-02-01 23:45)
+- [x] Go to house and install tv @done(2018-02-05 20:37)
+	- [x] Get baba to help install TV @done(2018-02-05 20:37)
+- [x] Go to house and install board above the bed @done(2018-02-01 23:46)
+- [x] Go to house and install board above dresser @done(2018-02-01 23:46)
+- [x] Go to house and organize kitchen utensils @done(2018-04-22 11:46)
+- [x] Go to house and install the lights @done(2018-04-22 11:46)
+
+- [x] From {Marshalls,Ross,HomeGoods} and get welcome mats for the house @done(2018-04-22 11:38)
+- [x] From Home Depot get ant killer for house @done(2018-04-22 11:38)
+- [x] From Amazon get Mattresses @done(2018-02-05 20:39)
+- [x] From Amazon, get putty for the holes in the wall @done(2018-02-01 23:44)
+
+- [x] Get food {salt,sugar,mayonaise,chicken,rice} for the house @done(2018-02-22 13:00)
+
+- [x] Investigate Reverse Osmosis Systems ... @done(2018-02-22 13:00)
+	- [x] Should I get one with a pump? {got permeate pump ...} @done(2018-02-22 13:00)
+		- [x] Pros? {More efficient at extracting water ..., Lesser water bill / waste, Longer membrane life} @done(2018-02-22 13:00)
+		- [x] Cons? {Bigger electricity fee, Risk having splitter under sink, Another thing that can go wrong ...} @done(2018-02-22 13:00)
+	- [x] Should I install it myself? {going to give it a crack ...} @done(2018-02-22 13:00)
+		- [x] Ask baba about installing this ourselves @done(2018-02-11 14:01)
+		- [x] Look into videos for how to install water cleaner @done(2018-02-11 14:01)
+			- [x] Look into amazon instructions @done(2018-02-11 14:01)
+	- [x] Check out diamond drill bits @done(2018-02-22 12:59)
+	- [x] Check out additional plumbing tools  @done(2018-02-22 12:59)
+
+# FUTURE
+- [x] @whenWeBuyLocks Install locks for the new house @done(2018-04-22 11:49)
+- [x] @whenWeBuyLEDLights Install LED Lights ... @done(2018-04-22 11:48)
+- [x] @whenWeBuyBlinds Install blinds ... @done(2017-12-26 00:27)
+
+- [-] Think about grill from costco {@MaybeLater}
+- [-] Think about bench from Tuesday morning ... {@MaybeLater}
+
+# DONE
+- [x] How I am keeping track of what we are interested in buying? {google doc: https://docs.google.com/document/d/1HRJcAnYsR3uljkRVm_Xh0N7hhD9go0cvnaeZHfTZ12o/edit?usp=sharing } @done(2017-11-23 15:46)
+- [x] Wait until black friday to get goods @done(2017-11-23 15:45)
+- [x] Get a Hair Trimmer for Sara @done(2017-11-14 22:22)
+- [x] What kitchen scale should we get? {We dont need a scale connected to the phone ... im not going to track calories of whole meals ... im more interested in weighing x grams of chicken ... for consistency} @done(2017-11-23 15:41)
+
+# THOUGHTS
+- ... I should Have an accompanying todo section associated with docs that organize what needs to be done ... Google drive might help me figure out the tasks, ... but the physical tasks need to still live in this ...
+
+#Expense #Todo #Home

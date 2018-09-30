@@ -1,0 +1,14 @@
+- [x] Call yaryurs doctor @done(2018-01-03 12:55)
+	- [-] Update them with insurance information {they put me on hold too long}
+	- [x] Reshedule the appointment @done(2018-01-03 12:55)
+- [x] Order dock for iphone/ipad @done(2018-01-03 13:08)
+- [x] Order rotary kit @done(2018-01-03 13:08)
+	- [x] Buy Safety Equipment @done(2018-01-03 13:16)
+- [x] Buy Mattress Protector @done(2018-01-03 13:16)
+- [x] Pay water bills @done(2018-01-03 13:54)
+	- [x] Make sure we are not being double charged for water by pamco @done(2018-01-03 13:54)
+
+- [x] Go to the house and install the dresser @done(2018-01-03 23:01)
+- [x] Go to the house and expand the mattress @done(2018-01-03 23:01)
+
+- [x] Make sure our gate is programmed to our code @done(2018-01-04 13:27)

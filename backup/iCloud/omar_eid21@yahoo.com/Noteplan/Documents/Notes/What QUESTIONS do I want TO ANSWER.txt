@@ -1,0 +1,44 @@
+# What questions will I answer?
+- What questions have I answered in NotePlan?
+- What questions have I answered in MindNode?
+	- [ ] Can I automate the creating of an index from a MindNode File?
+		- [ ] What are the main questions the mindnode file answers? ...
+- [ ] Should I even spend time answering these questions?
+
+------------------------------------------------------------------------------
+
+- [[What am I working on?]]
+	- [[What should I focus my education on?]]
+		- [[What questions am I intrigued in answering?]]
+	- [[What am I thinking about?]]
+	- [[What aspects of my life am I currently trying to improve?]]
+	- [[What aspects of my life am I tracking?]]
+
+- [[What do I need to do ... eventually?]]
+
+- [[What is my weekly planning ritual?]]
+	- [[What are this weeks goals?]]
+
+- [[What are my expenses?]]
+
+- [ ] [How will I track my tools](file://Users/oeid/Library/Mobile\ Documents/W6L39UYL6Z~com~mindnode~MindNode/Documents/How\ do\ I\ use\ my\ \[tools\]\?.mindnode)
+	- [ ] How will I use NotePlan?
+	- [ ] What will replace dropbox?
+	- [ ] How will I use AWS?
+	- [ ] How will I use my phone?
+	- [ ] How should I be using my flic buttons?
+
+- [ ] [[How will I set things up so that I am automatically tracking myself?]]
+	- [ ] [[What habit tracking app will I use?]]
+
+- [ ] [[How will I develop my first personal product?]]
+
+- [ ] How will I properly prioritize what I should be working on / thinking of?
+	- [ ] What are the things I should be learning?
+	- [ ] What are the books I should be reading?
+	- [ ] How should I be spending my time?
+
+- [ ] What is my archiving process?
+
+- [ ] [[What comes next after Sara's Immigration here?]]
+- [ ] [[What are all the things I want to do with Sara?]]

@@ -1,0 +1,8 @@
+- Maintenence is important ...
+	- There is value in automating this!
+
+- [-] Tell Sara about shit joke at work
+- [x] Tell Sara about canceled pacifiers from target @done(2018-02-13 12:10)
+	- [x] Buy pacifiers from Amazon @done(2018-02-13 12:10)
+- [x] Tell Sara that the att appointment moved earlier @done(2018-02-13 12:10)
+

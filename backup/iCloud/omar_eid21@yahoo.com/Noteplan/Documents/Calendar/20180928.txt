@@ -1,0 +1,85 @@
+- [x] Backup dropbox stuff to my personal mac
+- [x] Pick up nose spray from Randalls @done(2018-09-28 20:19)
+
+- [ ] Take appointment for Sara
+	- [x] Ask if I need Dr Referral for insurance to go to specialist {we dont} @done(2018-09-28 20:21)
+	- [x] Call about Dr Shaw {They want a Dr Referral} @done(2018-09-28 20:22)
+	- [x] Ask Mama to help setup doctor appointment ...  @done(2018-09-28 20:22)
+- [ ] Figure out if we need refils for Sara
+- [ ] Donate interest
+	- [ ] Tell mama how much to take from me
+- [ ] Go to Marshalls to return costume
+- [ ] Get organic basmati rice
+- [ ] Return wipes from HEB
+- [x] Go to apple remote appointment at 6:30 @done(2018-09-28 20:19)
+- [x] Think about getting tv stand from ikea  @done(2018-09-27 10:03 AM)
+	- [ ] Get a tv stand & shoe stand from ikea
+
+- [ ] Make a preview alias ... `qlmanage -p `
+
+- [ ] Figure out unison setup 
+	- [ ] Consolidate what I want
+		- I want to back things up when syncing ...
+		- I want to sync both 
+		- I want git involved to fix conflicts ... 
+			- There ideally should be no conflicts on my personal laptop ... all the conflicts should be handled when I try to push on my work laptop ...	
+		- I want bi-directional edit ... 
+		- I want everything backed up
+		- I want atomic operations
+	- [ ] Figure out how to update icloud in an atomic fashion ...
+		- [ ] Figure out how to turn on wifi { https://www.infoworld.com/article/2614879/mac-os-x/mac-os-x-top-20-os-x-command-line-secrets-for-power-users.html?page=3 }
+			- [ ] (ipython)➜  testing-unison networksetup -setairportpower airport off0
+			- [ ] (ipython)➜  testing-unison networksetup -setairportpower airport on 
+	- [ ] Figure out how to run the dry runs
+	- [ ] Crontab to backup icloud dir ...
+	- [ ] Test how to turn macbook into server ... even after closing lid ...
+	- [ ] For git based approach ... make a diagram that considers when conflicts will happen
+	- [ ] Look into syncing NotePlan on iCloud with NotePlan on Dropbox
+	- [ ] #Personal Check out how to control iphone from mac
+	- [ ] #Personal Figure out if I should `unison` dropbox folder with icloud folder ...
+		- [ ] Come up with a strategy for doing this!
+	- [ ] Figure out how to get noteplan into git ... and have it such that if I push to git ... it is spread accross icloud ...
+		- [x] Test and see if icloud deals with sym links ... {it doesnt ...} @done(2018-09-26 10:00 PM)
+		- [x] Test and see if git deals with sym links ... {it doesnt ...} @done(2018-09-26 10:05 PM)
+		- [ ] Check out this: https://www.bananica.com/Geek-Stuff/Synchronize-two-folders-on-a-Mac-with-Rsync/
+
+- [ ] #Personal ... What are elements for every good trip
+- [ ] Look into buying a mac mini ...
+- [ ] Get khalto Aisha lentil chips #BeforeWeGoToLebanon
+- [ ] Get Abdallah cookie straws #BeforeWeGoToLebanon
+
+- [ ] Email about gate remote
+- [ ] Get organizer for bathroom
+- [ ] Check apple type c charger for warehouse deals
+
+- [ ] Get 5x7 from Costco or target ...
+- [ ] Check out Macy's online
+- [ ] Reply to Gagan
+	- [ ] Ask for Gagan internship
+
+- [ ] Get stainless steel ceramic fry pans
+- [ ] Get bike {checkout Costco}
+- [ ] Khutbah Notes ...
+	- The first words revealed were read to an illiterate man ... 
+		- The purity of this blessed individual allowed us all to read
+		- Islam pushies us to strive 
+	- Knowledge is what trumps our desires... 
+	- How do we use our knowledge of God
+	- How are we increasing our knowledge of God
+
+- [ ] Continue brainstorming unison approach ...
+	- [ ] Unison to push dir always ...
+		- [ ] When push dir is pushed to ... make sure pull dir is updated to match push dir ...
+			- [ ] Then ...
+				- [ ] Have a merged push-and-pull branch ready dir ready ...
+				- [ ] Pull the updated merged pull dir .... Could this cause a conflict ... Icloud dir could have changed since the pull and push dir were merged, before they were pulled and synced on the mac ...
+	- [ ] Scratch all of this ...
+		- [ ] Have a backup icloud script that always copies icloud to git and then commits ...
+			- I want a commit for every change to icloud ...
+			- I want a backup script that auto copies, commits
+		- [ ] Then we pull from git, fix any conflicts, and then re-sync to icloud
+			- I want a restore script that takes git and pushes it to icloud 
+			- I want to fix conflicts manually ... on the laptop ... I wouldnt be using my phone at the time ...
+
+ 
+- [ ] On pull request ... make sure the push dir is updated ...
