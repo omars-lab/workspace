@@ -1,0 +1,4 @@
+- [x] Book an Eye Appointment  @done(2018-05-27 23:25)
+* [x] Plan going with Meem for iftar @done(2018-05-31 11:54)
+	- [x] Figure out when to go out with Meems for iftar ... @done(2018-05-27 14:41)
+	- [x] Text Meems @done(2018-05-27 14:41)

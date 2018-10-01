@@ -1,0 +1,23 @@
+- [x] Update forms with spelling of Dar 3mar .. . @done(2017-09-20 13:53)
+- [x] Yaras Report Abroad [[YarasReportAbroad]] @done(2017-09-20 14:18)
+	- [-] Sym link the docs in one folder
+	- [x] Merge everything into One doc with: `gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=combined.pdf -dBATCH $(ls | sort)` @done(2017-09-20 13:56)
+	- [x] Print the appointment sheet and take it with us. @done(2017-09-20 13:56)
+	- [x] Prepare docs for [this](https://lb.usembassy.gov/u-s-citizen-services/birth/) @done(2017-09-20 13:56)
+	- [-] Ask the lawyer to verify the application ... 
+	- [-] Need to ask lawyer to review it
+		- [-] Need to get Baba to talk to lawyer about reviewing paperwork / lawyer-ifying it ... 
+		- [-] Talk to lawyer about what needs to be done about [birth](https://travel.state.gov/content/passports/en/abroad/events-and-records/birth.html)
+	- [x] Figure out questions we need to ask, and to whom: @done(2017-09-20 13:54)
+		- Do we need a passport for her to travel? (Yes)
+		- Will they mail it to the US? Can we expedite it? (It will be sent to the embassy)
+	- [x] ss, 9A, what happens if the mother doesnt have an ssn @done(2017-09-20 13:53)
+	- [x] ss, 2, what happens if the child never had a previous ssn @done(2017-09-20 13:53)
+	- [x] get proper change ... @done(2017-09-20 13:53)
+	- [x] Pick up and pay for translations ... @done(2017-09-20 13:53)
+	- [x] Need to get everything on a USB and print it ... @done(2017-09-20 13:53)
+	- [x] Need to formalize everthing ... @done(2017-09-20 13:53)
+	- [x] Should I print out empty forums? @done(2017-09-20 13:53)
+	- [x] Add babas stuff to docs @done(2017-09-18 14:00)
+	- [x] See if passport has stamp to canada (it doesnt) @done(2017-09-18 23:07)
+	- [x] need to figure out what to tell the embassy.. @done(2017-09-20 13:53)

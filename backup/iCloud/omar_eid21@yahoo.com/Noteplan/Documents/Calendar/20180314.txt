@@ -1,0 +1,4 @@
+- [x] Call out the days I will be out ... @done(2018-03-15 12:15)
+	- [x] Should we go to Virginia? @done(2018-03-15 12:15)
+- [x] Return wallmart stuff @done(2018-03-15 12:12)
+- [x] Withdraw money for the house @done(2018-03-15 12:12)

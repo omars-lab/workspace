@@ -1,0 +1,8 @@
+- [x] Pick up my family from the airport @done(2017-12-31 14:06)
+- [x] Get towels for our bathrooms @done(2017-12-31 16:04)
+	- [x] Ask mama about towels @done(2017-12-31 16:04)
+	- [x] For towels, go to sams @done(2018-01-01 00:32)
+	- [-] Check out towels mama already has
+- [>] For Yaras Birthday baloons, go to HEB {the baloon department wasnt open} >2018-01-01
+- [x] For natural alfredo sauce and mushrooms, go to sprouts @done(2018-01-01 00:32) {got them from HEB}
+- [x] Get Saras main bday gift @done(2017-12-31 14:22)

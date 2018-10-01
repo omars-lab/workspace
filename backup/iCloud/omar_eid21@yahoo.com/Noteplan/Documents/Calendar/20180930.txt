@@ -1,7 +1,20 @@
-- [ ] Buy Sara Michael Kors Purse from macys
-	- [ ] Spend Macys Birthday credit
-	- [ ] Spend $50 from Sara's aunt
+- [x] Buy Sara Michael Kors Purse from macys @done(2018-09-30 16:43)
+	- [x] Spend Macys Birthday credit @done(2018-09-30 16:43)
+	- [x] Spend $50 from Sara's aunt @done(2018-09-30 16:43)
+- [x] Build the shoe holder @done(2018-09-30 16:43)
+- [x] Take Yara and Amin to carch air @done(2018-09-30 16:43) {we should take Yara here more often}
+- [x] Print Saras completion form for driving class @done(2018-09-30 19:41)
+- [x] Make backup of iCloud @done(2018-09-30 11:31 PM)
+	- [x] Add icloud sync-er to sync icloud to git @done(2018-09-30 02:39 PM)
+	- [x] Add script to backup icloud as zips @done(2018-09-30 02:39 PM)
+- [x] Think more about SF trip ... @done(2018-09-30 11:26 PM)
 
+- [ ] Pay the Macys Bill
 - [ ] Look to donate to APA
 - [x] Add a specifics section to the envrioments sourcing files to source specific things per laptop ... like different dirs ... based off serial num @done(2018-09-30 01:55 PM)
 - [ ] Backup dropbox folder form old work mac
+- [ ] Add auto commit script to auto commit icloud changes to git ...
+
+- [ ] Work on Hanging the Eid Family Frame
+- [ ] Figure out what doctor Sara should go to for endocrinology 
+- [-] Go to La Madeline for free pastry { .. too late ..}

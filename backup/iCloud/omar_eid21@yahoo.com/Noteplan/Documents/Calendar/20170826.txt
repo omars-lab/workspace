@@ -1,0 +1,14 @@
+- [>] Figure out how to hang the welcome sign
+- [>] Figure out how to hang flowers
+- [>] Get cups for dyafe
+- [x] Go to toy and toy @done(2017-08-27 11:33)
+- [x] Reorganize our room
+- [x] Take mlabas to tayba @done(2017-08-27 11:33)
+- [x] Pick up dress from masbagha @done(2017-08-27 11:33)
+- [x] Go to hamwi with dress @done(2017-08-27 11:33)
+- [x] Talk to al abdallah @done(2017-08-27 11:33)
+
+- [x] Gather all the things Sara should ask her doctor @done(2018-05-27 23:10)
+	- [x] About birth certificate @done(2018-05-27 23:10)
+	- [x] About adrenaline shot {	 To check if she's allergic ... she needs to take a shot of it ... and its not good during pregnancy ... }
+	- [x] About lactation

@@ -1,28 +1,34 @@
 # What should we do in LA?
 
+- Why should we go to LA if we are going to ignore the fam ...
+- Why go to San Diego if we are not going to LA ...
 
-	- [ ] How many days should we spend in Diego?
-		- [ ] What can we do in San Diego?
-			- Sea World ($70/ticket)
-			- Seaport Village
-			- Little Italy
-			- Drive Through Colordo Bridge
-			- La Jolla Cove
-	- [ ] How many days should we spend in LA?
-		- [ ] What can we do in Los Angeles?
-			- [ ] Universal Studios 
-			- [ ] Walk around holy wood
-			- [ ] What to do in downtown la
-				- [ ] FIGat7th
-			- [ ] What scenic drives should we drive on?
-		- [ ] Are there any lebanese / man2ouche places in LA?
+- [ ] What should we do in SF?
+	- [ ] Are there any picking farms near SF?
+
+- [-] How many days should we spend in Diego?
+	- [ ] What can we do in San Diego?
+		- Sea World ($70/ticket)
+		- Seaport Village
+		- Drive Through Coronado Bridge
+		- Little Italy
+		- La Jolla Cove
+	- [ ] How much does a hotel cost a night in Diego?
+- [-] How many days should we spend in LA?
+	- [ ] What can we do in Los Angeles?
+		- [ ] Universal Studios 
+		- [ ] Walk around holy wood
+		- [ ] What to do in downtown la
+			- [ ] FIGat7th
+		- [ ] What scenic drives should we drive on?
+		- [ ] Are there any Lebanese / man2ouche places in LA?
 		- [ ] Are there any picking farms near LA?
-		- [ ] $500 a week renatal car
-		- [ ] $70 for pacific train between lax and san diego ...
+	- [ ] $500 a week rental car
+	- [ ] $70 for pacific train between lax and San Diego ...
+	- [ ] How much does a hotel cost a night in LA?
+- [ ] How will we go from San Diego to LA?
 	- [ ] How much does it cost to rent a car in Diego and Drop it off in LA?
-	- [ ] How much does it cost to land in diego and fly out of LA?
-	- [ ] How much does a hotel cost a night in diego?
-	- [ ] How much does a hotel cost a night in la?
+	- [ ] How much does it cost to land in Diego and fly out of LA?
 
 
 https://la.curbed.com/maps/things-to-do-los-angeles-getty
@@ -32,3 +38,7 @@ Hotel in Diego:
 Hotel in LA:
 	- 	https://www.hotels.com/ho114635/?q-check-out=2018-12-28&FPQ=3&q-check-in=2018-12-24&WOE=5&WOD=1&q-room-0-children=0&tab=description&JHR=5&q-room-0-adults=2&YGF=14&MGT=4&ZSX=0&SYE=3
 
+- 29 a day for car at SFO Air Port { https://www.expedia.com/carsearch?locn=SFO&loc2=&date1=12%2F23%2F2018&time1=1000AM&date2=12%2F29%2F2018&time2=1000AM&dagv=1&subm=1&fdrp=0&ttyp=2&acop=2&rdus=10&rdct=1&styp=4 } 
+- 84 a day for hotel near SFO { https://www.hotels.com/ho148719/?q-check-out=2018-12-29&FPQ=2&q-check-in=2018-12-23&WOE=6&WOD=7&q-room-0-children=0&pa=1&tab=description&JHR=5&q-room-0-adults=2&YGF=14&MGT=6&ZSX=0&SYE=3 } 
+
+- Things to do in SF { https://www.thrillist.com/eat/san-francisco/san-francisco-restaurants-places-to-eat-at-before-you-die# }

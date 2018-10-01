@@ -9,3 +9,4 @@
 - [x] Go to Best Buy and pick up motion sensor @done(2018-09-27 23:03)
 - [x] Test unison and git ... @done(2018-09-27 10:03 AM)
 	- [x] Get unison to ignore .git @done(2018-09-27 10:03 AM)
+- [x] Go to Nothing bundt cake for free bundtlet {... too late, but got Sara anyways} @done(2018-09-30 11:31 PM)

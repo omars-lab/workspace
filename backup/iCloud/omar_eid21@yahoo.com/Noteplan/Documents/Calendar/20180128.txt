@@ -1,0 +1,5 @@
+- [x] Go to BestBuy and return kitchen aid mixer @done(2018-01-29 08:20)
+- [x] From Amazon get monkey hooks  @done(2018-01-29 08:20)
+- [x] From Amazon get wall putty @done(2018-01-29 08:20)
+- [x] From {Amazon,BestBuy} get tv antenna @done(2018-01-29 10:58)
+- [x] Move the hand blender to our house @done(2018-01-29 08:22)

@@ -1,14 +1,12 @@
-- [ ] Figure out what doctor Sara should go to for endocrinology 
-- [ ] Split work tasks from personal 
-- [ ] Make backup of iCloud
+- [x] Split work tasks from personal  @done(2018-09-30 11:29 PM)
+
 - [ ] For the work stuff ... set it up to backup the work notes. ..
 - [ ] Make a backup script to backup virtual envs ...
 - [ ] Take an appointment for Sara at endocrinologist
-	- [ ] Ask if they take insurance 
-	- [ ] Check out Dr Shaw
-		- [ ] https://www.yelp.com/biz/texas-diabetes-and-endocrinology-round-rock-3?osq=Dr.+Stephanie+Shaw
-		- [ ] https://health.usnews.com/doctors/stephanie-shaw-635726
-- [ ] Check out vacation
+	- [x] Ask if they take insurance  @done(2018-09-30 11:30 PM)
+	- [x] Check out Dr Shaw @done(2018-09-30 11:29 PM) {she's not taking new patients ...}
+		- https://www.yelp.com/biz/texas-diabetes-and-endocrinology-round-rock-3?osq=Dr.+Stephanie+Shaw
+		- https://health.usnews.com/doctors/stephanie-shaw-635726
 
 - [ ] Do a homestead exemption for our house ... https://onlineexemptions.wcad.org/OnlineExemption/HS/Form/364817/963215
 	- On a new house ... there is a homestead exemption ...
@@ -54,7 +52,7 @@
 	- [ ] Find the pros and cons ...
 	- [ ] Be able to break down an architecture and find the good and ignore the bad 
 	- [ ] - there are architectural combinations people have yet to explore ...
-	- [ ] Can I study the architecture of performant scalable systems ...
+	- [ ] Can I study the architecture of performant, scale-able systems ...
 	- [ ] Can I study the architecture of distributed systems ...
 		- [ ] Call out the unique pieces of the architecture ...
 	
@@ -72,8 +70,7 @@
 	- Interesting reads: https://www.cio.com/article/3296705/artificial-intelligence/ai-going-from-sci-fi-to-business-value-requires-some-groundwork.html
 
 - [ ] Go to Bank and Cash tax return
-- [ ] Go to Nothing bundt cake for free bundtlet
-- [ ] Go to La Madeline for free pastry
 - [ ] Go to Home Depot and clone the house keys
-- [ ] Get an umbrella
+- [ ] Get an Umbrella
+
 - [x] Go to Al Arabi and get custard @done(2018-09-23 14:10)
