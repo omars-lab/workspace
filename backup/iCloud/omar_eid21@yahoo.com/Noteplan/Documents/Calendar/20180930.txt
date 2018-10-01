@@ -18,3 +18,5 @@
 - [ ] Work on Hanging the Eid Family Frame
 - [ ] Figure out what doctor Sara should go to for endocrinology 
 - [-] Go to La Madeline for free pastry { .. too late ..}
+
+- [ ] Add ability to auto commit when "pushing" noteplan
