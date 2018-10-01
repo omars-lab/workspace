@@ -1,0 +1,2 @@
+- [x] Book time with Jon Roder @done(2018-07-25 05:23 PM)
+- [x] Figure out: What FPI related experiments should we run? @done(2018-07-26 09:49 AM)

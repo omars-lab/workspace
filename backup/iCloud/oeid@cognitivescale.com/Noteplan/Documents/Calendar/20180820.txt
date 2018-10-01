@@ -1,0 +1,3 @@
+- [x] Work on the Use Cases @done(2018-08-24 02:17 PM)
+- [x] Think of the different things triggers can do @done(2018-08-24 02:06 PM)
+- [x] Implement ideas discussed in FPI review @done(2018-08-24 02:21 PM)

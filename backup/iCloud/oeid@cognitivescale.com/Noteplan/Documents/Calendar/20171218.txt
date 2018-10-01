@@ -1,0 +1,2 @@
+- [x] Talk to Vivian about rescheduling Gopal 1-1 @done(2017-12-20 12:59)
+- [x] Add Profiles Entities to trader insights ... @done(2017-12-25 13:29)

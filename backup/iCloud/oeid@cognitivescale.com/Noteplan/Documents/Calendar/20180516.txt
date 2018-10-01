@@ -1,0 +1,6 @@
+- [x] Call out that we dont have historic NextDividendDate, p2 ... {its in the dropbbox} @done(2018-05-16 09:24)
+- [x] Email gagan code without `.sh` @done(2018-05-16 09:17)	
+- [x] Improve Daily Pipeline {this will make it easier to handoff to Aditya} @done(2018-05-16 12:37)
+	- [-] Think about porting managed content files to Mongo ... {its getting a bit more stable}
+	- [x] Make a Makefile in the stats dir for stats .. @done(2018-05-16 12:36)
+	- [x] Add a config dir for historic ... @done(2018-05-16 12:36)

@@ -1,0 +1,4 @@
+- [x] Get added to the cogscale openwisk account ... @done(2017-11-21 10:48)
+- [x] Clean up the Jira Board @done(2017-11-20 13:41)
+- [x] Create a IBM bluemix account @done(2017-11-20 13:42)
+- [x] Ask Sanjay to add our bluemix account to right group @done(2017-11-20 13:42)

@@ -1,0 +1,6 @@
+- [x] Get status for data in daily pipline @done(2018-05-11 10:48)
+	- [x] 	For each data type on a certain day ... how many records do we have @done(2018-05-11 10:48)
+	- [x] For each day, how many data types doe we have? @done(2018-05-11 10:48)
+- [x] Continue Porting P2 and P3 dailys @done(2018-05-11 10:52)
+- [x] Tell colton about job error ... @done(2018-05-11 10:53)
+- [x] Managed content querying interface needs improvement! @done(2018-05-11 10:53)

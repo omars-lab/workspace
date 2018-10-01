@@ -1,0 +1,6 @@
+- [x] Get queries for Revenue Per Share NTM ... {"id":1} @done(2018-05-17 10:50)
+- [x] Add next divided date to the historic queries ... @done(2018-05-17 14:04)
+- [x] Guide Aditya in adding Revenue Per Share NTM to historic and daily {"dependsOn":[1]} @done(2018-05-17 14:05)
+- [x] Get all the make commands to include a makefile with all the data types ... @done(2018-05-17 14:15)
+- [x] Dig into make and see if we can have many make targets behave the same ... @done(2018-05-17 14:15)
+- [x] Repulish the daily config to incorperate revenue ntm ... @done(2018-05-18 10:48)

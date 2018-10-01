@@ -1,0 +1,13 @@
+- [x] Make A Page for the Profile Work! @done(2018-08-16 08:23 AM)
+- [x] Put together slides to walk Brian through @done(2018-08-16 08:23 AM)
+- [x] Try to connect to the dev qad instance @done(2018-08-16 08:23 AM)
+- [x] Refactor FPI Deck @done(2018-08-16 08:24 AM)
+	- [x] Have a Question and Answer Deck @done(2018-08-16 08:24 AM)
+	- [x] Figure out what decks we need ... @done(2018-08-16 08:24 AM)
+
+- #THOUGHT What makes a good confluence page?
+- [x] #InterestingRead Broken by Design: MongoDB Fault Tolerance http://hackingdistributed.com/2013/01/29/mongo-ft/ @done(2018-08-16 08:25 AM)
+	- [ ] Continue Reading These Blog Posts: http://hackingdistributed.com/
+	- [ ] Follow up on this guy: http://hackingdistributed.com/egs/
+		- [x] See if there are any similar bloggers / thinkers in his network! {he actually calls them out on his blog!} @done(2018-08-16 08:46 AM)
+	- [ ] https://arxiv.org/abs/1311.0243

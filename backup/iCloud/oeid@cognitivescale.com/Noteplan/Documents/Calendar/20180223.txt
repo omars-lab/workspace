@@ -1,0 +1,3 @@
+- [x] Check with Cortex Team about API story ... {talked to Jon, he confirmed Cortex is an insights generation platform ... that will eventially need these convinience APIs ... } @done(2018-02-25 12:05)
+	- [ ] Make sure we dont sign up to over work ourselves ...
+- [x] Validate the Industry Data ... @done(2018-02-25 12:05)

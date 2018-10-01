@@ -1,0 +1,18 @@
+- [x] Run dropbox experiment on file history by turning off and replacing ... {i can replace files and maintain version history if I pause syncing} @done(2018-05-29 12:01)
+- [x] Create ticket for not being able to turn off triggers: { https://cognitivescale.atlassian.net/browse/CCF-5794 } @done(2018-05-29 10:20)
+- [x] Talk to Russell/Amrish about prioritization @done(2018-05-29 12:01)
+- [x] Talk to Russell/Amrish about CM issue @done(2018-05-30 11:08)
+- [x] Cleanup the queries in dropbox @done(2018-05-29 12:17)
+	- [x] Copy the latest queries in git to the dropbox @done(2018-05-29 12:17)
+		- [x] Replace P1 Daily @done(2018-05-29 12:06)
+		- [x] Replace P1 Historic @done(2018-05-29 12:16)
+		- [x] Replace P2 Daily @done(2018-05-29 12:16)
+		- [x] Replace P2 Historic @done(2018-05-29 12:16)
+		- [x] Replace P3 Daily @done(2018-05-29 12:16)
+		- [x] Replace P3 Historic @done(2018-05-29 12:16)
+	- [x] Archive the old queries .... @done(2018-05-29 12:17)
+
+- [x] Make sure all the links in Russells doc work:  @done(2018-05-31 11:50)
+- [x] Press the team on the triggers issue and keep you updated on its progress @done(2018-05-31 11:50)
+- [x] Run experiments on the cron pattern (mainly 2-6 and TUE-SAT) @done(2018-05-31 11:50)
+- [-] Ask the devops team for server logs at 1:00am utc to see if the agent failed while trying to invoke cron

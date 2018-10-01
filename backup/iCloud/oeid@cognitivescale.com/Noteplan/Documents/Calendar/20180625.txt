@@ -1,0 +1,6 @@
+- [x] Dig into Gagans cron issue @done(2018-06-25 11:02 PM)
+- [x] Help Mayank @done(2018-06-25 11:03 PM)
+- [x] Help Interns @done(2018-06-25 11:03 PM)
+- [x] Figure out where to deploy the monitoring thing ... @done(2018-06-27 11:41 PM)
+- [x] Test Triggers @done(2018-06-27 11:41 PM)
+	- [x] If they work, update Gagan @done(2018-06-27 11:41 PM)

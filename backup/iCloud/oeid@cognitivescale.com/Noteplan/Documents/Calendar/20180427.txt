@@ -1,0 +1,20 @@
+- [x] Update doc of datatypes .. @done(2018-04-27 15:38)
+- [x] Get the archiver working ...  @done(2018-04-27 15:38)
+	- [x] Save the data that has been archived ... @done(2018-04-27 15:38)
+- [x] Clean up pipeline code @done(2018-04-27 15:39)
+- [x] Make sure validation works locally @done(2018-04-27 15:39)
+- [x] Figure out why validation was failing for other job! @done(2018-04-27 15:39)
+
+- [x] Rerun everything and see if anything fails ... @done(2018-04-27 15:39)
+- [x] Add archiving logic to publisher ... @done(2018-04-27 15:39)
+
+- [x] Add appropriate samples to check list ... (point to the bridgeweave code ...) @done(2018-04-30 11:21)
+	- [x] Port over the bridgeweave agent! @done(2018-04-30 11:21)
+	- [x] Make sure the sample works! @done(2018-04-30 11:21)
+
+- [x] Load up to a weeks worth of data into the daily collection ... this way, its a limited amount, so we can upsert ... and then roll stuff over to the historic collection ... @done(2018-04-30 11:22)
+	- [x] We should add an archiver to run every other day and archive old data ... @done(2018-04-30 11:22)
+	- [x] Take the bulk upsert approach for the daily ... @done(2018-04-30 11:22)
+		- [x] Make an Id column for the daily? ... @done(2018-04-30 11:22)
+
+- [x] Add Key Generation Strategy to the Historic ... and Daily ... @done(2018-04-30 11:24)

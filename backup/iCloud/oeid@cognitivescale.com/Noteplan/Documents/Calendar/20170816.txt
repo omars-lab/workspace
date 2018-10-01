@@ -1,0 +1,14 @@
+- [x] Cleanup Mongo Read /  Write Functionality ... <2017-08-15 @done(2017-08-16 18:29)
+	- [x] Create Mappers from Mongo to Parse Objects ... <2017-08-15 @done(2017-08-16 18:29)
+	- [x] Create Mappers from Parse Objects to Mongo ... <2017-08-15 @done(2017-08-16 18:29)
+	- [x] Run Experiments to turn Parse Objects into Mongo Documents ... <2017-08-15 @done(2017-08-16 18:29)
+- [x] Extract ML output from e2 env ... @done(2017-08-16 18:29)
+	- [x] Transform mapping file from pickle to csv @done(2017-08-16 18:29)
+- [x] Move over old transactions and holdings to new collection @done(2017-08-16 20:37)
+	- [x] Run the data faker job on the new collections ... @done(2017-08-16 20:37)
+- [x] Run po1 attributes and recommendations on new stuff ... @done(2017-08-17 01:09)
+- [>] Have something for Michael mid day ish ... >2017-08-17
+- [x] Add schemas for mongo collections in parse ... @done(2017-08-17 01:10)
+- [>] Add ticker to company holding for Sagar ... >2017-08-17
+
+

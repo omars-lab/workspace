@@ -1,0 +1,3 @@
+- [x] Work on Feedback Slides @done(2018-02-21 23:57)
+	- [x] Cover Insight State Diagram @done(2018-02-21 23:57)
+- [x] Get compose io db created for cortex industry data ... @done(2018-02-21 23:57)

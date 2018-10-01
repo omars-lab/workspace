@@ -1,0 +1,9 @@
+- [x] Figure why agents are slow ... @done(2018-04-10 21:57)
+- [x] Review API functionality with Sanjay after lunch @done(2018-04-10 21:57)
+
+- [x] Create second daily collection for daily data for 3rd variation of quant engine .. @done(2018-04-14 10:14)
+- [x] Get rid of managed content for ac1org ... @done(2018-04-11 12:25)
+- [x] Get daily to run @done(2018-04-11 12:25)
+- [x] Publish to second daily collection from daily extractor instead of reindexing the big one ... @done(2018-04-11 12:25)
+
+- [x] Reply to the India team about any concerns ... @done(2018-04-14 10:11)

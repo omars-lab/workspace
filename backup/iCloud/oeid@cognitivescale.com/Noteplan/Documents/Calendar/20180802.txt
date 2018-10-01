@@ -1,0 +1,7 @@
+- [x] Experiment with non inference engine approach for profile building ... Something that is derivable ... @done(2018-08-08 10:03 AM)
+	- [x] Try to do this in Scala { I'm not experienced enough with it } @done(2018-08-08 10:04 AM)
+	- [x] Try to do this in python @done(2018-08-08 10:04 AM)
+
+- [x] Craft samples of the data we expect we need and we expect to create ... @done(2018-08-08 10:04 AM)
+	- This will be the data powering our experiments! @done(2018-08-08 10:05 AM)
+

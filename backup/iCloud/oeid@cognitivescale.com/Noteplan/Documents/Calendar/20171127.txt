@@ -1,0 +1,3 @@
+- [>] Send Gopal an email about sedols ... >2017-11-28
+- [>] Change CTI so it is invokable by openwhisk ... >2017-11-28
+- [>] Export data from CTI AMI >2017-11-28

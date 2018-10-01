@@ -1,0 +1,2 @@
+- [x] Convert Taai Demo folder to same structure as Trading Recommender @done(2017-12-18 12:04)
+- [x] Need to create container that runs po1 builder jars ... @done(2017-12-18 12:15)

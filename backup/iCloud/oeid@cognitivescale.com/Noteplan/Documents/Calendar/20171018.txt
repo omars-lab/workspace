@@ -1,0 +1,4 @@
+- [x] Start using the screen again @done(2017-10-18 13:41)
+- [x] Create togaf template project with structure ... @done(2017-10-19 13:44)
+- [x] Book time with Sarthak and Amrish to see what Sarthak was doing VBA wise  @done(2017-10-19 13:44)
+- [x] Take notes on Gopals stuff .. @done(2017-10-19 13:44)

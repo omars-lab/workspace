@@ -1,0 +1,12 @@
+* [x] Reload analyst rev up @done(2018-05-26 23:33)
+- [x] Run all dailys and make sure they still work @done(2018-05-26 23:33)
+- [x] Optimize P3s @done(2018-05-25 17:10)
+- [-] Change Managed content to use filters ... {this isnt really working ... }
+
+- [x] Reply to Gagan @done(2018-05-26 23:34)
+	- [x] Ask Russell for advice ... @done(2018-05-26 05:34)
+	- [x] Talk to Russell about Bridgeweave cron ... @done(2018-05-26 05:34)
+	- [x] Open Proper tickets @done(2018-05-25 09:43)
+
+- [x] Figure out what queries can be made to run faster ... @done(2018-05-26 23:35)
+- [x] Run daily pipeline and make sure counts are still the same ... @done(2018-05-26 23:57)

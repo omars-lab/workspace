@@ -1,0 +1,5 @@
+- [x] Orgnaize all the queries ... @done(2018-04-12 12:58)
+	- [x] Get samples for each query ... @done(2018-04-14 10:14)
+	- [x] Figure out the frequency of data for each query ... @done(2018-04-14 10:14)
+- [x] Figure out names for data types ... @done(2018-04-12 12:58)
+- [x] Get data gagan needs  @done(2018-04-14 09:56)

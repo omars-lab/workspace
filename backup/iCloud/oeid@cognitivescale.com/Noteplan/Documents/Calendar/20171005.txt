@@ -1,0 +1,12 @@
+- [x] Backup the jenkins config ... @done(2017-10-05 13:45)
+- [x] Change Python code to use the environment variables as well for the parse and mongo instances ... @done(2017-10-05 13:40)
+- [x] Add capability to import jenkins config / back it up ... @done(2017-10-05 13:40)
+
+- [-] Reach out to Sarthak and make sure that the covarience table is right / has the right amount of funds / right monghts ...
+- [-] Reach out to Rich and make sure that the right prices are being generated for the mutual funds ...
+- [-] Ask Bob for another 1-1
+
+- [x] Make sure Brent has synced with Gopal @done(2017-10-05 15:24)
+
+- [x] Read up on / figure out what we are going to do on our pricing AI @done(2017-10-05 19:41)
+- [x] Attend Pricing AI meetings @done(2017-10-05 19:41)

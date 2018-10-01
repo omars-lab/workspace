@@ -1,0 +1,2 @@
+- [x] Play around with AWS. @done(2017-09-28 10:59)
+- [x] Run free experiment with VNC on amazon instance: https://stackoverflow.com/questions/25657596/how-to-set-up-gui-on-amazon-ec2-ubuntu-server (It worked but it didnt do what i needed - very primative) @done(2017-09-30 08:05)

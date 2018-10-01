@@ -1,0 +1,13 @@
+- [x] Add ability to only drop columns if they exist ... @done(2018-05-08 21:59)
+- [x] Run load test for mongo connections  @done(2018-05-08 21:59)
+	- [x] Figure out metrics for cortex vs without cortex @done(2018-05-08 22:03)
+- [x] Figure out a way to figure out status of pipeline {using head of files to see if they exist or not} @done(2018-05-08 22:00)
+- [x] Report load bugs for connections and managed content @done(2018-05-08 22:00)
+- [x] Manually load missing data for mongo @done(2018-05-08 22:02)
+- [x] Continue working on historic data @done(2018-05-08 22:02)
+- [x] Add ability to derive dates from other dates @done(2018-05-08 22:02)
+- [x] See if I can turn cron on in Prod! @done(2018-05-11 10:51)
+	- [x] Figure out if cron is for central time? { Cron is in zulu time ... } @done(2018-05-05 18:15)
+	- [x] Setup cron to run at 11:11 pm utc time - m:11 h:11 s:11 @done(2018-05-11 10:51)
+
+- [x] Meet for a proposal for datasets ... paramaterized queries .. @done(2018-05-11 10:53)

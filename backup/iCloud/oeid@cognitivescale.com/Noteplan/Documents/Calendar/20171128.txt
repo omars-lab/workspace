@@ -1,0 +1,10 @@
+- [x] Finalize my benifits @done(2017-11-28 09:21)
+- [x] Answer Haris/Prakhars question on  @done(2017-11-28 09:58)
+- [x] Reply to second question @done(2017-11-28 11:21)
+- [x] Talk to Candice @done(2017-11-28 12:33)
+	- [-] Why cant I do 6900? {doesnt really matter now ...}
+	- [x] Is there any packet thing I need to fill out {general channel} @done(2017-11-28 12:33)
+	- [x] Can I add Sara and Yara to the insurance now? @done(2017-11-28 12:33)
+- [x] Get openwhisk working locally again @done(2017-11-28 21:13)
+- [-] Create two managed content bugs ... {Amrish}
+- [-] Send Gopal an email about sedols {remap sedols instead} ... <2017-11-27

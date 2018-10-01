@@ -1,0 +1,5 @@
+- [x] Book meeting to review cortex arch @done(2017-10-20 14:46)
+- [x] Reply to Pankaj  @done(2017-10-20 13:45)
+- [x] Reply to Gopal @done(2017-10-20 14:10)
+- [x] Review Sarthaks Excel Sheet @done(2017-10-23 18:43)
+	- [x] Figure out what needs to be extracted from QAD vs what needs to be computed @done(2017-10-23 18:43)

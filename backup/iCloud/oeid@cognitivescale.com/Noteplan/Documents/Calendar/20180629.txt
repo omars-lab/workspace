@@ -1,0 +1,5 @@
+- [x] Build jenkins container in GOCD ... @done(2018-06-30 09:55 PM)
+	- [x] Pull request for GOCD pipeline @done(2018-06-30 10:11 PM)
+	- [x] Grant permission for automation for git repo @done(2018-06-30 10:11 PM)
+- [x] Look into Bootstrapping Jobs on jenkins server ... @done(2018-07-09 09:15 PM)
+	- [x] Look into Job that invokes other jobs once then turns itself off ...? @done(2018-07-09 09:15 PM)

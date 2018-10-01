@@ -1,0 +1,5 @@
+- [x] Work on skill guide  @done(2018-05-31 11:53)
+- [x] Work with Aditya to drop Results_Date from daily and ReportDate_IBES from historic and daily @done(2018-05-31 11:50)
+- [x] Update Project Factor sheet with NextResultsDate  @done(2018-05-31 11:50)
+- [x] Talk to Johan about stopping an agent even if you deleted the instance ... @done(2018-05-31 11:51)
+- [x] Walk aditya through what I had to do to manually invoke the daily pipeline ... @done(2018-05-31 11:51)

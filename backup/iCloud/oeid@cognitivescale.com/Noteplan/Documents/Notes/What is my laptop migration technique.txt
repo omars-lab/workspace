@@ -1,0 +1,10 @@
+# What is my laptop migration technique?
+i.e What is my laptop backup / restore technique?
+
+- [ ] Is this a process or technique?
+	- [ ] Does this commonly happen?
+
+- [ ] Should I backup the brew caveats??? https://stackoverflow.com/questions/13333585/how-do-i-replay-the-caveats-section-from-a-homebrew-recipe
+- [ ] Sync Automator shortcuts to git ...
+	- [ ] Add script to copy stuff in icloud into git ...
+	- [ ] Add script to restore stuff in icloud from git

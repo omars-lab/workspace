@@ -1,0 +1,12 @@
+- [x] Remove from parse version from recommender @done(2017-12-07 11:18)
+
+- [x] Request creation of dockerhub job ...? @done(2017-12-07 11:15)
+- [x] Need to create container that runs recommendation service jars ... @done(2017-12-07 11:18)
+- [-] Get the c12e-ci script running locally {dont need it, running manual dockerhub publish}
+- [x] Clean up space locally on my laptop @done(2017-12-07 11:18)
+- [x] Find examples of c12e-ci.yml @done(2017-12-07 11:18)
+	- [-] Publish Jars to https://cognitivescale.jfrog.io/cognitivescale/cs-maven-local {optional, since we have a registry, the code can be in the containers ...}
+
+* [x] Get evidence engine to use cortex apis @done(2017-12-07 11:19)
+	* [x] Port Processors to use data set apis @done(2017-12-07 11:19)
+	- [-] Make sure processors use managed content accordingly {managed content is out of the picture}

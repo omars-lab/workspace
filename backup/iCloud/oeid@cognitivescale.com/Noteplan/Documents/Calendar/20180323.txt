@@ -1,0 +1,6 @@
+- [x] Change it so that job invoker skill and callback dont have to have the same type ... @done(2018-03-23 10:26)
+- [x] Figure out the file saving structure @done(2018-03-23 10:27)
+
+- [x] Figure out where the ML code should live ... @done(2018-04-02 11:35)
+	- [-] Spin up new repo ... {Michael will take care of this ...}
+

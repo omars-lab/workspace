@@ -1,0 +1,4 @@
+- [x] Create a seperate config directory for daily @done(2018-05-15 23:50)
+- [x] Merge queries into the id-data repo @done(2018-05-15 13:20)
+- [x] Meet about skill development guide @done(2018-05-16 09:31)
+- [x] Meet about Darryl's tool @done(2018-05-16 09:31)

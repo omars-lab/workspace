@@ -1,0 +1,45 @@
+# Introduction Note
+
+🎉 Welcome to NotePlan! 🎉
+
+NotePlan supports and extends Markdown. Make use of it to create Todos and events in your calendar. Use it also to make your note easier to read. 
+
+Hover the left side of a note or use the menubar to mark your Todos.
+
+## Todos (that’s a title)
+* Todos start with '* ' or '- '.
+* They can be marked as 
+
+	* [x] Done (orange in calendar)
+	* [>] Scheduled (blue in calendar, will be copied for you)
+	* [-] Cancelled (not shown in your calendar)
+	* <- Click on the star to check it off as done.
+	
+* Press `Tab/Backtab` to shift Todos as I have done above.
+* Start titles with '# ' to separate Todos for different Projects for example.
+
+If you `schedule` a Todo through the menu on the left with the 🕘 icon, it will be automatically copied for you (you can also select multiple Todos along with a title).
+
+## More Markdown
+The minimum you should know about Markdown is described above. But here are a few more things you should know:
+
+You can make text **bold** or *italic*. Or mark them like `this` (inline code). If you add a time like @12:00. It will be shown on the calendar.
+
+Look for the `?` left of each note (hover the left area) to get an overview.
+
+**Lists**:
+1. One
+2. Two
+3) Three
+4) Four
+* Five
+* Six
+
+## Help
+Write to `hello@noteplan.co` for help, ok 👌? 
+
+Thanks for your time!
+
+(P.S. You can add Tags at the bottom of a Note)
+
+<%%%welcome%%%>

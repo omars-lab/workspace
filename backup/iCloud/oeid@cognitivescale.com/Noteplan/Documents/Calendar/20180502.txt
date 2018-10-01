@@ -1,0 +1,6 @@
+- [x] Open ticket for Gagan's issue @done(2018-05-02 12:56)
+	- [x] Recreate Gagans issue @done(2018-05-02 12:56) {recreated in prod, not dev}
+	- [x] Make a zoom meeting ... @done(2018-05-05 18:14)
+- [x] Tinker with triggers in stage! @done(2018-05-05 18:14)
+- [x] Take a crack at p3 docs @done(2018-05-05 18:14)
+- [-] Open ticket for better error message when the payload is bad ... {already done}

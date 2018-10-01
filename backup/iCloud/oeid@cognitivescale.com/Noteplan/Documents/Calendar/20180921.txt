@@ -1,0 +1,7 @@
+- [x] Add geos to logins ... @done(2018-09-21 10:38 PM)
+- [x] Create data to drive dashboard view ...
+	- [x] Continue working on profile simulator
+- [x] Start a drawing of all the different profile pages ...
+
+- [x] Migrate to new laptop  @done(2018-09-26 12:21 PM)
+	- [x] Backup bookmarks @done(2018-09-26 12:21 PM)

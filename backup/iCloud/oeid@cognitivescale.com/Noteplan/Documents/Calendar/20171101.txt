@@ -1,0 +1,9 @@
+- [x] Forward Emails to Navaneeth and Chris ... @done(2017-11-01 17:13)
+	- [x] Add this as a dependency in RAID ... @done(2017-11-01 17:14)
+- [x] Ask Brent to give our montly sprint a december a name @done(2017-11-01 15:42)
+- [x] Meet with the team to plan out the work we will do in December ... @done(2017-11-01 22:41)
+
+- [x] Harvest the Quant Engines ...  @done(2017-11-07 07:51)
+	- [x] Meet with Rich to see if we can harvest Quant Engine ... @done(2017-11-07 07:51)
+- [x] Book time with Sarthak to: nail the three requirements and see what we can do for derived data @done(2017-11-01 13:38)
+- [-] Book time with Bob to review agenda (do this during 1-1) @done(2017-11-01 13:40)

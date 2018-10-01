@@ -1,0 +1,8 @@
+- [x] Talk to serkar  @done(2017-10-17 16:12)
+- [x] Reply to dude about another India resource on CTI ... @done(2017-10-17 16:12)
+- [x] Scrub austin team taai notes  @done(2017-10-17 14:23)
+- [x] Scrub uk team taai notes  @done(2017-10-17 18:29)
+- [x] Figure out concerns to push with Gopal @done(2017-10-18 13:43)
+- [x] Clearly communicate concerns: @done(2017-10-19 13:51)
+	- [x] 	We need a Product Manager at the kick off meeting ... someone that can sitdown with AB and pick his brains with regards to mutual funds ... @done(2017-10-19 13:51)
+	- [x] 	We may even need an ML person ... for long term vision of ML work with regards to mutual funds ... @done(2017-10-19 13:51)

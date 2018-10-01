@@ -1,0 +1,5 @@
+- [-] Assign users a default holding and transaction
+- [x] Get second env jenkins all set up @done(2017-10-05 13:41)
+- [x] Fix Sagars po1 bug @done(2017-10-05 13:41)
+
+- [x] Need to clean up the logging by the po1 builder  @done(2017-10-04 00:23)

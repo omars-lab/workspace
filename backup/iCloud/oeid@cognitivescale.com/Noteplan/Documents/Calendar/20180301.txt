@@ -1,0 +1,13 @@
+
+- [x] Finish Po1 Slides ... @done(2018-03-05 11:33)
+	- [x] Action Item: What do we need from BW? @done(2018-03-05 11:33)
+	- [x] Internal: How will the Po1 builder will work ... @done(2018-03-05 11:33)
+	- [x] Add clear difference between Po1 Api and Po1 Builder ... @done(2018-03-05 11:33)
+	- [x] How will we store Po1 Preferences ... @done(2018-03-05 11:33)
+		- [x] 		What Po1 / Preference Related Queries will we be making to BW @done(2018-03-05 11:33)
+- [x] Finish Po1 API Swagger @done(2018-03-05 11:33)
+- [x] Load seven indexes worth of data ... @done(2018-03-02 09:20)
+- [x] Clean up Validation script @done(2018-03-02 09:20)
+- [x] Send validation script @done(2018-03-02 09:20)
+- [x] Integrate the Cortex Job @done(2018-03-02 09:20)
+

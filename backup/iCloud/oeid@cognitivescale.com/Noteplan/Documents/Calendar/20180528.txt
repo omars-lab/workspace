@@ -1,0 +1,29 @@
+- [-] Dyanmic script to determine cron that was on ...
+- [-] Update the trigger code and send it to Rudy
+- [x] Update Russells ticket with how I replied to Gagan @done(2018-05-31 11:57)
+
+- [-] Make sure the historics dont have duplicate data:
+	- [-] We might have to rerun both Net Incomes! - it looks like it was going after 2010 for each invocation
+	- [-] We might have to rerun EBIT! - it looks like it was going after 2010 for each invocation
+	- [-] We might have to rerun InterestExpense ... ! - it looks like it was going after 2010 for each invocation
+	- [-] We might have to rerun current ratio .... (probably not)
+	- [-] We might have to rerun debttoequity .... (probably not)
+
+- [x] Anaylize query config clean up and missing configs ... @done(2018-05-31 11:54)
+	- [x] Consolidate My Query Concerns with Adityas @done(2018-05-31 11:54)
+	- [x] Consolidate My Query Concerns: @done(2018-05-31 11:54)
+		- [x] Checkout daily version of price-ds-ws @done(2018-05-25 12:32)
+		- [x] Add Missing a daily config for ROE TTM WS @done(2018-05-26 05:36)
+		- [x] Should we move eps report date ibes to p3? @done(2018-05-26 05:36)
+		- [x] Call out Report date IBES Historical ! @done(2018-05-31 11:51)
+		- [x] Call out queries we are missing: NextResultsDate(p1), Earnings Report Date(p3) @done(2018-05-31 11:51)
+		- [x] Extra config for Report Dates or Results date ... @done(2018-05-31 11:51)
+		- [x] Does it Even make sense to have a next dividend date historical as the query is implemented ??? @done(2018-05-31 11:51)
+		- [x] Does it Even make sense to have a next report date historical as the query is implemented ??? @done(2018-05-31 11:51)
+		- [x] Rerun updated next dividend date ... @done(2018-05-31 11:51)
+			- [x] Make sure next dividend date historical works @done(2018-05-31 11:51)
+
+- [x] Verify 100% all the P1, P2, and P3s are there for daily @done(2018-05-31 11:51)
+- [x] Verify 100% all the P1, P2, and P3s are there for historic @done(2018-05-31 11:51)
+
+- [-] Keep on eye on 5701 for $ref ... might need to change stuff ...

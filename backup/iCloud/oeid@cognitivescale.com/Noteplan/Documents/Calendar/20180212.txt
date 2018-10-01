@@ -1,0 +1,6 @@
+- [x] Make an overall backlog for TAAI {[[What do I still need to do for TAAI?]]} @done(2018-02-12 13:26)
+
+- [x] Meeting with Roeder/Sanjay to discuss Cortex CRUD @done(2018-02-13 08:13)
+- [x] Meeting with Roeder/Sanjay/Colton to discuss docker approach @done(2018-02-13 08:13)
+- [x] Talk to Melissa about Essence of Datasets Doc {She shared with me a folder in Cortex that I should add onto} @done(2018-02-13 12:08)
+- [x] Talk to Johan about CRUD in datasets {Datasets all only about getting data in and out of Cortex} @done(2018-02-13 12:08)

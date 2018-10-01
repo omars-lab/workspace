@@ -1,0 +1,7 @@
+- [x] Get the daily pipeline to run completely locally ... @done(2018-06-05 11:38 PM)
+	- [x] Create two flavors of the read/write helper methods ... @done(2018-06-05 11:38 PM)
+	- [x] Mount the config dir into the right place ... {id/tr/qad/...} @done(2018-06-05 11:38 PM)
+	- [x] Mount the cache dir into the right place ...  @done(2018-06-05 11:38 PM)
+		- [x] Create the cache dir locally and mount the right one in ... @done(2018-06-05 11:38 PM)
+
+- [x] Attempt to extract news data from mongo <2018-06-01 @done(2018-06-05 11:38 PM) {error turned out to be bad ssl libs on mac ... command worked in docker container ...}

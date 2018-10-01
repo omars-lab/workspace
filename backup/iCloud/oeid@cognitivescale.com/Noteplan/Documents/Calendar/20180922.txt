@@ -1,0 +1,14 @@
+- [x] Install Google Drive
+	- [x] Look into Drive Sync When It Matures: https://support.google.com/drive/answer/7329379
+	- [x] Setup Sync
+- [x] Create spaces in dock: https://www.imore.com/add-space-your-mac-dock
+
+- [x] Figure out what is on old laptop @done(2018-09-26 12:22 PM)
+	- [x] Figure out all atom packages installed  @done(2018-09-26 12:22 PM)
+	- [x] Figure out all apps installed @done(2018-09-26 12:22 PM)
+	- [x] Copy history @done(2018-09-26 12:22 PM)
+	- [x] Get item3 with permanent history  @done(2018-09-26 12:22 PM)
+	- [x] Figure out all virtual ends @done(2018-09-26 12:22 PM)
+	- [x] Figure out all brew installs  @done(2018-09-26 12:22 PM)
+	- [x] Figure out all secrets / tokens installed on my old mac book @done(2018-09-26 12:22 PM)
+	- [x] Figure out all the sym links I created ...  @done(2018-09-26 12:22 PM)

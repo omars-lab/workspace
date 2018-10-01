@@ -15,7 +15,7 @@ function backup_noteplan()(
 
 function push_from_noteplan_to_git(){
     mkdir -p "${NOTEPLAN_GIT_DIR}"
-    rsync -arv --exclude='*.DS_Store*' --exclude='*.Trash*' --exclude='*.icloud*' "${NOTEPLAN_ICLOUD_DIR}" "${NOTEPLAN_GIT_DIR}"
+    rsync -arhv --delete --exclude='*.DS_Store*' --exclude='*.Trash*' --exclude='*.icloud*' "${NOTEPLAN_ICLOUD_DIR}" "${NOTEPLAN_GIT_DIR}"
 }
 
 function pull_from_git_to_noteplan(){

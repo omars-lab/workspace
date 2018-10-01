@@ -1,0 +1,52 @@
+What are some of my FPI questions?
+
+How do we represent knowledge?
+	How does our knowledge representation fit in with others?
+	Are there specific dbpedia relationships we can drive?
+	
+With dbpedia, we might not see the events that allowed an entity to reach the state that its currently in ... 
+	for example, if 3 key individuals left a company and another 1 joined, we might only see one key individual and not the past 3.
+
+What are cookies?
+	They are state files that a web server can set on client browsers ... 
+		They client browsers create the cookie locally ... the browser manages the cookie ...
+		When the client browser creates the cookie on behalf of a web server, it remembers which web server requested the creation of the cookie and only allows other web servers from the same domain as the requestor to access the cookie.
+		Browsers usually have cookie limilts 
+			... a certain domain can only create a set number of cookies
+			... cookies can not excede a certain size 
+			Cookies need to be created with an experiation date
+
+- How can we transform click stream events into insight events ...
+	- Why do we even need "Insight Events" ... It almost seams like insight events are our canonical model for click stream events ...
+		- What are the different kinds of insight events?
+			- Clicking On An Insight
+			- Preferring One Insight over the Other ...
+
+- [ ] How will we manage profile transactions / attomic opperations?
+	- [ ] Do we have to make sure that every profile building event is idempotent?
+		- [ ] Do we assert that every profile building event will run at least once?
+
+- [ ] @FPIQ1 #FPIQ1 How do concepts fit into the profile ... 
+	- [ ] How does DBpedia fit into the profile 
+	- [ ] Qualify that profiles are not here to replace DBpedia! ... they might extend it though ...
+		- [ ] Look into how to extend DBpedia!
+		- [ ] Can profile be easily loaded into a graph to reason with???
+			- [ ] Will we even have users that want to do this???
+
+- [ ] What concepts should be represented in the profile?
+	- [ ] How do we integrate the profile with concept graphs?
+
+- [ ] What do we define as a concept graph ... 
+
+- [ ] Get profile data from different use cases
+	- [ ] Get designs from different use cases
+	- [ ] Get data from different use cases
+	- [ ] Get architectures from different use cases
+	- [ ] Get documentation from different use cases
+
+- [ ] Modeling Questions: 
+	- [ ] What are the fast retrieval data types vs slow
+	- [ ] What do the querys look like ...
+		- [ ] Are there themes for attributes?
+		- [ ] Do we have a single page of the metrics we want to drive for profiles?
+		- [ ] Do we have a "fast approach" vs a slow approach?

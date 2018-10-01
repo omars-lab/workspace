@@ -1,0 +1,9 @@
+- [x] Move Jenkins code to id-tr @done(2018-06-30 09:55 PM)
+	- [x] Make sure code and deps are bundled in container ... @done(2018-06-30 09:55 PM)
+
+- [x] Get Dependencies on Machine ... @done(2018-06-30 10:07 PM)
+	- [x] Get jq on the machine,  @done(2018-06-27 11:43 PM)
+
+- [-] Look into Shreekanth's email
+- [x] 1-1 with Gopal @done(2018-06-28 05:24 PM)
+

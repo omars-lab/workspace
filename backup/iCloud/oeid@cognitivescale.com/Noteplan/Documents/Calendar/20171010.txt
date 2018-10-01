@@ -1,0 +1,2 @@
+- [x] Reply to Rich @done(2017-10-11 00:04)
+- [x] Reply to Gopal with regards to API Spec @done(2017-10-11 00:04)

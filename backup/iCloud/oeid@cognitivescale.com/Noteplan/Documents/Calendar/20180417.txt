@@ -1,0 +1,6 @@
+- [x] Add Names to unvierse file ... @done(2018-04-17 14:09)
+- [x] Update Daily Return index and closed price query to partition by country @done(2018-04-21 12:45)
+- [x] Update the Daily Configs to append the floor of the current day as the  "as_of" column ... @done(2018-04-21 12:47)
+- [x] Update New Configs ... @done(2018-04-21 12:47)
+- [x] Use the new helper.py in the docker contianer ... @done(2018-04-21 12:47)
+

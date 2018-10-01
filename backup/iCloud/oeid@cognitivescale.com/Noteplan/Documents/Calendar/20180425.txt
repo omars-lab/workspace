@@ -1,0 +1,9 @@
+- [x] Make Samples for each of the p2 queries ... @done(2018-04-26 10:57)
+- [x] Clean up the sql for each of the p2 queries  @done(2018-04-26 10:58)
+
+- [x] Add ability to auto get registrey from url ... @done(2018-04-25 15:30)
+- [x] Publish jobs @done(2018-04-26 10:56)
+
+- [x] Get status for latest task of job ... @done(2018-04-26 10:56)
+- [x] Make the invoker take a service ... @done(2018-04-26 10:56)
+- [x] Figure out why extraction job failed ... {payload was too big} @done(2018-04-26 10:56)

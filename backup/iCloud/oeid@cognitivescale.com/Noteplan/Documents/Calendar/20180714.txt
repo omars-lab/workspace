@@ -1,0 +1,4 @@
+- [x] Iron out questions each section should answer @done(2018-07-17 11:20 AM)
+- [x] Late night debug call  @done(2018-07-17 11:20 AM)
+
+	

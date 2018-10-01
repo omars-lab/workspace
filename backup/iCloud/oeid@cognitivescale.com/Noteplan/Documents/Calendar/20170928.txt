@@ -1,0 +1,3 @@
+- [x] Add metric to know how many shares of a company a user holds @done(2017-09-28 13:51)
+- [x] Add data types for when a users buys / sells a holding ... @done(2017-09-28 13:51)
+- [-] Add uuid to roll back feature ...

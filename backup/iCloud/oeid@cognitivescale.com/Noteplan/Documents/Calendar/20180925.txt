@@ -1,0 +1,28 @@
+- #Thought ... feel like i am not being productive ... go back to writing what i am working on ..
+
+- [x] Help fix race condition in GOCD id-tr pipeline build
+- [x] Meet with Amrish about MVP FPI features
+	- [x] Get the board diagram in a google drawing ...
+
+- [x] Keep on Migrating Machines
+	- [x] Backup work iCloud 
+		- [x] NotePlan
+			- [x] Continue splitting from April onwards
+		- [x] Automator
+	- [x] Install oh-my-zsh plugins `~/.oh-my-zsh/plugins/antigen/antigen.zsh`
+	- [x] Setup conda envs
+	- [x] Setup python envs {decided not to use virtual envs in favor of conda envs}
+	- [x] Setup nvm and cortex cli 
+
+- [-] Make sure history doesn't delete 
+
+- [x] Continue Migrating Laptop @done(2018-09-26 12:18 PM)
+	- [x] Work on the reload.sh scripts @done(2018-09-26 12:18 PM)
+	- [x] Continue marking what I had to do manually @done(2018-09-26 12:18 PM)
+		- [x] Sym link all the files to the right place ... @done(2018-09-26 12:17 PM)
+		- [x] Backup ssh keys ... @done(2018-09-24 10:58 PM)
+		- [x] Backup sym links ... @done(2018-09-26 12:17 PM)
+		- [x] Sym link .ssh dir @done(2018-09-26 12:17 PM)
+		- [x] chmod public key to 644 and priv to 700 @done(2018-09-26 12:17 PM)
+		- [x] Git set global config rebase @done(2018-09-26 12:17 PM)
+		- [x] Manage personal and c12e git repos @done(2018-09-26 12:17 PM)

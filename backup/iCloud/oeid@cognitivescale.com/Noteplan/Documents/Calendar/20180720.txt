@@ -1,0 +1,3 @@
+- [x] Port NewsPaper action to an iron function ... @done(2018-07-24 12:27 PM)
+- [x] Deploy data pipeline to staging  @done(2018-07-24 12:27 PM)
+- [x] Config needs to be deployed and validation file needs to be deployed as well ... to stage ... @done(2018-07-24 12:27 PM)

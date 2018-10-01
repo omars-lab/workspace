@@ -1,0 +1,11 @@
+- [x] Rethink File Creation in s3 and how APIs will integrate with them ... @done(2018-03-05 11:35)
+	- [x] Do we get custom s3 buckets ... i.e new managed content connection? @done(2018-03-05 11:35)
+	- [x] We may have to for the time being have a cron process to sync s3 with cortex ... @done(2018-03-05 11:36)
+	- Cons: Things with files get difficult if you try to implement rolling window ... you could have to donwload a file for every day of a year over a 10 year window ...
+
+- [x] Take first spin at more detailed APIs ... @done(2018-03-05 11:36)
+	- [x] Figure out what queries each of the quant engines will be doing ... along with any other process in the system ... {i.e how are the APIs being used?} @done(2018-03-05 11:36)
+
+	- [x] Talk to Russell about shipping APIs {shipping them as pdfs...} @done(2018-03-05 11:34)
+		- [-] Verify with Matt how we should ship APIs {Melissa said we are not shipping APIs until April 15th ...} {too much of a time crunch ...}
+

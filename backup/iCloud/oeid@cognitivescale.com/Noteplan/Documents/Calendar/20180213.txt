@@ -1,0 +1,2 @@
+- [x] Export Industry Data out of postgress @done(2018-02-15 11:35)
+- [-] Email Naveen about CRUD

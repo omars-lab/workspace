@@ -1,0 +1,10 @@
+- [x] Install cortex cli in jenkins container @done(2018-06-27 11:43 PM)
+	- [x] Make a service account user in idata tenant @done(2018-06-27 11:43 PM)
+- [x] Email Gagan about triggers ... @done(2018-06-27 11:19 PM)
+- [x] See if triggers invoke ... {they didnt ...} @done(2018-06-27 11:19 PM)
+- [x] Find Russell the ticket he wants  @done(2018-06-27 11:33 PM)
+- [x] Go through zendesk with Russell and close out the tickets ... @done(2018-06-27 11:40 PM)
+- [-] Figure out how to inject token
+
+- [x] Reply to Gagan about monitoring @done(2018-06-30 10:07 PM)
+

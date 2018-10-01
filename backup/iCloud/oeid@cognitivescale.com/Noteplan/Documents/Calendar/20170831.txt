@@ -1,0 +1,8 @@
+- [x] Make default price ...  @done(2017-08-31 17:23)
+- [x] Ask Rich to remove maximum ... @done(2017-08-31 17:23)
+- [x] Make sure the optimization engine is producing good results when wired up to the real thing! @done(2017-08-31 09:28)
+- [x] Implement constraints for stage 2 @done(2017-08-31 09:28)
+- [x] get minimum allocation to work ... @done(2017-08-31 17:23)
+- [x] Make the appropriate requests to test stage 2 (minimize risk with an expected return) (maximize return with a maximum ammount of risk) (either with minimum allocation) (reduce the enabled funds) @done(2017-08-31 17:23)
+- [x] Create a jenkins job for the mutual fund po1 attributes ... @done(2017-08-31 17:23)
+- [x] Make sure mutual fund recommendations change when selecting a different type ... @done(2017-08-31 17:23)

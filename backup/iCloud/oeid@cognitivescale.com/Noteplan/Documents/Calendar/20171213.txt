@@ -1,0 +1,4 @@
+- [x] Clean up names  @done(2017-12-14 11:24)
+	- [x] Change title of status retreival processor in agent def back @done(2017-12-14 11:24)
+- [x] Add taxonomy tagging to trader insights ... @done(2017-12-13 12:41)
+- [x] Add taxonomy tagging to client complaints ... @done(2017-12-14 11:24)

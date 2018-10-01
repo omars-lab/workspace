@@ -1,0 +1,12 @@
+- [x] Create Invoker Skill/Job that uses dataset as cron @done(2018-04-04 23:34)
+	- [x] Get Skill to Read Dataset ref .. @done(2018-04-04 23:34)
+	- [x] Make sure cron updates invoked time  @done(2018-04-04 23:34)
+
+- [x] Add to the config ... callback_agent, callback_svc, and callback_type ... @done(2018-04-03 22:07)
+- [x] Rip Out Job Phase ...  @done(2018-04-04 11:39)
+	- [x] remove extra payload configs when unit testing ... without callbacks ... @done(2018-04-04 11:39)
+	- [x] Create Integration Test Payloads... @done(2018-04-04 11:39)
+
+- [x] Experiment with industry data mongo scripts ... and 
+	- [x] have a dockerfile for the publisher ... that is based off of the mongo command line
+		- [x] Install curl instead of cortex cli ... dont want to install node just for a managed content curl ...  @done(2018-04-04 11:40)

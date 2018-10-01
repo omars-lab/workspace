@@ -1,0 +1,11 @@
+- [x] Get bootstrap working for Randy ... @done(2017-12-18 10:53)
+	- [x] Sync with Johan as what gets passed as an environmental variable to the agent ... @done(2017-12-18 10:53)
+	- [x] use jwt from command line ... @done(2017-12-14 12:57)
+	- [x] Get the daemon url to be a property ... @done(2017-12-18 10:53)
+
+	- [x] Update different env properties for trader insights ... @done(2017-12-18 10:53)
+	- [x] Send Randy updated properties and commands for trader insigths and client complaints  @done(2017-12-18 10:53)
+	- [x] Make a global properties.json for both complaints and trader insights ... #NiceToHave @done(2017-12-18 10:53)
+
+- [x] Do cleanup requested of us yesterday ... @done(2017-12-18 12:04)
+- [x] Do we use the same mongodb in trader insights in prod vs staging vs dev mongo ...  @done(2017-12-18 12:15)

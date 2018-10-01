@@ -1,0 +1,5 @@
+- [x] Continue work on use cases @done(2018-08-24 02:17 PM)
+- [x] Consolidate experiments  @done(2018-08-24 02:07 PM)
+	- [x] Consolidate notes within current experiments @done(2018-08-24 02:07 PM)
+	- [x] Consolidate questions within current experiments @done(2018-08-24 02:07 PM)
+	- [x] Add realizations to current experiments @done(2018-08-24 02:07 PM)

@@ -1,0 +1,4 @@
+- [x] Test saving Gagans defs multiple times ... @done(2018-06-11 21:56)
+	- [x] Obfiscate his defs ... @done(2018-06-11 21:56)
+- [x] Wait to reply to Gagan and then try to schedule a call for tonight ... @done(2018-06-11 21:56)
+- [x] Give luke a simplified spec @done(2018-06-11 21:57)

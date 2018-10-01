@@ -1,0 +1,14 @@
+- [x] Make sure cron actually doesnt work ... @done(2018-04-26 10:01)
+- [x] Completely remove job_phase from configs! @done(2018-04-26 10:57)
+- [x] Make sure all the phases create their own file ... @done(2018-04-26 11:27)
+- [x] Get to do list to Gagan {open a ticket for this} @done(2018-04-26 11:27)
+- [x] Go through the p2 queries @done(2018-04-26 19:23)
+	- [x] Figure out the right mappings and test them locally ... @done(2018-04-26 19:23)
+	- [x] Figure out names for them ... @done(2018-04-26 19:23)
+	- [x] Get samples for each of them @done(2018-04-26 19:22)
+	- [x] Minimize them @done(2018-04-26 19:22)
+	- [x] Make sure they dont take too long @done(2018-04-26 19:22)
+
+- [x] Figure out why validation job failed for results_date ... @done(2018-04-27 00:43)
+
+- [x] Should I make a seperate p1 folder in the queries @done(2018-04-30 11:23)

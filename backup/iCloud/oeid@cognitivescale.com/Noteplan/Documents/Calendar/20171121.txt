@@ -1,0 +1,10 @@
+- [x] Can I run openwhisk locally? {I deployed openwhisk vm locally} @done(2017-11-22 10:44)
+- [x] Reply to the slacks @done(2017-11-21 10:58)
+- [x] Download ibm bluemix cli @done(2017-11-22 00:04)
+- [x] Run a hello world openwisk application in openwisk @done(2017-11-22 00:04)
+- [x] Run a hello world container application in openwisk @done(2017-11-22 00:04)
+- [x] Ask for latest status of AMI @done(2017-11-22 00:04)
+
+- [x] #QUESTION Can we upload a container image tar to openwhisk? {No, you can however compile code against a specific openwhisk runtime container and upload the code to be run within the container ...} @done(2017-11-22 10:54)
+- [x] #QUESTION How do we use dataframes to insert/append/update data? {dataframes are only a view ... you should insert records ... not data frames ...} @done(2017-11-22 10:53)
+- [x] #QUESTION Do we need to define a custom catalog type before we create a new dataset? {no, type validation is not implemened at this time ...} @done(2017-11-21 11:02)

@@ -1,0 +1,11 @@
+- [-] Show ML Model .... on API slides ...? {we are already showing personalization engine}
+- [x] Send request to support for AMI @done(2018-01-25 12:51)
+	- [x] See if HTTP or HTTPS is used for parse { https://github.com/CognitiveScale-Solutions/cti/blob/master/cti-common/src/main/java/com/c12e/cti/common/AppConfig.java#L27 } @done(2018-01-25 12:20)
+- [x] Finish round 1 of the API dependencies doc @done(2018-01-25 12:55)
+	- [x] Append to the API based doc @done(2018-01-25 12:55)
+- [-] Add comments to the use cases in the workshop doc {self explanitory}
+
+- [x] Login to the TR db @done(2018-01-26 00:07)
+	- [x] Download windows vm @done(2018-01-25 16:04)
+		- [x] Log in with Server Mgmt Studio { https://docs.microsoft.com/en-us/sql/relational-databases/lesson-2-connecting-from-another-computer } @done(2018-01-25 16:05)
+			- [x] Change the password @done(2018-01-25 16:05)

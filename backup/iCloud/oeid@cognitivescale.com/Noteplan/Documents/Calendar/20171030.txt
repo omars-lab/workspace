@@ -1,0 +1,5 @@
+- [x] Add requirements to Ticket https://cognitivescale.atlassian.net/browse/ID-356 @done(2017-10-30 13:26)
+- [x] Delete no longer needed mongo ticket ... https://cognitivescale.atlassian.net/browse/COPS-521 @done(2017-10-30 13:26)
+- [x] Iterate with Sunil on meeting agenda  @done(2017-10-31 23:42)
+- [x] Share a sheet with Sunil and iterate over it with him with regards to november session ... @done(2017-11-01 01:13)
+- [x] Get amirsh some context on CTI history .. 

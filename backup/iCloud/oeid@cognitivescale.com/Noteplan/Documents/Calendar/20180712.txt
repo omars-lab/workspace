@@ -1,0 +1,18 @@
+- [x] Close out zendesk tickets @done(2018-07-12 04:10 PM)
+- [x] Push the updated TraderInsights repo to the branch ...  @done(2018-07-12 04:10 PM)
+
+# Tangent Thinking: 
+  ## ML Process
+- Who are the users involved with models
+	Do models always generate visualizations?
+		If so, for whom?
+- Feature Profiling - The features that were used in the ML 
+What artifacts are generated from models?
+Do models always generate something that is visualize-able?
+	
+  ## Messaging Bus
+- How are messages structured / decompiled / dewrapped ... 
+
+  ## Marketplace Concepts
+- Measuring usefulness of a skill: 
+	How many skills is a skill wired up to?

@@ -1,0 +1,4 @@
+- [x] Work on profile visualization experiments @done(2018-08-24 02:09 PM)
+	- [x] Go through matplotlib tutorial https://matplotlib.org/tutorials/intermediate/artists.html#sphx-glr-tutorials-intermediate-artists-py @done(2018-08-23 03:13 PM)
+	- [x] Tinker with the calendar map ... @done(2018-08-23 03:13 PM)
+- [x] Work on the data representation of profiles @done(2018-08-24 02:10 PM)

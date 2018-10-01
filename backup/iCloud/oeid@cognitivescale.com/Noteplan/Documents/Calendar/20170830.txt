@@ -1,0 +1,8 @@
+- [x] #CogScaleHR Ask HR about praternity leave
+
+- [x] Create fund percentage po1 attributes ...
+- [x] Create total fund valuation po1 attributes ...
+- [x] Roll in changes from python
+- [x] Get Sagar to add the two
+- [x] Fix bug for Sarthak where portfolio percentages are off ... (see if mutual fund stuff is rounding stuff to two decimal places) (round 2)
+- [x] swap test user 5

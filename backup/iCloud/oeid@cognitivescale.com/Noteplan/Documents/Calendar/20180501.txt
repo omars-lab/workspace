@@ -1,0 +1,6 @@
+- [x] Reply to Jonathan @done(2018-05-01 10:39)
+	- [x] Block time on calendar for friday prayer ... @done(2018-05-01 10:39)
+- [x] Tinker with Cron in Dev ...  @done(2018-05-05 18:15)
+	- [x] Invoke the pipeline manually ... @done(2018-05-05 18:15)
+	- [-] Invoke the daily pipeline outside of Cortex ...? i.e setup cron?? {nah, cron in dev is comming soon}
+- [x] Commit p2 folder to the queries  @done(2018-05-05 18:15)

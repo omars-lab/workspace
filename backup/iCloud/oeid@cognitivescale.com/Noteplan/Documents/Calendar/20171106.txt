@@ -1,0 +1,5 @@
+- [x] Fill in this weeks #goals here -> [[What are this weeks goals?]] @done(2017-11-06 17:22)
+- [x] Create a cops ticket for Benny ... @done(2017-11-07 07:46)
+	- [x] Slack this on the TAAI channel ... @done(2017-11-07 07:46)
+- [-] #Talk to Benny about AMI ... @done(2017-11-10 15:53)
+	- [x] Book time with Benny to figure out if he has the AMI deployed @done(2017-11-10 15:54)

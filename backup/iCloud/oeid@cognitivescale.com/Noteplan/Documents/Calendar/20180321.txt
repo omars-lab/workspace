@@ -1,0 +1,3 @@
+- [x] Create ticket for extraction image and noop image dockerhub repos @done(2018-03-21 13:04)
+- [x] Find Secrets to use in containers @done(2018-03-23 10:26)
+- [x] Create Agent for Industry Data ... @done(2018-03-23 10:26)

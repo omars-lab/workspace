@@ -1,0 +1,5 @@
+- [x] Make the CLI a container ... @done(2018-02-08 11:26)
+- [x] Create a shell command that delegates to the container ... @done(2018-02-08 11:26)
+- [x] Make sure the right files are mounted into the container ... @done(2018-02-08 11:26)
+	- [x] Figure out where the cortex cli logs stuff ... @done(2018-02-08 11:26)
+- [x] Look into Soorajs docker shell executor ... @done(2018-02-08 11:26)

@@ -1,0 +1,2 @@
+- [x] Add to bootstrap the uploading of the csvs for cc and movie rec ... @done(2017-12-22 11:37)
+	- [x] Figure out if the file names have a dot csv in them ... they do ! @done(2017-12-22 11:37)

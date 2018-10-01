@@ -1,0 +1,12 @@
+- [x] Report Queries Running ... @done(2018-04-06 13:10)
+- [x] Publish Master List of UK Only Companies at historic bootstrap with config ... @done(2018-04-06 13:10)
+	- [x] Add Country to Master Index ... @done(2018-04-06 13:10)
+	- [x] Query BDO universe ... @done(2018-04-06 13:10)
+- [x] Index on Data Type during bootstrap ... @done(2018-04-06 13:10)
+- [x] Rename collection to `tr_qad_data_pipeline` @done(2018-04-06 13:11)
+- [x] Send Email to Dr Ghosh ... @done(2018-04-06 13:11)
+- [x] Update ReturnsIndex to use v2 of the query ... @done(2018-04-06 13:12)
+
+- [x] Drop "Daily" Frequency from daily and historic pipeline data ... @done(2018-04-06 18:00)
+	- [x] Manully remove from mongo ... @done(2018-04-06 18:00)
+	- [x] Manually remove from cached csvs ... @done(2018-04-06 18:00)

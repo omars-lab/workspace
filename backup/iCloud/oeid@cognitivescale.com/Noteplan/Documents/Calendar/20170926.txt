@@ -1,0 +1,2 @@
+- [x] Send Gopal to be architecture @done(2017-09-26 16:40)
+- [x] Estimate for Sagar what it takes to get buy/sell button to work @done(2017-09-28 10:58)

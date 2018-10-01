@@ -1,0 +1,46 @@
+# What are common FPI questions asked by each end user?
+
+- End User:
+	- What has the platform learned about me?
+		- Can I inform the platform of where it is wrong about me and where it is right?
+		- Is there some sort of transformation/aggregation/filter that needs to be done on the raw profile so that it can be presented to end user in a interpret-able way?
+	- How is my information being used?
+		- Can I limit how my information is accessed?
+			- Can I limit what bits and pieces of information are used about me?
+		- What apps have access to my information?
+
+- Business Owner: What new things have I learned across all users?
+	- Is there anything in common between users who like/dislike a specific kind of insight?
+	- How much time do users spend on my app in 1w? 1m? 1y?
+	- What percentage of my users are active?
+		- Is there anything in common between users who spend a lot of time and those who don't on an app?
+	- What is the average click through rate for my application? for a specific insight?
+	- What is the average convergence rate for my application? for a specific insight?
+	- Note: Should the profile house all of the data needed by models to answer the questions above?
+
+- Integration Engineer:
+	- What do I have to do generate insights?
+	- How should my application present insights?
+	- How should I track the usage of my application with regards to insights?
+	- How can I quickly build an app that builds profiles and produces more 
+	- What do I have to do to make sure that profile attributes
+
+- Cognitive App Developer
+	- What user behavior needs to captured?
+		- When a user logs in?
+		- When a user clicks on an insight?
+		- When an insight is presented to the user?
+		- When a user "likes" an insight?
+			- Does the app developer determine if an insight was liked? Or is that meaning assigned later ...
+
+- ML Model Developer
+	- How has an application been performing historically?
+		- Can the platform help me quickly produce ROC curve's 
+	- How has a certain class of insights been performing historically?
+	- How can I get access to the user's historic behavior?
+	- Can I make use of any features in a user's profile? (For Model Prediction)
+	- Can I access a user's historical features ...? (For model training) (There is great value in knowing how many times a user liked an insight with a certain keyword and how that's changed)
+			- Maybe we have a materialized view to quickly return to insight generators that need the user's current profile without all the details of the profile ...
+			- And another view with more detail and records ...
+	- Do trained models tie into profiles?
+		- Can I generate app specific affinities and insert them into the profile for later use?

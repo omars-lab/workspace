@@ -1,0 +1,5 @@
+- [x] Make sure daily pipeline ran @done(2018-06-21 10:55 AM)
+- [x] Look into aditya's pull request @done(2018-06-21 10:55 AM)
+- [x] Make sure noop agent works ... @done(2018-06-21 11:52 AM)
+
+- [x] Test jenkins emailing on failed jobs with varaible @done(2018-06-27 11:39 PM) {little more difficult to produce tokens}

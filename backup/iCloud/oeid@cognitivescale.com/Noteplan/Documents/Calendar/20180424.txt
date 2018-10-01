@@ -1,0 +1,3 @@
+- [x] Continue Porting Over Industry Data agent to stage 
+- [x] Log issues
+- [x] Figure out if we need to push off the deploy to prod ...

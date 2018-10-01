@@ -1,0 +1,2 @@
+- [x] Incorperate new suggestions into workshop doc @done(2018-01-25 09:19)
+	- [x] Add header to new slide ... @done(2018-01-25 09:19)

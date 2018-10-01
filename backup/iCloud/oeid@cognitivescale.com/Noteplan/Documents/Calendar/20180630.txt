@@ -1,0 +1,2 @@
+- [x] Grant automation permission for dockerhub repo @done(2018-06-30 10:11 PM)
+- [x] Figure out why the plugins.txt cant be found? {c12e script was getting confused since I cloned ...} @done(2018-06-30 10:11 PM)

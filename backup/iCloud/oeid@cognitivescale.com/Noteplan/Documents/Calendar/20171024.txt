@@ -1,0 +1,7 @@
+- [-] Bump Sekars permision request
+- [x] #Meet with Navaneeth, Sarthak, Bob, and Russell to plan out the automation of Eikon ... @done(2017-10-25 14:16)
+	- [x] Prepare schemas of the data sets ...  @done(2017-10-25 14:16)
+	- [-] Craft draft user stories for the meeting ...
+	- [x] What data sets do we need to create/maintain using QAD to drive the mutual fund functionality ... @done(2017-10-25 14:16)
+- [x] Review revenue arch ... @done(2017-10-25 17:26)
+- [-] Add a slide to the architecture deck pointing to the standards considered ... (Not mature enought)

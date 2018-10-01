@@ -1,0 +1,2 @@
+- [x] Request access to the TR data ... {send it to support and copy Dominic} @done(2018-01-18 10:42)
+- [x] Ask Matt about the news stuff @done(2018-01-18 10:42)

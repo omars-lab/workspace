@@ -1,0 +1,4 @@
+- [x] Have call with BW about profiles @done(2018-09-20 09:10 PM)
+- [x] Send email about new laptop @done(2018-09-20 04:03 PM)
+- [x] Tinker with metabase ... @done(2018-09-21 10:40 PM)
+- [x] Dig into how mongo was done for the news articles ... @done(2018-09-21 10:40 PM)
