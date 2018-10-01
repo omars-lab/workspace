@@ -2,6 +2,10 @@
 # Variables
 # ----------------------------------------------------------------------
 
+CURRENT_DIR=${0:a:h}
+
+source ${CURRENT_DIR}/common.sh
+source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
 # These variables are not relevant to local dir so they can be imported by any script ...
 
 # The directory that contains the Workspace
@@ -18,7 +22,8 @@
   export DIR_FOR_BINARIES="${DIRS_WORKSPACE}/binaries"
 # The area where my binary refs lie:
   export DIR_FOR_BINARY_REFS="${DIRS_WORKSPACE}/binary-refs"
-
+# The area where my backups are:
+  export DIR_FOR_BACKUPS="${DIRS_ENVIRONMENT}/backup"
 # The docker machine we want to use as defaul for docker-machine
   # export DEFAULT_DOCKER_MACHINE=default
 
