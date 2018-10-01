@@ -9,7 +9,7 @@
 
 eval "$(cat $(dirname $0)/variables.sh)"
 
-source ${DIRS_ENVIRONMENT}/helpers.sh
+source ${DIRS_ENVIRONMENT}/common.sh
 source ${DIRS_ENVIRONMENT}/envmgr/envmgr.sh
 source ${DIRS_ENVIRONMENT}/theme.sh
 source ${DIRS_ENVIRONMENT}/ifttt/maker.sh

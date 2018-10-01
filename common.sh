@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Contains general Linux/Unix helper functions
+
 function create_zip_WITH_NAME_relavtive_to_DIR_recrusively()(
     # Make dir zip is supposed to be in ...
     DIR_OF_ZIP=$(dirname "${1}")
@@ -34,7 +36,42 @@ function symlink_by_force(){
     ln -s "${1}" "${2}"
 }
 
+
+function extract_functions(){
+    echo $(cat $1 | grep -Eo "^(?:function )(\w+)" | grep -Eo "\\w+$" | grep -E "^[a-zA-Z]" | xargs echo -n)
+}
+
+function extract_variables(){
+    echo $(cat $1 | grep -Eo "^(?:export )(\w+)" | grep -Eo "\w+$")
+}
+
+function print_variables(){
+    echo $@ | xargs printenv
+}
+
+# Recusively source all .sh files within a directory
+# The first param is the directoy.
+# The second param is an expression of files to ignore.
+function recursive-source(){
+    rdir=$1
+    ignore=${2:-"^\s*$"}
+    $SILENT || echo "Recursively Sourcing $rdir, ignoring: $ignore"
+    for i in $(ls -c1 $rdir | grep -e ".*[.]sh" | grep -vE "$ignore"); do
+        $SILENT || echo Sourcing $rdir/$i;
+        source $rdir/$i ;
+    done
+}
+
+# Re-source the bash profile
+# function re-source(){
+#     source ~/.bash_profile
+# }
+
 export -f get_uniq_mac_id
 export -f symlink_if_dne
 export -f symlink_by_force
 export -f create_zip_WITH_NAME_relavtive_to_DIR_recrusively
+export -f extract_functions
+export -f extract_variables
+export -f print_variables
+export -f recursive-source

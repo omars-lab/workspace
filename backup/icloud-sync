@@ -2,21 +2,12 @@
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-source ${CURRENT_DIR}/../common.sh
-
-ICLOUD_ROOT=$(echo ${HOME}'/Library/Mobile Documents')
-ICLOUD_EMAIL=$(cat "${ICLOUD_ROOT}/email.txt")
-
-ICLOUD_BACKUP_DIR="${CURRENT_DIR}/iCloud/${ICLOUD_EMAIL}"
-
-NOTEPLAN_ICLOUD_DIR="${ICLOUD_ROOT}/iCloud~co~noteplan~NotePlan/Documents"
-NOTEPLAN_GIT_DIR="${ICLOUD_BACKUP_DIR}/Noteplan"
-
-LIGHT_CYAN='\033[1;36m'
-NC='\033[0m'
+# source ${CURRENT_DIR}/../common.sh
+# The following also sources common.sh
+source ${CURRENT_DIR}/../variables.sh
 
 function backup_noteplan()(
-    printf "${LIGHT_CYAN}Backing Up NotePlan ...${NC}\n"
+    echo Backing Up NotePlan ...
     NAME_OF_ZIP="${CURRENT_DIR}/iCloud/${ICLOUD_EMAIL}/archives/noteplan-$(date +'%Y-%m-%dT%H-%M-%S').zip"
     create_zip_WITH_NAME_relavtive_to_DIR_recrusively "${NAME_OF_ZIP}" "${NOTEPLAN_ICLOUD_DIR}/"
     # - [ ] Add log rotate ...

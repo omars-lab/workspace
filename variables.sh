@@ -5,8 +5,10 @@
 CURRENT_DIR=${0:a:h}
 
 source ${CURRENT_DIR}/common.sh
+
 source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
 # These variables are not relevant to local dir so they can be imported by any script ...
+# - [ ] Only Source if the override dir exists along with the variables file ...
 
 # The directory that contains the Workspace
   export DIRS_WORKSPACE=${DIRS_WORKSPACE:-${HOME}/Workspace}
@@ -26,6 +28,28 @@ source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
   export DIR_FOR_BACKUPS="${DIRS_ENVIRONMENT}/backup"
 # The docker machine we want to use as defaul for docker-machine
   # export DEFAULT_DOCKER_MACHINE=default
+
+# iCloud Specific Settings
+# The location of icloud files on my local machine
+  export ICLOUD_ROOT=$(echo ${HOME}'/Library/Mobile Documents')
+# The email that is associated with my icloud ...
+# - [-] Ensure this email file is created if it doesnt exist ...
+#   export ICLOUD_EMAIL=${ICLOUD_EMAIL:-$(cat "${ICLOUD_ROOT}/email.txt")}
+  echo Using iCloud Email: ${ICLOUD_EMAIL:?ICLOUD EMAIL Required} 1>&2
+# The location of the directory I will backup icloud too ...
+  export ICLOUD_BACKUP_DIR="${DIRS_ENVIRONMENT}/iCloud/${ICLOUD_EMAIL}"
+# Personal iCloud Email
+  export ICLOUD_PERSONAL_EMAIL=omar_eid21@yahoo.com
+# Work iCloud Email
+  export ICLOUD_WORK_EMAIL=oeid@cognitivescale
+
+
+# Backup Specific Settings ...
+
+# The directory to backup noteplan from ....
+  export NOTEPLAN_ICLOUD_DIR="${ICLOUD_ROOT}/iCloud~co~noteplan~NotePlan/Documents"
+# The directory to backup noteplan to ...
+  export NOTEPLAN_GIT_DIR="${ICLOUD_BACKUP_DIR}/Noteplan"
 
 # Depreciated in favor of .ssh/config
 # All the SSH Keys we want to add, : seperated.
