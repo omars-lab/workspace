@@ -9,13 +9,13 @@
 
 eval "$(cat $(dirname $0)/variables.sh)"
 
-source ${DIRS_ENVIRONMENT}/common.sh
+source ${DIRS_ENVIRONMENT}/common.sh >/dev/null
 source ${DIRS_ENVIRONMENT}/envmgr/envmgr.sh
 source ${DIRS_ENVIRONMENT}/theme.sh
 source ${DIRS_ENVIRONMENT}/ifttt/maker.sh
 source ${DIRS_ENVIRONMENT}/ifttt/functions.sh
 
-recursive-source ${DIRS_ENVIRONMENT} "loader|theme|bookmarks"
+recursive-source ${DIRS_ENVIRONMENT} "loader|common|theme|bookmarks"
 recursive-source ${DIRS_ENVIRONMENT}/commands
 recursive-source ${DIRS_ENVIRONMENT}/aliases
 recursive-source ${DIRS_ENVIRONMENT}/scripts

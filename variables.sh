@@ -4,8 +4,7 @@
 
 CURRENT_DIR=${0:a:h}
 
-source ${CURRENT_DIR}/common.sh
-
+source ${CURRENT_DIR}/common.sh >/dev/null
 source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
 # These variables are not relevant to local dir so they can be imported by any script ...
 # - [ ] Only Source if the override dir exists along with the variables file ...

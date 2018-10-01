@@ -20,8 +20,8 @@ alias intellij='/usr/local/bin/idea'
 
 alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
 alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
-alias atom-noteplan-personal="atom ${DIRS_ENVIRONMENT}/backup/${ICLOUD_PERSONAL_EMAIL}/Noteplan/Documents"
-alias atom-notepla-work="atom ${DIRS_ENVIRONMENT}/backup/${ICLOUD_WORK_EMAIL}/Noteplan/Documents"
+alias atom-noteplan-personal="atom ${DIRS_ENVIRONMENT}/backup/iCloud/${ICLOUD_PERSONAL_EMAIL}/Noteplan/Documents/"
+alias atom-noteplan-work="atom ${DIRS_ENVIRONMENT}/backup/iCloud/${ICLOUD_WORK_EMAIL}/Noteplan/Documents/"
 
 alias mvim=/Applications/MacVim.app/Contents/bin/mvim
 

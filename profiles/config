@@ -5,24 +5,27 @@ host *
   ServerAliveInterval 60
   ServerAliveCountMax 2
 
-host Github
-  HostName github.com*
-  IdentityFile /Users/oeid/.ssh/github_work
+host github.com
+  HostName github.com
+  IdentityFile ~/.ssh/github_work
 
-host BitBucket-Work
-  HostName bitbucket.org/omar_eid*
-  User omar_eid
-  IdentityFile /Users/oeid/.ssh/bitbucket
+host github.com-personal
+  HostName github.com
+  IdentityFile ~/.ssh/github_work
 
-host BitBucket-Personal
+host bitbucket.org
+  HostName bitbucket.org
+  IdentityFile ~/.ssh/bitbucket
+
+host bitbucket.org-personal
   HostName bitbucket.org/broomar*
   User broomar
-  IdentityFile /Users/oeid/.ssh/bitbucket-personal
+  IdentityFile ~/.ssh/bitbucket-personal
 
 host cti-jumpbox
   HostName cti-jumpbox
   User oeid
-  IdentityFile /Users/oeid/.ssh/jumpcloud
+  IdentityFile ~/.ssh/jumpcloud
   LocalForward 20000 10.100.3.179:8888
   LocalForward 2222 10.100.3.179:22
   LocalForward 2233 10.100.3.226:22
@@ -33,13 +36,13 @@ host cti-env
   HostName cti-env
   User oeid
   Port 2222
-  IdentityFile /Users/oeid/.ssh/jumpcloud
+  IdentityFile ~/.ssh/jumpcloud
 
 host cti-env-2
   HostName cti-env
   User oeid
   Port 2233
-  IdentityFile /Users/oeid/.ssh/jumpcloud
+  IdentityFile ~/.ssh/jumpcloud
 
 host cti-cortex
   HostName ec2-54-201-13-161.us-west-2.compute.amazonaws.com
@@ -64,4 +67,4 @@ host personal-aws-instance
 host bwii-runbook-server
   HostName bw-triage.insights.ai
   User ubuntu
-  IdentityFile /Users/oeid/.ssh/jumpcloud
+  IdentityFile ~/.ssh/jumpcloud
