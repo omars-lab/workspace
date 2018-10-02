@@ -7,7 +7,7 @@ TIME_NOW=$(date +'%Y-%m-%dT%H-%M-%S')
 # The following also sources common.sh
 
 source ${CURRENT_DIR}/../variables.sh
-source ${CURRENT_DIR}/common.sh >/dev/null
+source ${CURRENT_DIR}/../common.sh >/dev/null
 
 function backup_noteplan()(
     echo Backing Up NotePlan ...
