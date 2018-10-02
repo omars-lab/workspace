@@ -1,9 +1,0 @@
-function canReach(){
-	/sbin/ping -c 1 -t 1 $1 1>/dev/null 2>/dev/null && /bin/echo "UP: $1" || /bin/echo "DOWN: $1";
-}
-
-echo "---------- Hosts ----------"
-canReach libra.insights.ai;
-canReach virgo.insights.ai;
-canReach cc-delta.insights.ai;
-canReach cc-beta.insights.ai;

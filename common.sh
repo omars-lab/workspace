@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Contains general Linux/Unix helper functions
 
 function create_zip_WITH_NAME_relavtive_to_DIR_recrusively()(
@@ -60,6 +58,24 @@ function recursive-source(){
         $SILENT || echo Sourcing $rdir/$i;
         source $rdir/$i ;
     done
+}
+
+function canReach(){
+	/sbin/ping -c 1 -t 1 $1 1>/dev/null 2>/dev/null && /bin/echo "UP: $1" || /bin/echo "DOWN: $1";
+}
+
+function clean_history(){
+    echo "---------- History ----------"
+    cat ~/.bash_history | tail -n 100 | uniq | \
+      grep -ve "^\s*cd"	| \
+      grep -ve "^\s*ls"	| \
+      grep -ve "^\s*clear"	| \
+      grep -ve "^\s*subl"	| \
+      grep -ve "^\s*vi"	| \
+      grep -ve "^\s*cat"	| \
+      grep -ve "^\s*atom"	| \
+      grep -ve "^\s*pwd"	| \
+      grep -ve '^\s*\w\+$'
 }
 
 # Re-source the bash profile

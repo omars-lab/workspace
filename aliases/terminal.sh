@@ -12,7 +12,15 @@ title_both  () { setTerminalText 0 $@; }
 title  () { setTerminalText 1 $@; }
 
 function week_prompt(){
-  echo "{\"now\":\"$(date +%Y-%m-%dT%H:%M:%S%z)\",\"utcnow:\":\"$(date -u +%Y-%m-%dT%H:%M:%S%z)\",\"cortex\":\"$(jq -r '.currentProfile' ${HOME}/.cortex/config)\"}"
+  # echo "{\"now\":\"$(date +%Y-%m-%dT%H:%M:%S%z)\",\"utcnow:\":\"$(date -u +%Y-%m-%dT%H:%M:%S%z)\",\"cortex\":\"$(jq -r '.currentProfile' ${HOME}/.cortex/config)\"}"
+  echo '{}' \
+    | jq --arg now "$(date +%Y-%m-%dT%H:%M:%S%z)" --arg utcnow "$(date -u +%Y-%m-%dT%H:%M:%S%z)" '(.now |= $now) | (.utcnow |= $utcnow)' \
+    | ( \
+        test -f ${HOME}/.cortex/config \
+            &&  jq --arg cortex_profile "$(jq -r '.currentProfile' ${HOME}/.cortex/config)" '(.cortex |= $cortex_profile)' \
+            ||  jq '.' \
+      ) \
+    | jq -c '.'
 }
 
 
