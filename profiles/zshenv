@@ -3,14 +3,31 @@ function cortex-get-current-profile()(
   jq -r ".currentProfile" ~/.cortex/config
 )
 
+function cortex-pluck-from-profile(){
+  CURRENT_PROFILE=${2:-$(cortex-get-current-profile)}
+  cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".${1}"
+}
+
+function cortex-reconfigure()(
+  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  URL=$(cortex-pluck-from-profile "url" "${CURRENT_PROFILE}")
+  USERNAME=$(cortex-pluck-from-profile "username" "${CURRENT_PROFILE}")
+  ACCONT=$(cortex-pluck-from-profile "account" "${CURRENT_PROFILE}")
+  cortex configure \
+    --profile "${CURRENT_PROFILE}" \
+    --url ${URL} \
+    --username ${USERNAME} \
+    --account ${ACCONT}
+)
+
 function cortex-get-jwt()(
   CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
-  cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".token"
+  cortex-pluck-from-profile "token" "${CURRENT_PROFILE}"
 )
 
 function cortex-get-endpoint()(
   CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
-  cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".url"
+  cortex-pluck-from-profile "url" "${CURRENT_PROFILE}"
 )
 
 function cortex_cli_command()(

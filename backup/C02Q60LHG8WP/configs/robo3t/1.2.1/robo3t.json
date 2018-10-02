@@ -1049,7 +1049,7 @@
  "loadMongoRcJs" : false,
  "minimizeToTray" : false,
  "mongoTimeoutSec" : 10,
- "programExitedNormally" : true,
+ "programExitedNormally" : false,
  "shellTimeoutSec" : 15,
  "style" : "Native",
  "textFontFamily" : "",
