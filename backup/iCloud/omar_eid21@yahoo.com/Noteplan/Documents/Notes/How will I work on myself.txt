@@ -1,0 +1,91 @@
+# How will I work on myself?
+
+- [ ] How will I work on myself?
+	- [ ] Go through my personal notes ...
+		- [ ] Record what Questions I keep asking myself ...
+
+	- [ ] Start documenting my technical gaps ...
+		- [ ] Security, certificates, standards ...
+		- [ ] Start watching udemy aws test videos
+			- [ ] Start tinkering with AWS free tier ...
+
+	- [ ] Start documenting my technical strengths ...
+	- [ ] Figure out what I am going to track <2017-06-25
+		- [ ] When I do something bad <2017-06-25
+		- [ ] When I have negative thoughts <2017-06-25
+		- [ ] When I overcome negative thoughts and how ... <2017-06-25
+		- [ ] When I feel regret <2017-06-25
+		- [ ] When I do good <2017-06-25
+		- [ ] When I feel good <2017-06-25
+		- [ ] When I have positive thoughts <2017-06-25
+
+	- [ ] #Thought about expanding roles I previously documented @2018-05-27
+		- [ ] As a Sinner
+			- [ ] What are my responsibilities? What are my goals?
+				- [ ] To minimize my sins?
+			- [ ] What should I pray for?
+		- [ ] As a Father
+			- [ ] What are my responsibilities? What are my goals?
+			- [ ] What should I pray for?
+
+	- [ ] How will I work on my religion?
+		- [ ] Figure out what we need to do before Ramadan <2018-05-14
+			- [ ] Make a list of all dua
+				- [ ] Review and learn from Ramadan witr duas of Shaykh Hublus <2017-06-25
+					- [ ] Get snippets of His Witr Duas
+						- [x] Figure out all of his YouTube videos {https://www.facebook.com/jame3.al.rahman/videos/} @done(2018-06-06 12:45 AM)
+						- [ ] Download them
+						- [ ] Strip the Witr Section
+			- [ ] Figure out what we want to get ...
+
+		- [ ] Create sheet of what surahs I'm reading in prayer
+		- [ ] Create sheet of when I last went to the mosque ...
+
+
+- [ ] What project(s) should I work on?
+	- [ ] What project Ideas have I had thus far?
+		- [ ] #Idea @2018-06-06 to make a smart recurring cost identifier ...
+	- [ ] What aspects have I been wanting to incorporate into my projects?
+		- [ ] What should I do with the flic buttons?
+	- [ ] How many of the following does it check off?
+		- [ ] If I am serious about getting a new job
+		- [ ] If I am serious about mastering my trade
+		- [ ] If I am serious about making valuable technology
+		- [ ] Will this project help me learn any of the things I want to learn?
+		- [ ] Does this project overlap with the things I enjoy doing?
+
+- [ ] What do I want to learn?
+
+- [ ] Figure out what I should be studying
+	- [ ] For Personal Gain
+		- [ ] Continue watching the AWS videos ...
+		- [ ] Dig into python 3.5 
+		- [ ] Dig into the type checking for golfnow 
+		- [ ] Look into SSL flow chart digrams
+	- [ ] For Work
+		- [ ] Figure out what node concepts I want to tinker with
+			- [ ] experiments node 
+			- [ ] let vs const 
+			- [ ] await and async
+			- [ ] Promises  
+			- [ ] Config ...
+			- [ ] Redis 
+			- [ ] Rabbit MQ ...
+
+
+- [ ] I Need a learning ciriculum ...
+	- [ ] What do i desire to learn ...
+	- [ ] What desire is linked to what o want to do?
+		- [ ] Can i measure how important each of my desires is based on my much action i take in lue of doing it ...
+	- [ ] How do I desire to change
+
+- #Thought about looking into the art of self teaching! @2018-06-15
+- I enjoy engineering processes ...
+
+- I need to organize my desires to learn ...
+	- Is there anything better than a personalized cirriculum??
+
+- Do I need to go to college to get an education?
+	- Do I need someone else to dictate my cirriculum for me?
+
+

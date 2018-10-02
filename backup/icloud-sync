@@ -19,7 +19,7 @@ function backup_noteplan()(
 function push_from_noteplan_to_git(){
     mkdir -p "${NOTEPLAN_GIT_DIR}"
     rsync -arhv --delete --exclude='*.DS_Store*' --exclude='*.Trash*' --exclude='*.icloud*' "${NOTEPLAN_ICLOUD_DIR}" "${NOTEPLAN_GIT_DIR}"
-    echo Pushing code to git ... && (cd ${DIRS_ENVIRONMENT} && git commit -am "Pushing Latest Code from $(get_uniq_mac_id) at ${TIME_NOW}." && git pull && git push origin master)
+    # echo Pushing code to git ... && (cd ${DIRS_ENVIRONMENT} && git commit -am "Pushing Latest Code from $(get_uniq_mac_id) at ${TIME_NOW}." && git pull && git push origin master)
 }
 
 function pull_from_git_to_noteplan()(
@@ -27,7 +27,7 @@ function pull_from_git_to_noteplan()(
     NOTEPLAN_ICLOUD_DIR="${HOME}/Desktop/NoteplanExpr"
     mkdir -p "${ICLOUD_BACKUP_DIR}/logs"
     LOG_FILE="${ICLOUD_BACKUP_DIR}/logs/noteplan-${TIME_NOW}.txt"
-    echo Pulling latest code ... && (cd ${DIRS_ENVIRONMENT} && git pull)
+    # echo Pulling latest code ... && (cd ${DIRS_ENVIRONMENT} && git pull)
     rsync -aihrv --progress --delete --log-file="${LOG_FILE}" --exclude='*.DS_Store*' --exclude='*.Trash*' --exclude='*.icloud*' "${NOTEPLAN_GIT_DIR}/Documents" "${NOTEPLAN_ICLOUD_DIR}"
 )
 
