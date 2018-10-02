@@ -25,6 +25,8 @@ alias atom-noteplan-work="atom ${DIRS_ENVIRONMENT}/backup/iCloud/${ICLOUD_WORK_E
 
 alias mvim=/Applications/MacVim.app/Contents/bin/mvim
 
+alias preview='qlmanage -p'
+
 function js(){
   j $1; /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl .;
 }
