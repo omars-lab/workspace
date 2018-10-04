@@ -78,11 +78,16 @@ function clean_history(){
       grep -ve '^\s*\w\+$'
 }
 
+function get_other_user(){
+  users | sed -e "s/$(whoami)//g" -e 's/ *//g'
+}
+
 # Re-source the bash profile
 # function re-source(){
 #     source ~/.bash_profile
 # }
 
+export -f get_other_user
 export -f get_uniq_mac_id
 export -f symlink_if_dne
 export -f symlink_by_force

@@ -18,7 +18,6 @@ source ${DIRS_ENVIRONMENT}/ifttt/functions.sh
 recursive-source ${DIRS_ENVIRONMENT} "loader|common|theme|bookmarks"
 recursive-source ${DIRS_ENVIRONMENT}/commands
 recursive-source ${DIRS_ENVIRONMENT}/aliases
-recursive-source ${DIRS_ENVIRONMENT}/scripts
 
 # Python Virtual Env Stuff (Using Conda Instead ...)
 # export WORKON_HOME=${DIRS_VIRTUAL_ENVS}

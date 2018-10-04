@@ -5,6 +5,9 @@ host *
   ServerAliveInterval 60
   ServerAliveCountMax 2
 
+host jump.cortex-develop.insights.ai
+  IdentityFile ~/.ssh/jumpcloud
+
 host github.com
   HostName github.com
   IdentityFile ~/.ssh/github_work

@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source common.sh
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+source ${CURRENT_DIR}/../common.sh
 
 export BACKUP_DIR=${PWD}/$(get_uniq_mac_id)
 
@@ -109,7 +111,7 @@ function backup_mac_app_names(){
     ;
   } | sort | uniq | egrep -v '.localized[/]' > ${BACKUP_DIR}/apps.txt
 }
- 
+
 function backup_executables(){
     mkdir -p ${BACKUP_DIR}
     compgen -c | sort | uniq > ${BACKUP_DIR}/executables.txt
