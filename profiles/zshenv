@@ -58,6 +58,18 @@ function cortex-latest-task-status(){
    cortex_cli_command v2/jobs/${JOB_NAME}/tasks/${LATEST_TASK_ID}/logs | jq '.'
 }
 
+function cortex-simulate-payload(){
+  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  JWT_TOKEN=$(cortex-get-jwt ${CURRENT_PROFILE})
+  CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
+  echo '{}' \
+    | jq -c \
+      --arg endpoint "${CORTEX_API_ENDPOINT}" \
+      --arg token "${JWT_TOKEN}" \
+      '(.properties = {}) | (.paylaod = {}) | (.apiEndpoint = $endpoint) | (.token = $token)' \
+    | jq -c '(.instanceId = "1")| (.sessionId = "1")| (.activationId = "1")| (.channelId = "1")| (.typeName = "1")| (.timestamp = "1")| (.datasetBindings = [])| (.entityBindings = [])'
+}
+
 function _cortex-set-profile() {
   compadd $(cat ~/.cortex/config | jq -r ".profiles | keys | .[]" | egrep -v '^default$' | xargs echo)
 }

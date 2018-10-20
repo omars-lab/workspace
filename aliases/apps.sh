@@ -1,7 +1,11 @@
 # App Based Aliases ... these generally depend on other apps being present ...
 
+function get_other_user(){
+  users | sed -e "s/$(whoami)//g" -e 's/ *//g'
+}
+
 # Fuzzy Config ...
-FZF_IGNORE_PATTERNS=$'(*.pyc)|(*.class)|(*.iml)'
+FZF_IGNORE_PATTERNS=$'(*.pyc)|(*.class)|(*.iml)|(*.DS_Store)'
 FZF_IGNORE_DIRS=".git|target|.idea|.atom|.bash_sessions|.cache|.config"
 FZF_IGNORE_DIRS=$( \
   echo "${FZF_IGNORE_DIRS}" \
@@ -49,7 +53,16 @@ function fcopy(){
 }
 
 function peek(){
-  grep -rl "${1}" . | fzf --preview "grep -b3 -a3 ${1} {}"
+  fzf --preview "head -$LINES {}" --color light --margin 5,20
+}
+
+function peek-near-term(){
+  fzf --preview "grep -b3 -a3 ${1} {}"
+}
+
+function pbcopy-from-shared-clipboard(){
+    SHARED_CLIPBOARD_LOCATION=/Users/Shared/clipboard/$(get_other_user)/ingest
+    cat $((find ${SHARED_CLIPBOARD_LOCATION} -type f -exec ls -1t "{}" +;) | peek) | pbcopy
 }
 
 function macdown(){
