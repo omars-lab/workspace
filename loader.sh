@@ -4,12 +4,19 @@
 # Contains the stuff that needs to be imported first that other stuff uses.
 # Ensures to import stuff in the correct order
 
-# CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-# SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [ -n "$ZSH_VERSION" ]; then
+  CURRENT_DIR=${0:a:h}
+elif [ -n "$BASH_VERSION" ]; then
+  CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+else
+   exit 1
+fi
 
-eval "$(cat $(dirname $0)/variables.sh)"
+eval "$(cat ${CURRENT_DIR}/variables.sh)"
 
+# echo
 source ${DIRS_ENVIRONMENT}/common.sh >/dev/null
+# echo -n -e "\e[0K\r [ 1 / 8] Loaded common.sh"
 source ${DIRS_ENVIRONMENT}/envmgr/envmgr.sh
 source ${DIRS_ENVIRONMENT}/theme.sh
 source ${DIRS_ENVIRONMENT}/ifttt/maker.sh
