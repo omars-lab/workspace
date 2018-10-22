@@ -1,8 +1,14 @@
 # App Based Aliases ... these generally depend on other apps being present ...
+# -----------------------------------------------------------------------------
 
 function get_other_user(){
   users | sed -e "s/$(whoami)//g" -e 's/ *//g'
 }
+
+#Every users writes into their own dir ...
+export SHARED_CLIPBOARD_LOCATION=/Users/Shared/clipboard/$(get_other_user)/ingest
+export SHARED_CLIPBOARD_IGNORE_DIR=/Users/Shared/clipboard/$(whoami)/ingested
+mkdir -p ${SHARED_CLIPBOARD_IGNORE_DIR}
 
 # Fuzzy Config ...
 FZF_IGNORE_PATTERNS=$'(*.pyc)|(*.class)|(*.iml)|(*.DS_Store)'
@@ -60,9 +66,41 @@ function peek-near-term(){
   fzf --preview "grep -b3 -a3 ${1} {}"
 }
 
+function pbcopy-from-shared-clipboard-archive(){
+    FILE_TO_COPY=$( \
+      (find ${SHARED_CLIPBOARD_IGNORE_DIR} -type f -exec ls -1t "{}" +;) \
+        | peek \
+    )
+    test -f "${FILE_TO_COPY}" && (cat ${FILE_TO_COPY} | pbcopy)
+}
+
 function pbcopy-from-shared-clipboard(){
-    SHARED_CLIPBOARD_LOCATION=/Users/Shared/clipboard/$(get_other_user)/ingest
-    cat $((find ${SHARED_CLIPBOARD_LOCATION} -type f -exec ls -1t "{}" +;) | peek) | pbcopy
+    # Make temp file ...
+    SHARED_CLIPBOARD_IGNORE_FILE=$(mktemp)
+    ls ${SHARED_CLIPBOARD_IGNORE_DIR} | sed -e 's/^/(/g' -e 's/$/)/g' | tr '\n' '|' | sed -e 's/|$//g' > ${SHARED_CLIPBOARD_IGNORE_FILE}
+
+    FILE_TO_COPY=$( \
+      (find ${SHARED_CLIPBOARD_LOCATION} -type f -exec ls -1t "{}" +;) \
+        | ( test -s ${SHARED_CLIPBOARD_IGNORE_FILE} && egrep -v -f ${SHARED_CLIPBOARD_IGNORE_FILE} || cat) \
+        | peek \
+    )
+    test -f "${FILE_TO_COPY}" && (cat ${FILE_TO_COPY} | pbcopy)
+
+    # Clean up temp file ...
+    rm ${SHARED_CLIPBOARD_IGNORE_FILE}
+}
+
+function pbrm-from-shared-clipboard(){
+    # This is not a hard remove ... it just adds the file to an ignore dir ... i.e archives it ..
+    SHARED_CLIPBOARD_IGNORE_FILE=$(mktemp)
+    ls ${SHARED_CLIPBOARD_IGNORE_DIR} | sed -e 's/^/(/g' -e 's/$/)/g' | tr '\n' '|' | sed -e 's/|$//g' > ${SHARED_CLIPBOARD_IGNORE_FILE}
+
+    FILE_TO_ARCHIVE=$( \
+      (find ${SHARED_CLIPBOARD_LOCATION} -type f -exec ls -1t "{}" +;) \
+        | ( test -s ${SHARED_CLIPBOARD_IGNORE_FILE} && egrep -v -f ${SHARED_CLIPBOARD_IGNORE_FILE} || cat) \
+        | peek \
+    )
+    test -f "${FILE_TO_ARCHIVE}" && cp ${FILE_TO_ARCHIVE} ${SHARED_CLIPBOARD_IGNORE_DIR}/
 }
 
 function macdown(){
