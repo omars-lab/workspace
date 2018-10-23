@@ -1,0 +1,42 @@
+#!/bin/bash
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+source ${CURRENT_DIR}/noteplan-helpers.sh
+
+function vi-personal-noteplan-calendar() {
+  # set -x
+  NOTEPLAN_DATE_TO_EDIT=$(\
+    find "${PERSONAL_ICLOUD_NOTEPLAN_DIR}/Calendar" -name "*.txt" \
+        ${1} \
+        -exec bash -c 'export DATE_TO_PARSE=$(basename "${0}"); parse_from_noteplan_date "${DATE_TO_PARSE}"' '{}' \; \
+      | sort \
+      | fzf --preview "bash -c 'source ${CURRENT_DIR}/noteplan-helpers.sh; preview_noteplan_date_file {}'" --color light --margin 5,20 \
+  )
+  NOTEPLAN_FILE_TO_EDIT=$(noteplan_date_to_noteplan_calendar_file "${NOTEPLAN_DATE_TO_EDIT}")
+  test -f "${NOTEPLAN_FILE_TO_EDIT}" && vi "${NOTEPLAN_FILE_TO_EDIT}"
+}
+
+case ${1} in
+  yesterday)
+    YESTERDAY=$(date -v -1d +"%Y%m%d")
+    vi "${PERSONAL_ICLOUD_NOTEPLAN_DIR}/Calendar/${YESTERDAY}.txt"
+  ;;
+  today)
+    TODAY=$(date +"%Y%m%d")
+    vi "${PERSONAL_ICLOUD_NOTEPLAN_DIR}/Calendar/${TODAY}.txt"
+  ;;
+  tomorrow)
+    TOMORROW=$(date -v +1d +"%Y%m%d")
+    vi "${PERSONAL_ICLOUD_NOTEPLAN_DIR}/Calendar/${TOMORROW}.txt"
+  ;;
+  recent)
+    RECENT_FIND_FLAGS="-cmin -6000"
+    vi-personal-noteplan-calendar "${RECENT_FIND_FLAGS}"
+  ;;
+  *)
+    vi-personal-noteplan-calendar
+  ;;
+esac
+
+# find "${PERSONAL_ICLOUD_NOTEPLAN_DIR}/Calendar" -cmin -6000 -name "*.txt" -exec bash -c '' '{}' \;
+#

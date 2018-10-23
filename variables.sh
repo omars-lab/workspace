@@ -31,6 +31,9 @@ source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
   export DIR_FOR_BINARY_REFS="${DIRS_WORKSPACE}/binary-refs"
 # The area where my backups are:
   export DIR_FOR_BACKUPS="${DIRS_ENVIRONMENT}/backup"
+# The area where hand writtern helper scripts are kept:
+  export DIR_FOR_SCRIPTS="${DIRS_ENVIRONMENT}/scripts"
+
 # The docker machine we want to use as defaul for docker-machine
   # export DEFAULT_DOCKER_MACHINE=default
 
