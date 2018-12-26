@@ -2,7 +2,10 @@
 # -----------------------------------------------------------------------------
 
 function get_other_user(){
-  users | sed -e "s/$(whoami)//g" -e 's/ *//g'
+  USERS=$(dscl . list /Users | grep -v "^_" | grep --color=never eid | tr '\n' ' ')
+  # This lists all "logged in" users ... this wont work if I first boot up the mac ...
+  # USERS=$(users | sed -e "s/$(whoami)//g" -e 's/ *//g')
+  echo ${USERS} | sed -e "s/$(whoami)//g" -e 's/ *//g'
 }
 
 #Every users writes into their own dir ...
@@ -30,6 +33,7 @@ alias intellij='/usr/local/bin/idea'
 
 alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
 alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
+alias atom-environment="atom ${DIRS_ENVIRONMENT}/"
 alias atom-noteplan-personal="atom ${DIRS_ENVIRONMENT}/backup/iCloud/${ICLOUD_PERSONAL_EMAIL}/Noteplan/Documents/"
 alias atom-noteplan-work="atom ${DIRS_ENVIRONMENT}/backup/iCloud/${ICLOUD_WORK_EMAIL}/Noteplan/Documents/"
 
@@ -84,7 +88,9 @@ function pbcopy-from-shared-clipboard(){
         | ( test -s ${SHARED_CLIPBOARD_IGNORE_FILE} && egrep -v -f ${SHARED_CLIPBOARD_IGNORE_FILE} || cat) \
         | peek \
     )
-    test -f "${FILE_TO_COPY}" && (cat ${FILE_TO_COPY} | pbcopy)
+
+    test -f "${FILE_TO_COPY}" && (cat "${FILE_TO_COPY}" | pbcopy)
+    test -f "${FILE_TO_COPY}" &&  cp "${FILE_TO_COPY}" "${SHARED_CLIPBOARD_IGNORE_DIR}"
 
     # Clean up temp file ...
     rm ${SHARED_CLIPBOARD_IGNORE_FILE}

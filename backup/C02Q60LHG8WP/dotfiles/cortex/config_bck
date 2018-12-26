@@ -35,7 +35,7 @@
       "url": "https://api.cortex.insights.ai",
       "username": "oeid",
       "account": "idata",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoiaWRhdGEiLCJiZWFyZXIiOiJwdWJsaWMiLCJrZXkiOiJ1bjJJTDF6cXhYb0xPMzRaVzk2ekdGYmlaYjFBR0VDMiIsImV4cCI6MTUzOTcxMzE3OCwiYWNsIjp7Ii4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSIsIkRFTEVURSJdfSwiaWF0IjoxNTM4NTAzNTc4fQ.eaEHnOyWDA6kl2S_S5EpX7APiD1gbeiXCWzpezgmVdQ"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoiaWRhdGEiLCJiZWFyZXIiOiJwdWJsaWMiLCJrZXkiOiJ1bjJJTDF6cXhYb0xPMzRaVzk2ekdGYmlaYjFBR0VDMiIsImV4cCI6MTU0NDcyODU4NCwiYWNsIjp7Ii4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSIsIkRFTEVURSJdfSwiaWF0IjoxNTQzNTE4OTg0fQ.9vho0sIsXyDuSs0mQPli7_QXgrtFVI_LOJEU6qRvv0E"
     },
     "idata-non-admin-prod": {
       "url": "https://api.cortex.insights.ai",
@@ -92,10 +92,10 @@
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoicHJvc2ljbG91ZCIsImFjbCI6eyIvdjMvYWdlbnRzL2Vudmlyb25tZW50cy8uKiI6WyJERU5ZIl0sIi92Mi9hY2NvdW50cy8uKiI6WyJERU5ZIl0sIi92Mi90ZW5hbnRzL2N1cnJlbnQtdXNlci1kZXRhaWxzIjpbIlJFQUQiXSwiL3YyL3RlbmFudHMvLioiOlsiREVOWSJdLCIvdjIvYWRtaW4vLioiOlsiREVOWSJdLCIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YzL2NhdGFsb2cvLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzL2NvcnRleC9kZWZhdWx0IjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjIvYWNjb3VudHMvdG9rZW5zLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjIvdGVuYW50cy9zZWNyZXRzLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSJdfSwiYmVhcmVyIjoicHVibGljIiwia2V5IjoienRyVDcxYWttdWxia1djUnlVeEtxODRtSWlHTjA2T3MiLCJleHAiOjE1MzQ5Njc2MzIsImlhdCI6MTUzMzc1ODAzMn0.wolnB2pKENEjWSXMeLAhl25m000Hj7GsDoHOA_s0iI8"
     },
     "default": {
-      "url": "https://api.cortex-dev.insights.ai",
+      "url": "https://api.cortex.insights.ai",
       "username": "oeid",
-      "account": "oeid",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZCIsImJlYXJlciI6InB1YmxpYyIsImtleSI6ImhmMkNKVE5yYkVMNkNDU2QwMDhTT1RvM1hUcUFBSTZRIiwiZXhwIjoxNTQxMDE1MDU0LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1Mzk4MDU0NTR9.iilUWRKlBwvz7Fhvq_aBnd4kEojP6t2XpkZlGQkv1AM"
+      "account": "demo",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoiZGVtbyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6IkJRc2ZURnNOSmtzc0VNWEx3dmZLandtMkxZZlQwVFFHIiwiZXhwIjoxNTQ1ODUzMzYwLCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzLy4qIjpbIkRFTlkiXSwiL3YyL2FjY291bnRzL3Rva2Vucy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YyL2FkbWluLy4qIjpbIkRFTlkiXSwiL3YyL3RlbmFudHMvc2VjcmV0cy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YyL2FjY291bnRzLy4qIjpbIkRFTlkiXSwiL3YzL2NhdGFsb2cvLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzL2NvcnRleC9kZWZhdWx0IjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjIvdGVuYW50cy9jdXJyZW50LXVzZXItZGV0YWlscyI6WyJSRUFEIl0sIi92Mi90ZW5hbnRzLy4qIjpbIkRFTlkiXX0sImlhdCI6MTU0NDY0Mzc2MH0.6Dhykclhdp9dd8GDjFUOvSrxo7YxJmRShsgpqkClOP8"
     },
     "idata-advprod": {
       "url": "https://api.cortex-advprod.insights.ai",
@@ -120,7 +120,55 @@
       "username": "oeid",
       "account": "oeid",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZCIsImJlYXJlciI6InB1YmxpYyIsImtleSI6ImhmMkNKVE5yYkVMNkNDU2QwMDhTT1RvM1hUcUFBSTZRIiwiZXhwIjoxNTQxMDE1MDU0LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1Mzk4MDU0NTR9.iilUWRKlBwvz7Fhvq_aBnd4kEojP6t2XpkZlGQkv1AM"
+    },
+    "testtrigger-prod": {
+      "url": "https://api.cortex.insights.ai",
+      "username": "oeid",
+      "account": "testtrigger",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoidGVzdHRyaWdnZXIiLCJiZWFyZXIiOiJwdWJsaWMiLCJrZXkiOiJEWTQzQWlSZWE4OW9QV1BCVWtFVnY4U2FMV1owOVI5NSIsImV4cCI6MTU0MTA5MzM0OSwiYWNsIjp7Ii92Mi90ZW5hbnRzLy4qIjpbIkRFTlkiXSwiL3YyL2FjY291bnRzLy4qIjpbIkRFTlkiXSwiL3YyL2FkbWluLy4qIjpbIkRFTlkiXSwiL3YyL3RlbmFudHMvY3VycmVudC11c2VyLWRldGFpbHMiOlsiUkVBRCJdLCIvdjMvYWdlbnRzL2Vudmlyb25tZW50cy8uKiI6WyJERU5ZIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzL2NvcnRleC9kZWZhdWx0IjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YyL2FjY291bnRzL3Rva2Vucy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YyL3RlbmFudHMvc2VjcmV0cy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YzL2NhdGFsb2cvLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1Mzk4ODM3NDl9.bhy8ytfgcSwRCynOenPJy9WMVI3IL8ZI9qOGabw9Nzc"
+    },
+    "fpi-prod": {
+      "url": "https://api.cortex.insights.ai",
+      "username": "oeid",
+      "account": "fpi",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoiZnBpIiwiYmVhcmVyIjoicHVibGljIiwia2V5IjoiUUUwcVZyU2RBR3Y2WU01TjA5MThwbWtQTEFpc21tN1QiLCJleHAiOjE1NDUyMzUyNzAsImFjbCI6eyIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXX0sImlhdCI6MTU0NDAyNTY3MH0.D0iPMVJQOneJgqX9RNKQR4Vq4NWIZRkkuBhXjAInAAE"
+    },
+    "skill-lab-stage": {
+      "url": "https://api.cortex-stage.insights.ai",
+      "username": "oeid",
+      "account": "skill-lab",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoic2tpbGwtbGFiIiwiYmVhcmVyIjoicHVibGljIiwia2V5Ijoidk1nRUg3dnJRQjF2QUprQ1NRS051Z2tXc3lOdjN5V1QiLCJleHAiOjE1NDQ2Mzg1MTcsImFjbCI6eyIvdjIvYWNjb3VudHMvLioiOlsiREVOWSJdLCIvdjIvYWRtaW4vLioiOlsiREVOWSJdLCIvdjMvYWdlbnRzL2Vudmlyb25tZW50cy8uKiI6WyJERU5ZIl0sIi92Mi90ZW5hbnRzL2N1cnJlbnQtdXNlci1kZXRhaWxzIjpbIlJFQUQiXSwiL3YyL3RlbmFudHMvLioiOlsiREVOWSJdLCIvdjMvY2F0YWxvZy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXSwiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzL2NvcnRleC9kZWZhdWx0IjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjIvdGVuYW50cy9zZWNyZXRzLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjIvYWNjb3VudHMvdG9rZW5zLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSJdfSwiaWF0IjoxNTQzNDI4OTE3fQ.G_20x69uhTK3BIkR_0KegkxHqLMpWxrgWRakP9nySm4"
+    },
+    "sam-prod": {
+      "url": "https://api.cortex.insights.ai",
+      "username": "oeid",
+      "account": "sam-prod",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoic2FtLXByb2QiLCJiZWFyZXIiOiJwdWJsaWMiLCJrZXkiOiJjM1dTVkx6eHhVSm8zRlZBcjExR0JjaTRNT052Z2w3cSIsImV4cCI6MTU0NDcyODkyMywiYWNsIjp7Ii4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSIsIkRFTEVURSJdLCIvdjIvYWRtaW4vLioiOlsiREVOWSJdLCIvdjIvYWNjb3VudHMvLioiOlsiREVOWSJdLCIvdjIvdGVuYW50cy8uKiI6WyJERU5ZIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzLy4qIjpbIkRFTlkiXSwiL3YyL3RlbmFudHMvY3VycmVudC11c2VyLWRldGFpbHMiOlsiUkVBRCJdLCIvdjIvdGVuYW50cy9zZWNyZXRzLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjMvYWdlbnRzL2Vudmlyb25tZW50cy9jb3J0ZXgvZGVmYXVsdCI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YzL2NhdGFsb2cvLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl0sIi92Mi9hY2NvdW50cy90b2tlbnMvLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIl19LCJpYXQiOjE1NDM1MTkzMjN9.1BMwDC7MQwLq0OLDh8uYRvCbxhLnwg-HlL5520hsEA4"
+    },
+    "fpi-demo-stage": {
+      "url": "https://api.cortex-stage.insights.ai",
+      "username": "oeid",
+      "account": "fpi-demo",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoiZnBpLWRlbW8iLCJiZWFyZXIiOiJwdWJsaWMiLCJrZXkiOiJnNjF0Sm02dEpwWDZLSk9hZ3E3S3l1dGRrYkhJOEdPOSIsImV4cCI6MTU0NTE1OTAwOSwiYWNsIjp7Ii4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSIsIkRFTEVURSJdfSwiaWF0IjoxNTQzOTQ5NDA5fQ.ZaB4NbjAvc7IFoaJD5Wic058I5Y0W_uH7_wzNHrcBJo"
+    },
+    "fni-prod": {
+      "url": "https://api.cortex.insights.ai",
+      "username": "oeid",
+      "account": "lkrishna-prod",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoibGtyaXNobmEtcHJvZCIsImJlYXJlciI6InB1YmxpYyIsImtleSI6IkdmWGp0MzhOenFUZFBqRmYxVVFpQ25uRExUSzc3VWVvIiwiZXhwIjoxNTQ1NzkyNjAyLCJhY2wiOnsiL3YyL3RlbmFudHMvY3VycmVudC11c2VyLWRldGFpbHMiOlsiUkVBRCJdLCIvdjIvYWNjb3VudHMvLioiOlsiREVOWSJdLCIvdjIvdGVuYW50cy8uKiI6WyJERU5ZIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzLy4qIjpbIkRFTlkiXSwiL3YyL2FkbWluLy4qIjpbIkRFTlkiXSwiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzL2NvcnRleC9kZWZhdWx0IjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjIvdGVuYW50cy9zZWNyZXRzLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjMvY2F0YWxvZy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXSwiL3YyL2FjY291bnRzL3Rva2Vucy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXX0sImlhdCI6MTU0NDU4MzAwMn0.3pYVuck_wni3T2pp7fLvbVKLfOY5chkmDmOo8JR2n_c"
+    },
+    "accelerators-prod": {
+      "url": "https://api.cortex.insights.ai",
+      "username": "oeid",
+      "account": "cortex-accelerators",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoiY29ydGV4LWFjY2VsZXJhdG9ycyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6IjRJYmZtdExmMUZqbGdJQktxY1VUeWJoS09WMWx1bkNVIiwiZXhwIjoxNTQ1ODUzMjA5LCJhY2wiOnsiL3YzL2FnZW50cy9lbnZpcm9ubWVudHMvLioiOlsiREVOWSJdLCIvdjIvdGVuYW50cy8uKiI6WyJERU5ZIl0sIi92Mi90ZW5hbnRzL2N1cnJlbnQtdXNlci1kZXRhaWxzIjpbIlJFQUQiXSwiL3YyL2FjY291bnRzLy4qIjpbIkRFTlkiXSwiL3YyL2FkbWluLy4qIjpbIkRFTlkiXSwiL3YyL3RlbmFudHMvc2VjcmV0cy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YyL2FjY291bnRzL3Rva2Vucy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YzL2FnZW50cy9lbnZpcm9ubWVudHMvY29ydGV4L2RlZmF1bHQiOlsiUkVBRCIsIlJVTiIsIldSSVRFIl0sIi4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjMvY2F0YWxvZy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXX0sImlhdCI6MTU0NDY0MzYwOX0.RXAmk-NQ1lmUOc3qIuE-jdcc8dObUul7Ke6h8Dir9Jc"
+    },
+    "demo-prod": {
+      "url": "https://api.cortex.insights.ai",
+      "username": "oeid",
+      "account": "demo",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoiZGVtbyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6IkJRc2ZURnNOSmtzc0VNWEx3dmZLandtMkxZZlQwVFFHIiwiZXhwIjoxNTQ1ODUzMzYwLCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzLy4qIjpbIkRFTlkiXSwiL3YyL2FjY291bnRzL3Rva2Vucy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YyL2FkbWluLy4qIjpbIkRFTlkiXSwiL3YyL3RlbmFudHMvc2VjcmV0cy8uKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YyL2FjY291bnRzLy4qIjpbIkRFTlkiXSwiL3YzL2NhdGFsb2cvLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzL2NvcnRleC9kZWZhdWx0IjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjIvdGVuYW50cy9jdXJyZW50LXVzZXItZGV0YWlscyI6WyJSRUFEIl0sIi92Mi90ZW5hbnRzLy4qIjpbIkRFTlkiXX0sImlhdCI6MTU0NDY0Mzc2MH0.6Dhykclhdp9dd8GDjFUOvSrxo7YxJmRShsgpqkClOP8"
     }
   },
-  "currentProfile": "idata-prod"
+  "currentProfile": "fpi-prod"
 }

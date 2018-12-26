@@ -95,7 +95,7 @@ export LANG=en_US.UTF-8
   source "${DIR_FOR_BINARIES}/iterm2_shell_integration.zsh"
 
 # Activate Virtual Envs
-  nvm use v8.9.2
+  nvm use v8.12.0
   echo "Activating Conda Env: [cogenv3]" && source activate cogenv3
 
 # Load zsh completion scripts
@@ -109,3 +109,10 @@ export LANG=en_US.UTF-8
 
 ### Added by the Bluemix CLI
 # source /usr/local/Bluemix/bx/zsh_autocomplete
+
+export M2_HOME=/usr/local/Cellar/maven/3.6.0/libexec
+export M2=${M2_HOME}/bin
+export PATH=${PATH}:${M2_HOME}/bin
+
+. /Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh
+conda activate cogenv3

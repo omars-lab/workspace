@@ -50,10 +50,10 @@ function print_variables(){
 # Recusively source all .sh files within a directory
 # The first param is the directoy.
 # The second param is an expression of files to ignore.
-function recursive-source(){
+function recursive_source(){
     rdir=$1
     ignore=${2:-"^\s*$"}
-    $SILENT || echo "Recursively Sourcing $rdir, ignoring: $ignore"
+    $SILENT || echo "Recursively Sourcing $rdir, ignoring: $ignore" 1>&2
     for i in $(ls -c1 $rdir | grep -e ".*[.]sh" | grep -vE "$ignore"); do
         $SILENT || echo Sourcing $rdir/$i;
         source $rdir/$i ;
@@ -95,4 +95,4 @@ export -f create_zip_WITH_NAME_relavtive_to_DIR_recrusively
 export -f extract_functions
 export -f extract_variables
 export -f print_variables
-export -f recursive-source
+export -f recursive_source

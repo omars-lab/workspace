@@ -1,8 +1,9 @@
-source ~/Workspace/git/environment/loader.sh
+source $(dirname $(dirname $(readlink ${HOME}/.bash_profile)))/loader.sh
+# source ~/Workspace/git/environment/bash-loader.sh
 
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-# if [ -e /Users/oeid/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/oeid/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+nvm use v8.12.0
 
-# added by Miniconda3 installer
-# export PATH="/Users/oeid/miniconda3/bin:$PATH"
+. /Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh
+conda activate cogenv3

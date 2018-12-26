@@ -30,6 +30,37 @@ function cortex-get-endpoint()(
   cortex-pluck-from-profile "url" "${CURRENT_PROFILE}"
 )
 
+function cortex-get-account()(
+  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  cortex-pluck-from-profile "account" "${CURRENT_PROFILE}"
+)
+
+function cortex-get-private-registry()(
+  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  VAR_URL=$(cortex-get-endpoint ${CURRENT_PROFILE})
+  echo "${VAR_URL}" | sed -E -e 's-https?://--g' | sed -e 's/^api./private-registry./g'
+)
+
+function cortex-docker-login(){
+  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  JWT_TOKEN=$(cortex-get-jwt "${CURRENT_PROFILE}")
+  PRIVATE_REGISTRY=$(cortex-get-private-registry "${CURRENT_PROFILE}")
+  CONFIG_DIR=~/.cortex/docker-${CURRENT_PROFILE}
+  test -d ${CONFIG_DIR} || mkdir ${CONFIG_DIR}
+  docker --config ${CONFIG_DIR} login -u cli --password "${JWT_TOKEN}" ${PRIVATE_REGISTRY} 
+}
+
+function cortex-docker-push(){
+  CURRENT_PROFILE=${3:-$(cortex-get-current-profile)}
+  ACCOUNT=$(cortex-get-account "${CURRENT_PROFILE}")
+  PRIVATE_REGISTRY=$(cortex-get-private-registry "${CURRENT_PROFILE}")
+  CONFIG_DIR="~/.cortex/docker-${CURRENT_PROFILE}"
+  NEW_IMAGE_NAME=${PRIVATE_REGISTRY}/${ACCOUNT}/${2}
+  echo ${PRIVATE_REGISTRY} ${NEW_IMAGE_NAME} ${ACCOUNT} ${CURRENT_PROFILE}
+  docker --config ${CONFIG_DIR} tag ${1} ${NEW_IMAGE_NAME}
+  docker --config ${CONFIG_DIR} push ${NEW_IMAGE_NAME}
+}
+
 function cortex_cli_command()(
   URL_PATH=$1
   shift;
@@ -38,6 +69,16 @@ function cortex_cli_command()(
   CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
   set -o xtrace
   curl -s "${CORTEX_API_ENDPOINT}/${URL_PATH}" -H "authorization: Bearer ${JWT_TOKEN}" -H "content-type: application/json" ${@}
+)
+
+function cortex_cli_command_without_url()(
+  URL_PATH=$1
+  shift;
+  CURRENT_PROFILE=$(cortex-get-current-profile)
+  JWT_TOKEN=$(cortex-get-jwt ${CURRENT_PROFILE})
+  CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
+  set -o xtrace
+  curl -s "${URL_PATH}" -H "authorization: Bearer ${JWT_TOKEN}" -H "content-type: application/json" ${@}
 )
 
 function cortex-set-profile() {
@@ -120,6 +161,7 @@ function cortex-studio-prod(){
   CORTEX_API_URL="https://api.cortex.insights.ai" CORTEX_DOCS_URL="https://docs.cortex.insights.ai" \
     "/Applications/Cortex Studio - Prod.app/Contents/MacOS/Cortex Studio"
 }
+
 
 
 precmd_functions=(week_prompt)
