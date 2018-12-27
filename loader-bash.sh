@@ -7,7 +7,7 @@
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 eval "$(cat ${CURRENT_DIR}/variables.sh)"
-source ${DIRS_ENVIRONMENT}/common.sh >/dev/null
+source ${CURRENT_DIR}/common.sh >/dev/null
 
 # NVM Stuff
 export NVM_DIR=${DIR_FOR_BINARIES}/nvm

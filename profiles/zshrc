@@ -94,17 +94,12 @@ export LANG=en_US.UTF-8
 # Loading iterm zsh integration
   source "${DIR_FOR_BINARIES}/iterm2_shell_integration.zsh"
 
-# Activate Virtual Envs
-  nvm use v8.12.0
-  echo "Activating Conda Env: [cogenv3]" && source activate cogenv3
-
 # Load zsh completion scripts
   compdef _cortex-set-profile cortex-set-profile
   compdef _cortex-latest-task-status cortex-latest-task-status
   compdef _cortex cortex
 
 # set -o vi
-
 # source $(brew --prefix autoenv)/activate.sh
 
 ### Added by the Bluemix CLI
@@ -115,4 +110,7 @@ export M2=${M2_HOME}/bin
 export PATH=${PATH}:${M2_HOME}/bin
 
 . /Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh
-conda activate cogenv3
+echo "Activating Conda Env: [cogenv3]" && conda activate cogenv3
+
+# Activate Virtual Envs
+  nvm use v8.12.0

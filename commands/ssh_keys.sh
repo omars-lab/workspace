@@ -33,4 +33,4 @@ function load_personal_keys() {
     done
 }
 
-load_work_keys
+# load_work_keys
