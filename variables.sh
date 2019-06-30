@@ -34,6 +34,9 @@ source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
 # The area where hand writtern helper scripts are kept:
   export DIR_FOR_SCRIPTS="${DIRS_ENVIRONMENT}/scripts"
 
+# DEFAULTS ...
+  export DEFAULT_CONDA_ENV=${DEFAULT_CONDA_ENV:-cogenv3}
+  export DEFAULT_NVM_ENV=${DEFAULT_NVM_ENV:-v8.12.0}
 # The docker machine we want to use as defaul for docker-machine
   # export DEFAULT_DOCKER_MACHINE=default
 

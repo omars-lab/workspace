@@ -47,6 +47,7 @@ plugins=(git docker osx python antigen)
 
 # User configuration
 
+export DEFAULT_CONDA_ENV=py3
 
 # The following assumes that ~/.zshrc is a symbolic link to the environment dir ...
 source $(dirname $(dirname $(readlink ${HOME}/.zshrc)))/loader.sh
@@ -109,8 +110,8 @@ export M2_HOME=/usr/local/Cellar/maven/3.6.0/libexec
 export M2=${M2_HOME}/bin
 export PATH=${PATH}:${M2_HOME}/bin
 
-. /Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh
-echo "Activating Conda Env: [cogenv3]" && conda activate cogenv3
+. $(first "/Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh" "/miniconda3/etc/profile.d/conda.sh")
+echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_CONDA_ENV} --stack
 
 # Activate Virtual Envs
-  nvm use v8.12.0
+  nvm use ${DEFAULT_NVM_ENV}
