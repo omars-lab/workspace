@@ -132,3 +132,23 @@ function fj() {
 function dir(){
   cd $(j --complete ${1} | egrep -o '/.*' | fzf | pbcopy)
 }
+
+
+# cat aliases/apps.sh | grep 'function ' | sed -e 's/(.*//g' -e 's/function //g' | sed -e 's/^/export -f /g'
+
+export -f get_other_user
+export -f js
+export -f fuzzy_app
+export -f fcat
+export -f fcopy
+export -f peek
+export -f peek-near-term
+export -f pbcopy-from-shared-clipboard-archive
+export -f pbcopy-from-shared-clipboard
+export -f pbrm-from-shared-clipboard
+export -f macdown
+export -f typora
+export -f abricotine
+export -f iawriter
+export -f fj
+export -f dir
