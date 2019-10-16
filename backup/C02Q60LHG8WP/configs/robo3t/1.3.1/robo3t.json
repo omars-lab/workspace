@@ -1,6 +1,6 @@
 {
  "acceptedEulaVersions" : [
-  "1.2.1"
+  "1.3.1"
  ],
  "anonymousID" : "d00cbce2-ddd2-463e-9ee1-477dc5e5faa9",
  "autoExec" : false,
@@ -8,9 +8,9 @@
  "autocompletionMode" : 1,
  "batchSize" : 50,
  "cacheData" : {
-  "wtImage1LastModifiedDate" : "2019-04-03T13:03:23Z",
+  "wtImage1LastModifiedDate" : "2019-05-03T10:16:17Z",
   "wtRssLastModifiedDate" : "NotImplemented",
-  "wtText1LastModifiedDate" : "2019-04-03T13:28:55Z"
+  "wtText1LastModifiedDate" : "2019-05-03T12:06:54Z"
  },
  "checkForUpdates" : true,
  "connections" : [
@@ -22,7 +22,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "",
-     "userPassword" : ""
+     "userPasswordEncrypted" : ""
     }
    ],
    "defaultDatabase" : "",
@@ -34,12 +34,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -48,7 +48,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -63,7 +63,7 @@
      "enabled" : true,
      "mechanism" : "MONGODB-CR",
      "userName" : "csdev",
-     "userPassword" : "br1dgeW3ave1"
+     "userPasswordEncrypted" : "AwL1RzDJAyWDzT4qcYtFN8Q="
     }
    ],
    "defaultDatabase" : "",
@@ -75,12 +75,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -89,7 +89,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -104,7 +104,7 @@
      "enabled" : true,
      "mechanism" : "MONGODB-CR",
      "userName" : "csdev",
-     "userPassword" : "br1dgeW3ave1"
+     "userPasswordEncrypted" : "AwLDcQb/NRO1+wgcR71zAfI="
     }
    ],
    "defaultDatabase" : "barclays-jarvis-staging",
@@ -116,12 +116,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -130,7 +130,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -145,7 +145,7 @@
      "enabled" : true,
      "mechanism" : "MONGODB-CR",
      "userName" : "quantum",
-     "userPassword" : "quantum2016"
+     "userPasswordEncrypted" : "AwLxwDXfEmTIlXZYAqkgAQ=="
     }
    ],
    "defaultDatabase" : "datasets-dev",
@@ -157,12 +157,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -171,7 +171,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -186,7 +186,7 @@
      "enabled" : true,
      "mechanism" : "MONGODB-CR",
      "userName" : "c12e",
-     "userPassword" : "C0gScal3"
+     "userPasswordEncrypted" : "AwJrTaZ+9oYXXaqF3g=="
     }
    ],
    "defaultDatabase" : "",
@@ -198,12 +198,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -212,7 +212,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -227,7 +227,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPassword" : "quantum2016"
+     "userPasswordEncrypted" : "AwKXplO5dAKu8xA+ZM9GZw=="
     }
    ],
    "defaultDatabase" : "",
@@ -239,12 +239,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -253,7 +253,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -268,7 +268,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "57d6e3b8dfea9b000feec636",
-     "userPassword" : "KrKa3lHcdh"
+     "userPasswordEncrypted" : "AwKNhEWVXwOgukBLQL9v"
     }
    ],
    "defaultDatabase" : "",
@@ -280,12 +280,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -294,7 +294,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -309,7 +309,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "57ec309f8e52810011e701b0",
-     "userPassword" : "X9pGJJWpkP"
+     "userPasswordEncrypted" : "AwKdkr1+/5gdfqK2rl62"
     }
    ],
    "defaultDatabase" : "",
@@ -321,12 +321,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -335,7 +335,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -350,7 +350,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "57ed3e328e52810011e701b2",
-     "userPassword" : "GKYlEbO2Gy"
+     "userPasswordEncrypted" : "AwI7lS3xAkzijnp2LPAx"
     }
    ],
    "defaultDatabase" : "",
@@ -362,12 +362,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -376,7 +376,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -391,7 +391,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPassword" : "PROVIDEPASSWORD"
+     "userPasswordEncrypted" : "AwKLj/Q/1Y0ZeautlU+k4HUT19A="
     }
    ],
    "defaultDatabase" : "",
@@ -403,12 +403,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -417,7 +417,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -432,7 +432,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPassword" : "PROVIDEPASSWORD"
+     "userPasswordEncrypted" : "AwJ/ewDLIXntjV9ZYbtQFIHnIyQ="
     }
    ],
    "defaultDatabase" : "",
@@ -444,12 +444,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -458,7 +458,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -473,7 +473,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPassword" : "PROVIDEPASSWORD"
+     "userPasswordEncrypted" : "AwIKDnW+VAyY+CosFM4lYfSSVlE="
     }
    ],
    "defaultDatabase" : "",
@@ -485,12 +485,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -499,7 +499,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -514,7 +514,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "5810e52b3e97a3001174c8bd",
-     "userPassword" : "007nQlCYFW"
+     "userPasswordEncrypted" : "AwIQnyWOBiaK8ggIOeQL"
     }
    ],
    "defaultDatabase" : "",
@@ -526,12 +526,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -540,7 +540,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -555,7 +555,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPassword" : "quantum2016"
+     "userPasswordEncrypted" : "AwIDMsct4JY6Z4Sq8FvS8w=="
     }
    ],
    "defaultDatabase" : "foundation_admin_test1",
@@ -567,12 +567,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -581,7 +581,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -596,7 +596,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "",
-     "userPassword" : ""
+     "userPasswordEncrypted" : ""
     }
    ],
    "defaultDatabase" : "",
@@ -608,12 +608,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -622,7 +622,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -637,7 +637,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "",
-     "userPassword" : ""
+     "userPasswordEncrypted" : ""
     }
    ],
    "defaultDatabase" : "",
@@ -649,12 +649,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -663,7 +663,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -678,7 +678,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "",
-     "userPassword" : ""
+     "userPasswordEncrypted" : ""
     }
    ],
    "defaultDatabase" : "",
@@ -690,12 +690,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -704,7 +704,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -719,7 +719,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "",
-     "userPassword" : ""
+     "userPasswordEncrypted" : ""
     }
    ],
    "defaultDatabase" : "",
@@ -731,12 +731,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -745,7 +745,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -760,7 +760,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "omar",
-     "userPassword" : "0X4mxVFcLMcb"
+     "userPasswordEncrypted" : "AwJo+Q6lRWbJmFhdVoF0AKA="
     }
    ],
    "defaultDatabase" : "",
@@ -772,12 +772,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -786,7 +786,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -801,7 +801,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "ifactsAdmin",
-     "userPassword" : "Vxs4C8pAw46j"
+     "userPasswordEncrypted" : "AwIu6JNenvoMZsj70j6ykzs="
     }
    ],
    "defaultDatabase" : "",
@@ -813,12 +813,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -827,7 +827,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -842,7 +842,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "",
-     "userPassword" : ""
+     "userPasswordEncrypted" : ""
     }
    ],
    "defaultDatabase" : "",
@@ -854,12 +854,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -868,7 +868,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -883,7 +883,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "user_rw",
-     "userPassword" : "vSs24@mg"
+     "userPasswordEncrypted" : "AwKo1n2Qex/v8iQKBQ=="
     }
    ],
    "defaultDatabase" : "",
@@ -895,12 +895,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -909,7 +909,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -924,7 +924,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "crawldb",
-     "userPassword" : "w3stBr4k3r!"
+     "userPasswordEncrypted" : "AwImP6BMx6MVfprt7kaMug=="
     }
    ],
    "defaultDatabase" : "",
@@ -936,12 +936,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -950,7 +950,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -965,7 +965,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "user_rw",
-     "userPassword" : "6^5w5RzjD6uG"
+     "userPasswordEncrypted" : "AwILsy+CZEbz7ysSEM9BI6Y="
     }
    ],
    "defaultDatabase" : "",
@@ -977,12 +977,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -991,7 +991,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -1006,7 +1006,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "user_rw",
-     "userPassword" : "4UzKKnN1yDYd6iZ2sBMLepJJ3"
+     "userPasswordEncrypted" : "AwKfqJU617ozUamk/R/jrQsU6/KoQLrgbiLEze9H"
     }
    ],
    "defaultDatabase" : "",
@@ -1018,12 +1018,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -1032,7 +1032,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -1047,7 +1047,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "user_rw",
-     "userPassword" : "IoZdwB3qX8i8gTlC"
+     "userPasswordEncrypted" : "AwIVAATWAUzqtGAQCcpKNM6AQm1G"
     }
    ],
    "defaultDatabase" : "",
@@ -1059,12 +1059,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -1073,7 +1073,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -1088,7 +1088,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "oeid",
-     "userPassword" : "31eC9s4ZCvt8shXe"
+     "userPasswordEncrypted" : "AwLfqIAoodNSQqfQ4jr0l203ydLf"
     }
    ],
    "defaultDatabase" : "",
@@ -1108,12 +1108,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -1122,7 +1122,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -1137,7 +1137,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "oeid",
-     "userPassword" : "31eC9s4ZCvt8shXe"
+     "userPasswordEncrypted" : "AwKY78dv5pQVBeCXpX2z0CpwjpWY"
     }
    ],
    "defaultDatabase" : "",
@@ -1157,12 +1157,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : true,
@@ -1171,7 +1171,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : true,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -1186,7 +1186,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "mongo",
-     "userPassword" : "MgXcKLXZ1m^21J$MNd#BgQ&p"
+     "userPasswordEncrypted" : "AwKG07Zgv/BRM+nywGq/9gYewqWAVYm9PXO00ck="
     }
    ],
    "defaultDatabase" : "",
@@ -1198,12 +1198,12 @@
     "enabled" : false,
     "host" : "",
     "method" : "publickey",
-    "passphrase" : "",
+    "passphraseEncrypted" : "",
     "port" : 22,
     "privateKeyFile" : "",
     "publicKeyFile" : "",
     "userName" : "",
-    "userPassword" : ""
+    "userPasswordEncrypted" : ""
    },
    "ssl" : {
     "allowInvalidCertificates" : false,
@@ -1212,7 +1212,7 @@
     "caFile" : "",
     "crlFile" : "",
     "pemKeyFile" : "",
-    "pemPassPhrase" : "",
+    "pemPassPhraseEncrypted" : "",
     "sslEnabled" : false,
     "useAdvancedOptions" : false,
     "usePemFile" : false
@@ -1221,11 +1221,8 @@
   }
  ],
  "dbVersionsConnected" : [
-  "4.0.5",
-  "3.2.18",
   "3.6.5",
-  "4.0.6",
-  "3.4.10",
+  "4.0.8",
   "4.0.3"
  ],
  "disableConnectionShortcuts" : false,

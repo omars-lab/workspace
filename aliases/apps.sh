@@ -133,6 +133,9 @@ function dir(){
   cd $(j --complete ${1} | egrep -o '/.*' | fzf | pbcopy)
 }
 
+function pycharm(){
+  open -a "PyCharm CE" $@
+}
 
 # cat aliases/apps.sh | grep 'function ' | sed -e 's/(.*//g' -e 's/function //g' | sed -e 's/^/export -f /g'
 
@@ -152,3 +155,4 @@ export -f abricotine
 export -f iawriter
 export -f fj
 export -f dir
+export -f pycharm

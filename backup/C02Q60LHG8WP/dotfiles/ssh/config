@@ -21,7 +21,7 @@ host bitbucket.org
   IdentityFile ~/.ssh/bitbucket
 
 host bitbucket.org-personal
-  HostName bitbucket.org/broomar*
+  HostName bitbucket.org
   User broomar
   IdentityFile ~/.ssh/bitbucket-personal
 
@@ -71,3 +71,20 @@ host bwii-runbook-server
   HostName bw-triage.insights.ai
   User ubuntu
   IdentityFile ~/.ssh/jumpcloud
+
+host nbc-ftp
+  Hostname nbc-sftp.cognitivescale.com
+  User sftp-user
+  IdentityFile ~/.ssh/nbc.pem
+
+host qa.dci
+  HostName 3.92.145.106
+  User ubuntu
+  IdentityFile ~/.ssh/qa-dci.pem
+  LocalForward 5601 127.0.0.1:5601
+
+host daves.cluster
+  HostName 3.82.144.233
+  User ubuntu
+  IdentityFile ~/.ssh/aws
+

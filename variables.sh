@@ -78,10 +78,10 @@ source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
   export SILENT=False
 
 # Editor Stuff
-  VISUAL=atom;
+  VISUAL=vim;
   export VISUAL
 
-  EDITOR=atom;
+  EDITOR=vim;
   export EDITOR
 
 # The path of python site packages

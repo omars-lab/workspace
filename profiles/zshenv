@@ -1,97 +1,92 @@
+#!/bin/zsh
 
 function cortex-get-current-profile()(
   jq -r ".currentProfile" ~/.cortex/config
 )
 
-function cortex-pluck-from-profile(){
-  CURRENT_PROFILE=${2:-$(cortex-get-current-profile)}
-  cat ~/.cortex/config | jq ".profiles" | jq ".[\"${CURRENT_PROFILE}\"]" | jq -r ".${1}"
-}
-
-function cortex-reconfigure()(
-  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
-  URL=$(cortex-pluck-from-profile "url" "${CURRENT_PROFILE}")
-  USERNAME=$(cortex-pluck-from-profile "username" "${CURRENT_PROFILE}")
-  ACCONT=$(cortex-pluck-from-profile "account" "${CURRENT_PROFILE}")
-  cortex configure \
-    --profile "${CURRENT_PROFILE}" \
-    --url ${URL} \
-    --username ${USERNAME} \
-    --account ${ACCONT}
+function cortex-pluck-from-profile()(
+  local CURRENT_PROFILE=${2:-$(cortex-get-current-profile)}
+  echo "Picking ${1} from profile: ${CURRENT_PROFILE}" >&2
+  jq -r --arg profile "${CURRENT_PROFILE}" --arg path "${1}" '.profiles[($profile)][($path)]' ~/.cortex/config 
 )
 
 function cortex-get-jwt()(
-  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  local CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
   cortex-pluck-from-profile "token" "${CURRENT_PROFILE}"
 )
 
 function cortex-get-endpoint()(
-  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  local CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
   cortex-pluck-from-profile "url" "${CURRENT_PROFILE}"
 )
 
 function cortex-get-account()(
-  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  local CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
   cortex-pluck-from-profile "account" "${CURRENT_PROFILE}"
 )
 
+function cortex-get-username()(
+  local CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  cortex-pluck-from-profile "username" "${CURRENT_PROFILE}"
+)
+
 function cortex-get-private-registry()(
-  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
-  VAR_URL=$(cortex-get-endpoint ${CURRENT_PROFILE})
+  local CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  local VAR_URL=$(cortex-get-endpoint ${CURRENT_PROFILE})
   echo "${VAR_URL}" | sed -E -e 's-https?://--g' | sed -e 's/^api./private-registry./g'
 )
 
-function cortex-docker-login(){
-  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
-  JWT_TOKEN=$(cortex-get-jwt "${CURRENT_PROFILE}")
-  PRIVATE_REGISTRY=$(cortex-get-private-registry "${CURRENT_PROFILE}")
-  CONFIG_DIR=~/.cortex/docker-${CURRENT_PROFILE}
+function cortex-docker-login()(
+  local CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  local JWT_TOKEN=$(cortex-get-jwt "${CURRENT_PROFILE}")
+  local PRIVATE_REGISTRY=$(cortex-get-private-registry "${CURRENT_PROFILE}")
+  local CONFIG_DIR=~/.cortex/docker-${CURRENT_PROFILE}
   test -d ${CONFIG_DIR} || mkdir ${CONFIG_DIR}
-  docker --config ${CONFIG_DIR} login -u cli --password "${JWT_TOKEN}" ${PRIVATE_REGISTRY} 
-}
+  docker --config ${CONFIG_DIR} login -u cli --password "${JWT_TOKEN}" ${PRIVATE_REGISTRY}
+)
 
-function cortex-docker-push(){
-  CURRENT_PROFILE=${3:-$(cortex-get-current-profile)}
-  ACCOUNT=$(cortex-get-account "${CURRENT_PROFILE}")
-  PRIVATE_REGISTRY=$(cortex-get-private-registry "${CURRENT_PROFILE}")
-  CONFIG_DIR="~/.cortex/docker-${CURRENT_PROFILE}"
-  NEW_IMAGE_NAME=${PRIVATE_REGISTRY}/${ACCOUNT}/${2}
-  echo ${PRIVATE_REGISTRY} ${NEW_IMAGE_NAME} ${ACCOUNT} ${CURRENT_PROFILE}
+function cortex-docker-push()(
+  local CURRENT_PROFILE=${3:-$(cortex-get-current-profile)}
+  local CORTEX_ACCOUNT=$(cortex-get-account "${CURRENT_PROFILE}")
+  local PRIVATE_REGISTRY=$(cortex-get-private-registry "${CURRENT_PROFILE}")
+  local CONFIG_DIR="~/.cortex/docker-${CURRENT_PROFILE}"
+  local NEW_IMAGE_NAME=${PRIVATE_REGISTRY}/${CORTEX_ACCOUNT}/${2}
+  echo ${PRIVATE_REGISTRY} ${NEW_IMAGE_NAME} ${CORTEX_ACCOUNT} ${CURRENT_PROFILE}
   docker --config ${CONFIG_DIR} tag ${1} ${NEW_IMAGE_NAME}
   docker --config ${CONFIG_DIR} push ${NEW_IMAGE_NAME}
-}
+)
 
 function cortex_cli_command()(
-  URL_PATH=$1
+  local URL_PATH=$1
   shift;
-  CURRENT_PROFILE=$(cortex-get-current-profile)
-  JWT_TOKEN=$(cortex-get-jwt ${CURRENT_PROFILE})
-  CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
+  local CURRENT_PROFILE=$(cortex-get-current-profile)
+  local JWT_TOKEN=$(cortex-get-jwt ${CURRENT_PROFILE})
+  local CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
   set -o xtrace
   curl -s "${CORTEX_API_ENDPOINT}/${URL_PATH}" -H "authorization: Bearer ${JWT_TOKEN}" -H "content-type: application/json" ${@}
 )
 
 function cortex_cli_command_without_url()(
-  URL_PATH=$1
+  local URL_PATH=$1
   shift;
-  CURRENT_PROFILE=$(cortex-get-current-profile)
-  JWT_TOKEN=$(cortex-get-jwt ${CURRENT_PROFILE})
-  CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
+  local CURRENT_PROFILE=$(cortex-get-current-profile)
+  local JWT_TOKEN=$(cortex-get-jwt ${CURRENT_PROFILE})
+  local CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
   set -o xtrace
   curl -s "${URL_PATH}" -H "authorization: Bearer ${JWT_TOKEN}" -H "content-type: application/json" ${@}
 )
 
 function cortex-set-profile() {
   cortex configure set-profile ${1}
-  CURRENT_PROFILE=$(cat ~/.cortex/config | jq -r '.currentProfile')
-  CURRENT_PROFILE_CONTENT=$(cat ~/.cortex/config | jq -c ".profiles | .[\"${CURRENT_PROFILE}\"]")
+  local CURRENT_PROFILE=$(cat ~/.cortex/config | jq -r '.currentProfile')
+  local CURRENT_PROFILE_CONTENT=$(cat ~/.cortex/config | jq -c ".profiles | .[\"${CURRENT_PROFILE}\"]")
   cp ~/.cortex/config ~/.cortex/config_bck
   cat ~/.cortex/config_bck | jq ".profiles.default |= ${CURRENT_PROFILE_CONTENT}" > ~/.cortex/config
 }
 
 function cortex-latest-task-status(){
-   JOB_NAME=$1
-   LATEST_TASK_ID=$(cortex tasks list ${JOB_NAME} --json | jq '.tasks' | jq 'sort_by(-.createdAt)' | jq -r '.[0].taskId')
+   local JOB_NAME=$1
+   local LATEST_TASK_ID=$(cortex tasks list ${JOB_NAME} --json | jq '.tasks' | jq 'sort_by(-.createdAt)' | jq -r '.[0].taskId')
    # LATEST_TASK_ID=$(cortex tasks list ${JOB_NAME} --json | jq '.tasks' | jq 'map(select(.status != "FAILED")) | sort_by(-.createdAt)' | jq -r '.[0].taskId')
    echo "LOGS for ${JOB_NAME} ${LATEST_TASK_ID}"
    cortex jobs status ${JOB_NAME}
@@ -100,9 +95,9 @@ function cortex-latest-task-status(){
 }
 
 function cortex-simulate-payload(){
-  CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
-  JWT_TOKEN=$(cortex-get-jwt ${CURRENT_PROFILE})
-  CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
+  local CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+  local JWT_TOKEN=$(cortex-get-jwt ${CURRENT_PROFILE})
+  local CORTEX_API_ENDPOINT=$(cortex-get-endpoint ${CURRENT_PROFILE})
   echo '{}' \
     | jq -c \
       --arg endpoint "${CORTEX_API_ENDPOINT}" \
@@ -111,24 +106,12 @@ function cortex-simulate-payload(){
     | jq -c '(.instanceId = "1")| (.sessionId = "1")| (.activationId = "1")| (.channelId = "1")| (.typeName = "1")| (.timestamp = "1")| (.datasetBindings = [])| (.entityBindings = [])'
 }
 
-function _cortex-set-profile() {
-  compadd $(cat ~/.cortex/config | jq -r ".profiles | keys | .[]" | egrep -v '^default$' | xargs echo)
-}
-
-function _cortex(){
-  compadd $(cortex --help | grep '\[cmd\]' | sed 's/\[cmd\].*//g' | egrep -o "[a-zA-Z]+" | xargs echo)
-}
-
-function _cortex-latest-task-status(){
-  compadd $(cortex jobs list --json | jq -r ".[] | .name" | xargs echo)
-}
-
 function gocd_encrypt() {
- echo "${1}" | jq -R '{value: .}' | curl -s 'https://ci.c1.io/go/api/admin/encrypt' -u 'admin:C0gN!T!v3Sc@l3G0Cd' -H 'Accept: application/vnd.go.cd.v1+json' -H 'Content-Type: application/json' -X POST -d @- | jq -r .encrypted_value
+ echo "${1}" | jq -R '{value: .}' | curl -s 'https://c12e.c1.io/go/api/admin/encrypt' -u 'admin:C0gN!T!v3Sc@l3G0Cd' -H 'Accept: application/vnd.go.cd.v1+json' -H 'Content-Type: application/json' -X POST -d @- | jq -r .encrypted_value
 }
 
 function gocd_decrypt() {
- echo "${1}" | jq -R '{value: .}' | curl -s 'https://ci.c1.io/go/api/admin/decrypt' -u 'admin:C0gN!T!v3Sc@l3G0Cd' -H 'Accept: application/vnd.go.cd.v1+json' -H 'Content-Type: application/json' -X POST -d @- | jq -r .decrypted_value
+ echo "${1}" | jq -R '{value: .}' | curl -s 'https://c12e.c1.io/go/api/admin/decrypt' -u 'admin:C0gN!T!v3Sc@l3G0Cd' -H 'Accept: application/vnd.go.cd.v1+json' -H 'Content-Type: application/json' -X POST -d @- | jq -r .decrypted_value
 }
 
 function utc_now(){
@@ -147,6 +130,11 @@ function noteplan_date_now(){
   date +"@done(%Y-%m-%d %I:%M %p)"
 }
 
+function cortex-studio-next(){
+  CORTEX_API_URL="https://api.cortex-next.insights.ai" CORTEX_DOCS_URL="https://docs.cortex-next.insights.ai" \
+    "/Applications/Cortex Studio - Dev.app/Contents/MacOS/Cortex Studio"
+}
+
 function cortex-studio-dev(){
   CORTEX_API_URL="https://api.cortex-dev.insights.ai" CORTEX_DOCS_URL="https://docs.cortex-dev.insights.ai" \
     "/Applications/Cortex Studio - Dev.app/Contents/MacOS/Cortex Studio"
@@ -160,6 +148,107 @@ function cortex-studio-stage(){
 function cortex-studio-prod(){
   CORTEX_API_URL="https://api.cortex.insights.ai" CORTEX_DOCS_URL="https://docs.cortex.insights.ai" \
     "/Applications/Cortex Studio - Prod.app/Contents/MacOS/Cortex Studio"
+}
+
+function cortex-studio-prod-debugged(){
+  CORTEX_API_URL="https://api.cortex.insights.ai" CORTEX_DOCS_URL="https://docs.cortex.insights.ai" \
+    "/Applications/Cortex Studio - Prod.app/Contents/MacOS/Cortex Studio" --inspect=5858 studio
+}
+
+
+# function cortex-reconfigure()(
+#   CURRENT_PROFILE=${1:-$(cortex-get-current-profile)}
+#   URL=$(cortex-pluck-from-profile "url" "${CURRENT_PROFILE}")
+#   CORTEX_USER=$(cortex-pluck-fromc-profile "username" "${CURRENT_PROFILE}")
+#   ACCONT=$(cortex-pluck-from-profile "account" "${CURRENT_PROFILE}")
+#   cortex configure \
+#     --profile "${CURRENT_PROFILE}" \
+#     --url ${URL} \
+#     --username ${CORTEX_USER} \
+#     --account ${ACCONT}
+# )
+
+function cortex-reconfigure(){
+  local URL=$(cortex-pluck-from-profile "url" "${1}")
+  local CORTEX_ACCOUNT=$(cortex-pluck-from-profile "account" "${1}")
+  local CORTEX_USER=$(cortex-pluck-from-profile "username" "${1}")
+  local PASSWORD=$(jq -r ".[\"${1}\"]" ~/.cortex/passwords.json)
+  echo "cortex configure --profile '${1}' --url '${URL}' --account '${CORTEX_ACCOUNT}' --username '${CORTEX_USER}' --password '${PASSWORD}'"
+  cortex configure --profile "${1}" --url "${URL}" --account "${CORTEX_ACCOUNT}" --username "${CORTEX_USER}" --password "${PASSWORD}"
+}
+
+function pip_latest_versions(){
+  pip install ${1}== 2>&1 | egrep -o '[0-9]+.[0-9]+.[0-9]+([ab]|dev|rc)([0-9]+)?'
+}
+
+# function switch_to_conda_env(){
+#   echo $CONDA_DEFAULT_ENV | grep "\b${1}\b" || conda deactivate
+#   echo $CONDA_DEFAULT_ENV | grep "\b${1}\b" || conda activate "${1}"
+# }
+
+function open_in_tab() {
+  open -na "Google Chrome" --args --new-tab "${1}"
+}
+
+function open_git_repo_in_tab() {
+  (git config --get remote.origin.url | grep github) &&
+    open_github_repo_in_tab || open_bitbucket_repo_in_tab
+}
+
+function open_github_repo_in_tab() {
+  local REPO_URL=$(git config --get remote.origin.url \
+      | sed 's#git@github.com:#https://github.com/#g' \
+      | sed "s#.git\$#/tree/$(git rev-parse --abbrev-ref HEAD)#g" \
+  )
+  echo "Opening Github Repo: ${REPO_URL}"
+  open_in_tab "${REPO_URL}"
+}
+
+function open_bitbucket_repo_in_tab() {
+  local REPO_URL=$(git config --get remote.origin.url \
+      | sed 's#git@bitbucket.org:#https://bitbucket.org/#g' \
+      | sed "s#.git\$#/src/$(git rev-parse --abbrev-ref HEAD)#g" \
+  )
+  echo "Opening Bitbucket Repo: ${REPO_URL}"
+  open_in_tab "${REPO_URL}"
+}
+
+function cortex-next-secret() {
+  local ACCOUNT="${1}"
+  local ACCOUNT_FROM_CONFIG=$(cortex-get-account "${ACCOUNT}")
+  local URL_FROM_CONFIG=$(cortex-get-endpoint "${ACCOUNT}")
+  local USERNAME_FROM_CONFIG=$(cortex-get-username "${ACCOUNT}")
+  local PASSWORD=$(jq -r --arg acc "${ACCOUNT}" '.[($acc)] | @base64' ~/.cortex/passwords.json)
+  echo '{}' | jq \
+    --arg url "${URL_FROM_CONFIG}" \
+    --arg a "${ACCOUNT_FROM_CONFIG}" \
+    --arg user "${USERNAME_FROM_CONFIG}" \
+    --arg p "${PASSWORD}" \
+    '{"url": $url, "account": $a, "username": $user, "password": $p}'
+}
+
+function touch_makefile() {
+  echo 'SHELL := /bin/bash'
+  echo 'MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))'
+}
+
+function reset_cortex_profiles() {
+  cortex_cli_command v3/graph/_/db/reset -X PUT
+}
+
+function pip-versions(){
+  local PACKAGE=${1}
+  pip install "${PACKAGE}==" 2>&1 | grep "${PACKAGE}" \
+    | grep -E -o '([0-9]+.)?[0-9]+.[0-9]+([-a-zA-Z]+[0-9]+)?' | sort -r
+}
+
+function create_python_sdk_virtual_env(){
+  # _____________________________________________________ This skips alpha/beta versions. _________
+  LATEST_SDK_VER=$(pip-versions cortex-client | grep -E -o '^[0-9]+[.][0-9]+[.][0-9]+$' | head -n 1)
+  conda create -f -y -n cortex-sdk-${LATEST_SDK_VER} python=3.7 pip
+  # conda 4.5 does not have the stack flag on activate, 4.7 does though ...
+  conda activate --stack cortex-sdk-7.1.0
+  pip install cortex-client==${LATEST_SDK_VER}
 }
 
 function first(){
@@ -181,6 +270,5 @@ function first(){
   shift
   first $@
 }
-
 
 precmd_functions=(week_prompt)

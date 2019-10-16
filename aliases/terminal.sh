@@ -8,13 +8,16 @@ setTerminalText () {
     echo -ne "\033]$mode;$@\007"
 }
 title_terminal () { setTerminalText 2 $@; }
-title_both  () { setTerminalText 0 $@; }
-title  () { setTerminalText 1 $@; }
+title_both () { setTerminalText 0 $@; }
+title () { setTerminalText 1 $@; }
+title-from-dir () { title $(basename ${PWD}) ; }
 
 function week_prompt(){
-  # echo "{\"now\":\"$(date +%Y-%m-%dT%H:%M:%S%z)\",\"utcnow:\":\"$(date -u +%Y-%m-%dT%H:%M:%S%z)\",\"cortex\":\"$(jq -r '.currentProfile' ${HOME}/.cortex/config)\"}"
-  echo '{}' \
-    | jq --arg now "$(date +%Y-%m-%dT%H:%M:%S%z)" --arg utcnow "$(date -u +%Y-%m-%dT%H:%M:%S%z)" '(.now |= $now) | (.utcnow |= $utcnow)' \
+    jq -n \
+	--arg now "$(date +%Y-%m-%dT%H:%M:%S%z)" \
+	--arg utcnow "$(date -u +%Y-%m-%dT%H:%M:%S%z)" \
+	--arg aws "$(echo ${AWS_PROFILE})" \
+	'{} | (.now |= $now) | (.aws |= $aws)' \
     | ( \
         test -f ${HOME}/.cortex/config \
             &&  jq --arg cortex_profile "$(jq -r '.currentProfile' ${HOME}/.cortex/config)" '(.cortex |= $cortex_profile)' \

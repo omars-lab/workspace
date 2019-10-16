@@ -1,0 +1,2 @@
+#compdef conda_switch
+compadd $(conda env list --json | jq -r '.envs|.[]' | xargs basename | xargs echo)

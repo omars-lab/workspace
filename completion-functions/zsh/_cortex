@@ -1,0 +1,2 @@
+#compdef cortex
+compadd $(cortex --help | grep '\[cmd\]' | sed 's/\[cmd\].*//g' | egrep -o "[a-zA-Z]+" | xargs echo)

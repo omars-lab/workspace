@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+# Requires the following:
+#   pip install PILLOW
+#   pip install pygments
+
+from pygments import highlight, lexers, formatters
+
+import os
+import sys
+import json
+
+
+def json_to_image_bytes(json_object) -> bytes:
+    formatted_json = json.dumps(json_object, sort_keys=True, indent=4)
+    colorful_json = highlight(
+        formatted_json.encode('UTF-8'),
+        lexers.JsonLexer(), formatters.ImageFormatter(font_size=12, line_numbers=False)
+    )
+    return colorful_json
+
+
+if __name__ == "__main__":
+    os.write(sys.stdout.fileno(), json_to_image_bytes(json.load(sys.stdin)))
