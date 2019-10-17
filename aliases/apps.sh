@@ -125,6 +125,14 @@ function iawriter(){
   fuzzy_app "iA Writer" "$@"
 }
 
+function notes(){
+  (cd "${DIR_FOR_IA_WRITER}" ; fuzzy_app "iA Writer")
+}
+
+function notes-cloud(){
+  (cd "${DIR_FOR_IA_WRITER_ICLOUD}" ; fuzzy_app "iA Writer")
+}
+
 function fj() {
   cd $(j --complete ${1} | egrep -o '/.*' | fzf)
 }
