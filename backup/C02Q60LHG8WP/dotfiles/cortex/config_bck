@@ -197,7 +197,7 @@
       "url": "https://api.cortex-next.insights.ai",
       "username": "oeid",
       "account": "oeidtest",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QiLCJiZWFyZXIiOiJwdWJsaWMiLCJrZXkiOiJrc0F2dkpPTXVnSUJyUW1kMkM2RjJCbWRnSWplblRRZyIsImV4cCI6MTU3MjQ3MTYyNSwiYWNsIjp7Ii4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSIsIkRFTEVURSJdfSwiaWF0IjoxNTcxMjYyMDI1fQ.df_5H1Z8vOWEFOKnO2CB-NNX3BAIBit2ZHOoiUGoHIY"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QiLCJiZWFyZXIiOiJwdWJsaWMiLCJrZXkiOiJrc0F2dkpPTXVnSUJyUW1kMkM2RjJCbWRnSWplblRRZyIsImV4cCI6MTU3MjUzOTA5OCwiYWNsIjp7Ii4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSIsIkRFTEVURSJdfSwiaWF0IjoxNTcxMzI5NDk4fQ.r9-TvrBLUVUUh_lpSJev3ftScOWlrQn82L9_OGNDu4w"
     },
     "oeidtest2-next": {
       "url": "https://api.cortex-next.insights.ai",
