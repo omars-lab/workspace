@@ -35,7 +35,11 @@ source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
   export DIR_FOR_SCRIPTS="${DIRS_ENVIRONMENT}/scripts"
 
 # For Apps ...
-  export DIR_FOR_IA_WRITER=${HOME}'/Dropbox (Personal)/Apps/iA Writer/'
+  if [[ -d ${HOME}'/Dropbox (Personal)' ]] ; then
+  	export DIR_FOR_IA_WRITER=${HOME}'/Dropbox (Personal)/Apps/iA Writer/'
+  else 
+  	export DIR_FOR_IA_WRITER=${HOME}'/Dropbox/Apps/iA Writer/'
+  fi
   export DIR_FOR_IA_WRITER_ICLOUD=${HOME}/Library/Mobile\ Documents/27N4MQEA55~pro~writer/Documents/
 
 # DEFAULTS ...

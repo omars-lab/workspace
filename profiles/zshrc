@@ -48,10 +48,16 @@ plugins=(git docker osx python antigen zsh-completions)
 # User configuration
 
 export DEFAULT_CONDA_ENV=py3
+export ZSH_DISABLE_COMPFIX=true
 
 # The following assumes that ~/.zshrc is a symbolic link to the environment dir ...
 source $(dirname $(dirname $(readlink ${HOME}/.zshrc)))/loader.sh
 source ${ZSH}/oh-my-zsh.sh
+
+if [[ ! -d ${HOME}/.oh-my-zsh/plugins/antigen/ ]] ; then
+	git clone https://github.com/zsh-users/antigen.git ${HOME}/.oh-my-zsh/plugins/antigen/
+fi
+
 source ${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh
 
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -130,5 +136,7 @@ export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/gettext/lib"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/gettext/include"
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+if [[ -d $HOME/.asdf/ ]] ; then 
+	. $HOME/.asdf/asdf.sh
+	. $HOME/.asdf/completions/asdf.bash
+fi

@@ -8,20 +8,23 @@ function get_other_user(){
   echo ${USERS} | sed -e "s/$(whoami)//g" -e 's/ *//g'
 }
 
+function split_and_prefix(){
+  echo "${1}" \
+    | tr "|" "\n" \
+    | xargs printf " ${2} '%s' "
+}
+
 #Every users writes into their own dir ...
 export SHARED_CLIPBOARD_LOCATION=/Users/Shared/clipboard/$(get_other_user)/ingest
 export SHARED_CLIPBOARD_IGNORE_DIR=/Users/Shared/clipboard/$(whoami)/ingested
 mkdir -p ${SHARED_CLIPBOARD_IGNORE_DIR}
 
 # Fuzzy Config ...
-FZF_IGNORE_PATTERNS=$'(*.pyc)|(*.class)|(*.iml)|(*.DS_Store)'
+FZF_IGNORE_PATTERNS='*.pyc|*.class|*.iml|*.DS_Store'
+FZF_IGNORE_PATTERNS=$(split_and_prefix "${FZF_IGNORE_PATTERNS}" "--ignore")
 FZF_IGNORE_DIRS=".git|target|.idea|.atom|.bash_sessions|.cache|.config"
-FZF_IGNORE_DIRS=$( \
-  echo "${FZF_IGNORE_DIRS}" \
-    |  tr "|" "\n" \
-    | xargs printf " --ignore-dir '%s' "\
-)
-export FZF_DEFAULT_COMMAND="ag --hidden --ignore '${FZF_IGNORE_PATTERNS}' ${FZF_IGNORE_DIRS} -g '' "
+FZF_IGNORE_DIRS=$(split_and_prefix "${FZF_IGNORE_DIRS}" "--ignore-dir")
+export FZF_DEFAULT_COMMAND="ag --hidden ${FZF_IGNORE_PATTERNS} ${FZF_IGNORE_DIRS} -g '' "
 
 # Sublime Shortcut. Depends on the installation of sublime.
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
@@ -161,6 +164,8 @@ export -f macdown
 export -f typora
 export -f abricotine
 export -f iawriter
+export -f notes
+export -f notes-cloud
 export -f fj
 export -f dir
 export -f pycharm
