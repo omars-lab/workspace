@@ -94,3 +94,6 @@ source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
 
 # The path of python site packages
 #   export PYTHON_SITE_PACKAGES=/usr/local/lib/python2.7/site-packages
+
+# Path Exports ...
+export PATH=${PATH}:${DIR_FOR_SCRIPTS}/
