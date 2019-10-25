@@ -1,19 +1,6 @@
 # App Based Aliases ... these generally depend on other apps being present ...
 # -----------------------------------------------------------------------------
 
-function get_other_user(){
-  USERS=$(dscl . list /Users | grep -v "^_" | grep --color=never eid | tr '\n' ' ')
-  # This lists all "logged in" users ... this wont work if I first boot up the mac ...
-  # USERS=$(users | sed -e "s/$(whoami)//g" -e 's/ *//g')
-  echo ${USERS} | sed -e "s/$(whoami)//g" -e 's/ *//g'
-}
-
-function split_and_prefix(){
-  echo "${1}" \
-    | tr "|" "\n" \
-    | xargs printf " ${2} '%s' "
-}
-
 #Every users writes into their own dir ...
 export SHARED_CLIPBOARD_LOCATION=/Users/Shared/clipboard/$(get_other_user)/ingest
 export SHARED_CLIPBOARD_IGNORE_DIR=/Users/Shared/clipboard/$(whoami)/ingested
@@ -22,14 +9,24 @@ mkdir -p ${SHARED_CLIPBOARD_IGNORE_DIR}
 # Fuzzy Config ...
 FZF_IGNORE_PATTERNS='*.pyc|*.class|*.iml|*.DS_Store'
 FZF_IGNORE_PATTERNS=$(split_and_prefix "${FZF_IGNORE_PATTERNS}" "--ignore")
-FZF_IGNORE_DIRS=".git|target|.idea|.atom|.bash_sessions|.cache|.config"
+FZF_IGNORE_DIRS=".git|target|.idea|.atom|.bash_sessions|.cache|.config|Music|Pictures|google-drive-c12e"
 FZF_IGNORE_DIRS=$(split_and_prefix "${FZF_IGNORE_DIRS}" "--ignore-dir")
 export FZF_DEFAULT_COMMAND="ag --hidden ${FZF_IGNORE_PATTERNS} ${FZF_IGNORE_DIRS} -g '' "
+
+# ------------------------------------------------------------------------------
+
+function upper() {
+  tr '[:lower:]' '[:upper:]'
+}
+
+function lower() {
+  tr '[:upper:]' '[:lower:]'
+}
 
 # Sublime Shortcut. Depends on the installation of sublime.
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias e="subl"
-
+alias s='fzf'
 alias chrome='open -a "Google Chrome"'
 alias excel='open -a "Microsoft Excel"'
 alias intellij='/usr/local/bin/idea'
@@ -150,22 +147,27 @@ function pycharm(){
 
 # cat aliases/apps.sh | grep 'function ' | sed -e 's/(.*//g' -e 's/function //g' | sed -e 's/^/export -f /g'
 
-export -f get_other_user
-export -f js
-export -f fuzzy_app
-export -f fcat
-export -f fcopy
-export -f peek
-export -f peek-near-term
-export -f pbcopy-from-shared-clipboard-archive
-export -f pbcopy-from-shared-clipboard
-export -f pbrm-from-shared-clipboard
-export -f macdown
-export -f typora
-export -f abricotine
-export -f iawriter
-export -f notes
-export -f notes-cloud
-export -f fj
-export -f dir
-export -f pycharm
+if [[ "${DETECTED_SHELL}" = "BASH" ]]
+then
+    export -f upper
+    export -f lower
+    export -f get_other_user
+    export -f js
+    export -f fuzzy_app
+    export -f fcat
+    export -f fcopy
+    export -f peek
+    export -f peek-near-term
+    export -f pbcopy-from-shared-clipboard-archive
+    export -f pbcopy-from-shared-clipboard
+    export -f pbrm-from-shared-clipboard
+    export -f macdown
+    export -f typora
+    export -f abricotine
+    export -f iawriter
+    export -f notes
+    export -f notes-cloud
+    export -f fj
+    export -f dir
+    export -f pycharm
+fi

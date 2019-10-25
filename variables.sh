@@ -2,13 +2,13 @@
 # Variables
 # ----------------------------------------------------------------------
 
-if [ -n "$ZSH_VERSION" ]; then
-  CURRENT_DIR=${0:a:h}
-elif [ -n "$BASH_VERSION" ]; then
-  CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-else
-   exit 1
-fi
+# if [ -n "$ZSH_VERSION" ]; then
+#   CURRENT_DIR=${0:a:h}
+# elif [ -n "$BASH_VERSION" ]; then
+#   CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+# else
+#    exit 1
+# fi
 
 source ${CURRENT_DIR}/common.sh >/dev/null
 source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
@@ -37,7 +37,7 @@ source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
 # For Apps ...
   if [[ -d ${HOME}'/Dropbox (Personal)' ]] ; then
   	export DIR_FOR_IA_WRITER=${HOME}'/Dropbox (Personal)/Apps/iA Writer/'
-  else 
+  else
   	export DIR_FOR_IA_WRITER=${HOME}'/Dropbox/Apps/iA Writer/'
   fi
   export DIR_FOR_IA_WRITER_ICLOUD=${HOME}/Library/Mobile\ Documents/27N4MQEA55~pro~writer/Documents/

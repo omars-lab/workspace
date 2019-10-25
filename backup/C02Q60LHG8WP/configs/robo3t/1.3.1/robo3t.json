@@ -63,7 +63,7 @@
      "enabled" : true,
      "mechanism" : "MONGODB-CR",
      "userName" : "csdev",
-     "userPasswordEncrypted" : "AwL1RzDJAyWDzT4qcYtFN8Q="
+     "userPasswordEncrypted" : "AwIkluEY0vRSHO/7oFqU5hU="
     }
    ],
    "defaultDatabase" : "",
@@ -104,7 +104,7 @@
      "enabled" : true,
      "mechanism" : "MONGODB-CR",
      "userName" : "csdev",
-     "userPasswordEncrypted" : "AwLDcQb/NRO1+wgcR71zAfI="
+     "userPasswordEncrypted" : "AwKFN0C5c1XzvU5aAfs1R7Q="
     }
    ],
    "defaultDatabase" : "barclays-jarvis-staging",
@@ -145,7 +145,7 @@
      "enabled" : true,
      "mechanism" : "MONGODB-CR",
      "userName" : "quantum",
-     "userPasswordEncrypted" : "AwLxwDXfEmTIlXZYAqkgAQ=="
+     "userPasswordEncrypted" : "AwLv3ivBDHrWi2hGHLc+Hw=="
     }
    ],
    "defaultDatabase" : "datasets-dev",
@@ -186,7 +186,7 @@
      "enabled" : true,
      "mechanism" : "MONGODB-CR",
      "userName" : "c12e",
-     "userPasswordEncrypted" : "AwJrTaZ+9oYXXaqF3g=="
+     "userPasswordEncrypted" : "AwLoziX9dQWU3ikGXQ=="
     }
    ],
    "defaultDatabase" : "",
@@ -227,7 +227,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPasswordEncrypted" : "AwKXplO5dAKu8xA+ZM9GZw=="
+     "userPasswordEncrypted" : "AwIsHegCz7kVSKuF33T93A=="
     }
    ],
    "defaultDatabase" : "",
@@ -268,7 +268,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "57d6e3b8dfea9b000feec636",
-     "userPasswordEncrypted" : "AwKNhEWVXwOgukBLQL9v"
+     "userPasswordEncrypted" : "AwKzunurYT2ehH51foFR"
     }
    ],
    "defaultDatabase" : "",
@@ -309,7 +309,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "57ec309f8e52810011e701b0",
-     "userPasswordEncrypted" : "AwKdkr1+/5gdfqK2rl62"
+     "userPasswordEncrypted" : "AwLV2vU2t9BVNur+5hb+"
     }
    ],
    "defaultDatabase" : "",
@@ -350,7 +350,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "57ed3e328e52810011e701b2",
-     "userPasswordEncrypted" : "AwI7lS3xAkzijnp2LPAx"
+     "userPasswordEncrypted" : "AwKLJZ1BsvxSPsrGnECB"
     }
    ],
    "defaultDatabase" : "",
@@ -391,7 +391,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPasswordEncrypted" : "AwKLj/Q/1Y0ZeautlU+k4HUT19A="
+     "userPasswordEncrypted" : "AwIdGWKpQxuP7z07A9kyduOFQUY="
     }
    ],
    "defaultDatabase" : "",
@@ -432,7 +432,7 @@
      "enabled" : false,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPasswordEncrypted" : "AwJ/ewDLIXntjV9ZYbtQFIHnIyQ="
+     "userPasswordEncrypted" : "AwKEgPsw2oIWdqSimkCr73oc2N8="
     }
    ],
    "defaultDatabase" : "",
@@ -473,7 +473,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPasswordEncrypted" : "AwIKDnW+VAyY+CosFM4lYfSSVlE="
+     "userPasswordEncrypted" : "AwLt6ZJZs+t/H83L8ynChhN1sbY="
     }
    ],
    "defaultDatabase" : "",
@@ -514,7 +514,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "5810e52b3e97a3001174c8bd",
-     "userPasswordEncrypted" : "AwIQnyWOBiaK8ggIOeQL"
+     "userPasswordEncrypted" : "AwJ1+kDrY0Pvl21tXIFu"
     }
    ],
    "defaultDatabase" : "",
@@ -555,7 +555,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "quantum",
-     "userPasswordEncrypted" : "AwIDMsct4JY6Z4Sq8FvS8w=="
+     "userPasswordEncrypted" : "AwKhkGWPQjSYxSYIUvlwUQ=="
     }
    ],
    "defaultDatabase" : "foundation_admin_test1",
@@ -760,7 +760,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "omar",
-     "userPasswordEncrypted" : "AwJo+Q6lRWbJmFhdVoF0AKA="
+     "userPasswordEncrypted" : "AwKmN8Bri6gHVpaTmE+6zm4="
     }
    ],
    "defaultDatabase" : "",
@@ -801,7 +801,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "ifactsAdmin",
-     "userPasswordEncrypted" : "AwIu6JNenvoMZsj70j6ykzs="
+     "userPasswordEncrypted" : "AwLyNE+CQibQuhQnDuJuT+c="
     }
    ],
    "defaultDatabase" : "",
@@ -883,7 +883,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "user_rw",
-     "userPasswordEncrypted" : "AwKo1n2Qex/v8iQKBQ=="
+     "userPasswordEncrypted" : "AwKL9V6zWDzM0QcpJg=="
     }
    ],
    "defaultDatabase" : "",
@@ -924,7 +924,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "crawldb",
-     "userPasswordEncrypted" : "AwImP6BMx6MVfprt7kaMug=="
+     "userPasswordEncrypted" : "AwJDWsUposZwG/+IiyPp3w=="
     }
    ],
    "defaultDatabase" : "",
@@ -965,7 +965,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "user_rw",
-     "userPasswordEncrypted" : "AwILsy+CZEbz7ysSEM9BI6Y="
+     "userPasswordEncrypted" : "AwIKsi6DZUfy7ioTEc5AIqc="
     }
    ],
    "defaultDatabase" : "",
@@ -1006,7 +1006,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "user_rw",
-     "userPasswordEncrypted" : "AwKfqJU617ozUamk/R/jrQsU6/KoQLrgbiLEze9H"
+     "userPasswordEncrypted" : "AwIzBDmWexaf/QUIUbNPAae4R14E7BZMwo5oYUPr"
     }
    ],
    "defaultDatabase" : "",
@@ -1047,7 +1047,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "user_rw",
-     "userPasswordEncrypted" : "AwIVAATWAUzqtGAQCcpKNM6AQm1G"
+     "userPasswordEncrypted" : "AwLYzckbzIEnea3dxAeH+QNNj6CL"
     }
    ],
    "defaultDatabase" : "",
@@ -1088,7 +1088,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "oeid",
-     "userPasswordEncrypted" : "AwLfqIAoodNSQqfQ4jr0l203ydLf"
+     "userPasswordEncrypted" : "AwIqXXXdVCant1IlF88BYpjCPCcq"
     }
    ],
    "defaultDatabase" : "",
@@ -1137,7 +1137,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "oeid",
-     "userPasswordEncrypted" : "AwKY78dv5pQVBeCXpX2z0CpwjpWY"
+     "userPasswordEncrypted" : "AwLxhq4Gj/18bIn+zBTauUMZ5/zx"
     }
    ],
    "defaultDatabase" : "",
@@ -1186,7 +1186,7 @@
      "enabled" : true,
      "mechanism" : "SCRAM-SHA-1",
      "userName" : "mongo",
-     "userPasswordEncrypted" : "AwKG07Zgv/BRM+nywGq/9gYewqWAVYm9PXO00ck="
+     "userPasswordEncrypted" : "AwJ3IkeRTgGgwhgDMZtOB/fvM1RxpHhMzIJFIDg="
     }
    ],
    "defaultDatabase" : "",
@@ -1221,9 +1221,9 @@
   }
  ],
  "dbVersionsConnected" : [
+  "4.0.3",
   "3.6.5",
-  "4.0.8",
-  "4.0.3"
+  "4.0.8"
  ],
  "disableConnectionShortcuts" : false,
  "imported" : true,

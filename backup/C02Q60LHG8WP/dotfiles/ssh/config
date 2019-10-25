@@ -83,8 +83,12 @@ host qa.dci
   IdentityFile ~/.ssh/qa-dci.pem
   LocalForward 5601 127.0.0.1:5601
 
-host daves.cluster
+host daves.old.cluster
   HostName 3.82.144.233
   User ubuntu
   IdentityFile ~/.ssh/aws
 
+host daves.cluster
+  HostName 54.234.168.166
+  User ubuntu
+  IdentityFile ~/.ssh/aws
