@@ -4,8 +4,8 @@
 # Contains the stuff that needs to be imported first that other stuff uses.
 # Ensures to import stuff in the correct order
 
-SCRIPT_FILE=${(%):-%x}
-CURRENT_DIR="$( cd "$( dirname "${SCRIPT_FILE}" )" >/dev/null && pwd )"
+# SCRIPT_FILE=${(%):-%x}
+# CURRENT_DIR="$( cd "$( dirname "${SCRIPT_FILE}" )" >/dev/null && pwd )"
 
 eval "$(cat ${CURRENT_DIR}/variables.sh)"
 

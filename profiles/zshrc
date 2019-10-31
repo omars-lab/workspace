@@ -141,3 +141,7 @@ if [[ -d $HOME/.asdf/ ]] ; then
 	. $HOME/.asdf/asdf.sh
 	. $HOME/.asdf/completions/asdf.bash
 fi
+
+# https://github.com/sickill/stderred
+# export DYLD_INSERT_LIBRARIES="/Users/oeid/Workspace/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
+# export DYLD_FORCE_FLAT_NAMESPACE=1
