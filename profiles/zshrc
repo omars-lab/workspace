@@ -29,7 +29,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker osx python antigen zsh-completions)
+plugins=(git docker osx python zsh-completions)
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -114,7 +114,8 @@ export LANG=en_US.UTF-8
   fpath=(${DIRS_ENVIRONMENT}/completion-functions/zsh $fpath)
   rm -f "$HOME/.zcompdump"; 
   autoload -U compinit
-  compinit
+  # https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
+  compinit -u
 
 # set -o vi
 # source $(brew --prefix autoenv)/activate.sh
