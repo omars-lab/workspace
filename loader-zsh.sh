@@ -15,7 +15,7 @@ source ${CURRENT_DIR}/theme.sh
 source ${CURRENT_DIR}/ifttt/maker.sh
 source ${CURRENT_DIR}/ifttt/functions.sh
 
-recursive_source ${CURRENT_DIR} "loader|common|theme|bookmarks"
+recursive_source ${CURRENT_DIR} "loader|common|theme|bookmarks|setup"
 recursive_source ${CURRENT_DIR}/commands
 recursive_source ${CURRENT_DIR}/aliases
 
