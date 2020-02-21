@@ -299,7 +299,7 @@
       "url": "https://api.dci-dev.dev-eks.insights.ai",
       "username": "oeid",
       "account": "oeidtest-3",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTgzNDQ2OTgxLCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODIyMzczODF9.Fqck2oYyHAieBeBQq4o2MHVMZ7MSJMasjLxSKYPN9ns"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTgzNTE1NTg3LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODIzMDU5ODd9.ImaExv2eKDk16sqfHNGMpR9hVXlUVxuVXTqXmOftn7U"
     },
     "docs-dci-dev": {
       "url": "https://api.dci-dev.dev-eks.insights.ai",
@@ -386,5 +386,5 @@
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJhZG1pbnRlbmFudC0xMTExIiwidGVuYW50IjoidGVzdHRlbmFudC0xMTExIiwiYmVhcmVyIjoicHVibGljIiwia2V5IjoiNUM5QjVsU2pqeEs1QnZPUVRhZVpoV3NxOUlxWkx2YzkiLCJleHAiOjE1ODMzNDY4NTIsImFjbCI6eyIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXX0sImlhdCI6MTU4MjEzNzI1Mn0.trOQAhF42Ug-5HKT37Wd2Tv8hG8_MC6dou-ZCQMqj54"
     }
   },
-  "currentProfile": "oeidtest-3-dci-dev"
+  "currentProfile": "oeidtest-dev"
 }

@@ -269,7 +269,7 @@
       "url": "http://127.0.0.1:8080",
       "username": "oeid",
       "account": "oeidtest-3",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTgzMjU0MjI2LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODIwNDQ2MjZ9.nGG_rmEvDeHsdq6D_mSm7jQUib4TvORducJL7pRwKIo"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTgzNDQ2NjAzLCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODIyMzcwMDN9.RJYWMUw8cRsopYU7HP32tR62jArSZoEtVPiq24o7Ygs"
     },
     "localhost-qa": {
       "url": "http://127.0.0.1:8080",
@@ -299,7 +299,7 @@
       "url": "https://api.dci-dev.dev-eks.insights.ai",
       "username": "oeid",
       "account": "oeidtest-3",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTgzNDI2NzcxLCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODIyMTcxNzF9.K0YLT6jQ5LeoDNOPaBdQxp8GzjRAB27QIDVoEBTu0S0"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTgzNTE1NTg3LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODIzMDU5ODd9.ImaExv2eKDk16sqfHNGMpR9hVXlUVxuVXTqXmOftn7U"
     },
     "docs-dci-dev": {
       "url": "https://api.dci-dev.dev-eks.insights.ai",
