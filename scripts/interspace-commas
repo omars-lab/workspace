@@ -1,0 +1,2 @@
+#!/bin/bash
+LC_NUMERIC=en_US.UTF-8 printf "%'.f\n" ${1:-$(cat)}

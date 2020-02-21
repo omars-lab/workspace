@@ -1,0 +1,33 @@
+#!/bin/bash
+CONDA_ENV=${ENV_NAME:-$(basename "${PWD}")}
+REQUIREMENTS_FILE=${PWD}/requirements.txt
+
+function check_existance() {
+  conda-list-envs | egrep "^${1:-${CONDA_ENV}}\$" > /dev/null
+}
+
+function create_if_dne() {
+  conda create -y -n ${CONDA_ENV} python=3.7 pip >&2
+  test -f ${REQUIREMENTS_FILE} && $(dirname $(dirname ${CONDA_PYTHON_EXE}))/envs/${CONDA_ENV}/bin/pip install -r ${REQUIREMENTS_FILE} >&2
+}
+
+function destroy_env() {
+  # check_existance "destroyer" | conda env create 
+  conda env remove -n "${CONDA_ENV}" >&2
+}
+
+function run() {
+  check_existance || create_if_dne
+  echo conda activate --stack "${CONDA_ENV}"
+}
+
+case ${1} in 
+  reset*)
+    destroy_env
+    run
+  ;;
+  *)
+    run
+  ;;
+esac
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+# Derive SVG
+FILE_NAME=${1}
+OUTPUT_FILE_NAME="${2:-${1}.svg}"
+cat "${FILE_NAME}" | plantuml -tsvg -progress -failfast2 -p > "${OUTPUT_FILE_NAME}"

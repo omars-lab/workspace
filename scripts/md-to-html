@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# #Learned that local can only be used in functions ...
+# Learnd about :+ in args ...! This can be used to prefix and suffix $1 with info if its set ... and do nothing otherwise!
+FILE_IN_AND_OUT_ARGS="nput \"${1}\" -o \"${2}\""
+# Only specify $1 and $2 if they are set!
+INPUT_AND_OUTPUT="-${1:+-}i${1:+${FILE_IN_AND_OUT_ARGS}}"
+CMD="showdown makehtml ${INPUT_AND_OUTPUT} -e $(dirname ${NVM_BIN})/lib/node_modules/showdown-footnotes/dist/index.js"
+${CMD} || echo ${CMD}

@@ -89,6 +89,30 @@ host daves.old.cluster
   IdentityFile ~/.ssh/aws
 
 host daves.cluster
-  HostName 54.234.168.166
+  HostName 3.92.239.1
   User ubuntu
   IdentityFile ~/.ssh/aws
+
+host qa-perf.insights.ai
+  HostName 54.205.29.45
+  User oeid
+  IdentityFile ~/.ssh/jumpcloud
+
+host qa-perf.beefy.insights.ai
+  HostName 35.171.153.42
+  User oeid
+  IdentityFile ~/.ssh/jumpcloud
+
+host dci-dev.insights.ai
+  HostName 34.237.218.5
+  User ubuntu
+  IdentityFile ~/.ssh/stable-qa-eks.pem
+
+host stable.qa-eks.insights.ai
+  HostName 3.93.151.59
+  User ubuntu
+  IdentityFile ~/.ssh/stable-qa-eks.pem
+  LocalForward 25672 localhost:25672
+  LocalForward 37017 localhost:37017
+
+

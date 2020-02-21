@@ -127,11 +127,6 @@ export M2_HOME=/usr/local/Cellar/maven/3.6.0/libexec
 export M2=${M2_HOME}/bin
 export PATH=${PATH}:${M2_HOME}/bin
 
-. $(first "/Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh" "/miniconda3/etc/profile.d/conda.sh")
-echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_CONDA_ENV} --stack
-
-# Activate Virtual Envs
-  nvm use ${DEFAULT_NVM_ENV}
 
 export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/gettext/lib"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
@@ -145,3 +140,23 @@ fi
 # https://github.com/sickill/stderred
 # export DYLD_INSERT_LIBRARIES="/Users/oeid/Workspace/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
 # export DYLD_FORCE_FLAT_NAMESPACE=1
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/oeid/Workspace/binaries/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/oeid/Workspace/binaries/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_CONDA_ENV} --stack
+
+# Activate Virtual Envs
+nvm use ${DEFAULT_NVM_ENV}
