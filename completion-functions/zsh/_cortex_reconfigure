@@ -1,2 +1,2 @@
-#compdef cortex-reconfigure
+#compdef cortex_reconfigure
 compadd $(cat ~/.cortex/passwords.json | jq -r ". | keys | .[]" | xargs echo)

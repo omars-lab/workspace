@@ -20,4 +20,7 @@ recursive_source ${CURRENT_DIR}/commands
 recursive_source ${CURRENT_DIR}/aliases
 
 export NVM_DIR=${DIR_FOR_BINARIES}/nvm
-source $(brew --prefix nvm)/nvm.sh
+
+# https://github.com/nvm-sh/nvm/issues/860
+# source $(brew --prefix nvm)/nvm.sh
+source $(brew --prefix)/opt/nvm/nvm.sh  # using this instead of the above for performance ...

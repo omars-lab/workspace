@@ -1,2 +1,2 @@
-#compdef cortex-set-profile
+#compdef cortex_set_profile
 compadd $(cat ~/.cortex/config | jq -r ".profiles | keys | .[]" | egrep -v '^default$' | xargs echo)

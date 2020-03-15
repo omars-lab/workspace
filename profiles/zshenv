@@ -76,7 +76,7 @@ function cortex_cli_command_without_url()(
   curl -s "${URL_PATH}" -H "authorization: Bearer ${JWT_TOKEN}" -H "content-type: application/json" ${@}
 )
 
-function cortex-set-profile() {
+function cortex_set_profile() {
   cortex configure set-profile ${1}
   local CURRENT_PROFILE=$(cat ~/.cortex/config | jq -r '.currentProfile')
   local CURRENT_PROFILE_CONTENT=$(cat ~/.cortex/config | jq -c ".profiles | .[\"${CURRENT_PROFILE}\"]")
@@ -177,6 +177,11 @@ function cortex-reconfigure(){
   cortex configure --profile "${1}" --url "${URL}" --account "${CORTEX_ACCOUNT}" --username "${CORTEX_USER}" --password "${PASSWORD}"
 }
 
+function cortex-save-default-profile(){
+  local AS="${1}"
+  cat ~/.cortex/config | jq --arg name "${AS}" '. as $r | ( $r.profiles[($name)] |= $r.profiles.default ) ' | sponge ~/.cortex/config
+}
+
 function pip_latest_versions(){
   pip install ${1}== 2>&1 | egrep -o '[0-9]+.[0-9]+.[0-9]+([ab]|dev|rc)([0-9]+)?'
 }
@@ -269,6 +274,17 @@ function first(){
 
   shift
   first $@
+}
+
+
+function new_image() {
+  COLOR="${COLOR:-transparent}"
+  IMAGE_PATH="${1:-${COLOR}.png}"
+  CANVAS_SIZE="${CANVAS_SIZE:-1000}"
+  echo "Creating image with name:${NAME}, color:${COLOR}, and size :${CANVAS_SIZE}"
+  # https://stackoverflow.com/questions/39504522/create-blank-image-in-imagemagick
+  convert -size ${CANVAS_SIZE}x${CANVAS_SIZE} xc:${COLOR} "${IMAGE_PATH}"
+  open -a Preview "${IMAGE_PATH}"
 }
 
 precmd_functions=(week_prompt)

@@ -18,18 +18,18 @@ case $state in
 	# _path_files
         ;;
     arg_for_subcommand)
-      case $line[2] in
-	save*)
+      case "${line[1]}-${line[2]}" in
+	profiles-save*)
 	  _path_files
 	  ;;
-	publish*)
+	graph-publish*)
 	  _path_files
 	  ;;
-	describe-schema)
+	profiles-describe-schema)
 	  compadd $(cortex profiles list-schemas --json | jq '.[] | .name' | xargs echo)
 	  ;;
-	describe-schema)
-	  compadd $(cortex profiles list-schemas --json | jq '.[] | .name' | xargs echo)
+	profiles-describe||profiles-list-versions)
+	  compadd $(cortex $line[1] list --json | jq ".[] | .profileId" | xargs echo)
 	  ;;
 	*)
 	  compadd $(cortex $line[1] $line[2] --help | egrep -o "\-\-[a-zA-Z-]+" | xargs echo)
