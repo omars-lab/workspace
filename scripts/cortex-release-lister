@@ -1,0 +1,22 @@
+#!/bin/bash
+# What has currently been released?
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source ${DIR}/c12e-cortex-common
+ALL=${1:-false}
+
+function pick_latest_versions() {
+  # https://kaijento.github.io/2017/03/20/json-parsing-jq-group_by-max_by-and-sort_by/
+  jq -sc 'group_by( (.[0] | split("-"))[0] ) | .[] | .[-1]'
+
+}
+
+FILTER=$( ( ${ALL} && echo tee ) || echo pick_latest_versions  )
+( ( ${ALL} && echo "Picking ALL Versions" ) || echo "Picking Latest Versions" ) >&2
+
+{
+  jq -nc '["appVersion", "fileName"]' >&2 ;
+  curl -s https://cognitivescale.github.io/cortex-charts/stable/index.yaml \
+    | yaml-to-json \
+    | jq -rc ' [ .entries.cortex5 | .[] | [ .appVersion, .urls[0], .created ] ] | sort_by(.[0]) | .[]' \
+    | ${FILTER} ;
+}

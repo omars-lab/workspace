@@ -1,0 +1,5 @@
+#!/bin/bash
+# Derive HTML
+FILE_NAME=${1}
+OUTPUT_FILE_NAME="${2:-${1}.html}"
+cat "${FILE_NAME}" | plantuml -thtml -progress -failfast2 -p > "${OUTPUT_FILE_NAME}"

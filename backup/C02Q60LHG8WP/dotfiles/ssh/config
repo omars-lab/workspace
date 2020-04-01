@@ -13,8 +13,9 @@ host github.com
   IdentityFile ~/.ssh/github_work
 
 host github.com-personal
+  User git
   HostName github.com
-  IdentityFile ~/.ssh/github_work
+  IdentityFile ~/.ssh/github
 
 host bitbucket.org
   HostName bitbucket.org

@@ -98,10 +98,10 @@
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50IjoicHJvc2ljbG91ZCIsImFjbCI6eyIvdjMvYWdlbnRzL2Vudmlyb25tZW50cy8uKiI6WyJERU5ZIl0sIi92Mi9hY2NvdW50cy8uKiI6WyJERU5ZIl0sIi92Mi90ZW5hbnRzL2N1cnJlbnQtdXNlci1kZXRhaWxzIjpbIlJFQUQiXSwiL3YyL3RlbmFudHMvLioiOlsiREVOWSJdLCIvdjIvYWRtaW4vLioiOlsiREVOWSJdLCIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YzL2NhdGFsb2cvLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl0sIi92My9hZ2VudHMvZW52aXJvbm1lbnRzL2NvcnRleC9kZWZhdWx0IjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjIvYWNjb3VudHMvdG9rZW5zLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSJdLCIvdjIvdGVuYW50cy9zZWNyZXRzLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSJdfSwiYmVhcmVyIjoicHVibGljIiwia2V5IjoienRyVDcxYWttdWxia1djUnlVeEtxODRtSWlHTjA2T3MiLCJleHAiOjE1MzQ5Njc2MzIsImlhdCI6MTUzMzc1ODAzMn0.wolnB2pKENEjWSXMeLAhl25m000Hj7GsDoHOA_s0iI8"
     },
     "default": {
-      "url": "https://api.dci-dev.dev-eks.insights.ai",
+      "url": "http://127.0.0.1:8080",
       "username": "admintenant-1000",
       "account": "testtenant-1000",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJhZG1pbnRlbmFudC0xMDAwIiwidGVuYW50IjoidGVzdHRlbmFudC0xMDAwIiwiYmVhcmVyIjoicHVibGljIiwia2V5IjoiS2pOQ3VwY0U1SVFJN1Uwc29QREtJS3dNRmMwMWdjWlUiLCJleHAiOjE1ODUzMjQxNzAsImFjbCI6eyIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXX0sImlhdCI6MTU4NDExNDU3MH0.vg72OeXop-fybeD7v5u4LkJeleI4KXlh4lkCEJ9cz6Y"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJhZG1pbnRlbmFudC0xMDAwIiwidGVuYW50IjoidGVzdHRlbmFudC0xMDAwIiwiYmVhcmVyIjoicHVibGljIiwia2V5IjoiS2pOQ3VwY0U1SVFJN1Uwc29QREtJS3dNRmMwMWdjWlUiLCJleHAiOjE1ODY0ODI5OTUsImFjbCI6eyIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXX0sImlhdCI6MTU4NTI3MzM5NX0._TRsvTyuDqvmY_faUPhOCJH5AnznRiwjRxTo-_59GRk"
     },
     "idata-advprod": {
       "url": "https://api.cortex-advprod.insights.ai",
@@ -275,7 +275,7 @@
       "url": "http://127.0.0.1:8080",
       "username": "oeid",
       "account": "oeidtest-3",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTg1MzE4MDM0LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODQxMDg0MzR9.q_uTPgBMBhz0zwyP7k90FCJDsr21dNELLaZvvQA7s9g"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTg2MzY1MDU1LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODUxNTU0NTV9.qMpHNpe-2jVrafpMMypF-RuB4atPCnJrHdt92O85h_k"
     },
     "localhost-qa": {
       "url": "http://127.0.0.1:8080",
@@ -311,7 +311,7 @@
       "url": "https://api.dci-dev.dev-eks.insights.ai",
       "username": "oeid",
       "account": "oeidtest-3",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTg1MjU5ODAxLCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODQwNTAyMDF9.r1f_X_nDwnlcisJvKcGlvpmRsCI5WJHwj1uKV0yK1PQ"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6Im5FUWtrR09iNWhjSmo4NTkzcGlnbWlkR3hHbmR5YkdkIiwiZXhwIjoxNTg1Nzg4MDQ0LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODQ1Nzg0NDR9._rXezPUElz_vl7uGDETDQUdoG3Niae6MIrfgQ-fSvwY"
     },
     "docs-dci-dev": {
       "url": "https://api.dci-dev.dev-eks.insights.ai",
@@ -341,7 +341,7 @@
       "url": "https://api.qa-perf.insights.ai",
       "username": "oeid",
       "account": "oeidtest-3",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6IjVsaDBlTjVEWEV1VGk5cVlYMFJwNzZVdHo4c0poY3VyIiwiZXhwIjoxNTgyMjkyMzQ5LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODEwODI3NDl9.5JjSoY2su6M2InAEEinEW_24ZCWqg5PnXskfH5BvUjE"
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoib2VpZHRlc3QtMyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6IjVsaDBlTjVEWEV1VGk5cVlYMFJwNzZVdHo4c0poY3VyIiwiZXhwIjoxNTg2MjY4MDgyLCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIiwiREVMRVRFIl19LCJpYXQiOjE1ODUwNTg0ODJ9.idrI0V4La2j6hvkz1EHi-flquy8pE8eaCJ837zS1iZg"
     },
     "endcard-nbc-dev04": {
       "url": "https://api.dev04.nbcd.insights.ai",
@@ -409,11 +409,23 @@
       "account": "testtenant-1000",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJhZG1pbnRlbmFudC0xMDAwIiwidGVuYW50IjoidGVzdHRlbmFudC0xMDAwIiwiYmVhcmVyIjoicHVibGljIiwia2V5IjoiS2pOQ3VwY0U1SVFJN1Uwc29QREtJS3dNRmMwMWdjWlUiLCJleHAiOjE1ODQ3NjAxNDgsImFjbCI6eyIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXX0sImlhdCI6MTU4MzU1MDU0OH0.6OvIO0EZJPb0jLsB-AJosXHbtWvnm68c6PL_AJDh1tM"
     },
-    "-testtenant-1000": {
+    "se-demo-csx": {
+      "url": "https://api.csx.insights.ai",
+      "username": "oeid",
+      "account": "se-demo",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJvZWlkIiwidGVuYW50Ijoic2UtZGVtbyIsImJlYXJlciI6InB1YmxpYyIsImtleSI6IlNYQkhrd05pRXZtbjdzQkhpZVdES2JVWEwxYjI5M09ZIiwiZXhwIjoxNTg1NTg3MjU5LCJhY2wiOnsiLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIl0sIi92My9jYXRhbG9nLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSIsIkRFTEVURSJdLCIvdjMvYWdlbnRzL2Vudmlyb25tZW50cy9jb3J0ZXgvZGVmYXVsdCI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiXSwiL3YzL2FnZW50cy9lbnZpcm9ubWVudHMvLioiOlsiREVOWSJdLCIvdjIvYWRtaW4vLioiOlsiREVOWSJdLCIvdjIvdGVuYW50cy8uKiI6WyJERU5ZIl0sIi92Mi9hY2NvdW50cy8uKiI6WyJERU5ZIl0sIi92Mi9hY2NvdW50cy90b2tlbnMvLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIl0sIi92Mi90ZW5hbnRzL3NlY3JldHMvLioiOlsiUkVBRCIsIlJVTiIsIldSSVRFIl0sIi92Mi90ZW5hbnRzL2N1cnJlbnQtdXNlci1kZXRhaWxzIjpbIlJFQUQiXSwiL3YzL2dyYXBoLy4qIjpbIlJFQUQiLCJSVU4iLCJXUklURSIsIkRFTEVURSJdfSwiaWF0IjoxNTg0Mzc3NjU5fQ.ADjb3whAqEsBonBLINr4IDqBm25aWDIPm4_JpDX9iw0"
+    },
+    "locahost-testtenant-1000": {
       "url": "http://127.0.0.1:8080",
       "username": "admintenant-1000",
       "account": "testtenant-1000",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJhZG1pbnRlbmFudC0xMDAwIiwidGVuYW50IjoidGVzdHRlbmFudC0xMDAwIiwiYmVhcmVyIjoicHVibGljIiwia2V5IjoiS2pOQ3VwY0U1SVFJN1Uwc29QREtJS3dNRmMwMWdjWlUiLCJleHAiOjE1ODUyMzk2NzMsImFjbCI6eyIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXX0sImlhdCI6MTU4NDAzMDA3M30.CpKpvX6pivFyUyyl-AEoP9sd5dhVqjU5r15rQKEFxWk"
+    },
+    "-testtenant-1000": {
+      "url": "http://127.0.0.1:8080",
+      "username": "admintenant-1000",
+      "account": "testtenant-1000",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb2duaXRpdmVzY2FsZS5jb20iLCJhdWQiOiJjb3J0ZXgiLCJzdWIiOiJhZG1pbnRlbmFudC0xMDAwIiwidGVuYW50IjoidGVzdHRlbmFudC0xMDAwIiwiYmVhcmVyIjoicHVibGljIiwia2V5IjoiS2pOQ3VwY0U1SVFJN1Uwc29QREtJS3dNRmMwMWdjWlUiLCJleHAiOjE1ODY0ODI5OTQsImFjbCI6eyIuKiI6WyJSRUFEIiwiUlVOIiwiV1JJVEUiLCJERUxFVEUiXX0sImlhdCI6MTU4NTI3MzM5NH0.ta1H3TfxbCdWkzS8Z2WQ5lpXLapYfYQ1oCRjcir7vTg"
     }
   },
   "currentProfile": "default"

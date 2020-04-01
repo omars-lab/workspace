@@ -1,0 +1,18 @@
+#!/bin/bash
+# How have the versions of a specific service changed accross releases?
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source ${DIR}/c12e-cortex-common
+
+# Find latest release by deafault
+RELEASE_TAR_URL=${1:-$(${DIR}/cortex-release-finder)}
+RELEASE_DCI_APP_VER=$(${DIR}/cortex-release-lister | jq -rc --arg url "${RELEASE_TAR_URL}" 'select(.[1] == $url) | .[0]' )
+RELEASE_DATE_DCI_APP_=$(${DIR}/cortex-release-lister | jq -rc --arg url "${RELEASE_TAR_URL}" 'select(.[1] == $url) | .[2]' )
+
+echo "Considering Release ${RELEASE_DCI_APP_VER} ( ${RELEASE_TAR_URL} )" >&2
+
+curl -s --output - "${RELEASE_TAR_URL}" \
+  | tar -zxOf - "cortex5/values.yaml" \
+  | yaml-to-json \
+  | jq -cr --arg appVer "${RELEASE_DCI_APP_VER}" --arg date "${RELEASE_DATE_DCI_APP_}" --arg url ${RELEASE_TAR_URL} \
+      'to_entries | .[] | select( ((.value) | type == "object") and ((.value.image) | type == "string") ) | [ $appVer, "\(.value.image)", "\(.value.image):\(.value.tag)", $date, $url] ' \
+  | sort
