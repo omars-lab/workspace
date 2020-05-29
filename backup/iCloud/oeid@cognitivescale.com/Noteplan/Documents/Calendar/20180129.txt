@@ -1,7 +1,0 @@
-- #Onboarding Part of onboarding should be specifying a docker registry with auth to pull from
-- [x] v0 of Certification Process @done(2018-01-30 11:06)
-- [x] Action Item: Make a wiki page with steps on what we did to make a tenant for bw @done(2018-01-30 11:07)
-	- [x] What we had to send ... @done(2018-01-30 11:07)
-	- [x] What Alan had to do ... @done(2018-01-30 11:07)
-- [x] Create Source Repo ... (c12e-solutions/bwii-triumph) @done(2018-01-30 11:08)
-- [x] Make sure confluence is locked down @done(2018-01-30 11:10)

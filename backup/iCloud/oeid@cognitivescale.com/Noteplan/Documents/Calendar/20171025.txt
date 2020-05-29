@@ -1,3 +1,0 @@
-- [x] Ceanup tasks @done(2017-10-26 15:41)
-- [x] Add stuff to backlog of work  @done(2017-10-26 15:41)
-- [x] Meet with Sekhar and Prakhar @done(2017-10-26 19:49)

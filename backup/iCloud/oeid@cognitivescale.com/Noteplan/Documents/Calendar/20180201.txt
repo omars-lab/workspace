@@ -1,9 +1,0 @@
-- [x] Add dataset refs to skills @done(2018-02-02 12:51)
-- [x] Make sure skills are auto wired ... @done(2018-02-02 12:51)
-- [x] Finish defining datasets @done(2018-02-02 12:54)
-	- [x] Use Managed Content based data sets ... @done(2018-02-02 12:54)
-	- [-] Make a data dir to upload dev data to cortex {Eventually .... when the data model is better defined ...}
-
-- [x] Jons insights @done(2018-02-06 16:06)
-	- [x] Get public ip for mongo {cti-dev-elb-f55f069ef53cce6e.elb.us-east-1.amazonaws.com:1337} @done(2018-02-02 12:57)
-	- [x] Get public ip for parse {cti-dev-alb-1434993566.us-east-1.elb.amazonaws.com:1337} @done(2018-02-02 12:57)

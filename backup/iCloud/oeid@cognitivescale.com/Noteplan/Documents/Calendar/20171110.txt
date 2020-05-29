@@ -1,5 +1,0 @@
-- [x] Clean up questions! @done(2017-11-10 20:50)
-- [x] Extract Action Items from My notes @done(2017-11-13 21:44)
-- [-] Follow up on action items for Sekar and Prakhar
-	- [-] Make sure tr call is scheduled 
-	- [-] Make sure bot code is checked in

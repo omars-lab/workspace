@@ -1,1 +1,0 @@
-- [x] Send Gopal list of things needed to turn CTI into a product ... @done(2017-09-25 23:50)

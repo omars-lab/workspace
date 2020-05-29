@@ -1,4 +1,0 @@
-- [x] Make a new dockerhub account ... @done(2018-04-30 12:38)
-- [x] Reply to Russeell email on Adityas time ... @done(2018-04-30 11:25)
-- [x] Clean Up Queries Branch ... @done(2018-04-30 11:25)
-- [x] Setup Daily Pipeline to Be Invokable Per Data Type ... @done(2018-04-30 11:26)

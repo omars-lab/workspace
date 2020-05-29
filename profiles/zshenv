@@ -168,7 +168,7 @@ function cortex-studio-prod-debugged(){
 #     --account ${ACCONT}
 # )
 
-function cortex-reconfigure(){
+function cortex_reconfigure(){
   local URL=$(cortex-pluck-from-profile "url" "${1}")
   local CORTEX_ACCOUNT=$(cortex-pluck-from-profile "account" "${1}")
   local CORTEX_USER=$(cortex-pluck-from-profile "username" "${1}")

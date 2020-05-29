@@ -1,2 +1,0 @@
-- [x] Call the NvC @done(2017-10-19 13:44)
-- [x] Remind Sara to study english @done(2017-10-19 13:44)

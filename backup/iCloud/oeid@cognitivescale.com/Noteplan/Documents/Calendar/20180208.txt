@@ -1,7 +1,0 @@
-- [-] Meeting on news on monday to discuss our news options
-- [-] Meet with Sanjay to see what we really have for news from an Industry data perspecive {verified what Hari said}
-- [x] Email about not being able to be at interview @done(2018-02-09 12:05)
-
-- [-] Email Naveen about docker container ... {looks like Amrish has already done so}
-- [x] Send email to Sagar for the Insights App @done(2018-02-09 16:13)
-- [x] Call out to Russell: I think the Cortex team literally thinks I'm going to be a Cortex developer for two weeks ... @done(2018-02-11 11:53)

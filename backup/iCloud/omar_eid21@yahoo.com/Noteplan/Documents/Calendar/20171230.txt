@@ -1,5 +1,0 @@
-- [x] Prepare for CB2 delivery @done(2017-12-31 14:06)
-- [x] Go to Best Buy to return the nest @done(2017-12-31 14:10)
-- [x] Buy a comfortor set for our bed @done(2017-12-31 14:10)
-- [x] Buy a sheet set for out bed @done(2017-12-31 14:09)
-

@@ -1,4 +1,0 @@
-- [x] Organize thinking behind the experiments we want to run  @done(2018-08-24 04:34 PM)
-	- [x] Figure out what we should address per experiment @done(2018-08-24 04:34 PM)
-	- [x] Continue the list of experiment candidates @done(2018-08-24 04:34 PM)
-	- [x] Call out where the experiments depend on the High Level Implicit Use Case Architecture @done(2018-08-24 04:34 PM)

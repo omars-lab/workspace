@@ -1,6 +1,0 @@
-- [x] Go to Built In for CogScale ... 6to8pm @done(2018-04-12 12:57)
-- [x] Get thing to run faster ...  @done(2018-04-12 12:57)
-	- [x] Limit country of Exchange to UK ... @done(2018-04-12 12:57)
-	- [x] One month at a time ...  @done(2018-04-12 12:57)
-	- [x] Hold off on TTM ... @done(2018-04-12 12:57)
-	- [x] Tell Team about weird month bug ... @done(2018-04-12 12:57)

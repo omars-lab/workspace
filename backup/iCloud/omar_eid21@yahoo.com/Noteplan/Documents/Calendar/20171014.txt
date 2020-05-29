@@ -1,7 +1,0 @@
-- [x] Take inlaws to Shatir 7asan @done(2017-10-15 17:02)
-- [x] Go to hardware store and get lock <2017-10-13 @done(2017-10-14 23:44)
-- [x] Go to Shifaa @done(2017-10-14 20:11)
-- [x] Go to Collezion @done(2017-10-14 14:50)
-- [x] Go to Souq and get bags for family chocolate @done(2017-10-14 20:11)
-- [x] Go to bayan to get pillow @done(2017-10-14 20:11)
-- [x] Go to ishtrak place @done(2017-10-14 20:11)

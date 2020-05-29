@@ -1,8 +1,0 @@
-- [x] Buy ticket to Lebanon @done(2018-04-28 12:40)
-- [x] Look for tickets to lebanon @done(2018-04-28 12:40)
-	- [x] 	What can I use the discount on? @done(2018-04-28 12:42)
-		- [x] Can I use it to go from AUS to BEY? {No, united doesnt fly direct to BEY} @done(2018-04-28 11:34)
-		- [x] Can I use it from AUS to LHR, then LHR to BEY {Yes, but it turns out to cost about the same with coupon, and we have to worry about luggage} @done(2018-04-28 11:35)
-		- [x] Call united and figure out @done(2018-04-28 12:42)
-			- [x] Can I use it on the leg of the flight thats united only? {No I cant ... needs to be pure united, baggage is up to MEA ...} @done(2018-04-28 12:42)
-			- [x] Can I use use the credits for a future flight?? {yes, just need to buy it before it expired, can use it a month after expiration if i call to ...} @done(2018-04-28 12:42)

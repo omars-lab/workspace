@@ -1,4 +1,0 @@
-- [x] Transfer Saras meds to cvs online @done(2018-07-25 05:23 PM)
-- [x] Reply to meems @done(2018-07-25 02:58 PM)
-- [x] Pick up Saras package @done(2018-07-26 12:17 AM)
-- [x] Pay Saras medical bills @done(2018-07-26 12:17 AM)

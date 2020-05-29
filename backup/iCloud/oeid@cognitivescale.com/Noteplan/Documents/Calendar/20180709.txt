@@ -1,6 +1,0 @@
-- [x] Open ticket for missing agent instance  @done(2018-07-09 12:18 PM)
-- [-] Turn Cron Back on ... {already was on for us ...}
-- [x] Look into Gagan JWT issue ... @done(2018-07-09 09:15 PM)
-- [x] Email Gagan about potential remedy @done(2018-07-10 12:09 AM)
-- [x] Update interns on new stuff ... @done(2018-07-09 11:43 PM)
-- [x] Start laying out the profiles stuff ... @done(2018-07-09 11:43 PM)

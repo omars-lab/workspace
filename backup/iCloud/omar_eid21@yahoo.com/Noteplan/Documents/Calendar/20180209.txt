@@ -1,8 +1,0 @@
-- #Pros of gigabit internet - probably better to airplay ...
-- Should we get and program a bar code scanner?
-- I need to review/do hifz
-
-- [x] Should we get costco membership? {yes} @done(2018-02-11 10:59)
- - [x] Go to costco and sign up for membership @done(2018-02-09 22:00)
-- [-] Go to costco and look for kitchenaid dish rack {Mama got this for us}
-- [x] Go to marshalls and get hair straigtener @done(2018-02-09 22:25)

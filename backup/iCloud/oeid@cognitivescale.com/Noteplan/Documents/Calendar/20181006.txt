@@ -1,4 +1,0 @@
-- [ ] Make learning plan and show Steve
-	- [ ] Learning plan should be in 10 week chuncks ... what can I learn in 10 weeks?
-		- [ ] How much time will I spend each day?
-	- [ ] I need to start learning from where I actually spend my time!

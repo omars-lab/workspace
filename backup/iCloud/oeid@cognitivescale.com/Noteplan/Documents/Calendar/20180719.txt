@@ -1,2 +1,0 @@
-- [x] Start filling in content @done(2018-07-24 12:19 PM)
-- [x] Start cleaning up capabilities ... @done(2018-07-24 12:19 PM)

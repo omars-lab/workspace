@@ -1,4 +1,0 @@
-- [x] Pay water bill .. @done(2018-04-14 09:53)
-- [x] Pay new credit card bills ... @done(2018-04-14 11:14)
-- [x] Pay Macys Credit Card Bill @done(2018-04-14 11:14)
-- [x] Get slip cover for sofas @done(2018-04-14 23:18)

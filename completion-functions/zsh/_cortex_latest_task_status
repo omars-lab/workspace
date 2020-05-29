@@ -1,2 +1,0 @@
-#compdef cortex-latest-task-status
-compadd $(cortex jobs list --json | jq -r ".[] | .name" | xargs echo)

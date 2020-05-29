@@ -1,3 +1,0 @@
-- [x] Sync with Bob @done(2017-10-28 16:10)
-- [x] Work on backlog @done(2017-10-28 16:10)
-- [x] Figure out Sekars Permission Request ...

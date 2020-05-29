@@ -1,8 +1,0 @@
-- [x] Make a rancher stack to run the latest version of a container ... @done(2018-07-08 01:28 PM)
-- [x] Make Rancher Config @done(2018-07-08 01:27 PM)
-- [x] Get GOCD pipelines for interns @done(2018-07-08 01:27 PM)
-- [x] Get Dockerhub repo for interns @done(2018-07-08 01:27 PM)
-
-- [x] Look into pipeline not triggering issue @done(2018-07-06 10:51 AM)
-- [x] Push pull requests @done(2018-07-06 11:06 AM)
-

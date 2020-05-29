@@ -1,3 +1,0 @@
-- [x] Go to Ross and return rugs @done(2017-12-18 10:52)
-- [x] Go to Toyota and look for rav4 @done(2017-12-18 10:53)
-	- [x] Get an estimate for a RAV4: 2539+20255.30 @done(2017-12-21 10:24)

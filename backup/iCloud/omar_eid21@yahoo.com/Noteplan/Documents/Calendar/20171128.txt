@@ -1,2 +1,0 @@
-- [x] Book apple store appointment for apple watch @done(2017-11-28 21:11)
-- [x] Search beds on amazon @done(2017-11-28 21:13)

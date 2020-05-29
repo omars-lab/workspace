@@ -1,0 +1,4 @@
+.npmrc
+.env
+.DS_Store
+.autoenv.zsh

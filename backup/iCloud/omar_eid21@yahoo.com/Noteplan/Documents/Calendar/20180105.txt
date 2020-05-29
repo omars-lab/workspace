@@ -1,7 +1,0 @@
-- [x] Go to HEB and get creme brule ingredients @done(2018-01-06 02:05)
-	- [x] Get Heavy Whipping Cream @done(2018-01-06 02:05)
-	- [x] Get Parchment Paper @done(2018-01-06 02:05)
-	- [x] Get grainulated sugar @done(2018-01-06 02:05)
-
-- [x] Go to the house and install the second blinds @done(2018-01-06 02:06)
-- [x] Add questions from yesterdays session to the FAQ. @done(2018-01-05 11:52)

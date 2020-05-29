@@ -1,8 +1,0 @@
-- [x] Create cops ticket to similar locked down cti environment to BW @done(2018-02-15 10:52)
-- [x] Load the postgress data into test.py @done(2018-02-16 01:14)
-- [x] Create connection in BWII tenancy to point to compose io db {Workaround - used the ti connection} @done(2018-02-16 01:15)
-- [x] Test through curl reading market data / querying it @done(2018-02-16 01:15)
-	- [x] Meeting with Michael about ML deployment options @done(2018-02-16 10:32)
-- [x] Figure out strategy for sharing container code with them ... {Put together code to run cortex job ..., Make sure they can test this / fake cortex for now ...} @done(2018-02-16 10:33)
-- [?] Make a wrapper script/API to pull data out of managed content (give us a date range ..., give us companies, ...)
-- [W] Test through curl writing multiple rows of data { workaround - wrote to managed content }

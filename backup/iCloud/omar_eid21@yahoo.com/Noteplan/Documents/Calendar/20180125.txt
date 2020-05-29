@@ -1,5 +1,0 @@
-- [x] Go to Marshalls and return king comfortor {doesnt look like it washes well} @done(2018-01-25 23:25)
-- [x] Check ACC site and see if I can sign Sara up for ESL! {it didnt open}
-- [x] Get car insurance for car @done(2018-01-25 14:36)
-	* [x] Should my car insurance cover collisions / .... @done(2018-01-25 09:53) {this is covering myself ...}
-- [x] Make sure Judy and Hassan actually booked their trip day. @done(2018-01-25 23:24)

@@ -1,7 +1,0 @@
-- [x] Make sure money was deducted from toll tag @done(2018-03-05 00:35)
-- [x] Go to ikea and get desk ... @done(2018-03-05 00:36)
-- [x] Ask for parking refund @done(2018-03-05 00:36)
-- [x] Build costco shelf @done(2018-03-05 00:36)
-
-- [x] look for storage bins at ikea/amazon {got some from ikea, may need some more} @done(2018-03-05 00:39)
-- [x] Get ant spray @done(2018-03-05 00:39)

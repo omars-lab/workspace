@@ -1,5 +1,0 @@
-- [x] Print the form @done(2017-09-20 13:53)
-- [x] Replace the place holder pages with real pages ... @done(2017-09-20 13:53)
-- [x] Make bold the pieces that stand out the most ... (Bank statements, report cards, ...) @done(2017-09-20 13:53)
-- [x] Confirm the papers he told us are the same ... @done(2017-09-20 13:53)
-- [x] Get documents translated @done(2017-09-20 13:54)

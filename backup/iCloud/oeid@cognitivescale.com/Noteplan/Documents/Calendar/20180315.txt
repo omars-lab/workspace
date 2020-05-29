@@ -1,4 +1,0 @@
-- [x] Update the Design of the Data Pipeline @done(2018-03-16 11:39)
-	- [x] Record Option for Using Cortex @done(2018-03-16 11:39)
-	- [x] Record Option of Making the Analysis Big Data Oriented ... @done(2018-03-16 11:39)
-

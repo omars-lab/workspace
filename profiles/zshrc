@@ -132,6 +132,8 @@ export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/gettext/lib"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/gettext/include"
 
+export PATH="/usr/local/pgsql/bin/:$PATH"
+
 if [[ -d $HOME/.asdf/ ]] ; then 
 	. $HOME/.asdf/asdf.sh
 	. $HOME/.asdf/completions/asdf.bash
@@ -143,14 +145,14 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('${DIR_FOR_BINARIES}/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/oeid/Workspace/binaries/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "${DIR_FOR_BINARIES}/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "${DIR_FOR_BINARIES}/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="${DIR_FOR_BINARIES}/miniconda3/bin:$PATH"
+        export PATH="/Users/oeid/Workspace/binaries/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -160,3 +162,5 @@ echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_
 
 # Activate Virtual Envs
 nvm use ${DEFAULT_NVM_ENV}
+
+alias openscad='/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD'

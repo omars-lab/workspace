@@ -1,1 +1,0 @@
-- [x] Send Gopal current CTI Archtiecture diagram @done(2017-09-26 16:40)

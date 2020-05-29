@@ -1,7 +1,0 @@
-- [x] Book off time for eid @done(2018-06-10 01:04 PM)
-- [x] Go to San Marcos outlet @done(2018-06-11 02:05 AM)
-- [x] Pay Zakat @done(2018-06-11 02:06 AM)
-- [x] Pay Zakat al fitr @done(2018-06-11 02:06 AM)
-- [x] Donate for mosque construction @done(2018-06-11 02:06 AM)
-- [x] From HEB get eggs, second Hand Soap for the kitchen @done(2018-06-11 02:06 AM)
-- [x] Go to TonyCs for iftar @done(2018-06-11 02:06 AM)

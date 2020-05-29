@@ -1,3 +1,0 @@
-- [x] Create a git repo to for our experiments @done(2018-08-02 10:49 AM)
-	- [x] Push our fpi experiments to it 
-	- [x] Share it with the rest of the crew ..

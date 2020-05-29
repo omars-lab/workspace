@@ -1,3 +1,0 @@
-- [x] Chat with Colton and Johan about Dockerhub vs Private registry ... @done(2018-09-28 12:27 PM)
-- [x] Chat with Johan about figuring out the latest dockerhub tag ...  @done(2018-09-28 12:51 PM)
-- [x] Organize what needs to be done ... @done(2018-09-28 01:01 PM)

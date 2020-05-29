@@ -1,8 +1,0 @@
-- [x] Go to the house and measure blind areas @done(2017-12-03 22:13)
-- [x] Move some stuff from this house to the other house @done(2017-12-03 22:33)
-- [x] Buy blinds {maybe cheaper on amazon} @done(2017-12-03 22:14)
-- [x] Get thing for above dresser @done(2017-12-03 22:15)
-- [x] Get milk for yara @done(2017-12-03 22:21)
-- [x] Go to the consigment center @done(2017-12-04 10:02)
-- [x] See if there are any Turkish places that deliver clothes to the states? @done(2017-12-09 17:22)
-- [x] Make sure Sara asks Judy where she gets her clothes from? @done(2017-12-09 17:22)

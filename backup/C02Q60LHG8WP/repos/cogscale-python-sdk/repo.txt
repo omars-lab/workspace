@@ -1,1 +1,0 @@
-git@github.com:CognitiveScale/cogscale-python-sdk.git

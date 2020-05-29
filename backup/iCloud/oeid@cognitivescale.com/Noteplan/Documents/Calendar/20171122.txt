@@ -1,4 +1,0 @@
-- [x] Make sure AMI is working ... @done(2017-11-22 13:06)
-- [x] Make sure Cortex works locally ...  @done(2017-11-22 13:06)
-- [x] Clear my docker images  @done(2017-11-22 13:08)
-- [x] Kick off Cortex and make sure bootstrap works ... @done(2017-11-22 13:09)

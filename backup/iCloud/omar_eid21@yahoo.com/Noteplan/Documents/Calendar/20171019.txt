@@ -1,2 +1,0 @@
-- [x] Begin Reading Cakes, Custard, and Category Theory @done(2017-10-19 23:08)
-- [x] Read from TOGAF @done(2017-10-19 23:08)

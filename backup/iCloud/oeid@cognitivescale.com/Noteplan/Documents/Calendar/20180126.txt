@@ -1,4 +1,0 @@
-- [x] Install yeoman generator locally @done(2018-01-26 16:28)
-- [x] Install cortex cli locally @done(2018-01-26 16:31)
-- [x] Meet with Alan to dicuss the process behind creating a tenant called Triumph .. @done(2018-01-26 16:35)
-- [x] Check the AMI ticket and see if it has a public ip @done(2018-01-26 16:37)

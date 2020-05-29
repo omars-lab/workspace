@@ -1,5 +1,0 @@
-- #@OVERHEARD Customers want to solve their problems in a more efficient way
-
-- [>] Take Sara to College and sign her up for ESL >2018-01-05
-- [>] Take Yara to doctors appointment at ARC Far West @08:15AM  >2018-01-11
-- [x] Go to bestbuy and replace the meat grinder and toaster for the breville toaster @done(2018-01-05 11:40)

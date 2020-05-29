@@ -1,4 +1,0 @@
-- [x] Enable Logging API --- Publish things to right place @done(2017-12-09 01:19)
-- [x] Fill in processor descriptions ... @done(2017-12-09 01:19)
-- [x] Where do we boot strap tenant specific artifacts {agents, connections, datasets, jobs, types?} @done(2017-12-09 01:19)
-- [x] Move processors over to cortex-processors ... @done(2017-12-09 01:19)

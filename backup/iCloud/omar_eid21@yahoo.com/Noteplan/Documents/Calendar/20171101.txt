@@ -1,5 +1,0 @@
-- [-] Ask safara about if they got the case
-- [x] #Call Translator and see if they can pick up the documents ... (they dont) @done(2017-11-01 13:37)
-- [x] #Call Alabdallah and see if Yara's necklace is ready ... @done(2017-11-01 13:37)
-- [x] Go to Balloon Place and get ballons for Yara  @done(2017-11-01 13:38)
-- [x] #Call Khalto Rania and see if she can pick up the case for us @done(2017-11-02 15:54)

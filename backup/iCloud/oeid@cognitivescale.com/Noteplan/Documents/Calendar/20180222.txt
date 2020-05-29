@@ -1,3 +1,0 @@
-- [x] Review data with team @done(2018-02-22 13:02)
-	- [x] Call out fact that we dont have RIC for indexes @done(2018-02-22 13:02)
-- [x] Walk Sanjay through Feebdack API @done(2018-02-23 16:11)

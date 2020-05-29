@@ -1,7 +1,0 @@
-- [x] Merge Google Docs ... @done(2018-01-13 11:15)
-- [x] Remove any of the non cog scale data ... @done(2018-01-13 11:28)
-	- [x] Deploy the container for profile builder @done(2018-01-13 11:29)
-	- [x] Deploy new job for profile builder ... @done(2018-01-13 11:29)
-	- [x] Map inner sedols of prices / insight actions .../ current holdings @done(2018-01-13 11:29)
-- [x] Reply to the Emails ... @done(2018-01-13 11:18)
-- [x] Get Rich to whitelist production server @done(2018-01-13 11:18)

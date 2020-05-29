@@ -1,9 +1,0 @@
-- [x] Meet with Prakar @done(2017-10-12 13:20)
-- [-] Reach out to new dude to have him wokring on Sarthaks stuff
-- [x] Add better estimates for the slides @done(2017-10-12 15:53)
-- [x] Add a list of Salvageable CTI Components to the slides ... @done(2017-10-12 15:53)
-- [x] Review Gopal's responses  @done(2017-10-12 15:53)
-- [x] Reach out to Benny to proper env @done(2017-10-12 23:18)
-- [x] Reach out to Brent to create repo @done(2017-10-12 16:50)
-- [x] Create a COPS Ticket ...  @done(2017-10-12 23:18)
-- [x] Reply to Gopals email/responses  @done(2017-10-12 23:18)

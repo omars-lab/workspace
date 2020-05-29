@@ -1,9 +1,0 @@
-- #THOUGHT How can we make sure people actually use the method???
-	- Do people see the value of the method???
-	- Does the method help consistently address common concerns? questions?
-- [x] Check if BW triggers ran ... @done(2018-06-20 12:02 AM)
-- [x] Sync with Pankaj @done(2018-06-20 12:02 AM)
-- [x] Help Shikhar @done(2018-06-20 12:02 AM)
-- [x] Help the interns @done(2018-06-20 12:02 AM)
-- [x] Get acquainted with zendesk @done(2018-06-20 12:03 AM)
-- [x] Help Russell with ETF order form @done(2018-06-20 12:03 AM)

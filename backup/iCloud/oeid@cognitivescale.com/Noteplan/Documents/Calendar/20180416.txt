@@ -1,7 +1,0 @@
-- [x] Reach out to Candice's Contact ... @done(2018-04-16 21:50)
-- [x] Figure out new list of countries to run this thing for ... @done(2018-04-16 21:50)
-- [x] Re run the Historical Queries ... @done(2018-04-16 21:50)
-- [x] Get Samples of the daily and clean them up! @done(2018-04-21 12:47)
-- [x] Do the Haskell HW ...  @done(2018-04-21 12:47)
-- [x] Load the Historic Data into mongo ...  @done(2018-04-21 12:47)
-

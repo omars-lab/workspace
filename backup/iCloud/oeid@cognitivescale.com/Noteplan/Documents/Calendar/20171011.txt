@@ -1,5 +1,0 @@
-- [x] Check out Gopals link and factor it into the slides @done(2017-10-11 20:29)
-- [x] Add use case model to slides @done(2017-10-11 20:29)
-- [x] Fill in the components for the slides @done(2017-10-11 20:30)
-- [x] Update the solution components diagram @done(2017-10-11 20:30)
-- [x] Send Gopal question list ...  @done(2017-10-11 21:43)

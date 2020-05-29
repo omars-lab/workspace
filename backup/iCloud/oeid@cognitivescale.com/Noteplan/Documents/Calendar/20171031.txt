@@ -1,7 +1,0 @@
-- [x] Amrish to discuss options ... @done(2017-11-01 01:06)
-- [x] Sunil to iterate on agenda  @done(2017-11-01 01:06)
-- [x] Ask Rich when he would be free ... @done(2017-10-23 18:43)
-- [-] See if I can go through the code on jenkins for Quant Engine ... but at the end of the day ... these are talend jobs ... need the talend export ...
-- [-] Consolidate sarthaks notes
-	- [-] Send notes to Sekar and Prakhar and wish them a happy diwali!
-- [x] Share results with the industry data team ... @done(2017-11-01 01:07)

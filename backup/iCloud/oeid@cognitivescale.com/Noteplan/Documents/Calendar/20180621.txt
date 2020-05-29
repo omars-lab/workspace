@@ -1,6 +1,0 @@
-- [x] create a service account for monitoring @done(2018-06-21 05:15 PM)
-- [x] Get container provisisioned in dockerub @done(2018-06-21 05:15 PM)
-- [x] only copy one file over to container @done(2018-06-21 05:21 PM)
-- [x] make a .secrets dir for jenkins ... @done(2018-06-21 05:21 PM)
-	- [x] Make sure it gets copied into the vm @done(2018-06-21 05:21 PM)
-- [x] Automate configuration of email ... @done(2018-06-21 05:21 PM)

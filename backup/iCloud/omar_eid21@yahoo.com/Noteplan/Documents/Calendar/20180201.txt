@@ -1,8 +1,0 @@
-- [x] Email Amazon dude that I shipped the cameras @done(2018-02-01 23:42)
-	- [x] Check shipping status ... { they arrived } @done(2018-01-25 18:46)
-	- [x] See if my refund was processed @done(2018-02-01 23:42)
-
-- [x] Go to sams for water @done(2018-02-01 23:42)
-
-- [-] Figure out what I should get meem for his birday {waiting to hear from saaidia}
-- [x] Text Saadia about venmo  @done(2018-02-01 12:59)

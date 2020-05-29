@@ -1,7 +1,0 @@
-- [x] Align Agent Defs to bill of material  @done(2018-02-02 10:55)
-- [x] Updates tickets in jira @done(2018-02-02 12:50)
-- [x] Collect slides of screenshots for Cortex view ... @done(2018-02-02 12:50)
-- [x] Prepare Demo Slides ... @done(2018-02-02 12:50)
-
-- [-] Send email about Cortex tenant being provisioned {We need to think of a strategy for sharing access to the Cortex instance with BW.}
-- [x] Mark that I am working remotely on Friday 16th ... @done(2018-02-02 09:29)

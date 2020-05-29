@@ -1,2 +1,0 @@
-- [x] Finish defining the skills for initial bwii @done(2018-01-30 11:11)
-- [x] Finish defining the types @done(2018-01-30 11:11)

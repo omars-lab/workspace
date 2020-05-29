@@ -1,5 +1,0 @@
-- [x] Make it easy to bulk update daily quereis @done(2018-04-21 12:46)
-- [x] Make it easy to bulk update historic quereis  @done(2018-04-21 12:46)
-- [x] Share code between daily and historic jobs @done(2018-04-21 12:46)
-- [x] Add Country Mechanism to daily? .... @done(2018-04-21 12:48)
-- [x] Automate the cleaning up of new quereis ... @done(2018-04-21 12:48)

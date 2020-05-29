@@ -1,5 +1,0 @@
-- [x] Make a jq skill ... @done(2018-07-08 01:28 PM)
-- [x] Make GOCD pipeline ... @done(2018-07-06 12:18 AM)
-- [x] Look into bad skill issue {tryed to create invalid skills but was unsuccessful}@done(2018-07-05 10:34 AM)
-- [x] Talk to randy about repos @done(2018-07-05 10:36 AM)
-- [x] Make two github and two dockerhub repos ... @done(2018-07-06 10:51 AM)

@@ -1,2 +1,0 @@
-- [x] Setup runbook server @done(2018-07-24 12:28 PM)
-- [x] Setup stage for data pipeline @done(2018-07-25 09:30 AM)

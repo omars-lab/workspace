@@ -1,9 +1,0 @@
-- [-] Test Daily Pipeline with history ...{overkill}
-- [-] Call 10 in the Morning to Help John Anderson with Insights Demo ... {Didnt need me}
-
-- [x] Reach out To Candice Contact to fill in the HSA form ... @done(2018-04-07 19:54)
-- [x] Reach out To Dr Gosh for advice ... @done(2018-04-06 15:49)
-
-- [x] What questions do I have for the Industry Data Team? @done(2018-04-06 15:49)
-	- [x] What is the currency for Returns Index? {no curreny for it ...}@done(2018-04-06 15:49)
-	- [x] Do we validate raw data ... or transformed data ... ? {They will be given transformed ...} @done(2018-04-04 23:43)

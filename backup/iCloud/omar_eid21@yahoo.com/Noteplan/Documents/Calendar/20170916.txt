@@ -1,3 +1,0 @@
-- [x] Merge all images into one ... @done(2017-09-18 11:37)
-- [x] Rename the files like TAB35A1... @done(2017-09-18 11:37)
-- [x] Autogenerate the tabs with `convert -background white -fill black -font Arial -size 850x1100 -pointsize 72 -density 90 -gravity center label:"TAB 32" label.png` @done(2017-09-18 11:37)

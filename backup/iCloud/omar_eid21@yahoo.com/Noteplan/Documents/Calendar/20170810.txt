@@ -1,5 +1,0 @@
-
-- [-] 2017-08-10 Get bouncy ball
-- [>] 2017-08-10 Check out cube
-- [-] Go check out notebooks at tripoli square
-	- [-] Have decozone decorate it

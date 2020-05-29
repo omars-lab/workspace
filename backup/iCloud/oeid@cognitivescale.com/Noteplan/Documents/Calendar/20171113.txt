@@ -1,4 +1,0 @@
-- [x] Updates questions with top 3 for each section ... @done(2017-11-13 20:31)
-- [x] Need to extract risks, decisions, questions, from notes ... @done(2017-11-13 20:22)
-- [x] Cleanup Noteplan @done(2017-11-13 22:16)
-- [-] Dig through Quant Engine to see what of the Eikon files are actually being used ... {Sarthak told us what we need}

@@ -1,2 +1,0 @@
-- [x] Work on modeling ... @done(2018-08-02 11:14 AM)
-	- [x] Come up with some introductory samples @done(2018-08-02 11:14 AM)

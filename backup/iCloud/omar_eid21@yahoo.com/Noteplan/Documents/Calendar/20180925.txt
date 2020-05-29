@@ -1,2 +1,0 @@
-- [x] Buy HM stuff with coupon
-- [x] Do courses with Sara

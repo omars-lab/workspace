@@ -1,1 +1,0 @@
-/Users/oeid/git/cognitivescale/docker-alpine/.git

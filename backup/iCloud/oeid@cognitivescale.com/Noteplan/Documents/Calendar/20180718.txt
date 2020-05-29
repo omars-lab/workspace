@@ -1,1 +1,0 @@
-- [x] With FN ... STDIN may no longer be the contract for docker based contianers ... ask victor what is ... @done(2018-07-24 12:26 PM)

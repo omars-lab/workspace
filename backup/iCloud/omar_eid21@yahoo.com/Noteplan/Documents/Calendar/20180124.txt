@@ -1,3 +1,0 @@
-- [x] Schedule delivery of our sofas @done(2018-01-24 21:51)
-- [x] Export fitbit data for one month @done(2018-01-24 23:27)
-- [x] Organize house todos @done(2018-01-25 09:18)

@@ -1,6 +1,0 @@
-- [x] Extract data that more aligned to what is needed to run the first quant engine @done(2018-02-22 13:01)
-- [x] Work on ingesting the data ... @done(2018-02-21 13:08)
-	- [x] Get connection in BWII app .. @done(2018-02-21 23:55)
-- [x] Work on docker image with updated company query @done(2018-02-21 23:55)
-	- [x] Hash Mongo Index @done(2018-02-21 23:55)
-	- [x] Create Company Master Sheet @done(2018-02-21 23:56)

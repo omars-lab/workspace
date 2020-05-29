@@ -1,2 +1,0 @@
-- [x] Backup git repo names @done(2018-09-24 11:31 AM)
-	- [x] Split personal from work @done(2018-09-24 11:03 PM)

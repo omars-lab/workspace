@@ -1,9 +1,0 @@
-- [x] Write up meeting notes for meeting we just had ...  @done(2018-03-15 14:25)
-
-- [x] Think about data structure posted by hari - company by ... @done(2018-03-09 12:58)
-	- [x] Figure out what naveen is lacking from the data ... @done(2018-03-09 12:58) {naveen thinks the schema will float}
-
-- [x] Review Slides with Matt and Team @done(2018-03-09 12:57)
-- [x] Look into Glue / Athena / S3 @done(2018-03-09 12:57) {Asked John Barnhart about this ...}
-	- [x] Follow up with Jon barbhart on what they did to load lots of data for ML into the system for dell ... @done(2018-03-15 14:25)
-

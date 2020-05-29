@@ -1,7 +1,0 @@
-- [-] When we get back, get hair gel and tweazers {ended up bringing them back with us ...}
-- [-] Make extra pair of glasses lenses ...
-- [x] Take sara to Hamwi @done(2018-09-08 21:38)
-- [x] Trade Sara Gold @done(2018-09-08 21:38)
-- [x] Look for plastic molds @done(2018-09-08 21:39)
-- [x] Go to Jiddos house for lunch @done(2018-09-08 21:39)
-- [x] Translate medical docs @done(2018-09-16 02:33 PM)

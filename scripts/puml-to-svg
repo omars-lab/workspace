@@ -2,4 +2,9 @@
 # Derive SVG
 FILE_NAME=${1}
 OUTPUT_FILE_NAME="${2:-${1}.svg}"
-cat "${FILE_NAME}" | plantuml -tsvg -progress -failfast2 -p > "${OUTPUT_FILE_NAME}"
+
+function get_rid_of_xml_header() {
+  sed -E -e 's/^<[?]xml[^>]+[?]>//g'
+}
+
+cat "${FILE_NAME}" | plantuml -tsvg -nometadata -progress -failfast2 -p | get_rid_of_xml_header > "${OUTPUT_FILE_NAME}"

@@ -1,6 +1,0 @@
-- [-] get pacifier
-- [x] get kleenex @done(2017-09-01 14:20)
-- [x] get relax @done(2017-09-02 02:58)
-- [x] get underwear @done(2017-09-01 14:20)
-- [x] get detol @done(2017-09-01 14:20)
-- [x] get convertor @done(2017-09-02 02:58)

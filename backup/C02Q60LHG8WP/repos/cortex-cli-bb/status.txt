@@ -1,4 +1,0 @@
-On branch CCF-3254-publicaly-bootsrap-able
-Your branch is up to date with 'origin/CCF-3254-publicaly-bootsrap-able'.
-
-nothing to commit, working tree clean

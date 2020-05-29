@@ -1,4 +1,0 @@
-- [x] Open Misleading ticket on permission error @done(2018-06-10 12:58 PM)
-
-- [x] Dig into trigger issue @done(2018-06-07 12:37 PM)
-- [x] Dig into agent delete issue  @done(2018-06-07 12:37 PM)

@@ -1,1 +1,0 @@
-- [x] Create gocd job for cortex-cli @done(2018-02-08 10:45)

@@ -1,6 +1,0 @@
-- [x] For EggPlant, Grapes, Strawbwerries, BlackBerries go to Whole Foods @done(2018-04-21 12:32)
-- [x] For Orgnanic Puff Cereal go to HEB @done(2018-04-21 12:32) {Cheaper from whole foods} 
-- [x] Record how much I paid baba vs how much is left ...  @done(2018-04-21 12:32)
-- [x] Send Money to Saras Family @done(2018-04-21 12:34)
-	- [x] How much shouldd we send? {$10 per day, $150} @done(2018-04-14 09:58)
-	- [x] How should we send them money? {Moneygram? ... } @done(2018-04-21 12:34)

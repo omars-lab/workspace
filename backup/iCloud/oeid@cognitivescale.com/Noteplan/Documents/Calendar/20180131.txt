@@ -1,3 +1,0 @@
-- [x] Get a tenant up and going @done(2018-01-31 09:33)
-	- [x] Tweak a clone of the ticket creating page {too much effort, sent an email instead} @done(2018-01-31 09:33)
-- [x] Talk to Dilum about generator @done(2018-01-31 09:33)

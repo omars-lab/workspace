@@ -1,5 +1,0 @@
-- [x] Call CB2 and make bed does not need a spring board @done(2017-11-30 15:58)
-- [x] Call HEB and make sure they can inflate baloons @done(2017-11-30 15:58)
-- [x] Research helum canister {you cant refill it} @done(2017-12-03 22:21)
-- [x] Reply to Said Bhai  @done(2017-12-04 09:33)
-* [x] Look up Efrens email and leave him feedback @done(2017-12-04 10:01)

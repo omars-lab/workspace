@@ -1,6 +1,0 @@
-- [x] Go to Marshalls and return unneeded blazer @done(2018-06-19 11:48 PM)
-- [x] Go to Target and return nerf gun @done(2018-06-19 11:48 PM)
-- [x] Go to Target and get shredder and stapler  @done(2018-06-19 11:48 PM)
-- [x] Go to Whole Foods and get cereal, coffee, tomatoes, potatoes @done(2018-06-19 11:48 PM)
-- [x] Pull the latest haskell code and try to track what happened ... @done(2018-06-20 12:10 AM)
-- [x] Call Sara's doctors and schedule 4-6 week lab appointment ... @done(2018-06-20 12:10 AM)

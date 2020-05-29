@@ -1,5 +1,0 @@
-- [x] Connect with Hari on data pipeline @done(2018-02-06 15:30)
-- [x] Connect with Hari on process ... @done(2018-02-06 15:30)
-- [x] Add entry point script with bootstrap command to copy cortex binary over ...
-- [x] [We need to put together a process for requesting new data from QAD](https://docs.google.com/drawings/d/11lXy5GVwvMD-BpOxS3J-yPqBko-s9kib1Cv2V7T1t5A/edit?usp=drive_web&ouid=115395077354663249593) @done(2018-02-06 16:04)
-- [x] Start Internally Documenting ABs point of view / concerns .. @done(2018-02-06 16:40)

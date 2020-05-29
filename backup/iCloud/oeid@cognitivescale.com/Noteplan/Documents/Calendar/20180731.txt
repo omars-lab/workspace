@@ -1,9 +1,0 @@
-- [x] Refactor the FPI capabilities ... @done(2018-08-02 11:13 AM)
-	- [x] Break up the high level from the lower level ... @done(2018-08-02 11:13 AM)
-
-- [x] See if I can add a google drawing as an image to an ipython notebook @done(2018-08-02 10:50 AM)
-	- [x] Do I need a service account? @done(2018-08-02 10:50 AM)
-	- [x] Might be tough... might be easier to do google sync with local files and break them down ... @done(2018-08-02 10:50 AM)
-	- #THOUGHT ... when choosing an editor tool, a MUST NEED feature is one that lets us build diagrams but then easily publish them in our documentation!
-		- This is also a good peak into how a company operates ... how much have they thought about the tools they use on a daily basis???
-			- [ ] What are my pros and cons for using each tool?

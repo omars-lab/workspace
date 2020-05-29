@@ -1,4 +1,0 @@
-- [x] Put a calendar event on for bob and I @done(2017-10-06 17:51)
-- [x] Work on Gopals Chart / Emails @done(2017-10-06 17:51)
-	- [x] Finish architecture paper @done(2017-10-06 17:51)
-	- [x] Start Inventory ... @done(2017-10-06 17:51)

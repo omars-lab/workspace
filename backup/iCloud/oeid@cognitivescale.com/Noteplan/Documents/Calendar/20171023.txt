@@ -1,9 +1,0 @@
-- [x] Clarify why we need a jenkins server @done(2017-10-23 15:17) https://cognitivescale.atlassian.net/browse/COPS-520#add-comment
-- [x] Ask Sagar to port over repo to a cognitivescale version ... @done(2017-10-23 14:32)
-- [x] Need to address the bigger concern of allocating the industry data team to work on the daily data ... @done(2017-10-23 14:55)
-	- [x] #Reply to the Email thread ...  @done(2017-10-23 14:55)
-	- [x] #Request Meeting with Navaneeth @done(2017-10-23 15:18)
-	- @Thought @2017-10-20 Get Sekar and Prakhar to validate the work of the industry data team ...
-	- @Thought @2017-10-22 I need to drive this
-- [x] Take a look at what Amrish sent and leave some comments on it ... @done(2017-10-23 18:20)
-- [x] Meet with Amrish to review knowledge graph ...  @done(2017-10-23 22:44)

@@ -1,0 +1,5 @@
+#!/bin/bash
+INPUT="${1}"
+OUTPUT=$(dirname "${1}")/$(basename "${1}").svg
+echo "${INPUT} to ${OUTPUT}" >&2
+mmdc -i "${INPUT}" -o "${OUTPUT}" -w 2048 -H 1536

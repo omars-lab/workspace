@@ -1,1 +1,0 @@
-/Users/oeid/git/cognitivescale/gocd-agent/.git

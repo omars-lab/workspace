@@ -1,6 +1,0 @@
-- [x] Withdraw 2k from bank
-- [x] Go to Akram for dyafe cups
-- [x] @NearSarasLabor Upgrade to 10 amps
-
-- [x] Stuff for mighly from hoz
-- [x] Get another 2 batteries for flashlight

@@ -1,9 +1,0 @@
-- [x] Get Sarthak portfolios ...
-- [x] Scp output to jenkins
-- [x] Extract xo data from the CTI env @done(2017-08-16 11:28)
-- [>] Sagar wants stuff to add up to 100! >2017-08-16
-	- [>] Need to run the proper tests to ensure this is happening .... >2017-08-16
-- [>] Cleanup Mongo Read /  Write Functionality ... >2017-08-16
-	- [>] Create Mappers from Mongo to Parse Objects ... >2017-08-16
-	- [>] Create Mappers from Parse Objects to Mongo ... >2017-08-16
-	- [>] Run Experiments to turn Parse Objects into Mongo Documents ... >2017-08-16

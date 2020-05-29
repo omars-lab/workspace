@@ -1,4 +1,0 @@
-On branch jenkins-job
-Your branch is up to date with 'origin/jenkins-job'.
-
-nothing to commit, working tree clean

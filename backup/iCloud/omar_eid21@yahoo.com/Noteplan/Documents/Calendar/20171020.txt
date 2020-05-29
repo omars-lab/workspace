@@ -1,1 +1,0 @@
-- [x] Read Chapter 5 (28 pages) of Cakes, Custard, and Category Theory @done(2017-10-20 14:48)

@@ -1,1 +1,0 @@
-git@github.com:rjk2011/Po1GoogleDocPlugin.git

@@ -1,2 +1,0 @@
-- [x] Run Historics for P3 {except beta} @done(2018-05-12 11:35)
-- [x] Update P1 and P2 historics to run faster? @done(2018-05-12 11:35)

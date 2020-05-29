@@ -1,6 +1,0 @@
-- [x] Refactor big sections in backlog @done(2017-10-27 12:00)
-- [x] Add scope finalization section to backlog  @done(2017-10-27 12:00)
-- [x] Add requirements finalization to backlog  @done(2017-10-27 12:00)
-- [x] Fill in Brents slides with who is going to say what ... @done(2017-10-28 16:09)
-- [x] Add CTI as is, plus, minus slide @done(2017-11-01 01:11)
-- [x] #Document different deployment options for CTI ... @done(2017-11-01 13:41)

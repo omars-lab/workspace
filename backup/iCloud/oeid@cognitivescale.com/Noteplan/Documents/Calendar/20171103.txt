@@ -1,4 +1,0 @@
-- [x] #Document Akshayas demanding nature as a risk that we need to try to predict his desires and prepare for them beforehand @done(2017-11-03 13:43)
-- [x] #Document cortex interest vs taai interests and a decision to take the middle ground @done(2017-11-03 14:02)
-- [x] #Document decision for data team to do quants @done(2017-11-03 14:02)
-- [x] Need a raid+concerns+decisions+verifcations+... @done(2017-11-03 14:02)

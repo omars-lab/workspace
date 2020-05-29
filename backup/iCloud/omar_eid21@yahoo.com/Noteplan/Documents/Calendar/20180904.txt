@@ -1,7 +1,0 @@
-- [x] Go to Luminia for breakfast @done(2018-09-04 21:15)
-	- [-] Make reservations for lumunia {dont need one}
-- [x] Go to tayta for lunch @done(2018-09-04 21:15)
-- [x] Go to Myrador for dinner {went to huuqa instead} @done(2018-09-04 21:15)
-	- [x] Call Myrador and reserve dinner for Tuesday @done(2018-09-03 15:37)
-	- [x] Call Myrador and cancel reservation @done(2018-09-04 21:15)
-- [x] Go back to Dar El Chimal for arabic letter cards @done(2018-09-16 02:33 PM)

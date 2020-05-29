@@ -1,6 +1,0 @@
-- [x] Create FPI Courseware for Steve ... @done(2018-09-18 11:22 AM)
-	- [x] Craft Base News Article Files ... @done(2018-09-18 11:22 AM)
-		- [x] Upload them ... @done(2018-09-18 11:22 AM)
-	- [x] Craft Base Profiles  @done(2018-09-18 11:22 AM)
-		- [x] Upload  @done(2018-09-18 11:22 AM)
-	- [x] Create three simple skills to recommend, process feedback, and build profiles ... @done(2018-09-18 11:23 AM)

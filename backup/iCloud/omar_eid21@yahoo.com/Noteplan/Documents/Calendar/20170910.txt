@@ -1,5 +1,0 @@
-- [x] Download medical bills from unitedhealthcare site ... @done(2017-09-10 01:37)
-- [x] Make sure that my first international trip was to lebanon ... before canada (can baba look at an old passport and verify this) @done(2017-09-11 15:38)
-- [x] Transfer stuff from 32gb flash @done(2017-09-11 15:39)
-- [x] Get receipts for medical bills ...... @done(2017-09-11 15:39)
-- [x] Get statements with receipts ... @done(2017-09-11 15:39)

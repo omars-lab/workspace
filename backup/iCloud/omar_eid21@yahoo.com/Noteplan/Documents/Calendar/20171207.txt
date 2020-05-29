@@ -1,6 +1,0 @@
-- [x] Activate Macys card @done(2017-12-08 22:31)
-* [x] #PayBill for Macys Credit Card  @done(2017-12-07 18:28)
-* [x] #TakeSara to Maggianos @done(2017-12-07 23:38)
-- [x] #PickUp Apple Watch from Apple Store @done(2017-12-07 23:38)
-* [x] Look into mindnode 5 ...  {Is it worth the upgrade? -> dont think so ...} @done(2017-12-07 23:39)
-- [-] Get marble serving tray like the one we saw in target

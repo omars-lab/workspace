@@ -1,7 +1,0 @@
-- [x] Get Trader Insights to use dataset refs .. @done(2017-12-12 10:47)
-	- [x] Figure out how dataset refs work ... @done(2017-12-12 10:47)
-- [x] Get TI to use dataset refs ... @done(2017-12-16 12:39)
-- [x] Define datasets in processor yml @done(2017-12-18 12:15)
-- [-] #Thought ... work wants me to go to London for a week ... {They are coming to the states ...}
-	- [-] Should Sara come with me?
-	- [-] Should she go to virginia?

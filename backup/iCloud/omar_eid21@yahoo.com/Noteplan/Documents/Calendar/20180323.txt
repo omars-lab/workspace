@@ -1,8 +1,0 @@
-- [x] Drop Sara off at acc @done(2018-03-23 10:26)
-	- [x] Make sure to remind Sara to tell profs shell be out of town ... @done(2018-03-23 10:26)
-
-- [x] Go to hair cut appointment @done(2018-03-23 23:13)
-- [x] Take Sara to eye doctor @done(2018-03-23 23:13)
-- [x] Turn off Water at the house  @done(2018-03-23 23:13)
-- [-] Figure out what to get moe
-

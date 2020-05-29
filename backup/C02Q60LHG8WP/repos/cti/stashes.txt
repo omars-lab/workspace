@@ -1,2 +1,0 @@
-stash@{0}: WIP on master: b309867 Properly caching
-stash@{1}: WIP on master: c7e9a79 Generating insights by default

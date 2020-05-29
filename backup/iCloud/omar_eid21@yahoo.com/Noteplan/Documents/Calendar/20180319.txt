@@ -1,3 +1,0 @@
-- [x] Think about what we should get Mino @done(2018-03-25 13:08)
-	- [x] Look into getting toy car for mino @done(2018-03-25 13:08)
-

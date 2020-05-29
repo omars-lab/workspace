@@ -1,4 +1,0 @@
-- [x] Make target that gets the header of each of the historics ... @done(2018-05-11 10:46)
-- [x] Make target that gets the header of each of the dailys ... @done(2018-05-11 10:46)
-- [x] Continue Porting P2 and P3 Historics @done(2018-05-11 10:52)
-- [x] Manually load missing RI data  @done(2018-05-11 11:07)

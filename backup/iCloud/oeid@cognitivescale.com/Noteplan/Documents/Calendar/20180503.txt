@@ -1,4 +1,0 @@
-- [x] Improve haskell hw by making the line adding function not fail on bad lines ... @done(2018-05-05 18:16)
-- [x] Reach out To Bob about twice a month meeting ... @done(2018-05-05 18:18)
-- [x] Work on the historic p2 data types ... @done(2018-05-05 18:19)
-- [x] Work on the daily p3 data types  @done(2018-05-05 18:19)

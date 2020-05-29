@@ -1,1 +1,0 @@
-/Users/oeid/git/git-experiments/pip2nix/.git

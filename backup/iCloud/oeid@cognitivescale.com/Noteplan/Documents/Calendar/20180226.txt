@@ -1,8 +1,0 @@
-- What meetings will I have this week?
-	- [-] Reschedule Gopal and I’s 1-1 {He's in India}
-	- [-] Talk to Roeder about giving them [docs,samples] for [Jobs,Connections,Datasets,APIs] {maybe later ...}
-
-- [x] Meet with Aditya to discuss data pipeline ... @done(2018-02-27 12:25)
-- [x] Send BW Slides @done(2018-02-27 12:25)
-- [x] Send Navveen Split Up Quant Engine to read one file at a time ... @done(2018-02-27 12:26)
-- [x] Send Navveen clean data  @done(2018-02-27 12:29)

@@ -1,6 +1,0 @@
-- [x] Reply to Rich about him being in town @done(2018-01-18 10:40)
-	- [x] Also reply about workshop material  @done(2018-01-18 10:40)
-- [x] Reach out to Hari about weekly sessions @done(2018-01-19 10:38)
-- [x] Reach out to Dominic for access to QAD @done(2018-01-19 10:38)
-
-- Note: The India team knows how to make the right TR tickets now...

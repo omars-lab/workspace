@@ -1,2 +1,0 @@
-- [x] Update Ticket for AMI @done(2017-11-17 09:39)
-- [x] Send Chris docs on CTI ... @done(2017-11-17 09:39)

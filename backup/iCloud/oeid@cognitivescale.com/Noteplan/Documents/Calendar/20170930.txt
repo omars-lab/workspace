@@ -1,2 +1,0 @@
-- [-] Add db of transactions that the UI updates to know how many shares of certain equities a user
-- [-] Update the config so that the count of companies held to be computed daily

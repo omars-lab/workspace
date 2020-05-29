@@ -1,3 +1,0 @@
-- [x] Take Dr Appointment for Yaryur @done(2017-11-03 20:23)
-- [x] #RemindWifey To do her blood tests @done(2017-11-03 20:23)
-- [-] Pierce Yaryur's ears (Wait until 4 months)

@@ -1,4 +1,0 @@
-- [x] Fusat for Yara @done(2017-09-09 17:06)
-- [x] Get Baby Clothes from Eldorado @done(2017-09-10 01:20)
-- [x] Get Baby hat from Click Clack @done(2017-09-10 01:20)
-- [x] Book an appointment ...  @done(2017-09-09 17:13)

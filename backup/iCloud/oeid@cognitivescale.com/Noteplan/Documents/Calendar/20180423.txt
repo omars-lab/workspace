@@ -1,5 +1,0 @@
-- [x] Follow up on if agent inputs have signal ids ... {mapping can not be empty ... or else inputs dont get signal ids ...} @done(2018-04-23 22:14)
-- [x] Wish Gagan the best ... @done(2018-04-23 22:14)
-- [x] Learn how to port over to cortex v5
-- [-] Should we add the ability to floor the invoked value ... (this essentially happens if you specify a format that rips out the seconds ...)
-- [x] Add caching mechanism to store the same days worth of data for a set of countries ... @done(2018-04-30 11:24)

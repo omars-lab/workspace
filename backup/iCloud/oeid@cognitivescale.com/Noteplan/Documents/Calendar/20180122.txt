@@ -1,4 +1,0 @@
-- [x] Make the api slides use our template @done(2018-01-22 07:40)
-- [x] Figure out who in Cogscale has direct access with TR @done(2018-01-29 08:15)
-	- Dominic knows how to add new users to the db
-	- Jon controls the relationship

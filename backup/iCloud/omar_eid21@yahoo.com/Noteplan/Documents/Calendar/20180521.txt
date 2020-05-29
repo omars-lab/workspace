@@ -1,2 +1,0 @@
-- [x] Pay the water bill! @done(2018-05-21 21:52)
-- [x] Get polos from polo {got polos from costco} @done(2018-05-25 09:55)

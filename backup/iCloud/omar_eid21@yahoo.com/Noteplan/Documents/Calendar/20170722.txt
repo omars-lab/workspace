@@ -1,9 +1,0 @@
-- [x] Go Biking in Al Mina
-- [x] Go to Al-Souq  @done(2018-05-27 23:14)
-	- [x] Buy a Dishdasha
-	- [x] Go to Khan Al Khayatyn
-	- [-] Make a custom Sajadeh
-		- [x] Bought a rug under the sajadeh {This way I can wash the sajadeh}
-	- [-] Buy a Tarboush {Too expensive}
-	- [x] Buy 2x Mazhar/Trinbake
-	- [x] Buy Nhas stuff I like

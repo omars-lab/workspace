@@ -1,6 +1,0 @@
-- [x] Pay Seton bill with Avidia Card @done(2018-07-17 11:21 AM)
-- [x] See when the insurance bill needs to paid @done(2018-07-17 11:36 AM)
-- [x] Pay Car Insurance Bill @done(2018-07-17 11:36 AM)
-- [x] Call St Davids Billing department and ask new copy of bill @done(2018-07-17 11:36 AM)
-- [x] Get white pants for Sara from Nordstrom @done(2018-07-18 01:54 PM)
-- [x] Go to Marshalls @done(2018-07-18 01:54 PM)

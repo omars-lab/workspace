@@ -1,8 +1,0 @@
-- [x] From International groceries, get noodles,akawi,pickles,gummy bears,chest nuts,... @done(2018-02-11 21:11)
-- [x] Go to Target and get pink pillow @done(2018-02-11 21:10)
-- [x] From bed bath, return pillows @done(2018-02-11 21:11)
-- [x] From best buy, return hdmi cables @done(2018-02-11 21:11)
-- [x] Try the Sous Vide eggs from starbucks @done(2018-02-11 21:12)
-- [x] Go to the house and move the bed @done(2018-02-12 10:26)
-- [x] Go to the house and open the matresses @done(2018-02-12 10:26)
-- [x] Register {washer,dryer,fridge} online @done(2018-02-12 12:07)

@@ -1,6 +1,0 @@
-- [x] Return Cups to Amazon @done(2018-03-08 16:24)
-- [x] Take Yaryur to doctor @done(2018-03-08 16:25)
-- [x] From HEB, get tooth brushes @done(2018-03-09 12:57)
-- [x] From HEB, get creme brule stuff @done(2018-03-09 12:57)
-- [x] From Mamas house, get chair ... @done(2018-03-09 12:57)
-- [x] Figure out what happened for yaras bill ... @done(2018-03-09 13:04) {fully paid by insurance}

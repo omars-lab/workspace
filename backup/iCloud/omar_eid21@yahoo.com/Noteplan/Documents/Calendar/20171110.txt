@@ -1,8 +1,0 @@
-- [-] Take appointment at eye doctor ... {mama said do this @whenWeGetToAmerica}
-- [-] Go to AlAbdallah and see 3alamat
-- [x] Go to Tayba Jewelry and get bags for Gold @done(2017-11-10 17:37)
-- [x] Go to Masbgha and get Saras fistan @done(2017-11-10 17:38)
-- [x] Go to Jiddos house @done(2017-11-10 20:50)
-	- [x] How much do we owe our neighbor for water? @done(2017-11-10 17:39)
-- [x] Rebook flights with a longer layover @done(2017-11-10 17:56)
-- [x] Reply to Shay @done(2017-11-10 20:50)

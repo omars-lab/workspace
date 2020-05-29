@@ -1,3 +1,0 @@
-- [x] Ask Candice the following questions: @done(2018-07-17 11:16 AM)
-	- [x] Which card do I use? ameriflex or avidia? @done(2018-07-17 11:15 AM)
-	- [-] Should I still contribute through ameriflex? {didnt really understand answer}

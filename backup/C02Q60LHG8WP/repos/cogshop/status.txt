@@ -1,2 +1,0 @@
-On branch omar/hello_world
-nothing to commit, working tree clean

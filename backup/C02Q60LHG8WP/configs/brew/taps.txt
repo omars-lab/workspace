@@ -1,7 +1,0 @@
-homebrew/cask
-homebrew/core
-homebrew/fuse
-homebrew/python
-homebrew/science
-homebrew/versions
-neovim/neovim

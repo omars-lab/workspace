@@ -1,7 +1,0 @@
-- [x] Add my icloud to my family sharing ... @done(2018-09-21 10:29 PM)
-- [x] Talk to Nawal about ifly @done(2018-09-21 10:33 PM)
-- [x] Go to Ross and Return Yaras Shoes & get Sara Pajama Shatwy @done(2018-09-21 10:35 PM)
-- [x] Go to Home Goods and return the stuff @done(2018-09-21 10:35 PM)
-- [x] Go to Best Buy and get frother / return motion sensor @done(2018-09-21 10:36 PM)
-	- [x] Figure out what we are going to do for the frother @done(2018-09-21 10:37 PM)
-		- [x] If at best buy or bed bath, exchange the motion sensor ... @done(2018-09-21 10:37 PM)

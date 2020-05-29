@@ -1,2 +1,0 @@
-- [x] Go to the gym! @done(2017-12-04 22:09)
-- [x] Should I expense ticket fees {Should I even charge work for my ticket? ... Yes ... and ask for a raise at the beginning of the year ...} @done(2017-12-04 22:27)

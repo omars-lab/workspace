@@ -1,3 +1,0 @@
-- [x] Go to ATT and make sure there is a physical appointment in the morning @done(2018-02-16 11:30)
-- [x] From {Target} get a target card {applied online} @done(2018-02-16 11:31)
-	- [x] See if they have a promotion {they dont} @done(2018-02-16 11:31)

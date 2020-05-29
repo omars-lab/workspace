@@ -1,4 +1,0 @@
-
-- [x] Send video to team about our call today ... @done(2018-03-09 12:59)
-- [x] Send slides to team for them to review ... @done(2018-03-09 12:59)
-	- [x] Add action items to the slides ...  @done(2018-03-09 12:59)

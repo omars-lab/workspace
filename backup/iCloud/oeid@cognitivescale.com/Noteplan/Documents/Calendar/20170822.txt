@@ -1,6 +1,0 @@
-- [x] Figure out why A092449 does not have any recommendations ... @done(2017-08-23 00:14)
-- [x] Fix transaction based evidence not being shown ... @done(2017-08-22 23:50)
-- [x] Figure out the sorting order ... @done(2017-08-22 23:50)
-- [x] Get Sagar the additional data needed on recommendations ... @done(2017-08-22 23:50)
-- [x] Make it such that if you hold an insight, you get minimal points towards it ... @done(2017-08-23 00:15)
-- [x] How often does the app re-pull recommendations? @done(2017-08-23 00:15)

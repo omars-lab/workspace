@@ -1,3 +1,0 @@
-- [x] Get example to support python 3.6 @done(2018-02-19 11:21)
-	- [x] See if Cortex SDK supports 3.6 {it exists ... https://bitbucket.org/cognitivescale/cortex-python-lib ... and it supports 3.5/3.6 ... and it gets built and pushed to pypi ...} @done(2018-02-19 11:53)
-- [x] See if Cortex supports ssl based mongo connections {they do partially, dont support uploading any custom certs, but check against major ssl certifiers ...} @done(2018-02-16 13:29)

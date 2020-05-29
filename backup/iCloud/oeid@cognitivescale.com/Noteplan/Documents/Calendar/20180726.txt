@@ -1,4 +1,0 @@
-- [x] Send Avi code links @done(2018-07-27 11:12 AM)
-- [x] Fill in greenhouse card @done(2018-07-27 11:12 AM)
-- [x] List experiments we should do @done(2018-07-27 11:12 AM)
-- [x] Start working on notebooks to outline experiments story ... @done(2018-07-27 11:12 AM)

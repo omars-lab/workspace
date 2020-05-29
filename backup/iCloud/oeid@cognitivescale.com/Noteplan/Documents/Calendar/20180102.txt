@@ -1,4 +1,0 @@
-- [x] Ask Sarthak for IP  @done(2018-01-02 12:12)
-- [x] Put together an agenda for Thrusday reviewing what we did for TAAI @done(2018-01-02 13:01)
-	- [x] Make sure Amrish reviews this @done(2018-01-02 13:01)
-- [-] Clone Sagar’s profile as Jons {doesn't look like we need this anymore}

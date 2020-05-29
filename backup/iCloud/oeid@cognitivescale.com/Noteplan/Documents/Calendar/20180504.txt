@@ -1,2 +1,0 @@
-- [x] Get Jose to upload functions and grant user permission {  }  @done(2018-05-05 18:06)
-- [x] Add retention period to the data pipeline ... @done(2018-05-05 18:10)
