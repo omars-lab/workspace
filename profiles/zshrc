@@ -112,6 +112,7 @@ export LANG=en_US.UTF-8
 # Load zsh completion scripts
 # https://github.com/zsh-users/zsh-completions/issues/277#issuecomment-414139674
   fpath=(${DIRS_ENVIRONMENT}/completion-functions/zsh $fpath)
+  fpath=(${DIRS_ENVIRONMENT}/../workspace-career/completion-functions/zsh $fpath)
   rm -f "$HOME/.zcompdump"; 
   autoload -U compinit
   # https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories

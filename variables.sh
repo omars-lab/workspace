@@ -33,6 +33,8 @@ source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
   export DIR_FOR_BACKUPS="${DIRS_ENVIRONMENT}/backup"
 # The area where hand writtern helper scripts are kept:
   export DIR_FOR_SCRIPTS="${DIRS_ENVIRONMENT}/scripts"
+# The area where hand writtern helper scripts are kept:
+  export DIR_FOR_CAREER_WORKSPACE="${DIRS_GIT}/workspace-career"
 
 # For Apps ...
   if [[ -d ${HOME}'/Dropbox (Personal)' ]] ; then

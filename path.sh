@@ -11,6 +11,7 @@ export PATH="${DIR_FOR_BINARY_REFS}:$PATH"
 export PATH="${DIR_FOR_BINARIES}/miniconda3/bin:$PATH"
 export PATH="${DIR_FOR_BACKUPS}:$PATH"
 export PATH="${DIR_FOR_SCRIPTS}:$PATH"
+export PATH="${DIR_FOR_CAREER_WORKSPACE}/scripts:$PATH"
 
 # export PATH="${DIR_FOR_BINARIES}/cdap-sdk-4.0.1/bin:$PATH"
 # export PATH="${DIR_FOR_BINARIES}/git-2.12.0/bin:$PATH"
