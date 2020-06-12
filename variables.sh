@@ -46,7 +46,7 @@ source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh
 
 # DEFAULTS ...
   export DEFAULT_CONDA_ENV=${DEFAULT_CONDA_ENV:-cogenv3}
-  export DEFAULT_NVM_ENV=${DEFAULT_NVM_ENV:-v8.12.0}
+  export DEFAULT_NVM_ENV=${DEFAULT_NVM_ENV:-v10.16.0}
 # The docker machine we want to use as defaul for docker-machine
   # export DEFAULT_DOCKER_MACHINE=default
 
