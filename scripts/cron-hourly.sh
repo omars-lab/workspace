@@ -9,6 +9,7 @@ mkdir -p ${LOGS_DIR}
 
 function update_shortcuts() {
   shortcuts update '@hour' "$(date +'%Y-%m-%dT%H:00:00%z')"
+  shortcuts update '@done' "$(date +'@done(%Y-%m-%d %H:%M %p)')"
 }
 
 function main() {
