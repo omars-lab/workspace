@@ -1,16 +1,14 @@
-DEFAULT_FORMAT='+%Y-%m-%d'
+# Aliases to help with switching dirs ...
 
-function today() {
-  echo $(date -r $(date '+%s') ${1:-${DEFAULT_FORMAT}})
-}
+# Ease directory traversal. Shouldnt need to go up more than 5 dirs
+alias .1='push ../'
+alias .2='.1; .1;'
+alias .3='.2; .1;'
+alias .4='.3; .1;'
+alias .5='.4; .1;'
 
-function yesterday() {
-  echo $(date -r $(expr $(date '+%s') - 86400 ) ${1:-${DEFAULT_FORMAT}})
-}
-
-function tomorrow() {
-  echo $(date -r $(expr $(date '+%s') - 86400 ) ${1:-${DEFAULT_FORMAT}})
-}
+alias p='pushd'
+alias o='popd'
 
 # function cd(){
 #   # Smarter CD ...

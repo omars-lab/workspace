@@ -37,3 +37,11 @@ function bash_title {
        export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
    fi
 }
+
+function tab-rename {
+  printf "\e]1;$1\a"
+}
+
+function win-rename {
+  printf "\e]2;$1\a"
+}

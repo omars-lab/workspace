@@ -60,8 +60,12 @@ fi
 
 source ${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh
 
-antigen bundle zsh-users/zsh-syntax-highlighting
+# https://github.com/unixorn/awesome-zsh-plugins/blob/master/README.md#installation
 antigen bundle Tarrasch/zsh-autoenv
+antigen bundle softmoth/zsh-vim-mode
+# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+# order important!
+antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 # antigen bundle mafredri/zsh-async
@@ -165,3 +169,6 @@ echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_
 nvm use ${DEFAULT_NVM_ENV}
 
 alias openscad='/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD'
+
+bindkey -v
+# https://stackoverflow.com/questions/58187542/how-to-setup-vi-editing-mode-for-zsh#:~:text=bindkey%20%2Dv%20is%20enough%20to,%22insert%22%20mode%20by%20default.

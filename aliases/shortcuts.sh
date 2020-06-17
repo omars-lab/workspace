@@ -10,13 +10,3 @@ alias o='popd'
 
 # Makes a file Executable
 alias x='chmod +x'
-
-# Make Tree display root nodes ...
-alias tre='tree -C -L 1'
-
-if [[ ! -z "$(echo $0 | grep zsh )" ]];
-then
-  # allow ctrl-r to work with terminal vi-Mode
-  bindkey -M viins '^r' history-incremental-search-backward
-  bindkey -M vicmd '^r' history-incremental-search-backward
-fi

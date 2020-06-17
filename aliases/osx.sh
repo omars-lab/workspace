@@ -56,11 +56,3 @@ function osx(){
 
 # Make sure complete is a command (that we are actually in bash)
 type complete 2>&1 1>/dev/null && complete -F _osx osx
-
-function tab-rename {
-  printf "\e]1;$1\a"
-}
-
-function win-rename {
-  printf "\e]2;$1\a"
-}

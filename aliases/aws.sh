@@ -1,3 +1,4 @@
-function switch_aws_account(){
+
+function aws:switch-account(){
   echo "export AWS_PROFILE=${1}"
 }
