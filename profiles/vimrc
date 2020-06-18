@@ -61,3 +61,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
+"https://vi.stackexchange.com/questions/3875/how-to-insert-a-newline-without-leaving-normal-mode
+"https://vim.fandom.com/wiki/Using_marks
+"https://vim.fandom.com/wiki/Insert_newline_without_entering_insert_mode
+nnoremap  mxi<CR><Esc>`x
+
+
