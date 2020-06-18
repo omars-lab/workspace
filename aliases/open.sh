@@ -45,3 +45,11 @@ alias open:excel='open -a "Microsoft Excel"'
 alias open:intellij='/usr/local/bin/idea'
 alias open:atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
 alias open:preview='qlmanage -p'
+
+alias open:atom-environment="open:atom ${DIRS_ENVIRONMENT}/"
+alias open:atom-noteplan-personal="open:atom ${DIRS_ENVIRONMENT}/backup/iCloud/${ICLOUD_PERSONAL_EMAIL}/Noteplan/Documents/"
+alias open:atom-noteplan-work="open:atom ${DIRS_ENVIRONMENT}/backup/iCloud/${ICLOUD_WORK_EMAIL}/Noteplan/Documents/"
+
+function js(){
+  j $1; /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl .;
+}

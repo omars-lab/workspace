@@ -14,16 +14,8 @@ alias e="subl"
 alias s='fzf'
 alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
 alias mvim=/Applications/MacVim.app/Contents/bin/mvim
-
 alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
 
-alias atom-environment="atom ${DIRS_ENVIRONMENT}/"
-alias atom-noteplan-personal="atom ${DIRS_ENVIRONMENT}/backup/iCloud/${ICLOUD_PERSONAL_EMAIL}/Noteplan/Documents/"
-alias atom-noteplan-work="atom ${DIRS_ENVIRONMENT}/backup/iCloud/${ICLOUD_WORK_EMAIL}/Noteplan/Documents/"
-
-function js(){
-  j $1; /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl .;
-}
 
 function fuzzy_app(){
   if [[ -z "$2" ]];
@@ -60,27 +52,14 @@ function dir(){
 
 # cat aliases/apps.sh | grep 'function ' | sed -e 's/(.*//g' -e 's/function //g' | sed -e 's/^/export -f /g'
 
+# - [ ] Autogenerate this at the end of each of the sh methods!
 if [[ "${DETECTED_SHELL}" = "BASH" ]]
 then
-    export -f upper
-    export -f lower
-    export -f get_other_user
-    export -f js
     export -f fuzzy_app
     export -f fcat
     export -f fcopy
     export -f peek
     export -f peek-near-term
-    export -f pbcopy-from-shared-clipboard-archive
-    export -f pbcopy-from-shared-clipboard
-    export -f pbrm-from-shared-clipboard
-    export -f macdown
-    export -f typora
-    export -f abricotine
-    export -f iawriter
-    export -f notes
-    export -f notes-cloud
     export -f fj
     export -f dir
-    export -f pycharm
 fi

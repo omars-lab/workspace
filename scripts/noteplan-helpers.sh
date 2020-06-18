@@ -1,7 +1,10 @@
 #!/bin/bash
 
-export PERSONAL_ICLOUD_DIR="/Users/omareid/Library/Mobile Documents"
-export PERSONAL_ICLOUD_NOTEPLAN_DIR="${PERSONAL_ICLOUD_DIR}/iCloud~co~noteplan~NotePlan/Documents"
+# export PERSONAL_ICLOUD_DIR="/Users/omareid/Library/Mobile Documents"
+# export PERSONAL_ICLOUD_NOTEPLAN_DIR="${PERSONAL_ICLOUD_DIR}/iCloud~co~noteplan~NotePlan/Documents"
+
+export PERSONAL_ICLOUD_DIR="${HOME}/Library/Mobile Documents"
+export PERSONAL_ICLOUD_NOTEPLAN_DIR="${NOTEPLAN_ICLOUD_DIR}"
 
 function parse_from_noteplan_date() {
   DATE_TO_PARSE=$(echo ${1} | sed -e 's/.txt//g')

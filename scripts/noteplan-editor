@@ -6,8 +6,7 @@ source ${CURRENT_DIR}/noteplan-helpers.sh
 function vi-personal-noteplan-calendar() {
   # set -x
   NOTEPLAN_DATE_TO_EDIT=$(\
-    find "${PERSONAL_ICLOUD_NOTEPLAN_DIR}/Calendar" -name "*.txt" \
-        ${1} \
+    find "${PERSONAL_ICLOUD_NOTEPLAN_DIR}/Calendar" -name "*.txt" -maxdepth 1 $@ \
         -exec bash -c 'export DATE_TO_PARSE=$(basename "${0}"); parse_from_noteplan_date "${DATE_TO_PARSE}"' '{}' \; \
       | sort \
       | fzf --preview "bash -c 'source ${CURRENT_DIR}/noteplan-helpers.sh; preview_noteplan_date_file {}'" --color light --margin 5,20 \
@@ -34,7 +33,8 @@ case ${1} in
     vi-personal-noteplan-calendar "${RECENT_FIND_FLAGS}"
   ;;
   *)
-    vi-personal-noteplan-calendar
+    # Last  month  by default 
+    vi-personal-noteplan-calendar "-cmin -43200"
   ;;
 esac
 
