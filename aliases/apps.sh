@@ -10,7 +10,10 @@ export FZF_DEFAULT_COMMAND="ag --hidden ${FZF_IGNORE_PATTERNS} ${FZF_IGNORE_DIRS
 
 # ------------------------------------------------------------------------------
 
-alias e="subl"
+function e() {
+    # Seach executables!
+    compgen -c |  egrep  '^[a-z]' | sort | fzf --preview "which {}" --color light --margin 5,20
+}
 alias s='fzf'
 alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
 alias mvim=/Applications/MacVim.app/Contents/bin/mvim
