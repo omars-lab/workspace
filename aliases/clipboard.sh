@@ -42,3 +42,12 @@ function pbrm-from-shared-clipboard(){
     )
     test -f "${FILE_TO_ARCHIVE}" && cp ${FILE_TO_ARCHIVE} ${SHARED_CLIPBOARD_IGNORE_DIR}/
 }
+
+function optionally_filter() {
+  # Only filters if $1 set ...
+  test -n "${1}" && grep "${1}" || tee
+}
+
+function pbcopy-chrome-links() {
+  chrome-cli list links | sed -E -e 's/^\[([0-9]+):([0-9]+)\] (.*)/\3/g' | optionally_filter "${1}" | pbcopy
+}

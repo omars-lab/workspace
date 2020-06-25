@@ -66,4 +66,6 @@ autocmd VimEnter * wincmd p
 "https://vim.fandom.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap  mxi<CR><Esc>`x
 
-
+" This was needed after upgrading ... to be able to backspace on a line:
+" https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
+set backspace=indent,eol,nostop
