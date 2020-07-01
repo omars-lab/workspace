@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address
+git config user.email "omar_eid21@yahoo.com"
+git config user.name "Omar Eid"
+

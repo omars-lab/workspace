@@ -1,10 +1,13 @@
 #!/bin/sh
 
-export OLD_EMAIL=${ICLOUD_WORK_EMAIL}
-export CORRECT_EMAIL=${ICLOUD_PERSONAL_EMAIL}
+# https://docs.github.com/en/github/using-git/changing-author-info
+
+export OLD_EMAIL="oeid@cognitivescale.com"
+export CORRECT_EMAIL="omar_eid21@yahoo.com"
 export CORRECT_NAME="Omar Eid"
 
-git filter-branch --env-filter '
+FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --env-filter '
+
 if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
 then
 export GIT_COMMITTER_NAME="$CORRECT_NAME"
