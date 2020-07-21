@@ -9,8 +9,10 @@ function trash(){
 }
 
 function flush_dns_cache(){
-  sudo discoveryutil mdnsflushcache;
-  sudo discoveryutil udnsflushcaches;
+  # https://documentation.cpanel.net/display/CKB/How+To+Clear+Your+DNS+Cache#HowToClearYourDNSCache-MacOS10.10.1,10.10.2,and10.10.3
+  # sudo discoveryutil mdnsflushcache
+  # sudo discoveryutil udnsflushcaches
+  sudo killall -HUP mDNSResponder
   say flushed
 }
 

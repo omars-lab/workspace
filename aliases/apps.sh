@@ -29,6 +29,11 @@ function fuzzy_app(){
   fi
 }
 
+function fvi(){
+  FILE=$(fzf)
+  test "${FILE}" != "" && vi "${FILE}"
+}
+
 function fcat(){
   fzf | xargs cat
 }
@@ -59,6 +64,7 @@ function dir(){
 if [[ "${DETECTED_SHELL}" = "BASH" ]]
 then
     export -f fuzzy_app
+    export -f fvi
     export -f fcat
     export -f fcopy
     export -f peek

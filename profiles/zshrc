@@ -137,8 +137,9 @@ export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/gettext/lib"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export CPPFLAGS="-I/usr/local/opt/gettext/include"
 
-export PATH="/usr/local/pgsql/bin/:$PATH"
-export PATH="${DIRS_GIT}/runbook-scripts/cortex/:$PATH"
+export PATH="${HOME}/.local/bin:$PATH"
+export PATH="/usr/local/pgsql/bin:$PATH"
+export PATH="${DIRS_GIT}/runbook-scripts/cortex:$PATH"
 
 if [[ -d $HOME/.asdf/ ]] ; then 
 	. $HOME/.asdf/asdf.sh
