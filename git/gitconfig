@@ -1,9 +1,13 @@
 # This is Git's per-user configuration file.
+[pull]
+	rebase = true
+
 [user]
 	name = Omar Eid
 	email = omar_eid21@yahoo.com
 
 [core]
+    excludesfile = /Users/oeid/.gitignore_global
     editor = vim
     autocrlf = input
 
