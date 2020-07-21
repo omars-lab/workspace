@@ -1,6 +1,7 @@
 #!/bin/bash
 CONDA_ENV=${ENV_NAME:-$(basename "${PWD}")}
 REQUIREMENTS_FILE=${PWD}/requirements.txt
+PIP=$(dirname $(dirname ${CONDA_PYTHON_EXE}))/envs/${CONDA_ENV}/bin/pip
 
 function check_existance() {
   conda-list-envs | egrep "^${1:-${CONDA_ENV}}\$" > /dev/null
@@ -8,7 +9,8 @@ function check_existance() {
 
 function create_if_dne() {
   conda create -y -n ${CONDA_ENV} python=3.7 pip >&2
-  test -f ${REQUIREMENTS_FILE} && $(dirname $(dirname ${CONDA_PYTHON_EXE}))/envs/${CONDA_ENV}/bin/pip install -r ${REQUIREMENTS_FILE} >&2
+  ${PIP} install ipython[notebook] >&2
+  test -f ${REQUIREMENTS_FILE} && ${PIP} install -r ${REQUIREMENTS_FILE} >&2
 }
 
 function destroy_env() {
@@ -22,6 +24,10 @@ function run() {
 }
 
 case ${1} in 
+  --force*)
+    destroy_env
+    run
+  ;;
   reset*)
     destroy_env
     run

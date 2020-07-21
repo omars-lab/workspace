@@ -6,15 +6,15 @@ LOGS_DIR=~/.logs
 
 mkdir -p ${LOGS_DIR}
 
-
 function update_shortcuts() {
-  shortcuts update '#hour' "$(date +'%Y-%m-%dT%H:00:00%z')"
-  shortcuts update '#done' "$(date +'@done(%Y-%m-%d %H:00 %p)') #usedShortcut"
+  /usr/local/bin/shortcuts update '#hour' "$(date +'%Y-%m-%dT%H:00:00%z')"
+  /usr/local/bin/shortcuts update '#done' "$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
 }
 
 function main() {
   echo "Initiated Hourly Cron as $(whoami)"
   update_shortcuts
+  echo "Done updating hourly shortcuts"
 }
 
 function prefix_logs() {

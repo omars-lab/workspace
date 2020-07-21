@@ -29,9 +29,8 @@ function main() {
 }
 
 function prefix_logs() {
-  NOW=$(date +"%Y-%m-%dT%H:%M:%SZ")
+  NOW=$(date +"%Y-%m-%dT%H:%M:%S%z")
   sed "s/^/${NOW},\"Daily Cron\",\"/g" | sed 's/$/"/g'
 }
-
 
 main | prefix_logs >> ${LOGS_DIR}/cron.log
