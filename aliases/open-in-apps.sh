@@ -36,6 +36,10 @@ function iawriter:personalbook(){
   (cd "$(find_personalbook_dir)" ; fuzzy_app "iA Writer")
 }
 
+function link:iawriter:personalbook(){
+  (cd "$(find_personalbook_dir)" ; fzf | html-encode | xargs -I {} echo "ia-writer://open?path=/Locations/personalbook/{}" )
+}
+
 function vi:personalbook(){
   (cd "$(find_personalbook_dir)" ; fvi)
 }
