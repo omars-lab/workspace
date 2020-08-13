@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # function iawriter-link-to-obsidian-link() {
-function test() {
+function test-link() {
   python -u <<EOF
 def transform_link(original_link): 
   parsed_link = p.urlparse(original_link)

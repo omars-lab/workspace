@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function stdin_to_tmpfile() {
+  local FILE=$(mktemp)
+  cat > ${FILE}
+  echo ${FILE}
+}
+
+export -f stdin_to_tmpfile
+
+function stdin_or_dollar_one() {
+  # https://unix.stackexchange.com/questions/33049/how-to-check-if-a-pipe-is-empty-and-run-a-command-on-the-data-if-it-isnt
+  # https://unix.stackexchange.com/questions/405337/bash-if-command-doesnt-finish-in-x-time
+  (gtimeout 1s ifne bash -c stdin_to_tmpfile ) || echo "${1}"
+}
+
+INPUT_FILE=$(stdin_or_dollar_one "${1}")
+xq '.' "${INPUT_FILE}"
+
+# Remove Temp File ...
+if [[ "${1}" = "" ]]
+then
+  rm ${INPUT_FILE}
+fi
+
