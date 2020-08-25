@@ -8,7 +8,13 @@ mkdir -p ${LOGS_DIR}
 
 function update_shortcuts() {
   /usr/local/bin/shortcuts update '#hour' "$(date +'%Y-%m-%dT%H:00:00%z')"
+  /usr/local/bin/shortcuts update '@hour' "$(date +'%Y-%m-%dT%H:00:00%z')"
+  /usr/local/bin/shortcuts update '>now' "$(date +'>%Y-%m-%dT%H:00:00%z')"
+  /usr/local/bin/shortcuts update '@now' "$(date +'@%Y-%m-%dT%H:00:00%z')"
+  /usr/local/bin/shortcuts update '>today' "$(date +'>%Y-%m-%d')"
+  /usr/local/bin/shortcuts update '@today' "$(date +'@%Y-%m-%d')"
   /usr/local/bin/shortcuts update '#done' "$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
+  /usr/local/bin/shortcuts update '@done' "$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
 }
 
 function main() {

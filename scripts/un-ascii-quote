@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html
+
+function ascii_quotes_to_normal() {
+  sed "s/\$'/'/g" | sed "s/\\\'/'\"'\"'/g" | tr -d '\n' | tr '\' ' '
+}
+
+ascii_quotes_to_normal
