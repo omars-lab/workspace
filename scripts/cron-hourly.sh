@@ -14,7 +14,7 @@ function update_shortcuts() {
   /usr/local/bin/shortcuts update '>today' "$(date +'>%Y-%m-%d')"
   /usr/local/bin/shortcuts update '@today' "$(date +'@%Y-%m-%d')"
   /usr/local/bin/shortcuts update '#done' "$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
-  /usr/local/bin/shortcuts update '@done' "$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
+  /usr/local/bin/shortcuts update '@d' "$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
 }
 
 function main() {
