@@ -23,8 +23,9 @@ alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
 function fuzzy_app(){
   if [[ -z "$2" ]];
   then
-    fzf | xargs -I {} open -a ${1} {}
+    fzf | xargs -I __ bash -c 'echo "__" | pbcopy; open -a "${0}" "__"' "${1}" 
   else
+    echo "${2}" | pbcopy
     open -a ${1} $2
   fi
 }

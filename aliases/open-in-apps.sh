@@ -53,6 +53,7 @@ function vi:noteplan-notes(){
 }
 
 alias pb="iawriter:personalbook"
+alias pbl="link:iawriter:personalbook | pbcopy"
 alias n="iawriter:personalbook"
 
 # Sublime Shortcut. Depends on the installation of sublime.
