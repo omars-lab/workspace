@@ -20,6 +20,15 @@ alias mvim=/Applications/MacVim.app/Contents/bin/mvim
 alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
 
 
+function fuzzy_selector(){
+  if [[ -z "$2" ]];
+  then
+    fzf | xargs -I __ bash -c 'open -a "${0}" "__"' "${1}" 
+  else
+    open -a ${1} $2
+  fi
+}
+
 function fuzzy_app(){
   if [[ -z "$2" ]];
   then

@@ -33,7 +33,7 @@ function icloud-notes(){
 # }
 
 function iawriter:personalbook(){
-  (cd "$(find_personalbook_dir)" ; fuzzy_app "iA Writer")
+  (cd "$(find_personalbook_dir)" ; fuzzy_selector "iA Writer")
 }
 
 function link:iawriter:personalbook(){
