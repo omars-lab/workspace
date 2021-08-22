@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Setting Author on Personal Accounts ...
+# - https://stackoverflow.com/questions/46452301/can-i-use-different-author-info-for-git-repo-depending-on-url
+# - https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/setting-your-commit-email-address
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[1]}" )" >/dev/null 2>&1 && pwd )"
+REPO="${1:-${DIR}}"
+
+find ${REPO} -name '.git' -type d -print0 \
+    | xargs -I __ -0 git -C "__" config user.name "Omar Eid"
+
+find ${REPO} -name '.git' -type d -print0 \
+    | xargs -I __ -0 git -C "__" config user.email "omar_eid21@yahoo.com"

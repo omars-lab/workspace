@@ -1,0 +1,7 @@
+#!/bin/bash
+#  https://eprev.org/2015/05/27/converting-png-to-svg/
+
+convert -alpha remove "${1}" pgm: \
+| mkbitmap -f 32 -t 0.4 - -o - \
+| potrace --svg -o "${2}"
+

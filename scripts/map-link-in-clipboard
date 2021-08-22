@@ -1,0 +1,5 @@
+#!/bin/bash
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+LINK=$(pbpaste)
+python ${CURRENT_DIR}/download-link-title.py ${LINK} | pbcopy

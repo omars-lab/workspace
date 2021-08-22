@@ -1,0 +1,2 @@
+#!/bin/bash
+java -jar ${DIR_FOR_BINARY_REFS}/plantuml.jar $@

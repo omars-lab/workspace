@@ -1,0 +1,66 @@
+#!/bin/bash
+
+BOOKCASE_STATUS=$(\
+  html-css-selector.py \
+    'https://deltachildren.com/products/serta-happy-home-storage-bookcase?variant=37941204910280' \
+    'div.product__form-buttons > button span' \
+    | grep -vi 'Sold Out'\
+)
+
+function curl_westelm() {
+  curl "${1}" \
+    -s \
+    -H 'authority: www.westelm.com' \
+    -H 'cache-control: max-age=0' \
+    -H 'sec-ch-ua: " Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"' \
+    -H 'sec-ch-ua-mobile: ?0' \
+    -H 'dnt: 1' \
+    -H 'upgrade-insecure-requests: 1' \
+    -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36' \
+    -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+    -H 'sec-fetch-site: none' \
+    -H 'sec-fetch-mode: navigate' \
+    -H 'sec-fetch-user: ?1' \
+    -H 'sec-fetch-dest: document' \
+    -H 'accept-language: en-US,en;q=0.9,id;q=0.8' \
+    --compressed
+}
+
+function fetch_source_from_chrome() {
+  chrome-cli open "${1}" >/dev/null ;
+  chrome-cli list links \
+    | grep "${1}\$" \
+    | tail -n 1 \
+    | sed -E -e 's/\[[0-9]+:([0-9]+)\].*/\1/g' \
+    | ( xargs -n 1 bash -c 'chrome-cli source -t $0' )
+}
+
+# We bought the bookcase ...
+
+# if [[ ! -z "${BOOKCASE_STATUS}" ]] 
+# then 
+#   MSG="Bookcase in stock!"
+#   TITLE="In Stock Alert"
+#   # echo '|'${BOOKCASE_STATUS}'|'
+#   osascript -e "display notification \"${MSG}\" with title \"${TITLE}\" "
+# fi 
+# --------------------------------------------------------------------
+# West Elm Console Table in Chrome ...
+COLOR_OF_CONSOLE=$(\
+  curl_westelm "https://www.westelm.com/products/streamline-console-wood-h5771/" \
+  | ( python -u html-css-selector.py '-' '#productSubsetItem1 > div.subset-skus > div > div.subset-attributes.subsetAttributes > ul.visual-attributes.textual-att.resetNoneActive' ) 2>&1 \
+  | grep -i -o chrome \
+  | tr '[:upper:]' '[:lower:]' \
+)
+
+if [[ "${COLOR_OF_CONSOLE}" = "chrome" ]] 
+then 
+  MSG="Chrome Console Table in stock!"
+  TITLE="In Stock Alert"
+  osascript -e "display notification \"${MSG}\" with title \"${TITLE}\" "
+fi 
+# --------------------------------------------------------------------
+
+# fetch_source_from_chrome "https://www.westelm.com/products/streamline-console-wood-h5771/"
+# curl_westelm "https://www.westelm.com/products/streamline-square-coffee-table-h4550/"
+

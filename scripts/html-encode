@@ -1,0 +1,5 @@
+#!/bin/bash
+function html_encode_path() {
+  python -c 'import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read().strip()))'
+}
+html_encode_path

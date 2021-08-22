@@ -1,0 +1,10 @@
+# Glue
+
+* Its like DNS for x-callback so all your apps can easily stick together! *
+
+## Development
+This app was actually created with Script Editor and can be opened with the following command:
+
+```
+open -a "Script Editor" "./Glue.app"
+```

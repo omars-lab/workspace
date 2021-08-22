@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+# Requires the following:
+#   pip install PILLOW
+#   pip install pygments
+
+from pygments import highlight, lexers, formatters
+
+import os
+import sys
+import json
+
+
+# pygments can only use ttf fonts ... https://github.com/pygments/pygments/blob/master/pygments/formatters/img.py#L125-L129
+# ╰─$ (ls -1 /System/Library/Fonts/ ; ls -1 ${HOME}/Library/Fonts/ ; ls -1 /Library/Fonts/ ) | egrep '.ttf$'
+
+
+def format_json(inp):
+    json_object = json.load(inp)
+    formatted_json = json.dumps(json_object, sort_keys=True, indent=4)
+    return formatted_json
+
+
+def load_input(path, parse=False):
+    if parse == True:
+        return format_json(path)
+    data = path.read()
+    return data
+
+
+def json_to_image_bytes(json_object) -> bytes:
+    colorful_json = highlight(
+        json_object,
+        # json_object.encode('UTF-8'),
+        lexers.JsonLexer(), 
+        formatters.ImageFormatter(font_size=12, line_numbers=False, font_name="Arial Unicode")
+    )
+    return colorful_json
+
+
+if __name__ == "__main__":
+    os.write(sys.stdout.fileno(), json_to_image_bytes(load_input(sys.stdin)))
+    # os.write(sys.stdout.fileno(), json_to_image_bytes(load_input(sys.stdin, parse=True)))

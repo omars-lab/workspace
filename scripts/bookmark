@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# !! => Expands to previous command
+# !-10 => 10 commands ago
+# $? => Previous exit code
+# $@ => All args
+# $# => Number of args
+
+test -f ~/Desktop/.bookmarks || (echo "{}" > ~/Desktop/.bookmarks)
+
+# Adding a new bookmark
+if [[ $# -gt 2 ]]
+then
+    bookmark_jsonpath=$1
+    shift
+    description=$1
+    shift
+    cat ~/Desktop/.bookmarks | jq  ".$bookmark_jsonpath |= . + [{\"command\": \"$@\", \"description\": \"$description\"}]" 
+    # echo $@
+fi
+
+#	if [[ $# -ge 1 ]]
+#	then
+#    	book_mark_path=$1
+#    	shift
+#    	echo $path
+#    	echo $@
+#	fi
+
+# mongoimport -h 192.168.99.100 -d macys_pilot -c products products.mongoexport

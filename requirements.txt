@@ -1,0 +1,7 @@
+BeautifulSoup4
+requests
+xerox
+uncurl
+markdown
+pandas
+arrow

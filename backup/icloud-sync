@@ -1,0 +1,47 @@
+#!/bin/bash
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+TIME_NOW=$(date +'%Y-%m-%dT%H-%M-%S')
+# source ${CURRENT_DIR}/../common.sh
+# The following also sources common.sh
+
+source ${CURRENT_DIR}/../variables.sh
+source ${CURRENT_DIR}/../common.sh >/dev/null
+
+function backup_noteplan()(
+    echo Backing Up NotePlan ...
+    NAME_OF_ZIP="${CURRENT_DIR}/iCloud/${ICLOUD_EMAIL}/archives/noteplan-${TIME_NOW}.zip"
+    create_zip_WITH_NAME_relavtive_to_DIR_recrusively "${NAME_OF_ZIP}" "${NOTEPLAN_ICLOUD_DIR}/"
+    # - [ ] Add log rotate ...
+)
+
+function push_from_noteplan_to_git(){
+    mkdir -p "${NOTEPLAN_GIT_DIR}"
+    rsync -arhv --delete --exclude='*.DS_Store*' --exclude='*.Trash*' --exclude='*.icloud*' "${NOTEPLAN_ICLOUD_DIR}" "${NOTEPLAN_GIT_DIR}"
+    # echo Pushing code to git ... && (cd ${DIRS_ENVIRONMENT} && git commit -am "Pushing Latest Code from $(get_uniq_mac_id) at ${TIME_NOW}." && git pull && git push origin master)
+}
+
+function pull_from_git_to_noteplan()(
+    set -e
+    NOTEPLAN_ICLOUD_DIR="${HOME}/Desktop/NoteplanExpr"
+    mkdir -p "${ICLOUD_BACKUP_DIR}/logs"
+    LOG_FILE="${ICLOUD_BACKUP_DIR}/logs/noteplan-${TIME_NOW}.txt"
+    # echo Pulling latest code ... && (cd ${DIRS_ENVIRONMENT} && git pull)
+    rsync -aihrv --progress --delete --log-file="${LOG_FILE}" --exclude='*.DS_Store*' --exclude='*.Trash*' --exclude='*.icloud*' "${NOTEPLAN_GIT_DIR}/Documents" "${NOTEPLAN_ICLOUD_DIR}"
+)
+
+
+case ${1} in
+    pull)
+        echo backing-up then pull-ing
+        backup_noteplan && pull_from_git_to_noteplan
+    ;;
+    push)
+        echo pushing
+        push_from_noteplan_to_git
+    ;;
+    *)
+      echo noop
+    ;;
+esac

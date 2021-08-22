@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- https://fonts.google.com/specimen/Montserrat?preview.text_type=custom&sidebar.open=true&selection.family=Montserrat:wght@300 -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+        <!-- http://web.simmons.edu/~grabiner/comm244/weeknine/including-javascript.html -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/canvg/dist/browser/canvg.min.js"></script>
+        <script type="text/javascript" src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.js"></script>
+        <!-- https://www.w3schools.com/html/html_charset.asp -->
+        <meta charset="UTF-8">
+        <style>
+            /* @import url('https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&display=swap'); */
+            /* arabic */
+            @font-face {
+                font-family: 'Aref Ruqaa';
+                font-style: normal;
+                font-weight: 700;
+                font-display: swap;
+                src: url(https://fonts.gstatic.com/s/arefruqaa/v15/WwkYxPW1E165rajQKDulKDwNQNAY2f34Fdj3cQ.woff2) format('woff2');
+                unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+            }
+
+            @font-face {
+                font-family: 'KG Sweet N Sassy';
+                font-style: normal; 
+                font-weight: 700;
+                font-display: swap;
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGSweetNSassy.woff2?v=14863080040319783102') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGSweetNSassy.woff?v=7712103554337306376') format("woff");
+            }
+           
+        </style>
+    </head>
+    <body>
+        <style>
+            @font-face {
+                font-family: "NorthernSoul-Script";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-ShorelinesScriptBold.woff2?v=3883356716554103129') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-ShorelinesScriptBold.woff?v=15830343030479638007') format("woff");
+                font-weight: "bold";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "KG Two is Better Than One";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGTwoisBetterThanOne.woff2?v=16467539491715606838') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGTwoisBetterThanOne.woff?v=6170503319170054949') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Miss Magnolia Script";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-MissMagnolia-Script.woff2?v=15225991867247785745') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-MissMagnolia-Script.woff?v=12794478152326893874') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Madina Script";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-MadinaScript.woff2?v=6811897540564518418') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-MadinaScript.woff?v=7747660205754455430') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Summer Lemonade Sans Two";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-SummerLemonade-SansTwo.woff2?v=4116432825809823136') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-SummerLemonade-SansTwo.woff?v=16222044401654646771') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "KG Sweet N Sassy";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGSweetNSassy.woff2?v=14863080040319783102') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGSweetNSassy.woff?v=7712103554337306376') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "olivier";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-olivier.woff2?v=107280810253435529') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-olivier.woff?v=10224112049425629466') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "champagne";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-ChampagneLimousines-Bold.woff2?v=2160407997889228003') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-ChampagneLimousines-Bold.woff?v=11729412481055034227') format("woff");
+                font-weight: "bold";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "bohoscript";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-BohoScript-Bold.woff2?v=2486310450858841409') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-BohoScript-Bold.woff?v=2545153756578465027') format("woff");
+                font-weight: "bold";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Foxhole";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Foxhole-Regular.woff2?v=5561418082065367221') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Foxhole-Regular.woff?v=2034502301661816916') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Boho Sans";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-BohoSans.woff2?v=1115726608409588484') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-BohoSans.woff?v=12155755436935018451') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "RoundslabSerif";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-RoundslabSerif.woff2?v=10487205227266848938') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-RoundslabSerif.woff?v=8413241575358126015') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Brooklyn";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Brooklyn-Regular.woff2?v=10710221244927165132') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Brooklyn-Regular.woff?v=1514146566396158687') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "KG Satisfied Script";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGSatisfiedScript.woff2?v=9165615181888662200') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGSatisfiedScript.woff?v=14816586710363821505') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Monoline Script";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-MonolineScript-Regular.woff2?v=18033656934610861863') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-MonolineScript-Regular.woff?v=14233813775891278066') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Tuesday-Script";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Tuesday-Script-Regular.woff2?v=1082076708477244646') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Tuesday-Script-Regular.woff?v=2081418213574260633') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Simplicity";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Simplicity.woff2?v=3968388115835869160') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Simplicity.woff?v=8984687720867903258') format("woff");
+                font-weight: "500";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Hickory Jack";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-HickoryJack.woff2?v=10563357334423682895') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-HickoryJack.woff?v=1164356852177046938') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Ever After";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-EverAfter.woff2?v=8918781897357902192') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-EverAfter.woff?v=8177406709538482685') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "LillyBelle";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-LillyBelle.woff2?v=3958644196924177677') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-LillyBelle.woff?v=4883033340336127457') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "bromello";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-bromello.woff2?v=17939882839617484314') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-bromello.woff?v=9519118836825227831') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "HipsterishFontNormal";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-HipsterishFontNormal.woff2?v=5037091570054695787') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-HipsterishFontNormal.woff?v=9960766072727752533') format("woff");
+                font-weight: "500";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "Jolly";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Jolly-Bold.woff2?v=4662314839366637162') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-Jolly-Bold.woff?v=16401572043263496096') format("woff");
+                font-weight: "bold";
+                font-style: normal;
+            }
+            @font-face {
+                font-family: "trendsetter";
+                src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-trendsetter-Regular.woff2?v=16266824672158798923') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-trendsetter-Regular.woff?v=15971945715569398389') format("woff");
+                font-weight: "normal";
+                font-style: normal;
+            }
+            /* https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/styles.css?v=11702077046584655884 */
+        </style>
+        <div>
+            <!-- A button when inside a form sees to behave differently if not inside ... -->
+            <!-- https://stackoverflow.com/questions/28226677/save-inline-svg-as-jpeg-png-svg -->
+            <label for="iwidth">Width</label>
+            <input type="text" id="iwidth" name="iwidth" value="3000">
+            <br>
+            <label for="iheight">Height</label>
+            <input type="text" id="iheight" name="iheight" value="3000">
+            <br>
+            <label for="ifont">Font</label>
+            <input type="text" id="ifont" name="ifont" value="1500">
+            <br>
+            <label for="selectedfont">Font</label> <select name="selectedfont" id="selectedfont">
+                <option value="Aref Ruqaa">Aref Ruqaa</option>
+                <option value="KG Sweet N Sassy">Sweet&Sassy</option>
+            </select>
+            <br>
+            <button onclick="downloadText('ع')">ع</button>
+            <button onclick="downloadText('ي')">ي</button>
+            <button onclick="downloadText('د')">د</button>
+            <button onclick="downloadText('م')">م</button>
+            <button onclick="downloadText('ب')">ب</button>
+            <button onclick="downloadText('١')">١</button>
+            <button onclick="downloadText('١')">١</button>
+            <button onclick="downloadText('ر')">ر</button>
+            <button onclick="downloadText('ك')">ك</button>
+            <br>
+            <textarea id="inputtext">صبر</textarea>
+            <button onclick="downloadButton()">DOWNLOAD</button>
+
+            <svg id="svgtodownload" class="main" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+                <!-- Gotcha ... fill to syle white font ...
+                    https://stackoverflow.com/questions/17466707/how-to-apply-a-color-to-a-svg-text-element/17467501 -->
+                <style>
+                    @font-face {
+                        font-family: 'Aref Ruqaa';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(https://fonts.gstatic.com/s/arefruqaa/v15/WwkYxPW1E165rajQKDulKDwNQNAY2f34Fdj3cQ.woff2) format('woff2');
+                        unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+                    }
+
+                    @font-face {
+                        font-family: 'KG Sweet N Sassy';
+                        font-style: normal; 
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGSweetNSassy.woff2?v=14863080040319783102') format("woff2"), url('https://cdn.shopify.com/s/files/1/2621/9028/t/2/assets/font-KGSweetNSassy.woff?v=7712103554337306376') format("woff");
+                    }
+                    
+                    #text {
+                        font-style: bold;
+                        fill: rgb(255, 255, 255);
+                    }
+                </style>
+                <!-- https://www.browserling.com/tools/utf8-encode -->
+                <text id="text" class="main" color="white" dir="rtl">asdfasdf</text>
+                <!-- <text id="text" x="100" y="1500" class="main" dir="rtl">صلاة</text> -->
+                <!-- <text id="text" x="100" y="1500" class="main">ABC</text> -->
+            </svg>
+        </div>
+        <script>
+            
+            function download(
+                    filename, // string
+                    blob // Blob
+                ) {
+                if (window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveBlob(blob, filename);
+                } else {
+                    const elem = window.document.createElement('a');
+                    elem.href = window.URL.createObjectURL(blob);
+                    elem.download = filename;
+                    document.body.appendChild(elem);
+                    elem.click();
+                    document.body.removeChild(elem);
+                }
+            }
+            
+            function downloadButton() {
+                downloadText(document.querySelector('#inputtext').value);
+            }
+
+            function downloadText(inputtxt) {
+                // var width = 3000;
+                // var height = 3000;
+
+                var width = parseInt(document.getElementById("iwidth").value, 10);
+                var height = parseInt(document.getElementById("iheight").value, 10);
+                var font = parseInt(document.getElementById("ifont").value, 10);
+
+                var main = document.querySelector('.main');
+                main.style.width = width+100;
+                main.style.height = height+100;
+
+                // We can just create a canvas element inline so you don't even need one on the DOM. Cool!
+                var svgtxt = document.querySelector('#text');
+                svgtxt.innerHTML = inputtxt;
+                
+                // svgtxt.style["alignment-baseline"] = "middle";
+                // svgtxt.style["dominant-baseline"] = "central";
+                // svgtxt.style["dominant-baseline"] = "middle";
+                // https://stackoverflow.com/questions/55232061/why-are-the-svg-text-elements-too-high
+                svgtxt.style["dominant-baseline"] = "hanging";
+                // svgtxt.style["text-anchor"] = "middle";
+
+                svgtxt.style["font-size"] = font;
+
+                // svgtxt.style.x = width / 8;
+                // svgtxt.style.y = height / 8;
+                
+                svgtxt.style.width = width/2;
+                svgtxt.style.height = height/2;
+
+                var selectedfont = document.getElementById("selectedfont").value;
+                // svgtxt.style["font-family"] = 'Aref Ruqaa';
+                console.log(selectedfont);
+                svgtxt.style["font-family"] = selectedfont;
+
+                // ----------------------------------------------------
+
+                var svg = document.querySelector('#svgtodownload');
+                // svg.style.width = width;
+                // svg.style.height = height;
+
+                var data = (new XMLSerializer()).serializeToString(svg);
+                var canvas = document.createElement('canvas');
+                
+                // canvas.x = 0;
+                // canvas.y = 0;
+
+                canvas.width = width;
+                canvas.height = height;
+
+                setTimeout(
+                    function () {
+                        canvg(canvas, data, {
+                            renderCallback: function () {
+                                canvas.toBlob(function (blob) {
+                                    var txt = document.querySelector('#text').innerHTML;
+                                    download(txt + '.png', blob);
+                                });
+                                canvas.remove();
+                            }
+                        });
+                    },
+                    500
+                );
+            }
+                
+            // canvg(canvas, data, {
+            //     renderCallback: function () {
+            //         canvas.toBlob(function (blob) {
+            //             var txt = document.querySelector('#text').innerHTML;
+            //             download(txt+'.png', blob);
+            //         });
+            //     }
+            // });
+
+        </script>
+        <style>
+            /* Why are these needed??? */
+            #text {
+                font-style: bold;
+                background-color: transparent;
+                color: rgb(255, 255, 255);
+                /* width: 3000px; */
+                /* height: 3000px; */
+            }
+            
+            .main {
+                font-style: bold;
+                background-color: transparent;
+                color: rgb(255, 255, 255);
+                /* width: 3000px; */
+                /* height: 3000px; */
+            }
+
+            /* canvas { */
+                /* width: 3000px; */
+                /* height: 3000px; */
+            /* } */
+        </style>
+                
+    </body>
+</html>

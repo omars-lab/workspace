@@ -1,0 +1,2 @@
+#compdef switch_aws_account
+compadd $(cat ~/.aws/credentials | egrep '\[(.*)\]' | sed -E 's/(\[|\])//g' | xargs echo)

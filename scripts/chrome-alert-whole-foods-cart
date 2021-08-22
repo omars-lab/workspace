@@ -1,0 +1,24 @@
+#!/bin/bash
+# In response to covid ... this alerts me when a window opens up to order ...
+
+SELECTION_CRITERIA=${1:-shipoptionselect}
+FREQUENCY=${2:-15}
+
+function search_for_tabs_with_text_in_link() {
+  chrome-cli list links | grep "${1}" | sed -E -e 's/.*:([0-9]+)\].*/\1/g' 
+}
+
+function utc_now() {
+  date -u +"%Y-%m-%dT%H:%M:%SZ"
+}
+
+tput bel
+while true
+do
+  echo "Refreshing @" $(utc_now)
+  search_for_tabs_with_text_in_link "${SELECTION_CRITERIA}" | xargs -n 1 chrome-cli reload -t
+  sleep 5
+  search_for_tabs_with_text_in_link "${SELECTION_CRITERIA}" | (grep -i -e '[12]-hour delivery windows' &&  tput bel && echo Found open window at $(utc_now))
+  sleep $( expr ${FREQUENCY} - 5 )
+done
+

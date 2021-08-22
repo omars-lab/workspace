@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && cd .. && pwd )"
+
+echo "* * * * *   ${DIR}/scripts/cron-1m-ly.sh"
+echo "*/5 * * * * ${DIR}/scripts/cron-5m-ly.sh"
+echo "* 0 * * *   ${DIR}/scripts/cron-1h-ly.sh"
+echo "1 0 * * *   ${DIR}/scripts/cron-1d-ly.sh"

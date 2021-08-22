@@ -1,0 +1,211 @@
+# set -x
+
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/$(whoami)/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="robbyrussell"
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git docker osx brew node npm python zsh-completions kubectl history)
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# ------------------------------------------------------------------------------
+
+# User configuration
+
+## Env vars that throw applications off ...
+
+export DEFAULT_CONDA_ENV=py3
+export ZSH_DISABLE_COMPFIX=true
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+
+# Unset Var that throws Brew off
+unset SSL_CERT_FILE
+
+export M2_HOME=/usr/local/Cellar/maven/3.6.0/libexec
+export M2=${M2_HOME}/bin
+
+export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/gettext/lib"
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/gettext/include"
+
+export PATH=${PATH}:${M2_HOME}/bin
+export PATH="${DIRS_GIT}/runbook-scripts/cortex:$PATH"
+export PATH="${HOME}/.local/bin:$PATH"
+export PATH="/usr/local/pgsql/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# ------------------------------------------------------------------------------
+
+source ${ZSH}/oh-my-zsh.sh
+
+# The following assumes that ~/.zshrc is a symbolic link to the environment dir ...
+# This needs to run after oh my zsh since it messes with ps1
+source $(dirname $(dirname $(readlink ${HOME}/.zshrc)))/loader.sh
+
+# date -u +"%Y-%m-%dT%H:%M:%SZ"
+
+# Load ZSH Packages antigen ...
+if test -f "${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh" ;
+then
+  # Load antigen
+  source ${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh
+  # Load antigen plugins ... order important!
+  # https://github.com/unixorn/awesome-zsh-plugins/blob/master/README.md#installation
+  antigen bundle Tarrasch/zsh-autoenv
+  # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+  antigen bundle zsh-users/zsh-syntax-highlighting
+  # antigen bundle softmoth/zsh-vim-mode
+  # antigen bundle mafredri/zsh-async
+  # https://github.com/sindresorhus/pure
+  # antigen bundle sindresorhus/pure
+  antigen apply
+fi
+
+# Load Auto Jump
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
+# Source career functions too ...
+CAREER_WORKSPACE_DIR=$(dirname $(dirname $(readlink ${HOME}/.zshenv)))/../workspace-career
+if [[ -d "${CAREER_WORKSPACE_DIR}" ]]
+then
+    source ${CAREER_WORKSPACE_DIR}/functions.sh
+    source ${CAREER_WORKSPACE_DIR}/aliases.sh
+fi
+
+# Loading iterm zsh integration
+ITERM_INTEGRATION=$(which iterm2_shell_integration.zsh)
+if test -f "${ITERM_INTEGRATION}" ;
+then
+  source "${ITERM_INTEGRATION}"
+fi
+
+# Load zsh completion scripts
+# https://github.com/zsh-users/zsh-completions/issues/277#issuecomment-414139674
+fpath=(${DIRS_ENVIRONMENT}/completion-functions/zsh $fpath)
+if test -f "${CAREER_WORKSPACE_DIR}/" ;
+then 
+  fpath=(${DIRS_ENVIRONMENT}/../workspace-career/completion-functions/zsh $fpath)
+fi
+rm -f "$HOME/.zcompdump"; 
+autoload -U compinit
+# https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
+compinit -u
+
+# set -o vi
+# source $(brew --prefix autoenv)/activate.sh
+
+if [[ -d $HOME/.asdf/ ]] ; then 
+	. $HOME/.asdf/asdf.sh
+	. $HOME/.asdf/completions/asdf.bash
+fi
+
+# Virtual Envs ---------------------------------------------------------------------------------------------------
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/bin/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/bin/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/bin/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/bin/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_CONDA_ENV} --stack
+
+# Activate Virtual Envs
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm list ${DEFAULT_NVM_ENV} 1>/dev/null 2>/dev/null || nvm install ${DEFAULT_NVM_ENV}
+nvm use ${DEFAULT_NVM_ENV}
+
+# ---------------------------------------------------------------------------------------------------------
+
+# https://direnv.net/
+# eval "$(direnv hook zsh)"
+
+# Getting all the nix stuff loaded!
+# . /Users/$(whoami)/.nix-profile/etc/profile.d/nix.sh
+
+# ----------------------------------------------------------------------------------------------------------
+
+alias openscad='/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD'
+
+bindkey -v
+# https://stackoverflow.com/questions/58187542/how-to-setup-vi-editing-mode-for-zsh#:~:text=bindkey%20%2Dv%20is%20enough%20to,%22insert%22%20mode%20by%20default.
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+
+# To fix conrol a and e
+# https://superuser.com/questions/523564/emacs-keybindings-in-zsh-not-working-ctrl-a-ctrl-e
+bindkey -e
+
+lpass ls automation  | grep secrets.sh | egrep -o '\d+' | xargs -n 1 lpass show --notes
+lpass ls automation  | grep $(get_uniq_mac_id) | egrep -o '\d+' | xargs -n 1 lpass show --notes

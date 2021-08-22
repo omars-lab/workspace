@@ -1,0 +1,155 @@
+commit e66b5340d586791a919ad673e65aa83a82dfb2e8
+Author: Omar Eid <omar_eid21@yahoo.com>
+Date:   Sun Dec 27 23:26:42 2015 -0600
+
+    Combined commits for security purposes.
+    
+    Removing secrets scattered accross files.
+    
+    - First Commit
+    - Making sure to check if were in bash before setting complete for some functions. Some re-org as well. Created a seperate variables file, using same approach as docker machine to source in variables
+    - Added config and an apple script
+    - Updated config
+    - More updates
+    - modification to env
+    - Adding mac backup logic
+    - Added ssh config
+    - Added with personal repo suffix
+    - Updated key permissions and ssh config
+    - Updated git repo paths
+    - Considering repo edge case
+    - Properly forming personal github urls
+    - More changes to backup
+    - Getting things setup for new laptop
+    - More updates
+    - Added vim install to reload.sh
+    - Made reload executable
+    - Updated reload scripts
+    - Added a cortex dir and removed duplicate dirs
+    - Extended reload symlink files
+    - Got most of the things setup on the new machine
+    - Cleaning up the profile
+    - Commented unused aliases
+    - Ignoring cortex lab stuff ... and additional changes / fixes
+    - Properly backing up robo3t
+    - Added icloud backup script and syncer to sync icloud to git
+    - Added ability to override variables per laptop ... also icloud-sync is now in path
+    - New batch of icloud changes
+    - Added one note
+    - Added new version of robo3t configu
+    - Added shortcuts to open noteplan folders and overrides for work laptop
+    - Added sym link for ssh ...
+    - Backep up work noteplan to git
+    - Updated personal tasks
+    - Added options ... to config
+    - More note edits
+    - Pushing Latest Code from  at 2018-10-02T00-05-04.
+    - Pushing Latest Code from  at 2018-10-02T00-05-51.
+    - Pushing Latest Code from  at 2018-10-02T00-06-23.
+    - Only add cortex to prompt if config exists. Also some cleaup
+    - Updates from icloud
+    - Added preview alias
+    - Added updates to the cortex config ... also added a reload script ...
+    - Added scripts to help with login / switching users
+    - Added a shared clipboard helper script
+    - Making the environment sourcing scripts more bash friendly
+    - Fix to make it more bash friendly ... plus soft archiving ability on clipboard ...
+    - Added helper script to access noteplan file of other user on same machine
+    - Update to env
+    - Cleaned up some zsh vs bash bugs
+    - Added experiment to get the current script dir in zsh and bash
+    - Getting things to work on my personal laptop
+    - Changes to get pbcopy usable from a bash based env.
+    - New env stuff
+    - Adding a command to access notes quickly
+    - Some fixes ... for running in personal env
+    - Added plantuml script to scripts folder
+    - Getting plantuml stuff to work ...
+    - Cortex config
+    - Added setup script and getting compinit to work on share comp
+    - Improvements to zsh vs bash mode. Also some more scripts ...
+    - Ignoring the firsttime setup script
+    - Added time to sourcing script to see how long recursive sourcing takes
+    - Added more scripts and cleaned up zshrc for conda
+    - Added stuff
+    - Added powerful cortex zsh completion script
+    - Added funciton to help with creating blank images to edit in preview.
+    - proper conda init ... based on env
+    - fix
+    - Adding some useful sripts
+    - Removing data from this repo removing c12e stuff
+    - Continuing to remove c12e
+    - Adding commands
+    - Added cron stuff
+    - Updating shortcuts regularly
+    - Added a good amount of changes
+    - Modificaitons
+    - Added stuff to vimrc
+    - Adding ability to open specific file in github/bb
+    - Cleaining up opening aliases
+    - Adding ability to search executables
+    - Adding app to help with handling urlscheme callbacks and more stuff
+    - WIP
+    - Adding git author rewrite script
+    - Adding author rewrite script
+    - Adding command for vs code
+    - Cleaning up conda init
+    - Enhancements to cron script, plus ability to edit noteplan / iawriter over vi
+    - Added git config
+    - Added function to generate a markdown link for a specific iawriter file
+    - Adding obsidian / ia link
+    - WIP
+    - More scripts
+    - WIP
+    - WIP
+    - Improving my note linking story to be able to click on jira links, but edit ia writer ...
+    - Adding script to turn python structs  into json
+    - WIP
+    - Adding control r
+    - Adding script to help expand url
+    - WIP
+    - Enhanced iphone link encrichor
+    - Adding scripts to download videos.
+    - Adding glue app that works better
+    - Enhancing some scripts
+    - Added framework to generate alerts when something of interest is in stock
+    - Added ability to scan sites that need js through chrome
+    - Changing cron up a bit
+    - Getting script to ready every minute
+    - Changing log for athan cron
+    - Getting command to invoke athan propely
+    - Sourcing brew scripts so jq could be found
+    - Adding ability to attempt to stay connected to wifi when playing athan.
+    - checking in changes to some tools
+    - Cleaning up dw script plus ability to notfiy myself
+    - Adding mechanics to recieve notifications and append magic kingdom openings to a file
+    - Adding notification for when dw opens
+    - Adding ability to check for kitchenaid fridge
+    - Adding ability to scan for active networks and added new wifi
+    - Cleaning up the 5m cron script to properly clean up shortcuts and init path.
+    - Getting instock alert to represent console table ...
+    - Cleaned up shortcut mechanic
+    - Changes to accomodate deploying to a new laptop
+    - Added mechanic to deploy crontab file
+    - Adding xcode install instructions and pip reqs
+    - Cleaning up shortcut refresh
+    - Added text shortcuts for the weekend
+    - Refactoring brew setup
+    - Removing circular dep
+    - Adding more brew installables
+    - Adding more shortcuts
+    - Disabling disney check
+    - Adding base ocr script to organize screenshots
+    - Adding mechanic to run things in cron for specific laptops
+    - Adding setup scripts
+    - Moved experiment to snippets repo
+    - Cleaning up scripts
+    - Adding ps1 variable for certain serial numbers
+    - Cleaning up ssh config
+    - Cleaning up the setup scripts
+    - More setup cleanup
+    - Cleaning up setup scripts
+    - Adding setup script for initializing git config
+    - Adding placeholder for link setup and adding command to create spaces in dock
+    - Modifying html script to deal with JSON
+    - Removing sensitive data

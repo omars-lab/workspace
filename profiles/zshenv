@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+precmd_functions=(week_prompt)

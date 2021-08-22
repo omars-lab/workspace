@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import json
+
+
+def format_json(inp):
+    return json.dumps(inp, sort_keys=False, indent=4)
+
+
+def load_input(path):
+    _input = path.read()
+    return format_json(eval(_input))
+
+if __name__ == "__main__":
+    os.write(sys.stdout.fileno(), load_input(sys.stdin).encode("utf-8"))
+
+

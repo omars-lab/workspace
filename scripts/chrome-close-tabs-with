@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# https://superuser.com/questions/489207/get-the-currently-open-tabs-in-google-chrome-via-the-command-line
+chrome-cli list links \
+  | grep "${1}" \
+  | egrep -o '^\[.*\]' \
+  | egrep -o '[0-9]+' \
+  | xargs -n 1 chrome-cli close -t

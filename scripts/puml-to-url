@@ -1,0 +1,4 @@
+#!/bin/bash
+# https://github.com/plantuml/plantuml/blob/master/src/net/sourceforge/plantuml/code/TranscoderSmart.java
+ENCODED_URL=$(cat "${1}" | egrep -v '^\s*$' | egrep -v "^\s*[']" | base64)
+echo "http://www.plantuml.com/plantuml/svg/-base64-${ENCODED_URL}"

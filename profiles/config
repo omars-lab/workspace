@@ -1,0 +1,25 @@
+# Look into this if the ssh config file grows out of proportion:
+# http://www.linuxsysadmintutorials.com/multiple-ssh-client-configuration-files/
+
+host *
+  ServerAliveInterval 60
+  ServerAliveCountMax 2
+
+host github.com
+  HostName github.com
+  IdentityFile ~/.ssh/github
+
+host github.com-work
+  HostName github.com
+  IdentityFile ~/.ssh/github_work
+
+host bitbucket.org
+  HostName bitbucket.org/broomar*
+  User broomar
+  IdentityFile ~/.ssh/bitbucket
+
+host personal-aws-instance
+  HostName 54.91.11.255
+  User ubuntu
+  IdentityFile ~/.ssh/personal-aws-keys-1.pem
+
