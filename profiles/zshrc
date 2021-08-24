@@ -94,13 +94,16 @@ export PATH="/usr/local/pgsql/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 
+export VIRTUALENVWRAPPER_PYTHON=$(brew --prefix python)/bin/python3
+# export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+
 # ------------------------------------------------------------------------------
 
 source ${ZSH}/oh-my-zsh.sh
 
 # The following assumes that ~/.zshrc is a symbolic link to the environment dir ...
 # This needs to run after oh my zsh since it messes with ps1
-source $(dirname $(dirname $(readlink ${HOME}/.zshrc)))/loader.sh
+source $(dirname $(dirname ${HOME}/$(readlink ${HOME}/.zshrc)))/loader.sh
 
 # date -u +"%Y-%m-%dT%H:%M:%SZ"
 
@@ -207,5 +210,50 @@ fpath+=~/.zfunc
 # https://superuser.com/questions/523564/emacs-keybindings-in-zsh-not-working-ctrl-a-ctrl-e
 bindkey -e
 
-lpass ls automation  | grep secrets.sh | egrep -o '\d+' | xargs -n 1 lpass show --notes
-lpass ls automation  | grep $(get_uniq_mac_id) | egrep -o '\d+' | xargs -n 1 lpass show --notes
+# lpass ls automation  | grep secrets.sh | egrep -o '\d+' | xargs -n 1 lpass show --notes
+# lpass ls automation  | grep $(get_uniq_mac_id) | egrep -o '\d+' | xargs -n 1 lpass show --notes
+
+# Install Vim Packages ...
+# https://shapeshed.com/vim-packages/
+
+function install_vim_package() {
+  REPO=${1}
+  PACKAGE=${2}
+  test -d ~/.vim/pack/packages/start/${PACKAGE} || \
+	( git clone https://github.com/${REPO}/${PACKAGE} ~/.vim/pack/packages/start/${PACKAGE})
+}
+
+mkdir -p ~/.vim/pack/packages/
+install_vim_package vim-airline vim-airline
+install_vim_package preservim nerdtree \
+		&& vim -u NONE -c "helptags ~/.vim/pack/packages/start/nerdtree/doc" -c q
+install_vim_package nelstrom vim-markdown-folding
+install_vim_package tpope vim-commentary
+
+
+export FZF_DEFAULT_COMMAND='ls -1t'
+function todo() {
+	TODAY_FILE=$(date '+%Y%m%d.txt')
+	# cd ~/Documents/calendar
+	cd ~/Library/Mobile\ Documents/iCloud\~co\~noteplan\~NotePlan/Documents/Calendar
+	touch ${TODAY_FILE}
+	INPUT=${1:-$( fzf +s --preview "head {}" --height 75% )}
+	case ${INPUT}
+	in
+		today)
+			todo ${TODAY_FILE}
+		;;
+		backlog)
+			todo backlog.txt
+		;;
+		*)
+			vim "${INPUT}"
+		;;
+	esac
+}
+
+function report_todo() {
+	# todo ... add logic in here to color code / add right numbers to days ... or may a shell script to do this!
+	cal -h | sed -E 's/^/\t/g' | sed -E -e 's/([^0-9][0-9]{1,2})/\t\1[𐄙₃|⨯₂₇]/g' -e 's/ ?([A-Za-z]+)/\t\1\t/g' | GREP_COLOR='1;35' grep -E --color=always '(\b3\b)|$'
+}
+

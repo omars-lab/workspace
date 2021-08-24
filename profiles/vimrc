@@ -1,6 +1,21 @@
 :syntax enable
 
-"https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work
+set guifont=Monaco:h20
+
+" These settings will result in spaces being used for all indentation.
+set noexpandtab
+set shiftwidth=2
+set softtabstop=2
+
+" ---------------------------------------------------------------------------------------------------------------------------
+
+" Loading Plugins ...
+" call pathogen#infect()
+
+" ---------------------------------------------------------------------------------------------------------------------------
+
+" Making the vim clipboard the same as the os clipboard ...
+" - https://stackoverflow.com/questions/17561706/vim-yank-does-not-seem-to-work
 " set clipboard=unnamedplus
 if system('uname -s') == "Darwin\n"
   set clipboard=unnamed "OSX
@@ -8,13 +23,14 @@ else
   set clipboard=unnamedplus "Linux
 endif
 
-call pathogen#infect()
-
 " http://vim.wikia.com/wiki/Indenting_source_code
 set nocompatible
 if has("autocmd")
   filetype plugin indent on
 endif
+
+" ---------------------------------------------------------------------------------------------------------------------------
+" Shortcuts ...
 
 " https://github.com/junegunn/fzf
 " If installed using Homebrew
@@ -30,42 +46,96 @@ nnoremap <S-<> :foldclose<CR>
 " https://github.com/tpope/vim-commentary
 :map \ gc<CR>
 
-set guifont=Monaco:h20
+noremap <CR> i
 
-" These settings will result in spaces being used for all indentation.
-set noexpandtab
-set shiftwidth=2
-set softtabstop=2
+noremap <C-Left> :NERDTreeFind<CR>
+
+:map <S-Up> <C-W><Up>
+:map <S-Down> <C-W><Down>
+:map <S-Left> <C-W><Left>>
+:map <S-Right> <C-W>w
+
+
+" In insert mode, shift left and right move to begining and ending of line ...
+inoremap <S-Right> <ESC>$i
+inoremap <S-left> <ESC>0i
 
 " https://github.com/scrooloose/nerdtree
 " Alt-n
 nnoremap ˜ :NERDTreeToggle<CR>
 " Alt-/
 nnoremap ˜ :NERDTreeToggle<CR>
+
+" ---------------------------------
+" Splitting
+" - https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
+" - https://stackoverflow.com/questions/11723651/mapping-alt-leftright-to-move-tabs
+
+set splitbelow
+set splitright
+
 " Alt-v - Verical Split
 nnoremap √ :vsp<CR>
+" Alt-Left
+nnoremap <ESC><ESC>[D <ESC><Left>:vsp<CR>
+" Alt-Right
+nnoremap <ESC><ESC>[C :vsp<CR>
 " Alt-h - Horizontal Split
 nnoremap ˙ :sp<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Alt-Up
+nnoremap <ESC><ESC>[A <ESC><Up>:sp<CR>
+" Alt-Down
+nnoremap <ESC><ESC>[B :sp<CR>
+" ---------------------------------
 
-
-:map <C-Up> <C-W><Up>
-:map <C-Down> <C-W><Down>
-
-:map <S-Up> <C-W><Up>
-:map <S-Down> <C-W><Down>
-:map <S-Right> <C-W><Right>
-:map <S-Left> <C-W><Left>
-
-" autocmd VimEnter * FZF
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-
-"https://vi.stackexchange.com/questions/3875/how-to-insert-a-newline-without-leaving-normal-mode
-"https://vim.fandom.com/wiki/Using_marks
-"https://vim.fandom.com/wiki/Insert_newline_without_entering_insert_mode
+" Shortcut to insert a new line while in normal mode ...
+" - https://vi.stackexchange.com/questions/3875/how-to-insert-a-newline-without-leaving-normal-mode
+" - https://vim.fandom.com/wiki/Using_marks
+" - https://vim.fandom.com/wiki/Insert_newline_without_entering_insert_mode
 nnoremap  mxi<CR><Esc>`x
 
 " This was needed after upgrading ... to be able to backspace on a line:
 " https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
 set backspace=indent,eol,nostop
+
+" -------------------------------------------------------------------------------------------------------------------------
+" Auto commands
+
+" autocmd VimEnter * FZF
+" autocmd VimEnter * NERDTree
+" autocmd VimEnter * wincmd p
+
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ---------------------------------------------------------------------------------------------------------------------------
+" Noteplan like shortcuts ...
+" Toggle things not done to done ...
+
+" function! MarkAsDone()
+" 	: s/\[ \]/[x]/ <CR>
+" 	: s/$/ @done(/ <CR>
+" 	: put =strftime('%Y-%m-%d %H:%M %p') <CR>
+" 	<ESC>
+" 	k
+" 	<S-j>
+" 	x
+" 	<S-a>
+" 	)
+" endfunction
+
+" Create a todo item ...
+inoremap <C-l> <ESC>:s/^/- [ ] /<CR><ESC> <S-a>
+
+" Mark an item as done ...
+inoremap <C-d> <ESC>:s/\[ \]/[x]/<CR>:s/$/ @done(/<CR>:put =strftime('%Y-%m-%d %H:%M %p')<CR><ESC>k<S-j>x<S-a>)
+" inoremap <C-d> <ESC>:call MarkAsDone()<CR>
+
+" ---------------------------------------------------------------------------------------------------------------------------
+" https://www.redhat.com/sysadmin/five-vim-plugins
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts=1
