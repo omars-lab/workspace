@@ -1,30 +1,14 @@
 # App Based Aliases ... these generally depend on other apps being present ...
-# -----------------------------------------------------------------------------
-
-# Fuzzy Config ...
-# FZF_IGNORE_PATTERNS='*.pyc|*.class|*.iml|*.DS_Store'
-# FZF_IGNORE_PATTERNS=$(split_and_prefix "${FZF_IGNORE_PATTERNS}" "--ignore")
-# FZF_IGNORE_DIRS=".git|target|.idea|.atom|.bash_sessions|.cache|.config|Music|Pictures|google-drive-c12e"
-# FZF_IGNORE_DIRS=$(split_and_prefix "${FZF_IGNORE_DIRS}" "--ignore-dir")
-# export FZF_DEFAULT_COMMAND="ag --hidden ${FZF_IGNORE_PATTERNS} ${FZF_IGNORE_DIRS} -g '' "
-
-# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings#ctrl-r
-export FZF_CTRL_R_OPTS='--sort --exact'
-# https://github.com/junegunn/fzf/wiki/Configuring-shell-key-bindings#ctrl-t
-export FZF_CTRL_T_OPTS="--select-1 --exit-0"
-
-
 # ------------------------------------------------------------------------------
-
 function e() {
     # Seach executables!
     compgen -c |  egrep  '^[a-z]' | sort | fzf --preview "which {}" --color light --margin 5,20
 }
+
 alias s='fzf'
 alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
 alias mvim=/Applications/MacVim.app/Contents/bin/mvim
 alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
-
 
 function fuzzy_selector(){
   if [[ -z "$2" ]];

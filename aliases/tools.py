@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
 def transform_link(original_link): 
   parsed_link = p.urlparse(original_link)

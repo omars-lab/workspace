@@ -12,5 +12,8 @@ activate:
 create-formula:
 	# Please run `brew audit --new workspace` before submitting, thanks.
 	# Editing /usr/local/Homebrew/Library/Taps/omars-lab/homebrew-tap/Formula/workspace.rb
-	brew create --tap omars-lab/packages https://github.com/omars-lab/workspace/archive/refs/tags/v0.0.tar.gz
+	brew create --tap omars-lab/tap https://github.com/omars-lab/workspace/archive/refs/tags/v0.0.tar.gz
 
+install-links:
+	test -L ~/.zshrc || echo "Need to set zshrc"
+	test -L ~/.bash_profile || echo "Need to set bash_profile"
