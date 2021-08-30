@@ -3,8 +3,8 @@
 BOOKCASE_STATUS=$(\
   html-css-selector.py \
     'https://deltachildren.com/products/serta-happy-home-storage-bookcase?variant=37941204910280' \
-    'div.product__form-buttons > button span' \
-    | grep -vi 'Sold Out'\
+    'div.product__form-buttons > button span' 2>/dev/null \
+    | grep -vi 'Sold Out' \
 )
 
 function curl_westelm() {
