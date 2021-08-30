@@ -2,7 +2,7 @@
 alias START_INFLUX='influxd -config /usr/local/etc/influxdb.conf'
 
 function NIFI() {
-  NARS=~/git/cognitivescale/triton/components/dataflow/nifi-nar-bundles/
+  NARS=${CODE_DIR:?Location of nar files ...}/nifi-nar-bundles/
   docker run -itd --name nifi -p 8080 -v ${NARS}:/code nifi:0.3.1 bash
 }
 
@@ -10,11 +10,10 @@ function NEO() {
   # What does `--cap-add=SYS_RESOURCE` do?
   # docker run -itdP --name neo c12e/neo4j:2.2.0 bash
   # docker run -p 7474:7474 -d -e NEO4J_AUTH=none neo4j:2.3.1
-  docker run -itd --name neo4j -p 7474:7474 -e NEO4J_AUTH=none  tpires/neo4j
+  docker run -itd --name neo4j -p 7474:7474 -e NEO4J_AUTH=none tpires/neo4j
 }
 
 function MONGO(){
-  # docker run -itd --name mongo -P c12e/mongodb bash
   docker run -itd --name mongo -p 27017:27017 mongo bash
 }
 
