@@ -4,21 +4,32 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/cron-common.sh
 REPO_ROOT=$(cd "${DIR}" && git rev-parse --show-toplevel)
 
+WIFI_NETWORK=ATT3XxQF24
+
+function is_ethernet() {
+  networksetup -listallhardwareports | grep ${1} -B1 | grep Ethernet
+}
+
 function ensure_wifi_connection() {
+  ( networksetup -getairportnetwork ${ACTIVE_INTERFACE} | grep ${WIFI_NAME} ) \
+    || ( networksetup -setairportnetwork ${ACTIVE_INTERFACE} ${WIFI_NAME} && echo Connected to WiFi )
+}
+
+function ensure_connected() {
   # List active networks. ..
   WIFI_NAME="${1}"
   ACTIVE_INTERFACE=$(ifconfig | grep -E -e '^[a-zA-Z]' -e '\s+status' | sed -E -e 's/^([a-zA-Z][^:]+): .*/\1/g' | grep -B 1 'status: active' | grep -o '^[a-zA-Z].*' | grep en)
   # - [ensure connection to wifi ...](https://www.techrepublic.com/article/pro-tip-manage-wi-fi-with-terminal-commands-on-os-x/)
-  ( networksetup -getairportnetwork ${ACTIVE_INTERFACE} | grep ${WIFI_NAME} ) || ( networksetup -setairportnetwork ${ACTIVE_INTERFACE} ${WIFI_NAME} && echo Connected to WiFi )
+  is_ethernet ${ACTIVE_INTERFACE} || ensure_wifi_connection "${WIFI_NETWORK}"
 }
 
 function play_athan() {
-  ensure_wifi_connection 'ATT3XxQF24'
+  ensure_connected
   cd "${REPO_ROOT}/../athan/" && ./athan 2>&1
 }
 
 function play_quran() {
-  ensure_wifi_connection 'ATT3XxQF24'
+  ensure_connected
   ${DIR}/cron-player.sh
 }
 
