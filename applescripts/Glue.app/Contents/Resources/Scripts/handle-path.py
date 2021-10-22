@@ -19,6 +19,9 @@ assert str(parsed_url.scheme.lower()) == "glue", "only glue URLs are supported"
 
 mapped_url = mapping.get(parsed_url.netloc)
 
+# https://github.com/shengyou/vscode-handler
+
+
 if mapped_url is None:
     # https://code-maven.com/display-notification-from-the-mac-command-line
     # https://www.pythongasm.com/desktop-notifications-with-python/

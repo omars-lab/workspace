@@ -2,23 +2,30 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/cron-common.sh
+REPO_ROOT=$(cd "${DIR}" && git rev-parse --show-toplevel)
 
-function play_athan() {
+function ensure_wifi_connection() {
   # List active networks. ..
-  WIFI_NAME='ATT3XxQF24'
+  WIFI_NAME="${1}"
   ACTIVE_INTERFACE=$(ifconfig | grep -E -e '^[a-zA-Z]' -e '\s+status' | sed -E -e 's/^([a-zA-Z][^:]+): .*/\1/g' | grep -B 1 'status: active' | grep -o '^[a-zA-Z].*' | grep en)
-  REPO_ROOT=$(cd "${DIR}" && git rev-parse --show-toplevel)
-  ATHAN_DIR=${REPO_ROOT}/../athan/
   # - [ensure connection to wifi ...](https://www.techrepublic.com/article/pro-tip-manage-wi-fi-with-terminal-commands-on-os-x/)
   ( networksetup -getairportnetwork ${ACTIVE_INTERFACE} | grep ${WIFI_NAME} ) || ( networksetup -setairportnetwork ${ACTIVE_INTERFACE} ${WIFI_NAME} && echo Connected to WiFi )
-  cd "${ATHAN_DIR}" && ./athan 2>&1
+}
+
+function play_athan() {
+  ensure_wifi_connection 'ATT3XxQF24'
+  cd "${REPO_ROOT}/../athan/" && ./athan 2>&1
+}
+
+function play_quran() {
+  ensure_wifi_connection 'ATT3XxQF24'
+  cd "${REPO_ROOT}/../athan/" && ./athan 2>&1
 }
 
 function all {
   # ${DIR}/check-disneyworld.sh
   # ${DIR}/notify-iphone.sh
   # ${DIR}/check-fridge.sh
-  echo Stuff
   true
 }
 
@@ -34,10 +41,12 @@ function main() (
     # Mac Mini ...
     H2WDR1UWQ6NV)
       play_athan
+      git pull
     ;;
     *)
     ;;
   esac
+  all
 )
 
 main | prefix_logs >> ${LOGS_DIR}/cron.log

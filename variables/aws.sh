@@ -1,0 +1,3 @@
+
+export AWS_ACCOUNT=759709763889
+export AWS_REGION=us-east-1

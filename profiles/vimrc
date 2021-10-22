@@ -3,9 +3,9 @@
 set guifont=Monaco:h20
 
 " These settings will result in spaces being used for all indentation.
-set noexpandtab
-set shiftwidth=2
-set softtabstop=2
+" set noexpandtab
+" set shiftwidth=2
+" set softtabstop=2
 
 " ---------------------------------------------------------------------------------------------------------------------------
 
@@ -23,11 +23,6 @@ else
   set clipboard=unnamedplus "Linux
 endif
 
-" http://vim.wikia.com/wiki/Indenting_source_code
-set nocompatible
-if has("autocmd")
-  filetype plugin indent on
-endif
 
 " ---------------------------------------------------------------------------------------------------------------------------
 " Shortcuts ...
@@ -42,6 +37,13 @@ nnoremap <Tab> :FZF<CR>
 nnoremap <S-f> :fold<CR>
 nnoremap <S->> :foldopen<CR>
 nnoremap <S-<> :foldclose<CR>
+
+" https://github.com/masukomi/vim-markdown-folding#installation
+" http://vim.wikia.com/wiki/Indenting_source_code
+" set nocompatible
+" if has("autocmd")
+"   filetype plugin indent on
+" endif
 
 " https://github.com/tpope/vim-commentary
 :map \ gc<CR>

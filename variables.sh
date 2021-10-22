@@ -17,4 +17,5 @@ source ${CURRENT_DIR}/variables/icloud.sh
 source ${CURRENT_DIR}/variables/fzf.sh
 source ${CURRENT_DIR}/variables/ssh.sh
 source ${CURRENT_DIR}/variables/apps.sh
+source ${CURRENT_DIR}/variables/aws.sh
 source ${CURRENT_DIR}/variables/path.sh
