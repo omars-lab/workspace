@@ -2,6 +2,17 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[1]}" )" >/dev/null 2>&1 && pwd )"
 
+# - [ ] Todo ... clean this up ...
+if [ -f ${HOME}/opt/anaconda3/etc/profile.d/conda.sh ] ; then 
+	source ${HOME}/opt/anaconda3/etc/profile.d/conda.sh
+fi
+
+if [ -f /usr/local/bin/miniconda3/etc/profile.d/conda.sh ] ; then 
+	source /usr/local/bin/miniconda3/etc/profile.d/conda.sh
+fi
+
+conda activate workspace
+
 source ${DIR}/functions.sh
 
 # https://rimuhosting.com/knowledgebase/linux/misc/trapping-ctrl-c-in-bash
