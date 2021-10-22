@@ -11,11 +11,11 @@ trap pause_audio_players INT
 NOW=$(date +"%I:%M%p")
 echo "Playing audio files configured for ... ${NOW}"
 case "${NOW}" in
-  08:33PM)
-	scan_players | xargs -n 1 bash -c 'source ${0}/functions.sh; play_audio_from_url "${1}" "${2}"' "${DIR}" "${SURAT_ALBAQARAH}"
+  08:30AM|09:05PM)
+	scan_players \
+		| xargs -n 1 bash -c 'source ${0}/functions.sh; AUDIO_LEVEL=15 play_audio_from_url "${1}" "${2}"' "${DIR}" "${SURAT_ALBAQARAH}"
   ;;
 esac
-
 
 # downloading athan
 # youtube-dl -x --audio-format mp3 https://www.youtube.com/watch\?v\=iaWZ_3D6vOQ

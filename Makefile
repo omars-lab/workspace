@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 CONDA_ENV := $$(basename $${PWD})
+.PHONY: setup activate 
 
 setup:
 	conda create -n "${CONDA_ENV}" python=3.7 pip -y

@@ -19,7 +19,7 @@ function play_athan() {
 
 function play_quran() {
   ensure_wifi_connection 'ATT3XxQF24'
-  cd "${REPO_ROOT}/../athan/" && ./athan 2>&1
+  ${DIR}/cron-player.sh
 }
 
 function all {
