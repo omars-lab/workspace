@@ -11,7 +11,7 @@ trap pause_audio_players INT
 NOW=$(date +"%I:%M%p")
 echo "Playing audio files configured for ... ${NOW}"
 case "${NOW}" in
-  08:30AM|09:05PM)
+  08:30AM)
 	scan_players \
 		| xargs -n 1 bash -c 'source ${0}/functions.sh; AUDIO_LEVEL=15 play_audio_from_url "${1}" "${2}"' "${DIR}" "${SURAT_ALBAQARAH}"
   ;;
