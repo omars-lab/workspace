@@ -52,6 +52,7 @@ function main() (
     # Mac Mini ...
     H2WDR1UWQ6NV)
       play_athan
+      play_quran
       git pull
     ;;
     *)
