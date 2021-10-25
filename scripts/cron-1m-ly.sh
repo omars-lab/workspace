@@ -25,7 +25,7 @@ function ensure_connected() {
 
 function play_athan() {
   ensure_connected
-  cd "${REPO_ROOT}/../athan/" && ./athan 2>&1
+  ( cd "${REPO_ROOT}/../athan/" && ./athan 2>&1 )
 }
 
 function play_quran() {

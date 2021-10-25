@@ -2,18 +2,9 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[1]}" )" >/dev/null 2>&1 && pwd )"
 
-# - [ ] Todo ... clean this up ...
-if [ -f ${HOME}/opt/anaconda3/etc/profile.d/conda.sh ] ; then 
-	source ${HOME}/opt/anaconda3/etc/profile.d/conda.sh
-fi
-
-if [ -f /usr/local/bin/miniconda3/etc/profile.d/conda.sh ] ; then 
-	source /usr/local/bin/miniconda3/etc/profile.d/conda.sh
-fi
-
-conda activate workspace
-
+source ${DIR}/cron-common.sh
 source ${DIR}/functions.sh
+conda activate workspace
 
 # https://rimuhosting.com/knowledgebase/linux/misc/trapping-ctrl-c-in-bash
 # trap ctrl-c and call pause_audio_players() 
@@ -22,7 +13,7 @@ trap pause_audio_players INT
 NOW=$(date +"%I:%M%p")
 echo "Playing audio files configured for ... ${NOW}"
 case "${NOW}" in
-  08:30AM)
+  08:15AM)
 	scan_players \
 		| xargs -n 1 bash -c 'source ${0}/functions.sh; AUDIO_LEVEL=15 play_audio_from_url "${1}" "${2}"' "${DIR}" "${SURAT_ALBAQARAH}"
   ;;
