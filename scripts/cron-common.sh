@@ -13,14 +13,18 @@ SERIAL_NUMBER=$( \
 eval "$(/usr/local/Homebrew/bin/brew shellenv)"
 PATH=${DIR}:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
-if [[ -f /usr/local/bin/miniconda3/etc/profile.d/conda.sh ]]
-then
-	source /usr/local/bin/miniconda3/etc/profile.d/conda.sh
-fi
+function source_if_exists() {
+	FILE_TO_SOURCE="${1}"
+	if [[ -f "${FILE_TO_SOURCE}" ]]
+	then	
+		echo Sourcing "${FILE_TO_SOURCE}"
+		source "${FILE_TO_SOURCE}"
+	else
+		false
+	fi
+}
 
-if [[ -f /usr/local/bin/miniconda3/etc/profile.d/conda.sh ]]
-then
-	source /usr/local/bin/miniconda3/etc/profile.d/conda.sh
-fi
+source_if_exists /usr/local/bin/miniconda3/etc/profile.d/conda.sh \
+	|| source_if_exists ${HOME}/opt/anaconda3/etc/profile.d/conda.sh
 
-conda activate py3
+conda activate workspace
