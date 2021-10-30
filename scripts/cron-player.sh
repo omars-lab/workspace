@@ -1,9 +1,9 @@
 #!/bin/bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[1]}" )" >/dev/null 2>&1 && pwd )"
-
+DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/cron-common.sh
 source ${DIR}/functions.sh
+PATH="${DIR}:${PATH}"
 conda activate workspace
 
 # https://rimuhosting.com/knowledgebase/linux/misc/trapping-ctrl-c-in-bash

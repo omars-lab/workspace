@@ -1,8 +1,9 @@
 #!/bin/bash
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/cron-common.sh
-REPO_ROOT=$(cd "${DIR}" && git rev-parse --show-toplevel)
+PATH="${DIR}:${PATH}"
+REPO_ROOT=$(git -C "${DIR}" rev-parse --show-toplevel)
 
 WIFI_NETWORK=ATT3XxQF24
 
@@ -53,7 +54,7 @@ function main() (
     H2WDR1UWQ6NV)
       play_athan
       play_quran
-      git pull
+      git -C "${REPO_ROOT}" pull
     ;;
     *)
     ;;

@@ -1,10 +1,8 @@
+# This file gets sourced ... therefore ... I dont declare the variable of the root dir ....
 # https://medium.com/better-programming/https-medium-com-ratik96-scheduling-jobs-with-crontab-on-macos-add5a8b26c30
-
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
 # - [Dealing with Command Not Found](https://ole.michelsen.dk/blog/schedule-jobs-with-crontab-on-mac-osx/)
 eval "$(/usr/local/Homebrew/bin/brew shellenv)"
-PATH=${DIR}:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin
+PATH=/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 LOGS_DIR=${HOME}/.logs
 mkdir -p ${LOGS_DIR}
