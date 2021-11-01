@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
 
 # * [ ] Read up on hashing strings
 # 	* [ ] What are the different ways to hash a string
@@ -24,7 +23,8 @@ def djb2x_hash(string):
 
     return hex(hash)
 
-hash = djb2x_hash
-
-for arg in sys.argv[1:]:
-	print(hash(arg))
+if __name__ == "__main__":
+    hash = djb2x_hash
+    import sys
+    for arg in sys.argv[1:]:
+        print(hash(arg))
