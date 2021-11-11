@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# """
+# This script is similar to recursively grepping ... but instead of retuning files & linenumbers,
+# it returns an xcallback that can be used to open the line locaiton in vscode ...
+# """
+
 function ag_vscode() {
 	# Turns the grep file number pointers into links that can be opened in vscode ...
 	# https://stackoverflow.com/questions/296536/how-to-urlencode-data-for-curl-command
