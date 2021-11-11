@@ -3,6 +3,7 @@
 function ag_vscode() {
 	# Turns the grep file number pointers into links that can be opened in vscode ...
 	# https://stackoverflow.com/questions/296536/how-to-urlencode-data-for-curl-command
+	# https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls
 	# https://janostlund.com/2018-07-12/url-schemes
 	egrep -rin ${@} \
 		--exclude-dir '.git' \
