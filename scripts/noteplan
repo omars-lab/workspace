@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cal -h \
+    | gsed -E 's#([ ]*)\b([0-9]{1,2}) #printf "\1"; resolve noteplan "\2"; printf " "; #ge'

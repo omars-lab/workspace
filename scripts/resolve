@@ -1,0 +1,101 @@
+#!/bin/bash
+
+
+function encode_url() {
+	# https://stackoverflow.com/questions/296536/how-to-urlencode-data-for-curl-command
+	sed -E \
+		-e "s/[ ]/%20/g"
+}
+
+function is_past() {
+	TODAY=$(date +'%Y%m%d')
+	test ${1:?Arg1=Date to check} -lt ${TODAY}
+}
+
+function is_future() {
+	TODAY=$(date +'%Y%m%d')
+	test ${1:?Arg1=Date to check} -gt ${TODAY}
+}
+
+function is_today() {
+	TODAY=$(date +'%Y%m%d')
+	test ${1:?Arg1=Date to check} -eq ${TODAY}
+}
+
+function is_taskless() {
+	F="${1:?Arg1=Noteplan File}"
+	# Its taskless if its not empty and has no tasks
+	# If it is empty ... its taskless ...
+	( ! (test -s "${F}") ) && ! (egrep -E -q '[*-] \[.\]' "${F}")
+	
+}
+
+function is_completed() {
+	! ( is_uncompleted "${1:?Arg1=Noteplan File}" )
+}
+
+function is_uncompleted() {
+	egrep -E -q '[*-] \[ \]' "${1:?Arg1=Noteplan File}"
+}
+
+function resolve() {
+	case ${1:?Arg1=Resolver Name}
+	in
+		noteplan)
+			local DAY_OF_MONTH=${2:?Arg2=Day of Month (int)}
+			local PADDED_DAY_OF_MONTH=$(printf "%02d" ${DAY_OF_MONTH})
+			local FILE=$(date +"${HOME}/Library/Mobile Documents/iCloud~co~noteplan~NotePlan/Documents/Calendar/%Y%m${PADDED_DAY_OF_MONTH}.txt")
+			local DATE_IDENTIFIER=$(date +"%Y%m${PADDED_DAY_OF_MONTH}" | tr -d '\n')
+			# Defualt ...
+			local COLORED_TEXT=${DAY_OF_MONTH}
+			# echo is_past $(is_past "${DATE_IDENTIFIER}" && echo true || echo false) 1>&2
+			# echo is_today $(is_today "${DATE_IDENTIFIER}" && echo true || echo false) 1>&2
+			# echo is_future $(is_future "${DATE_IDENTIFIER}" && echo true || echo false) 1>&2
+			# echo is_completed $(is_completed "${FILE}" && echo true || echo false) 1>&2
+			# echo is_uncompleted $(is_uncompleted "${FILE}" && echo true || echo false) 1>&2
+			# green strikethrough ... if in the past and completed ... 
+			if ( $(is_past "${DATE_IDENTIFIER}") && $(is_completed "${FILE}") );
+			then 
+				COLORED_TEXT=$(STYLE=strikethrough color green ${DAY_OF_MONTH})
+			fi 
+			# red ... if in the past and not completed
+			if ( $(is_past "${DATE_IDENTIFIER}") && $(is_uncompleted "${FILE}") );
+			then 
+				COLORED_TEXT=$(STYLE=invert color red ${DAY_OF_MONTH})
+			fi 
+			# underline blue if in the future with tasks ...
+			if ( $(is_future "${DATE_IDENTIFIER}") && $(is_uncompleted "${FILE}") );
+			then 
+				COLORED_TEXT=$(STYLE=underline color blue ${DAY_OF_MONTH})
+			fi 
+			# # grey out if in the future with no tasks ...
+			# if ( $(is_future "${DATE_IDENTIFIER}") && $(is_completed "${FILE}") );
+			# then 
+			# 	COLORED_TEXT=$(STYLE=strikethrough color white ${DAY_OF_MONTH})
+			# fi
+			# grey out if taskless ...
+			if ( $(is_taskless "${FILE}") );
+			then 
+				COLORED_TEXT=$(STYLE=strikethrough color white ${DAY_OF_MONTH})
+			fi 
+			# if today ... highlight blue ...
+			if ( $(is_today "${DATE_IDENTIFIER}") );
+			then 
+				COLORED_TEXT=$(STYLE=invert color cyan ${DAY_OF_MONTH})
+			fi
+			# - [ ] Add Indicator of light task or medium tasks?
+			VSCODE_LINK=$(resolve vscode "${FILE}")
+			print-link "${COLORED_TEXT}" "${VSCODE_LINK}"
+		;;
+		vscode)
+			FILE=${2:?Arg2=File Name}
+			ENCODED_FILE=$(echo "${FILE}" | encode_url)
+			touch "${FILE}"
+			echo -n "vscode://file${ENCODED_FILE}"
+		;;
+		*)
+		;;
+	esac
+}
+
+resolve $@

@@ -1,0 +1,210 @@
+#!/bin/bash
+
+# https://misc.flogisoft.com/bash/tip_colors_and_formatting
+# https://tldp.org/HOWTO/Bash-Prompt-HOWTO/bash-prompt-escape-sequences.html
+# https://clubmate.fi/upgrade-to-bash-4-in-mac-os-x
+# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+# www.bunlongheng.com/code/colors.png
+
+RESET='\033[0m'
+
+NORMAL_STYLE=0
+BOLD_STYLE=1
+DIM_STYLE=2
+ITALIC_STYLE=3
+UNDERLINE_STYLE=4
+BLINK_STYLE=5
+INVERT_STYLE=7
+STRIKETHROUGH_STYLE=9
+
+function style() {
+	case ${1:-normal}
+	in 
+		normal)
+			echo "${NORMAL_STYLE}"
+		;;
+		bold)
+			echo "${BOLD_STYLE}"
+		;;
+		dim)
+			echo "${DIM_STYLE}"
+		;;
+		italic)
+			echo "${ITALIC_STYLE}"
+		;;
+		underline)
+			echo "${UNDERLINE_STYLE}"
+		;;
+		blink)
+			echo "${BLINK_STYLE}"
+		;;
+		invert)
+			echo "${INVERT_STYLE}"
+		;;
+		strikethrough)
+			echo "${STRIKETHROUGH_STYLE}"
+		;;
+		*)
+			echo "${NORMAL_STYLE}"
+		;;
+	esac
+}
+
+NORMAL_INTENSITY=0
+HIGH_INTENSITY=60
+function intensity() {
+	case ${1:-normal}
+	in
+		normal)
+			echo "${NORMAL_INTENSITY}"
+		;;
+		high)
+			echo "${HIGH_INTENSITY}"
+		;;
+		*)
+			echo "${NORMAL_INTENSITY}"
+		;;
+	esac
+}
+
+NORMAL_BACKGROUND=0
+COLORED_BACKGROUND=10
+function background() {
+	case ${1:-normal}
+	in
+		normal)
+			echo "${NORMAL_BACKGROUND}"
+		;;
+		colored)
+			echo "${COLORED_BACKGROUND}"
+		;;
+		*)
+			echo "${NORMAL_BACKGROUND}"
+		;;
+	esac
+}
+
+BLACK='30'
+RED='31'
+GREEN='32'
+YELLOW='33'
+BLUE='34'
+PURPLE='35'
+CYAN='36'
+WHITE='37'
+DEFAULT='39'
+function colorcode() {
+	case ${1:-black}
+	in
+		black)
+			COLOR=${BLACK}
+		;;
+		red)
+			COLOR=${RED}
+		;;
+		green)
+			COLOR=${GREEN}
+		;;
+		yellow)
+			COLOR=${YELLOW}
+		;;
+		blue)
+			COLOR=${BLUE}
+		;;
+		purple)
+			COLOR=${PURPLE}
+		;;
+		cyan)
+			COLOR=${CYAN}
+		;;
+		white)
+			COLOR=${WHITE}
+		;;
+		*)
+			COLOR=${DEFAULT}
+		;;
+	esac
+	echo "${COLOR}"
+}
+
+function color() {
+	COLOR=$(colorcode ${1:?Arg1=ColorNumber})
+	STYLE=$(style ${STYLE:-normal})
+	INTENSITY=$(intensity ${INTENSITY:-normal})
+	BACKGROUND=$(background ${BACKGROUND:-normal})
+	shift
+	# echo  ${COLOR} , ${BACKGROUND} , ${INTENSITY}
+	COLOR_CODE=$(expr ${COLOR} + ${BACKGROUND} + ${INTENSITY})
+	printf "\033[${STYLE};${COLOR_CODE}m${@}${RESET}"
+	# printf "\033[${STYLE};${COLOR_CODE}m${@} (${COLOR_CODE}) ${RESET}\n"
+}
+
+function test() {
+	color red ABCD
+	color green ABCD
+	color yellow ABCD
+	color blue ABCD
+	color purple ABCD
+	color cyan ABCD
+	color white ABCD
+
+	STYLE=bold color red ABCD
+	STYLE=bold color green ABCD
+	STYLE=bold color yellow ABCD
+	STYLE=bold color blue ABCD
+	STYLE=bold color purple ABCD
+	STYLE=bold color cyan ABCD
+	STYLE=bold color white ABCD
+
+	STYLE=underline color red ABCD
+	STYLE=underline color green ABCD
+	STYLE=underline color yellow ABCD
+	STYLE=underline color blue ABCD
+	STYLE=underline color purple ABCD
+	STYLE=underline color cyan ABCD
+	STYLE=underline color white ABCD
+
+	BACKGROUND=colored color red ABCD
+	BACKGROUND=colored color green ABCD
+	BACKGROUND=colored color yellow ABCD
+	BACKGROUND=colored color blue ABCD
+	BACKGROUND=colored color purple ABCD
+	BACKGROUND=colored color cyan ABCD
+	BACKGROUND=colored color white ABCD
+
+	BACKGROUND=colored STYLE=bold color red ABCD
+	BACKGROUND=colored STYLE=bold color green ABCD
+	BACKGROUND=colored STYLE=bold color yellow ABCD
+	BACKGROUND=colored STYLE=bold color blue ABCD
+	BACKGROUND=colored STYLE=bold color purple ABCD
+	BACKGROUND=colored STYLE=bold color cyan ABCD
+	BACKGROUND=colored STYLE=bold color white ABCD
+
+	BACKGROUND=colored STYLE=underline color red ABCD
+	BACKGROUND=colored STYLE=underline color green ABCD
+	BACKGROUND=colored STYLE=underline color yellow ABCD
+	BACKGROUND=colored STYLE=underline color blue ABCD
+	BACKGROUND=colored STYLE=underline color purple ABCD
+	BACKGROUND=colored STYLE=underline color cyan ABCD
+	BACKGROUND=colored STYLE=underline color white ABCD
+
+	BACKGROUND=colored STYLE=strikethrough color red ABCD
+	BACKGROUND=colored STYLE=strikethrough color green ABCD
+	BACKGROUND=colored STYLE=strikethrough color yellow ABCD
+	BACKGROUND=colored STYLE=strikethrough color blue ABCD
+	BACKGROUND=colored STYLE=strikethrough color purple ABCD
+	BACKGROUND=colored STYLE=strikethrough color cyan ABCD
+	BACKGROUND=colored STYLE=strikethrough color white ABCD
+
+	BACKGROUND=colored STYLE=inverted color red ABCD
+	BACKGROUND=colored STYLE=inverted color green ABCD
+	BACKGROUND=colored STYLE=inverted color yellow ABCD
+	BACKGROUND=colored STYLE=inverted color blue ABCD
+	BACKGROUND=colored STYLE=inverted color purple ABCD
+	BACKGROUND=colored STYLE=inverted color cyan ABCD
+	BACKGROUND=colored STYLE=inverted color white ABCD
+}
+
+color ${@}
+# test
