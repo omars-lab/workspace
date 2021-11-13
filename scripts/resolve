@@ -43,9 +43,11 @@ function resolve() {
 	in
 		noteplan)
 			local DAY_OF_MONTH=${2:?Arg2=Day of Month (int)}
+			local DATE_DIFF=${3:?Arg3=Date Diff}
 			local PADDED_DAY_OF_MONTH=$(printf "%02d" ${DAY_OF_MONTH})
-			local FILE=$(date +"${HOME}/Library/Mobile Documents/iCloud~co~noteplan~NotePlan/Documents/Calendar/%Y%m${PADDED_DAY_OF_MONTH}.txt")
-			local DATE_IDENTIFIER=$(date +"%Y%m${PADDED_DAY_OF_MONTH}" | tr -d '\n')
+			local FILE=$(date -v ${DATE_DIFF} +"${HOME}/Library/Mobile Documents/iCloud~co~noteplan~NotePlan/Documents/Calendar/%Y%m${PADDED_DAY_OF_MONTH}.txt")
+			local DATE_IDENTIFIER=$(date -v ${DATE_DIFF} +"%Y%m${PADDED_DAY_OF_MONTH}" | tr -d '\n')
+			VSCODE_LINK=$(resolve vscode "${FILE}")
 			# Defualt ...
 			local COLORED_TEXT=${DAY_OF_MONTH}
 			# echo is_past $(is_past "${DATE_IDENTIFIER}" && echo true || echo false) 1>&2
@@ -84,7 +86,6 @@ function resolve() {
 				COLORED_TEXT=$(STYLE=invert color cyan ${DAY_OF_MONTH})
 			fi
 			# - [ ] Add Indicator of light task or medium tasks?
-			VSCODE_LINK=$(resolve vscode "${FILE}")
 			print-link "${COLORED_TEXT}" "${VSCODE_LINK}"
 		;;
 		vscode)

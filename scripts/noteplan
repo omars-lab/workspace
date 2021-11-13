@@ -1,4 +1,25 @@
 #!/bin/bash
 
-cal -h \
-    | gsed -E 's#([ ]*)\b([0-9]{1,2}) #printf "\1"; resolve noteplan "\2"; printf " "; #ge'
+# - [x] Make it so that we can go 3 months back @done(2021-11-13T12:47:10-06:00)
+# Take advantage of date subtraction ...
+# date -v -0m
+
+function noteplan-month() {
+    DATE_DIFF=${1:?Arg1=Date Diff}
+    cal -h $(date -v ${DATE_DIFF} +"%B") $(date -v ${DATE_DIFF} +"%Y") \
+            | gsed -E "s#([ ]*)\b([0-9]{1,2}) #printf '\1'; resolve noteplan '\2' '${DATE_DIFF}'; printf ' '; #ge"
+}
+
+DATE_DIFF=${1:--0m}
+case ${DATE_DIFF}
+in 
+    last3m)
+        noteplan-month -2m
+        noteplan-month -1m
+        noteplan-month -0m
+    ;;
+    *)
+        noteplan-month ${DATE_DIFF}
+    ;;
+esac
+
