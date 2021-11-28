@@ -10,12 +10,24 @@ conda activate workspace
 # trap ctrl-c and call pause_audio_players() 
 trap pause_audio_players INT
 
+function play_athkar() {
+  scan_players \
+    | xargs -n 1 bash -c 'source ${0}/functions.sh; AUDIO_LEVEL=15 play_audio_from_url "${1}" "${2}"' "${DIR}" "${MORNING_ATHKAR}"
+}
+
+function play_surat_albaqarah() {
+  scan_players \
+    | xargs -n 1 bash -c 'source ${0}/functions.sh; AUDIO_LEVEL=15 play_audio_from_url "${1}" "${2}"' "${DIR}" "${SURAT_ALBAQARAH}"
+}
+
 NOW=$(date +"%I:%M%p")
 echo "Playing audio files configured for ... ${NOW}"
 case "${NOW}" in
+  08:00AM)
+    play_athkar
+  ;;
   08:15AM)
-	scan_players \
-		| xargs -n 1 bash -c 'source ${0}/functions.sh; AUDIO_LEVEL=15 play_audio_from_url "${1}" "${2}"' "${DIR}" "${SURAT_ALBAQARAH}"
+    play_surat_albaqarah
   ;;
 esac
 

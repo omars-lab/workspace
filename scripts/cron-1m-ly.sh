@@ -54,6 +54,7 @@ function main() (
     H2WDR1UWQ6NV)
       play_athan
       play_quran
+      ${DIR}/check-apis.sh
       git -C "${REPO_ROOT}" pull
     ;;
     *)

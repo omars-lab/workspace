@@ -2,6 +2,7 @@
 
 # ATHAN_FILE=$(ls ${HOME}/Dropbox*/Personal,Uncategorized/58b0dac02106f.mp3)
 SURAT_ALBAQARAH='https://www.youtube.com/watch?v=ieHCmmiYKIQ'
+MORNING_ATHKAR='https://www.youtube.com/watch?v=V2Brp_esIVI'
 
 function retry() {
 	COUNTER=${2:-1}

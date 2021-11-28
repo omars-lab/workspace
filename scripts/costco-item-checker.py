@@ -37,5 +37,4 @@ def main():
         description = (items[0].findAll("p", {"class":"description"})[0].a.contents[0])
         print(f"{out_of_stock}: {description}")
 
-
 main()

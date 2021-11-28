@@ -3,5 +3,3 @@
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cat ${CURRENT_DIR}/costco-curl.sh | ${CURRENT_DIR}/un-ascii-quote \
   | python -u ${CURRENT_DIR}/costco-item-checker.py $@
-
-
