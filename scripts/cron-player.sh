@@ -23,10 +23,10 @@ function play_surat_albaqarah() {
 NOW=$(date +"%I:%M%p")
 echo "Playing audio files configured for ... ${NOW}"
 case "${NOW}" in
-  08:00AM)
+  07:00AM)
     play_athkar
   ;;
-  08:15AM)
+  07:20AM)
     play_surat_albaqarah
   ;;
 esac
