@@ -63,4 +63,4 @@ function main() (
   all
 )
 
-main | prefix_logs >> ${LOGS_DIR}/cron.log
+( main | prefix_logs ) 1>>${LOGS_DIR}/cron.log 2>>${LOGS_DIR}/cron.error.log

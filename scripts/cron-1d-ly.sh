@@ -13,4 +13,4 @@ function prefix_logs() {
   sed "s/^/${NOW},\"1d Cron\",\"/g" | sed 's/$/"/g'
 }
 
-main | prefix_logs >> ${LOGS_DIR}/cron.log
+( main | prefix_logs ) 1>>${LOGS_DIR}/cron.log 2>>${LOGS_DIR}/cron.error.log 
