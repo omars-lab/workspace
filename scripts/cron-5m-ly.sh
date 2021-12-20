@@ -33,8 +33,6 @@ function main() {
   echo "Initiated 5m Cron as $(whoami)"
   update_shortcuts
   echo "Done updating hourly shortcuts"
-  instock-alerts
-  echo "Done generating instock alerts"
 }
 
 function prefix_logs() {
