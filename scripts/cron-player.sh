@@ -1,10 +1,17 @@
 #!/bin/bash
 
 DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+# ATHAN_FILE=$(ls ${HOME}/Dropbox*/Personal,Uncategorized/58b0dac02106f.mp3)
+SURAT_ALBAQARAH='https://www.youtube.com/watch?v=ieHCmmiYKIQ'
+MORNING_ATHKAR='https://www.youtube.com/watch?v=V2Brp_esIVI'
+
 source ${DIR}/cron-common.sh
 source ${DIR}/functions.sh
 PATH="${DIR}:${PATH}"
 conda activate workspace
+
+# -----------------------------------------------------------------------------
 
 # https://rimuhosting.com/knowledgebase/linux/misc/trapping-ctrl-c-in-bash
 # trap ctrl-c and call pause_audio_players() 
