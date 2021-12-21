@@ -41,11 +41,6 @@ function all {
   true
 }
 
-function prefix_logs() {
-  NOW=$(date +"%Y-%m-%dT%H:%M:%S%z")
-  sed "s/^/${NOW},\"1m Cron\",\"/g" | sed 's/$/"/g'
-}
-
 function main() (
   echo "Initiated 1m Cron as $(whoami)"
   # Do specific things on specific computers ...
@@ -63,4 +58,5 @@ function main() (
   all
 )
 
-( main | prefix_logs ) 1>>${LOGS_DIR}/cron.log 2>>${LOGS_DIR}/cron.error.log
+run_cron_job "1m"
+# ( main | prefix_logs ) 1>>${LOGS_DIR}/cron.log 2>>${LOGS_DIR}/cron.error.log

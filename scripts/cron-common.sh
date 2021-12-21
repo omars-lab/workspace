@@ -22,6 +22,25 @@ function source_if_exists() {
 	fi
 }
 
+function prefix_logs() {
+	CRON_IDENTIFIER="${1:?Arg1=Identifier for CRON Job.}"
+	NOW=$(date +"%Y-%m-%dT%H:%M:%S%z")
+	sed "s/^/${NOW},\"${CRON_IDENTIFIER} Cron\",\"/g" | sed 's/$/"/g'
+}
+
+function run_cron_job() {
+	CRON_IDENTIFIER="${1:?Arg1=Identifier for CRON Job.}"
+	STDOUT_LOG=$(mktemp)
+	STDERR_LOG=$(mktemp)
+	main \
+		1>"${STDOUT_LOG}" \
+		2>"${STDERR_LOG}"
+	( cat "${STDOUT_LOG}" | prefix_logs "${CRON_IDENTIFIER}" ) >> ${LOGS_DIR}/cron.log 
+	( cat "${STDERR_LOG}" | prefix_logs "${CRON_IDENTIFIER}" ) >> ${LOGS_DIR}/cron.error.log
+	rm "${STDOUT_LOG}" "${STDERR_LOG}"
+	# ( main | prefix_logs ) 2>>${LOGS_DIR}/cron.error.log 1>>${LOGS_DIR}/cron.log
+}
+
 source_if_exists /usr/local/bin/miniconda3/etc/profile.d/conda.sh \
 	|| source_if_exists ${HOME}/opt/anaconda3/etc/profile.d/conda.sh
 

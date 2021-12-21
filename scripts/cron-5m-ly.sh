@@ -35,9 +35,5 @@ function main() {
   echo "Done updating hourly shortcuts"
 }
 
-function prefix_logs() {
-  NOW=$(date +"%Y-%m-%dT%H:%M:%S%z")
-  sed "s/^/${NOW},\"5m Cron\",\"/g" | sed 's/$/"/g'
-}
-
-( main | prefix_logs ) 2>>${LOGS_DIR}/cron.error.log 1>>${LOGS_DIR}/cron.log
+run_cron_job "5m"
+# ( main | prefix_logs ) 2>>${LOGS_DIR}/cron.error.log 1>>${LOGS_DIR}/cron.log

@@ -9,9 +9,5 @@ function main() {
   ${DIR}/shortcuts-update.sh update_time_based_shorcuts
 }
 
-function prefix_logs() {
-  NOW=$(date +"%Y-%m-%dT%H:%M:%S%z")
-  sed "s/^/${NOW},\"1h Cron\",\"/g" | sed 's/$/"/g'
-}
-
-main | prefix_logs >> ${LOGS_DIR}/cron.log
+run_cron_job "1h"
+# main | prefix_logs >> ${LOGS_DIR}/cron.log
