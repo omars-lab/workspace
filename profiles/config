@@ -14,8 +14,8 @@ host github.com-work
   IdentityFile ~/.ssh/github_work
 
 host bitbucket.org
-  HostName bitbucket.org/broomar*
-  User broomar
+  HostName bitbucket.org
+  User git
   IdentityFile ~/.ssh/bitbucket
 
 host personal-aws-instance
