@@ -5,16 +5,26 @@
 # it returns an xcallback that can be used to open the line locaiton in vscode ...
 # """
 
+LIMIT=${LIMIT:-100}
+
 function ag_vscode() {
 	# Turns the grep file number pointers into links that can be opened in vscode ...
 	# https://stackoverflow.com/questions/296536/how-to-urlencode-data-for-curl-command
 	# https://code.visualstudio.com/docs/editor/command-line#_opening-vs-code-with-urls
 	# https://janostlund.com/2018-07-12/url-schemes
-	egrep -rin ${@} \
+	egrep -rin "${@}" \
 		--exclude-dir '.git' \
 		--exclude-dir '.idea' \
 		"${PWD}" \
-	| gsed -E -e 's#^(.*):([0-9]+):(.*)#echo "vscode://file\1:\2" | sed -e "s: :%20:g" | tr -d "\n"; echo "\t\3"#ge'
+	| grep -v '^Binary file' \
+	| head -n ${LIMIT} \
+	| sed "s/'/\"/g" \
+	| sed "s-#-//-g" \
+	| sed "s-)-\)-g" \
+	| sed "s-(-\(-g" \
+	| sed "s-{-\{-g" \
+	| sed "s-}-\}-g" \
+	| gsed -E -e "s#^(.*):([0-9]+):(.*)# print-vscode-link '\1' '\2'; printf ':\t%s' '\3'#ge"
 }
 
-ag_vscode $@
+ag_vscode "${@:?At least 1 arg is required to search.}"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TEXT="${1:-This is a link}"
+TEXT="${1:-[🔗]}"
 LINK="${2:-https://www.google.com}"
 printf '\e]8;;%s\e\\%s\e]8;;\e\\' "${LINK}" "${TEXT}" 
 # printf '\e]8;;%s\e\\%s\e]8;;\e\\\n' "${LINK}" "${TEXT}" 
