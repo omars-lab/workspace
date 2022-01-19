@@ -45,7 +45,7 @@ function update_time_based_shorcuts() {
 
   update_shortcut '#today' "${TODAY}"
   update_shortcut '@today' "${TODAY}"
-  update_shortcut '>today' "${TODAY}"
+  update_shortcut '>today >2022-01-16' "${TODAY}"
 
   update_shortcut '#tomorrow' "${TOMORROW}"
   update_shortcut '@tomorrow' "${TOMORROW}"

@@ -19,12 +19,12 @@ function ag_vscode() {
 	| grep -v '^Binary file' \
 	| head -n ${LIMIT} \
 	| sed "s/'/\"/g" \
-	| sed "s-#-//-g" \
 	| sed "s-)-\)-g" \
 	| sed "s-(-\(-g" \
 	| sed "s-{-\{-g" \
 	| sed "s-}-\}-g" \
-	| gsed -E -e "s#^(.*):([0-9]+):(.*)# print-vscode-link '\1' '\2'; printf ':\t%s' '\3'#ge"
+	| sed "s-~-≅-g" \
+	| gsed -E -e "s~^(.*):([0-9]+):(.*)~ print-vscode-link '\1' '\2'; printf ':\t%s' '\3'~ge"
 }
 
 ag_vscode "${@:?At least 1 arg is required to search.}"
