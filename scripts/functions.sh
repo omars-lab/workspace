@@ -35,3 +35,9 @@ function play_audio_from_url() {
 function pause_audio_players() {
   scan_players | xargs -I {} catt -d {} stop
 }
+
+function is_running() {
+	# https://stackoverflow.com/questions/2159860/viewing-full-output-of-ps-command
+	# https://stackoverflow.com/questions/26619477/how-to-get-output-to-show-only-cmd-with-ps-u-username
+	ps -ae -wo command | grep -v grep | grep -q "${@}"
+}

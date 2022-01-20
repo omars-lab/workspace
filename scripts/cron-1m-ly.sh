@@ -51,6 +51,7 @@ function main() (
       play_quran
       ${DIR}/check-apis.sh
       git -C "${REPO_ROOT}" pull
+      run-homeassistant.sh
     ;;
     *)
     ;;
