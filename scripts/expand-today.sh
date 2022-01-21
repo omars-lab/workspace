@@ -6,7 +6,7 @@ function expand_refs_in_dir() (
 	TODAY=$(date +'>%Y-%m-%d')
 	# For file that contain the today string ... expand lines that haven't already been expanded
 	grep -ril '>today' . \
-		| xargs -n 1 gsed -i "/.*${TODAY}.*/! s/ >today/ >today ${TODAY}/"
+		| xargs -t -I __ gsed -E -i "/.*([*-] [[][xX-][]]|${TODAY}).*/! s/ >today/ >today ${TODAY}/" "__"
 )
 
 expand_refs_in_dir "${HOME}/Library/Mobile Documents/iCloud~co~noteplan~NotePlan/Documents/Notes"
