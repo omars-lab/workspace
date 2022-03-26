@@ -35,5 +35,14 @@ function main() {
   echo "Done updating hourly shortcuts"
 }
 
-run_cron_job "5m"
+# Do specific things on specific computers ...
+case ${SERIAL_NUMBER} in
+  # Mac Mini ...
+  H2WDR1UWQ6NV)
+    run_cron_job "5m"
+  ;;
+  *)
+  ;;
+esac
+
 # ( main | prefix_logs ) 2>>${LOGS_DIR}/cron.error.log 1>>${LOGS_DIR}/cron.log

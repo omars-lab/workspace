@@ -43,21 +43,22 @@ function all {
 
 function main() (
   echo "Initiated 1m Cron as $(whoami)"
-  # Do specific things on specific computers ...
-  case ${SERIAL_NUMBER} in
-    # Mac Mini ...
-    H2WDR1UWQ6NV)
-      play_athan
-      play_quran
-      ${DIR}/check-apis.sh
-      git -C "${REPO_ROOT}" pull
-      run-homeassistant.sh
-    ;;
-    *)
-    ;;
-  esac
-  all
+  play_athan
+  play_quran
+  ${DIR}/check-apis.sh
+  git -C "${REPO_ROOT}" pull
+  run-homeassistant.sh
+  # all
 )
 
-run_cron_job "1m"
+# Do specific things on specific computers ...
+case ${SERIAL_NUMBER} in
+  # Mac Mini ...
+  H2WDR1UWQ6NV)
+    run_cron_job "1m"
+  ;;
+  *)
+  ;;
+esac
+
 # ( main | prefix_logs ) 1>>${LOGS_DIR}/cron.log 2>>${LOGS_DIR}/cron.error.log

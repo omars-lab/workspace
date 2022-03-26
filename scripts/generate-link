@@ -1,5 +1,4 @@
 #!/bin/bash
 
 LINK=$(ls "$(pwd)/${1}" | html-encode | sed 's#^#vscode://file#')
-echo "${LINK}" | pbcopy
-echo "${LINK}"
+echo -n "${LINK}"

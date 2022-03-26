@@ -9,5 +9,13 @@ function main() {
   ${DIR}/shortcuts-update.sh update_time_based_shorcuts
 }
 
-run_cron_job "1h"
+# Do specific things on specific computers ...
+case ${SERIAL_NUMBER} in
+  # Mac Mini ...
+  H2WDR1UWQ6NV)
+    run_cron_job "1h"
+  ;;
+  *)
+  ;;
+esac
 # main | prefix_logs >> ${LOGS_DIR}/cron.log
