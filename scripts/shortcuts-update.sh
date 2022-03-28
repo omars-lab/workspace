@@ -3,6 +3,10 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/cron-common.sh
 
+# Insalling Shortcuts ...
+# https://github.com/rodionovd/shortcuts
+# brew install rodionovd/taps/shortcuts
+
 function update_shortcut() {
   /usr/local/bin/shortcuts update $@
   sleep 0.1
