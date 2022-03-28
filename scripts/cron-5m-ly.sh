@@ -2,15 +2,17 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/cron-common.sh
+PATH="${DIR}:${PATH}"
+conda activate workspace
 
 function update_shortcuts() {
 
   DONE="$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
   BINNED_NOW=$(date +'%Y-%m-%dT%H:00:00%z')
 
-  ${DIR}/shortcuts-clean.sh "hour"
-  ${DIR}/shortcuts-clean.sh "now"
-  ${DIR}/shortcuts-clean.sh "done"
+  shortcuts-clean.sh "hour"
+  shortcuts-clean.sh "now"
+  shortcuts-clean.sh "done"
 
   sleep 1 
 
