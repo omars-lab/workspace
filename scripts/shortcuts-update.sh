@@ -2,6 +2,8 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/cron-common.sh
+PATH="${DIR}:${PATH}"
+conda activate workspace
 
 # Insalling Shortcuts ...
 # https://github.com/rodionovd/shortcuts
