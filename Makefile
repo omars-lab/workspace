@@ -18,3 +18,9 @@ create-formula:
 install-links:
 	test -L ~/.zshrc || echo "Need to set zshrc"
 	test -L ~/.bash_profile || echo "Need to set bash_profile"
+
+brew-install:
+	echo "Running Brew Install"
+	
+brew-test:
+	echo "Running Brew Test"
