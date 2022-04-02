@@ -10,20 +10,19 @@ then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# Replaced by brew install omars-lab/tap/scripts
+
 # Install brew packages
 # https://github.com/kislyuk/yq
-brew_upstall python-yq
-brew_upstall maven
-brew_upstall jq
-brew_upstall autojump
-brew_upstall asdf
-brew_upstall watch
-brew_upstall plantuml
-brew_upstall the_silver_searcher
-brew_upstall nvm
-brew_upstall tree
-
-test -d /Applications/OpenSCAD.app/ || brew install openscad
-which shortcuts || brew install rodionovd/taps/shortcuts
-
-
+# brew_upstall python-yq
+# brew_upstall maven
+# brew_upstall jq
+# brew_upstall autojump
+# brew_upstall asdf
+# brew_upstall watch
+# brew_upstall plantuml
+# brew_upstall the_silver_searcher
+# brew_upstall nvm
+# brew_upstall tree
+# test -d /Applications/OpenSCAD.app/ || brew install openscad
+# which shortcuts || brew install rodionovd/taps/shortcuts

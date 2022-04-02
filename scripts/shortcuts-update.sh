@@ -7,7 +7,7 @@ conda activate workspace
 
 # Insalling Shortcuts ...
 # https://github.com/rodionovd/shortcuts
-# brew install rodionovd/taps/shortcuts
+# arch -x86_64 brew install rodionovd/taps/shortcuts
 
 function update_shortcut() {
   /usr/local/bin/shortcuts update $@
