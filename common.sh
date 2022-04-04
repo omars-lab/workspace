@@ -72,12 +72,12 @@ function recursive_source(){
     ignore=${2:-"^\s*$"}
     # $SILENT || echo "Recursively Sourcing $rdir, ignoring: $ignore" 1>&2
     # Using Python Time ... since mac date doesnt have microsecond resolution
-    TIME_BEFORE=$(python -c 'import time; print(time.time())')
+    TIME_BEFORE=$(python3 -c 'import time; print(time.time())')
     for i in $(ls -c1 $rdir | grep -e ".*[.]sh" | grep -vE "$ignore"); do
         $SILENT || echo Sourcing $rdir/$i;
         source $rdir/$i ;
     done
-    TIME_AFTER=$(python -c 'import time; print(time.time())')
+    TIME_AFTER=$(python3 -c 'import time; print(time.time())')
     # https://unix.stackexchange.com/questions/93029/how-can-i-add-subtract-etc-two-numbers-with-bash
     DURATION=$(( ${TIME_AFTER} - ${TIME_BEFORE} ))
     $SILENT || echo "Sourced $rdir in ${DURATION}" 1>&2
