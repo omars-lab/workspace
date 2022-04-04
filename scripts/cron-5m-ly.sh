@@ -29,7 +29,8 @@ function update_shortcuts() {
   
   # Results in cyclic deps with noteplan when shifting ...
   # /usr/local/bin/shortcuts update '@done' "${DONE}"
-
+  
+  true
 }
 
 function main() {
@@ -45,6 +46,7 @@ case ${SERIAL_NUMBER} in
     run_cron_job "5m"
   ;;
   *)
+    log.debug "Nothing to do ..."
   ;;
 esac
 

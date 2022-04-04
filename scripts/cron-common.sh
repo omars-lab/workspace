@@ -28,6 +28,14 @@ function prefix_logs() {
 	sed "s/^/${NOW},\"${CRON_IDENTIFIER} Cron\",\"/g" | sed 's/$/"/g'
 }
 
+function log.error() {
+	( echo "$@" | prefix_logs "ERROR" ) >> ${LOGS_DIR}/cron.error.log 
+}
+
+function log.debug() {
+	( echo "$@" | prefix_logs "DEBUG" ) >> ${LOGS_DIR}/cron.log 
+}
+
 function run_cron_job() {
 	CRON_IDENTIFIER="${1:?Arg1=Identifier for CRON Job.}"
 	STDOUT_LOG=$(mktemp)

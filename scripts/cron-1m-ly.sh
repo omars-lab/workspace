@@ -4,7 +4,6 @@ DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/cron-common.sh
 PATH="${DIR}:${PATH}"
 REPO_ROOT=$(git -C "${DIR}" rev-parse --show-toplevel)
-
 WIFI_NETWORK=ATT3XxQF24
 
 function is_ethernet() {
@@ -58,6 +57,7 @@ case ${SERIAL_NUMBER} in
     run_cron_job "1m"
   ;;
   *)
+    log.debug "Nothing to do ..."
   ;;
 esac
 

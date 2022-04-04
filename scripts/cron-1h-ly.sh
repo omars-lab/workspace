@@ -17,6 +17,7 @@ case ${SERIAL_NUMBER} in
     run_cron_job "1h"
   ;;
   *)
+    log.debug "Nothing to do ..."
   ;;
 esac
 
