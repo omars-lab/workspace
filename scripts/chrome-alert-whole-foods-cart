@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # In response to covid ... this alerts me when a window opens up to order ...
 
 SELECTION_CRITERIA=${1:-shipoptionselect}
