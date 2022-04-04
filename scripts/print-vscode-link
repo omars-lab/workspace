@@ -3,7 +3,7 @@ PADDING=120
 FILE="${1}"
 PADDED_FILE=$(echo "${1}" | sed "s#${PWD}#.#")
 PADDED_FILE=$(printf "%${PADDING}s" "${PADDED_FILE}")
-LINE="${2}"
+LINE="${2:-1}"
 # echo -e "\t${FILE}" >&2
 # echo -e "\t${LINE}" >&2
-print-link "${PADDED_FILE}" $(echo "vscode://file${FILE}:${LINE}" | sed -e "s: :%20:g" | tr -d "\n")
+print-link "${PADDED_FILE}" $(vscode-link "${LINE}" ${FILE} | tr -d "\n")

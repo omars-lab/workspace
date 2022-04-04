@@ -1,0 +1,4 @@
+#!/bin/bash
+LINE="${1:-1}"
+FILE="${2:-$(cat)}"
+echo "vscode://file${FILE}:${LINE}" | sed -e "s: :%20:g"
