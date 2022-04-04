@@ -26,8 +26,30 @@ function update_time_based_shorcuts() {
   WED=">$(${DIR}/dateround.py ${TODAY} 'Wednesday')"
   THU=">$(${DIR}/dateround.py ${TODAY} 'Thursday')"
   FRI=">$(${DIR}/dateround.py ${TODAY} 'Friday')"
+  DONE="$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
+  BINNED_NOW=$(date +'%Y-%m-%dT%H:00:00%z')
 
-  ${DIR}/shortcuts-clean.sh "^[>#@][a-z]+"
+  shortcuts-clean.sh "^[>#@][a-z]+"
+  shortcuts-clean.sh "^[><][0-9][dwm]"
+  shortcuts-clean.sh "hour"
+  shortcuts-clean.sh "now"
+  shortcuts-clean.sh "done"
+  
+  sleep 1 
+
+  update_shortcut '#hour' "${BINNED_NOW}"
+  update_shortcut '@hour' "${BINNED_NOW}"
+  update_shortcut '>hour' "${BINNED_NOW}"
+
+  update_shortcut '#now' "${BINNED_NOW}"
+  update_shortcut '@now' "${BINNED_NOW}"
+  update_shortcut '>now' "${BINNED_NOW}"
+
+  update_shortcut '#done' "${DONE}"
+  update_shortcut '>done' "${DONE}"
+  
+  # Results in cyclic deps with noteplan when shifting ...
+  # update_shortcut '@done' "${DONE}"
 
   update_shortcut '#weekend' "${WEEKEND}"
   update_shortcut '@weekend' "${WEEKEND}"
@@ -51,7 +73,7 @@ function update_time_based_shorcuts() {
 
   update_shortcut '#today' "${TODAY}"
   update_shortcut '@today' "${TODAY}"
-  update_shortcut '>today >2022-01-16' "${TODAY}"
+  update_shortcut '>today' ">today ${TODAY}"
 
   update_shortcut '#tomorrow' "${TOMORROW}"
   update_shortcut '@tomorrow' "${TOMORROW}"
@@ -68,8 +90,6 @@ function update_time_based_shorcuts() {
   update_shortcut '#tm' "${TOMORROW}"
   update_shortcut '@tm' "${TOMORROW}"
   update_shortcut '>tm' "${TOMORROW}"
-
-  ${DIR}/shortcuts-clean.sh "^[><][0-9][dwm]"
 
   update_shortcut '<1d' "$(date -v -1d +'@done(%Y-%m-%d 00:00 %p)') #usedShortcut"
   update_shortcut '<2d' "$(date -v -2d +'@done(%Y-%m-%d 00:00 %p)') #usedShortcut"

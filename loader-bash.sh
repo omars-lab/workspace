@@ -16,7 +16,7 @@ source ${CURRENT_DIR}/ifttt/functions.sh
 
 recursive_source ${CURRENT_DIR} "loader|common|theme|bookmarks|setup"
 recursive_source ${CURRENT_DIR}/commands
-recursive_source ${CURRENT_DIR}/aliases
+recursive_source ${CURRENT_DIR}/functions
 
 # NVM Stuff
 export NVM_DIR=${DIR_FOR_BINARIES}/nvm

@@ -137,7 +137,7 @@ fi
 
 # Load zsh completion scripts
 # https://github.com/zsh-users/zsh-completions/issues/277#issuecomment-414139674
-fpath=(${DIRS_ENVIRONMENT}/completion-functions/zsh $fpath)
+fpath=(${DIRS_ENVIRONMENT}/functions-completion/zsh $fpath)
 if test -f "${CAREER_WORKSPACE_DIR}/" ;
 then 
   fpath=(${DIRS_ENVIRONMENT}/../workspace-career/completion-functions/zsh $fpath)

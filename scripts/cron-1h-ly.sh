@@ -3,6 +3,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 source ${DIR}/cron-common.sh
 PATH="${DIR}:${PATH}"
+conda activate workspace
 
 function main() {
   echo "Initiated 1h Cron as $(whoami)"
@@ -18,4 +19,5 @@ case ${SERIAL_NUMBER} in
   *)
   ;;
 esac
+
 # main | prefix_logs >> ${LOGS_DIR}/cron.log
