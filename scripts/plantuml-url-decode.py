@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Forked from 
 # - https://gist.github.com/dyno/94ef6bb9644a88d6981d6a1a9eb70802

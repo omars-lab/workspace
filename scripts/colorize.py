@@ -1,6 +1,6 @@
-#!/bin/bash brew-python
-#!/bin/bash brew-python
+#!/usr/bin/env python3
 
+#!/bin/bash brew-python
 # https://scriptingosx.com/2017/10/on-the-shebang/
 # https://misc.flogisoft.com/bash/tip_colors_and_formatting
 # https://bash.cyberciti.biz/guide/Shebang

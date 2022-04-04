@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # check if an item is in stock in costco
 
 import requests

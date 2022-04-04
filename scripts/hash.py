@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 # * [ ] Read up on hashing strings
 # 	* [ ] What are the different ways to hash a string
 # 	* [ ] https://cp-algorithms.com/string/string-hashing.html

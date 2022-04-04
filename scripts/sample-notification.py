@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.7
+#!/usr/bin/env python3
 
 # https://stackoverflow.com/questions/17651017/python-post-osx-notification
 

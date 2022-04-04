@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
 # Influenced By ... https://unix.stackexchange.com/questions/222368/get-date-of-next-saturday-from-a-given-date
 
 import arrow

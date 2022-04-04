@@ -1,4 +1,4 @@
-#!//usr/bin/env python
+#!/usr/bin/env python3
 
 # Encirch Links added through iphone shortcut ...
 
