@@ -10,7 +10,23 @@ function is_ethernet() {
   networksetup -listallhardwareports | grep ${1} -B1 | grep Ethernet
 }
 
+function get_active_interface() {  
+  # Gets the first active interface ... could be ethernet ... could be wifi ...
+  # ... to determine if a port is wif or ethernet ... i could possibly use the following:
+  #   https://www.tweaking4all.com/forum/macos-x-software/macos-finding-active-ethernet-wifi-ports-with-ifconfig/
+  #   networksetup -listnetworkserviceorder
+  ifconfig \
+    | grep -E -e '^[a-zA-Z]' -e '\s+status' \
+    | sed -E -e 's/^([a-zA-Z][^:]+): .*/\1/g' \
+    | grep -B 1 'status: active' \
+    | grep -o '^[a-zA-Z].*' \
+    | grep en \
+    | head -n 1
+}
+
 function ensure_wifi_connection() {
+  WIFI_NAME="${1}"
+  ACTIVE_INTERFACE=$(get_active_interface)
   ( networksetup -getairportnetwork ${ACTIVE_INTERFACE} | grep ${WIFI_NAME} ) \
     || ( networksetup -setairportnetwork ${ACTIVE_INTERFACE} ${WIFI_NAME} && echo Connected to WiFi )
 }
@@ -18,7 +34,7 @@ function ensure_wifi_connection() {
 function ensure_connected() {
   # List active networks. ..
   WIFI_NAME="${1}"
-  ACTIVE_INTERFACE=$(ifconfig | grep -E -e '^[a-zA-Z]' -e '\s+status' | sed -E -e 's/^([a-zA-Z][^:]+): .*/\1/g' | grep -B 1 'status: active' | grep -o '^[a-zA-Z].*' | grep en)
+  ACTIVE_INTERFACE=$(get_active_interface)
   # - [ensure connection to wifi ...](https://www.techrepublic.com/article/pro-tip-manage-wi-fi-with-terminal-commands-on-os-x/)
   is_ethernet ${ACTIVE_INTERFACE} || ensure_wifi_connection "${WIFI_NETWORK}"
 }

@@ -1,4 +1,22 @@
 #!/bin/bash
+
+function get_input() {
+	# If the clipboard has a file ...
+	if [[ $(pbpaste) = /* ]]
+	then 
+		pbpaste
+	else 
+		cat
+	fi 
+}
+
 LINE="${1:-1}"
-FILE="${2:-$(cat)}"
-echo "vscode://file${FILE}:${LINE}" | sed -e "s: :%20:g"
+FILE="${2:-$(get_input)}"
+XCALLBACK=$( echo -n "xcallback: " && (echo "vscode://file${FILE}:${LINE}" | sed -e "s: :%20:g") )
+
+if [[ $(pbpaste) = /* ]]
+then 
+	echo "${XCALLBACK}" | pbcopy
+fi 
+
+echo "${XCALLBACK}"
