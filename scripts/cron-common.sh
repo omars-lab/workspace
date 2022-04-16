@@ -53,3 +53,9 @@ source_if_exists /usr/local/bin/miniconda3/etc/profile.d/conda.sh \
 	|| source_if_exists ${HOME}/opt/anaconda3/etc/profile.d/conda.sh
 
 export SERIAL_NUMBER=$(get_serial_number)
+
+function play_click() {
+	# https://superuser.com/questions/598783/play-sound-on-mac-terminal
+	# echo -e "\a"
+	afplay /Applications/Flic.app/Contents/Resources/trigger_click.mp3
+}
