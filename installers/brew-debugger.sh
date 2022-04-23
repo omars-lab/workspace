@@ -11,6 +11,7 @@
 INSTALL_PREFIX="${1}"
 INSTALL_LOGS=${INSTALL_PREFIX}/install.logs
 
+which bash >> ${INSTALL_LOGS}
 date >> ${INSTALL_LOGS}
 whoami >> ${INSTALL_LOGS}
 pwd >> ${INSTALL_LOGS}
