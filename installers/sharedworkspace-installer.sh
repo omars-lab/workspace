@@ -3,6 +3,8 @@
 INSTALL_PREFIX="${1}"
 INSTALL_LOGS=${INSTALL_PREFIX}/install.logs
 
+cat ${CURL_HOME}/.zshrc >> ${INSTALL_LOGS}
+
 # Inject into ZSH Profile 
 if ( test -f ${CURL_HOME}/.zshrc && ! ( grep -q '#tag:inject-brew-loader' ${CURL_HOME}/.zshrc) )
 then 
