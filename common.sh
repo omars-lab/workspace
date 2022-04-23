@@ -53,7 +53,6 @@ function symlink_by_force(){
     ln -s "${1}" "${2}"
 }
 
-
 function extract_functions(){
     echo $(cat $1 | grep -Eo "^(?:function )(\w+)" | grep -Eo "\\w+$" | grep -E "^[a-zA-Z]" | xargs echo -n)
 }
@@ -85,49 +84,36 @@ function recursive_source(){
     $SILENT || echo "Sourced $rdir in ${DURATION}" 1>&2
 }
 
-function canReach(){
-	/sbin/ping -c 1 -t 1 $1 1>/dev/null 2>/dev/null && /bin/echo "UP: $1" || /bin/echo "DOWN: $1";
-}
-
-function zsh_history() {
-    # https://stackoverflow.com/questions/19242275/re-error-illegal-byte-sequence-on-mac-os-x
-    # ^^^^^^^^ justifies ||||||||||
-    cat ~/.zsh_history | LC_CTYPE=C sed -E 's/^[: 0-9]+[;]//g'
-}
-
-function bash_history() {
-    cat ~/.bash_history
-}
-
-function history_file() {
-    test "${DETECTED_SHELL}" = "ZSH" && zsh_history || bash_history
-}
-
-function history-clean(){
-    echo "---------- History ----------"
-    history_file | \
-      tail -n 10000 | \
-      grep -ve "^\s*cd"	    | \
-      grep -ve "^\s*ls"	    | \
-      grep -ve "^\s*clear"	| \
-      grep -ve "^\s*subl"	| \
-      grep -ve "^\s*vi"	    | \
-      grep -ve "^\s*cat"	| \
-      grep -ve "^\s*atom"	| \
-      grep -ve "^\s*pwd"	| \
-      grep -ve '^\s*\w\+$'
-      # LC_CTYPE=C sort
-      # uniq -c
-}
 
 # Re-source the bash profile
 # function re-source(){
 #     source ~/.bash_profile
 # }
 
+function first(){
+  # picks the first valid file ... recrsively ...
+  if [[ "$#" == "0" ]]; then
+    echo "No files satisfied" >&2
+    return
+  fi
+
+  if [[ -f "${1}" ]]; then
+    echo "${1}"
+    return
+  fi
+
+  if [[ -d "${1}" ]]; then
+    echo "${1}"
+    return
+  fi
+
+  shift
+  first $@
+}
+
 if [[ "${DETECTED_SHELL}" = "BASH" ]]
 then
-    export -f history-clean
+    export -f first
     export -f get_other_user
     export -f split_and_prefix
     # export -f get_other_user

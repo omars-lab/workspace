@@ -19,11 +19,3 @@ recursive_source ${CURRENT_DIR} "loader|common|theme|bookmarks|setup"
 recursive_source ${CURRENT_DIR}/commands
 recursive_source ${CURRENT_DIR}/functions
 
-export NVM_DIR=${DIR_FOR_BINARIES}/nvm
-
-if brew list nvm 2>/dev/null ;
-then
-    # https://github.com/nvm-sh/nvm/issues/860
-    # source $(brew --prefix nvm)/nvm.sh
-    source $(brew --prefix)/opt/nvm/nvm.sh  # using this instead of the above for performance ...
-fi

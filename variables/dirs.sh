@@ -37,3 +37,5 @@
   export NOTEPLAN_ICLOUD_DIR="${ICLOUD_ROOT}/iCloud~co~noteplan~NotePlan/Documents"
 # The directory to backup noteplan to ...
   export NOTEPLAN_GIT_DIR="${ICLOUD_BACKUP_DIR}/Noteplan"
+
+  export NVM_DIR=${DIR_FOR_BINARIES}/nvm
