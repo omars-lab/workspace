@@ -1,3 +1,5 @@
+# ------------------------------------------------------------
+
 export DISABLE_AUTO_TITLE="true"
 
 setTerminalText () {
@@ -25,7 +27,6 @@ function week_prompt(){
       ) \
     | jq -c '.'
 }
-
 
 function bash_title {
    # setup terminal tab title ... only works in bash

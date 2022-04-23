@@ -1,4 +1,5 @@
-# App Based Aliases ... these generally depend on other apps being present ...
+# App Based Aliases ... these generally depend on other apps being present ... 
+# and picking something through fzf ...
 # ------------------------------------------------------------------------------
 function e() {
     # Seach executables!
@@ -6,9 +7,6 @@ function e() {
 }
 
 alias s='fzf'
-alias apm="/Applications/Atom.app/Contents/Resources/app/apm/bin/apm"
-alias mvim=/Applications/MacVim.app/Contents/bin/mvim
-alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
 
 function fuzzy_selector(){
   if [[ -z "$2" ]];
@@ -58,6 +56,10 @@ function dir(){
   cd $(j --complete ${1} | egrep -o '/.*' | fzf | pbcopy)
 }
 
+function link:iawriter:personalbook(){
+  (cd "$(find_personalbook_dir)" ; fzf | html-encode | xargs -I {} echo "ia-writer://open?path=/Locations/personalbook/{}" )
+}
+
 # cat aliases/apps.sh | grep 'function ' | sed -e 's/(.*//g' -e 's/function //g' | sed -e 's/^/export -f /g'
 
 # - [ ] Autogenerate this at the end of each of the sh methods!
@@ -71,4 +73,5 @@ then
     export -f peek-near-term
     export -f fj
     export -f dir
+    export -f link:iawriter:personalbook
 fi

@@ -37,6 +37,8 @@ function get_uniq_mac_id(){
   system_profiler SPHardwareDataType | grep 'Serial Number' | sed 's/[^:]*://g' | sed 's/ *//g'
 }
 
+alias serialnumber=get_uniq_mac_id
+
 function symlink_if_dne(){
     test -L "${2}" || ( \
         ln -s "${1}" "${2}" \

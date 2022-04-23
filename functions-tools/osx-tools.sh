@@ -64,6 +64,15 @@ function osx(){
   esac
 }
 
+function is_a_mac() {
+    uname | grep -q Darwin
+}
+
+if (is_a_mac)
+then
+    # https://apple.stackexchange.com/questions/372032/usr-include-missing-on-macos-catalina-with-xcode-11
+    export CPATH=$(xcrun --show-sdk-path)/usr/include
+fi
 
 # Make sure complete is a command (that we are actually in bash)
 type complete 2>&1 1>/dev/null && complete -F _osx osx

@@ -2,4 +2,5 @@
 export PS1=$(echo "$PS1" | sed 's/@%m/@lightning/g')
 export DIRS_WORKSPACE=${HOME}/Workspace
 export DIRS_GIT=${DIRS_WORKSPACE}/git
-export DEFAULT_NVM_ENV=v12.22.6
+export DEFAULT_NVM_ENV=v14.17.6
+export SERIALNUMBER=$(get_uniq_mac_id)

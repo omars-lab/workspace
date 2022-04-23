@@ -1,3 +1,5 @@
+DEFAULT_BROWSER=open:chrome-tab
+alias browser="${DEFAULT_BROWSER}"
 
 function github_url() {
   MODE=${1:-tree}
@@ -15,8 +17,6 @@ function bitbucket_url() {
 function open:chrome-tab() {
   open -na "Google Chrome" --args --new-tab "${1}"
 }
-DEFAULT_BROWSER=open:chrome-tab
-alias browser="${DEFAULT_BROWSER}"
 
 function open:git-repo-in-browser-tab() {
   (git config --get remote.origin.url | grep github) &&

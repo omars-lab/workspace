@@ -10,6 +10,19 @@ alias .5='.4; .1;'
 alias p='pushd'
 alias o='popd'
 
+# For git every directory ... create a cd alias to cd into the dir ...
+for d in $(ls -1 ${DIRS_GIT})
+do
+  eval "alias cd-${d}='cd ${DIRS_GIT}/${d}'"
+done 
+
+alias plugins='cd /Users/oeid/workplace/scripts/sh-plugins'
+
+# Navigation
+function ..() {
+	cd ..
+}
+
 # function cd(){
 #   # Smarter CD ...
 #   # If no path specified ... cd ...

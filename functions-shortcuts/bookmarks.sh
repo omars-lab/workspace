@@ -1,11 +1,3 @@
-# Get the current directory
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-function ps_kill_process_with_name() {
-  NAME=${1:-celery}
-  # Kill Process with a specific name
-  ps -aef | grep "${NAME}" | grep -v grep | cut -f 5 -d ' ' | xargs -I {} bash -c 'echo "killing {}"; kill -9 {}'  
-}
 
 function docker_keep_last_20_images() {
   # Remove everything but the last 20 images
