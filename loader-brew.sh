@@ -3,7 +3,8 @@
 # ... it will append a line into both the bash profile and zsh profile to source this file in its brew location ...
 # If the brew loader doesn not exist in the brew location ... it should default to the normal location ...
 
-_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+# Not going to set dir ... differs for zsh and bash ... assuming sourcer of this script cds and sources from the right place ...
+# _DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 # function get-plugin-dir() {
 #     # $(brew --prefix)/Cellar/PersonalSpace/
@@ -22,12 +23,13 @@ _DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 # fi
 
+recursive_source ${CURRENT_DIR}/common.sh
+
 # main bash profile 
     # source brew loader from within brew package .. if it exsts 
     # source brew loader from cloned repo if it exists ...
 
-echo "Using Brew Loader: ${_DIR}" >&2
-recursive_source ${_DIR}/functions-completion
-recursive_source ${_DIR}/functions-extensions
-recursive_source ${_DIR}/functions-shortcuts
-recursive_source ${_DIR}/functions-tools
+recursive_source ${CURRENT_DIR}/functions-completion
+recursive_source ${CURRENT_DIR}/functions-extensions
+recursive_source ${CURRENT_DIR}/functions-shortcuts
+recursive_source ${CURRENT_DIR}/functions-tools

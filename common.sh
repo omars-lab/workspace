@@ -97,14 +97,20 @@ function first(){
     return
   fi
 
-  if [[ -f "${1}" ]]; then
+  if [[ -f "${1}" ]]
+  then
     echo "${1}"
     return
+  else 
+    echo "Skipping [${1}]: not a file." >&2
   fi
 
-  if [[ -d "${1}" ]]; then
+  if [[ -d "${1}" ]]; 
+  then
     echo "${1}"
     return
+  else 
+    echo "Skipping [${1}]: not a dir." >&2
   fi
 
   shift

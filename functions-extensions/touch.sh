@@ -12,3 +12,11 @@ function touch-makefile() {
   echo 'SHELL := /bin/bash'
   echo 'MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))'
 }
+
+function touch-sh() {
+  test -f ${1:?First arg must be path of sh file to create.} || { 
+    echo '#!/bin/bash' > "${1}" ; \
+    echo 'DIR="$( cd "$( dirname "${BASH_SOURCE[1]}" )" >/dev/null 2>&1 && pwd )"' >> "${1}" ; \
+    chmod +x "${1}" ; \
+  }
+}

@@ -1,0 +1,1 @@
+export SERIALNUMBER=$(get_uniq_mac_id)
