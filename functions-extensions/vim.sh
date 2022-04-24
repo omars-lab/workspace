@@ -35,4 +35,7 @@ function edit-overrides() {
   vi "${DIRS_WORKSPACE}/git/environment/overrides/$(get_uniq_mac_id)/variables.sh"
 }
 
-export -f edit-overrides
+if [[ "${DETECTED_SHELL}" = "BASH" ]]
+then
+  export -f edit-overrides
+fi

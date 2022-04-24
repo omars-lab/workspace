@@ -23,7 +23,7 @@
 
 # fi
 
-recursive_source ${CURRENT_DIR}/common.sh
+source ${CURRENT_DIR}/common.sh
 
 # main bash profile 
     # source brew loader from within brew package .. if it exsts 

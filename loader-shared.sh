@@ -21,5 +21,5 @@ else
   exit 1
 fi
 
-echo Sourcing "${LOADER_SCRIPT}"
+echo Sourcing "${LOADER_SCRIPT}" >&2
 source ${LOADER_SCRIPT}

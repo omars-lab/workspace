@@ -206,3 +206,4 @@ bindkey -e
 # lpass ls automation  | grep secrets.sh | egrep -o '\d+' | xargs -n 1 lpass show --notes
 # lpass ls automation  | grep $(get_uniq_mac_id) | egrep -o '\d+' | xargs -n 1 lpass show --notes
 
+source $(brew --prefix sharedspace)/loader-shared.sh #tag:inject-sharedspace-loader
