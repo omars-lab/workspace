@@ -1,5 +1,5 @@
 # Path Exports ...
-export PATH=${PATH}:${DIR_FOR_SCRIPTS}/
+export PATH=${PATH}:${DIR_FOR_SCRIPTS}:${DIR_FOR_SCRIPTS}-shared
 export PATH="${ANT_HOME}/bin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH=${PATH}:${M2_HOME}/bin

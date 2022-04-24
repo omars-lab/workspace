@@ -9,4 +9,4 @@ function expand_refs_in_dir() (
 		| xargs -t -I __ gsed -E -i "/.*([*-] [[][xX-][]]|${TODAY}).*/! s/ >today/ >today ${TODAY}/" "__"
 )
 
-expand_refs_in_dir "${HOME}/Library/Mobile Documents/iCloud~co~noteplan~NotePlan/Documents/Notes"
+expand_refs_in_dir "${NOTEPLAN_HOME}/Notes"

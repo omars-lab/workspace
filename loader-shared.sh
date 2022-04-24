@@ -21,5 +21,16 @@ else
   exit 1
 fi
 
+#  - [ ] Make shared variables ...
+#  - [ ] auto make noteplan link ...
+
+test -d ${HOME}/Library/Mobile\ Documents/iCloud~co~noteplan~NotePlan/Documents && \
+    ! (test -L ${HOME}/.noteplan) && \
+    ln -s ${HOME}/Library/Mobile\ Documents/iCloud~co~noteplan~NotePlan/Documents ${HOME}/.noteplan
+
+# - [ ] Todo ... add work location here ... but prefer icloud ...
+
+NOTEPLAN_HOME=${HOME}/.noteplan
+
 echo Sourcing "${LOADER_SCRIPT}" >&2
 source ${LOADER_SCRIPT}

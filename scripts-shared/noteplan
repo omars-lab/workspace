@@ -22,4 +22,3 @@ in
         noteplan-month ${DATE_DIFF}
     ;;
 esac
-

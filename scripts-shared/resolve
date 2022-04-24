@@ -45,7 +45,7 @@ function resolve() {
 			local DAY_OF_MONTH=${2:?Arg2=Day of Month (int)}
 			local DATE_DIFF=${3:?Arg3=Date Diff}
 			local PADDED_DAY_OF_MONTH=$(printf "%02d" ${DAY_OF_MONTH})
-			local FILE=$(date -v ${DATE_DIFF} +"${HOME}/Library/Mobile Documents/iCloud~co~noteplan~NotePlan/Documents/Calendar/%Y%m${PADDED_DAY_OF_MONTH}.txt")
+			local FILE=$(date -v ${DATE_DIFF} +"${NOTEPLAN_HOME}/Calendar/%Y%m${PADDED_DAY_OF_MONTH}.txt")
 			local DATE_IDENTIFIER=$(date -v ${DATE_DIFF} +"%Y%m${PADDED_DAY_OF_MONTH}" | tr -d '\n')
 			VSCODE_LINK=$(resolve vscode "${FILE}")
 			# Defualt ...
