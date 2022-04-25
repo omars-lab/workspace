@@ -30,7 +30,7 @@ test -d ${HOME}/Library/Mobile\ Documents/iCloud~co~noteplan~NotePlan/Documents 
 
 # - [ ] Todo ... add work location here ... but prefer icloud ...
 
-NOTEPLAN_HOME=${HOME}/.noteplan
+export NOTEPLAN_HOME=${HOME}/.noteplan
 
 echo Sourcing "${LOADER_SCRIPT}" >&2
 source ${LOADER_SCRIPT}

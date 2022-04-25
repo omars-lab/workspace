@@ -80,7 +80,8 @@ function recursive_source(){
     done
     TIME_AFTER=$(python3 -c 'import time; print(time.time())')
     # https://unix.stackexchange.com/questions/93029/how-can-i-add-subtract-etc-two-numbers-with-bash
-    DURATION=$(( ${TIME_AFTER} - ${TIME_BEFORE} ))
+    # DURATION=$(( ${TIME_AFTER} - ${TIME_BEFORE} )) # expr in bash can't deal with decimal places
+    DURATION=$(echo "${TIME_AFTER} - ${TIME_BEFORE}" | bc -l )
     $SILENT || echo "Sourced $rdir in ${DURATION}" 1>&2
 }
 
