@@ -19,3 +19,5 @@ source ${CURRENT_DIR}/loader-variables.sh
 # echo Starting Catchall Sourcer >&2
 # SILENT=false recursive_source ${CURRENT_DIR} "loader|common|theme|bookmarks|setup"
 # echo Done Catchall Sourcer >&2
+
+recursive_source ${CURRENT_DIR}/functions-personal

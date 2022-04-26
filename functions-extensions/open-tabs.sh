@@ -4,14 +4,14 @@ alias browser="${DEFAULT_BROWSER}"
 function github_url() {
   MODE=${1:-tree}
   git config --get remote.origin.url \
-      | sed 's#git@github.com:#https://github.com/#g' \
-      | sed "s#.git\$#/tree/$(git rev-parse --abbrev-ref HEAD)#g" \
+    | sed 's#git@github.com:#https://github.com/#g' \
+    | sed "s#.git\$#/tree/$(git rev-parse --abbrev-ref HEAD)#g"
 }
 
 function bitbucket_url() {
   git config --get remote.origin.url \
-      | sed 's#git@bitbucket.org:#https://bitbucket.org/#g' \
-      | sed "s#.git\$#/src/$(git rev-parse --abbrev-ref HEAD)#g" \
+    | sed 's#git@bitbucket.org:#https://bitbucket.org/#g' \
+    | sed "s#.git\$#/src/$(git rev-parse --abbrev-ref HEAD)#g"
 }
 
 function open:chrome-tab() {
@@ -19,8 +19,10 @@ function open:chrome-tab() {
 }
 
 function open:git-repo-in-browser-tab() {
-  (git config --get remote.origin.url | grep github) &&
-    open:github-repo-in-browser-tab || open:bitbucket-repo-in-browser-tab
+  (git config --get remote.origin.url | grep github) \
+    && open:github-repo-in-browser-tab 
+  (git config --get remote.origin.url | grep bitbucket) \
+    && open:bitbucket-repo-in-browser-tab
 }
 alias git-repo='open:git-repo-in-browser-tab'
 
@@ -41,8 +43,9 @@ alias bitbucket-repo='open:bitbucket-repo-in-browser-tab'
 function open:git-file-in-browser-tab() {
   local FILE="${1}"
   (git config --get remote.origin.url | grep github) \
-    && ( open:github-file-in-browser-tab "${FILE}" ) \
-    || ( open:bitbucket-file-in-browser-tab "${FILE}" )
+    && open:github-file-in-browser-tab "${FILE}" 
+  (git config --get remote.origin.url | grep bitbucket) \
+    && open:bitbucket-file-in-browser-tab "${FILE}"
 }
 alias git-file='open:git-file-in-browser-tab'
 
