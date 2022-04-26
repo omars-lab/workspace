@@ -1,0 +1,43 @@
+#!/bin/bash
+
+function expand_refs_in_dir() (
+	DIR="${1}"
+	cd "${DIR}"
+	TERM=${2}
+	SEDDATE=$(date -v "${3}" +'>%Y-%m-%d')
+	# For file that contain the <term> string ... expand lines that haven't already been expanded
+	grep -ril ">${TERM}" . \
+		| xargs -t -I __ gsed -E -i "/.*([*-] [[][xX-][]]|${SEDDATE}).*/! s/ >${TERM}/ >${TERM} ${SEDDATE}/" "__"
+)
+
+function main() {
+	case ${1} in 
+		today)
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "today" "+0d"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "td" "+0d"
+		;;
+		tomorrow)
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "tomorrow" "+1d"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "tm" "+1d"
+		;;
+		next-week)
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "next-week" "+7d"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "nw" "+7d"
+		;;
+		next-month)
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "next-month" "+1m"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "nm" "+1m"
+		;;
+		all)
+			main today
+			main tomorrow
+			main next-week
+			main next-month
+		;;
+		*)
+			echo no options selected ...
+		;;
+	esac
+}
+
+main ${1:-today}
