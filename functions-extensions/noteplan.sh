@@ -5,14 +5,6 @@ export FZF_DEFAULT_COMMAND='ls -1t'
 alias tt='todo today'
 alias vscode-todo="vscode ${CALENDAR_DIR}"
 
-function noteplan_create_link() {
-	# On work mac ... with icloud disabled ...
-	ICLOUD_CALENDAR_DIR=~/Library/Mobile\ Documents/iCloud\~co\~noteplan\~NotePlan/Documents/Calendar
-	LOCAL_CALENDAR_DIR=~/Library/Mobile\ Documents/iCloud\~co\~noteplan\~NotePlan/Documents/Calendar
-	(test \! -L ${CALENDAR_DIR}) && test -d ${ICLOUD_CALENDAR_DIR} && ln -s ${ICLOUD_CALENDAR_DIR} ${CALENDAR_DIR}
-	(test \! -L ${CALENDAR_DIR}) && test -d ${LOCAL_CALENDAR_DIR} && ln -s ${LOCAL_CALENDAR_DIR} ${CALENDAR_DIR}
-}
-
 function todo() {
 	TODAY_FILE=$(date '+%Y%m%d.txt')
 	cd ${CALENDAR_DIR}
