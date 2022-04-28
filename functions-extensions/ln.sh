@@ -16,8 +16,9 @@ function ln-s-dirs() {
     DEST_LINK="${2}"
     ( \
         test -d "${SOURCE_DIR}" \
-        && ! (test -L "${DEST_LINK}" >/dev/null 2>/dev/null) \
+        && ( ! test -L "${DEST_LINK}" ) \
     ) && (echo creating link ${DEST_LINK} from "${SOURCE_DIR}") \
+      && mkdir -p "$(dirname ${DEST_LINK})" \
       && ln -s "${SOURCE_DIR}" "${DEST_LINK}"
 }
 
@@ -27,4 +28,8 @@ ln-s-dirs \
 
 ln-s-dirs \
     "${HOME}/Library/Containers/co.noteplan.NotePlan/Data/Library/Application Support/co.noteplan.NotePlan/Notes" \
-    "${HOME}/.noteplan"
+    "${HOME}/.noteplan/Notes"
+
+ln-s-dirs \
+    "${HOME}/Library/Containers/co.noteplan.NotePlan/Data/Library/Application Support/co.noteplan.NotePlan/Calendar" \
+    "${HOME}/.noteplan/Calendar"
