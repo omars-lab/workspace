@@ -9,17 +9,22 @@ function brew-list-aws-tap() {
 	) | xargs -I{} basename {} .rbI
 }
 
-function uninstall-plugins() {
+function brew-uninstall-plugins() {
 	code --list-extensions | grep oeid | xargs -n 1 code --uninstall-extension
 	brew uninstall workspace
 	brew uninstall sharedspace
 
 }
 
-function reinstall-plugins() {
+function brew-install-plugins() {
 	brew update --preinstall
 	brew install omars-lab/tap/workspace --with-amazon --debug
 	brew install sharedspace
 	vscode-reinstall-plugins
 	sharedworkspace-installer.sh
+}
+
+function brew-reinstall-plugins() {
+	brew-uninstall-plugins	
+	brew-install-plugins
 }
