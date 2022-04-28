@@ -1,4 +1,4 @@
-function sync-git-repo() (
+function rsync-git-repo() (
 	# Assuming repo in workplace ...
 	SERVER=${1}
 	REPO_NAME=${2}
@@ -22,12 +22,7 @@ function sync-git-repo() (
 		# --dry-run \
 )
 
-function sync-git-repos() {
-	sync-git-repo cloud-workstation scripts /home/oeid/workplace/scripts
-	sync-git-repo cloud-workstation RAMPOpsTools /home/oeid/workplace/RAMPOpsTools
-	sync-git-repo cloud-workstation RMBOpsTools /home/oeid/workplace/RMBOpsTools
-}
-
-function sync-git-repos-personal() {
-	sync-git-repo personal-laptop scripts /Users/omareid/workplace/git/work-scripts
-}
+# Example ...
+# function rsync-git-repos-personal() {
+# 	rsync-git-repo personal-laptop scripts /Users/omareid/workplace/git/work-scripts
+# }
