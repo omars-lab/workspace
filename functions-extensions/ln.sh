@@ -17,7 +17,8 @@ function ln-s-dirs() {
     ( \
         test -d "${SOURCE_DIR}" \
         && ! (test -L "${DEST_LINK}" >/dev/null 2>/dev/null) \
-    ) && ln -s "${SOURCE_DIR}" "${DEST_LINK}"
+    ) && (echo creating link ${DEST_LINK} from "${SOURCE_DIR}") \
+      && ln -s "${SOURCE_DIR}" "${DEST_LINK}"
 }
 
 ln-s-dirs \
