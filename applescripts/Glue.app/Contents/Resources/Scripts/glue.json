@@ -2,5 +2,6 @@
   "test": "https://www.google.com",
   "vscode-folder": "vscode://file/Users/omareid/Workspace/git/questions/",
   "vscode-file": "vscode://file%2FUsers%2Fomareid%2FWorkspace%2Fgit%2Fquestions%2FHow%20can%20I%20generate%20a%20markdown%20report%20of%20the%20things%20I%20am%20working%20on%20in%20Jira.md",
-  "vscode-cursor": "vscode://file%2FUsers%2Fomareid%2FWorkspace%2Fgit%2Fquestions%2FHow%20can%20I%20generate%20a%20markdown%20report%20of%20the%20things%20I%20am%20working%20on%20in%20Jira.md%3A2%3A5"
+  "vscode-cursor": "vscode://file%2FUsers%2Fomareid%2FWorkspace%2Fgit%2Fquestions%2FHow%20can%20I%20generate%20a%20markdown%20report%20of%20the%20things%20I%20am%20working%20on%20in%20Jira.md%3A2%3A5",
+  "test2": "vscode://file/Users/omareid/Workspace/git/workspace/functions-extensions/ln.sh:22:1"
 }

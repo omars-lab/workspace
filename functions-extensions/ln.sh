@@ -17,6 +17,7 @@ function ln-s-dirs() {
     ( \
         test -d "${SOURCE_DIR}" \
         && ( ! test -L "${DEST_LINK}" ) \
+        && ( ! test -d "${DEST_LINK}" ) \
     ) && (echo creating link ${DEST_LINK} from "${SOURCE_DIR}") \
       && mkdir -p "$(dirname ${DEST_LINK})" \
       && ln -s "${SOURCE_DIR}" "${DEST_LINK}"
@@ -33,3 +34,11 @@ ln-s-dirs \
 ln-s-dirs \
     "${HOME}/Library/Containers/co.noteplan.NotePlan/Data/Library/Application Support/co.noteplan.NotePlan/Calendar" \
     "${HOME}/.noteplan/Calendar"
+
+ln-s-dirs \
+    /Users/Shared/links/planner \
+    "${HOME}/workplace/git/planner"
+
+ln-s-dirs \
+    ${HOME}/workplace/git/environment/applescripts/Glue.app \
+    /Applications/Glue.app
