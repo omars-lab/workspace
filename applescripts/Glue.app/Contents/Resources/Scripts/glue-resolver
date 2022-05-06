@@ -1,0 +1,4 @@
+GLUE_LINK=${1}
+FILEKEY=$(basename $(dirname "${1}"))
+JSONKEY=$(basename "${1}")
+jq -r --arg key ${JSONKEY} '.[$key]' /Applications/Glue.app/Contents/Resources/Scripts/glue.${FILEKEY}.json
