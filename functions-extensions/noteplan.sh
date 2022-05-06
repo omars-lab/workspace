@@ -36,3 +36,7 @@ function noteplan-header() {
 			printf '* [x] Edit In [Visual Studio Code](vscode://file%s/%s.txt) >%s \n' \
 				"${CALENDAR_DIR}" "$(date +'%Y%m{}')" "$(date +'%Y-%m-{}')"
 }
+
+function noteplan-shortcuts() {
+    find ~/.noteplan/Notes -name .DS_Store -prune -o -type f -exec bash -c 'head -n 1 "${0}"' "{}" \; | gsed -E 's/#\s+/[[/' | gsed -E 's/\s*$/]]/g' | sort 
+}

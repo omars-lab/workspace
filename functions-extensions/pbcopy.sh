@@ -36,7 +36,23 @@ function pbcopy-chrome-links() {
 }
 
 function pbcopy-vscode-link() {
-    find . -type f -depth 2 | fzf | gsed -E "s#^[.]/#${PWD}/#g" | vscode-link | tr -d '\n' | pbcopy
+    find_files | fzf | gsed -E "s#^[.]/#${PWD}/#g" | vscode-link | tr -d '\n' | pbcopy
+}
+
+function pbcopy-noteplan-link() ( 
+    cd ${NOTEPLAN_ICLOUD_DIR} && find_files | fzf | gsed -E "s#^[.]/#ia-writer://open?path=/Locations/NotePlan/#g" | tr -d '\n' | pbcopy 
+)
+
+function pbcopy-noteplan-shortcut() {
+    noteplan-shortcuts | fzf | tr -d '\n' | pbcopy 
+}
+
+function pbcopy-noteplan-shortcuts() {
+    noteplan-shortcuts | pbcopy
+}
+
+function pbcopy-glue-link() {
+    glue-links | tr -d '\n' | pbcopy
 }
 
 alias pick=pbcopy-vscode-link

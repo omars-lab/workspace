@@ -3,3 +3,5 @@ function glue-links() {
         /Applications/Glue.app/Contents/Resources/Scripts/glue.*.json \
         | fzf --preview "/Applications/Glue.app/Contents/Resources/Scripts/glue-resolver {}" --color light --margin 5,20
 }   
+
+# jq -c 'to_entries|.[]|{file: input_filename|gsub(".*glue.";"")|gsub(".json";""), key:.key}' /Applications/Glue.app/Contents/Resources/Scripts/glue.*.json
