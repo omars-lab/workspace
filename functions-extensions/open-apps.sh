@@ -34,9 +34,6 @@ function iawriter:personalbook(){
 
 alias pb="iawriter:personalbook"
 alias pbl="link:iawriter:personalbook | pbcopy"
-alias n="iawriter:personalbook"
-
-
 
 alias preview='qlmanage -p'
 

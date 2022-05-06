@@ -31,16 +31,20 @@ function pbcopy-from-shared-clipboard(){
     rm ${SHARED_CLIPBOARD_IGNORE_FILE}
 }
 
+function pbcopy-chrome-link() {
+  chrome-links | fzf | pbcopy
+}
+
 function pbcopy-chrome-links() {
-  chrome-cli list links | sed -E -e 's/^\[([0-9]+):([0-9]+)\] (.*)/\3/g' | optionally_filter "${1}" | pbcopy
+  chrome-links | pbcopy
 }
 
 function pbcopy-vscode-link() {
     find_files | fzf | gsed -E "s#^[.]/#${PWD}/#g" | vscode-link | tr -d '\n' | pbcopy
 }
 
-function pbcopy-noteplan-link() ( 
-    cd ${NOTEPLAN_ICLOUD_DIR} && find_files | fzf | gsed -E "s#^[.]/#ia-writer://open?path=/Locations/NotePlan/#g" | tr -d '\n' | pbcopy 
+function pbcopy-iawriter-link() ( 
+    find_iawriter_files | fzf | gsed -E "s#^#ia-writer://open?path=/Locations/#g" | tr -d '\n' | sed-url-encode | pbcopy 
 )
 
 function pbcopy-noteplan-shortcut() {

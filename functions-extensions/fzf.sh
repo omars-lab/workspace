@@ -1,12 +1,10 @@
 # App Based Aliases ... these generally depend on other apps being present ... 
 # and picking something through fzf ...
 # ------------------------------------------------------------------------------
-function e() {
+function fzf-executables() {
     # Seach executables!
     compgen -c |  egrep  '^[a-z]' | sort | fzf --preview "which {}" --color light --margin 5,20
 }
-
-alias s='fzf'
 
 function fuzzy_selector(){
   if [[ -z "$2" ]];

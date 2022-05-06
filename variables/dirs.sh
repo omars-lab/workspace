@@ -23,6 +23,8 @@
   export DIR_FOR_SCRIPTS="${DIRS_ENVIRONMENT}/scripts"
 # The area where hand writtern helper scripts are kept:
   export DIR_FOR_CAREER_WORKSPACE="${DIRS_GIT}/workspace-career"
+# ...
+  export DIR_FOR_HATS=$(first "${DIRS_GIT}/personalbook" "${DIRS_GIT}/hats")
 
 # Dirs for Apps ...
   if [[ -d ${HOME}'/Dropbox (Personal)' ]] ; then

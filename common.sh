@@ -94,7 +94,7 @@ function recursive_source(){
 function first(){
   # picks the first valid file ... recrsively ...
   if [[ "$#" == "0" ]]; then
-    echo "No files satisfied" >&2
+    echo "No files/dirs satisfied!" >&2
     return
   fi
 
@@ -103,7 +103,7 @@ function first(){
     echo "${1}"
     return
   else 
-    echo "Skipping [${1}]: not a file." >&2
+    echo "File not found: [${1}]" >&2
   fi
 
   if [[ -d "${1}" ]]; 
@@ -111,7 +111,7 @@ function first(){
     echo "${1}"
     return
   else 
-    echo "Skipping [${1}]: not a dir." >&2
+    echo "Dir not found: [${1}]" >&2
   fi
 
   shift
