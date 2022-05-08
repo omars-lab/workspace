@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+
+import sys
+import os 
+
+def eprint(*args, **kwargs):
+    if os.environ.get("DEBUG", "").lower().strip() == "true":
+        print(*args, file=sys.stderr, **kwargs)
+
+def update_state(since, tally, new_dates):
+    state = {}
+    if not since:
+        state["since"] = min(new_dates)
+    else:
+        state["since"] = since
+    if not tally:
+        state["tally"] = 0
+    else:
+        state["tally"] = int(tally)
+    state["tally"] = state.get("tally") + (len(new_dates) - 1)
+    return state
+
+def parse_date(date):
+    return date.replace(">", "").replace("<", "").replace("#", "")
+
+def parse_since(since):
+    if not since.strip():
+        return None
+    return parse_date(since)
+
+def parse_tally(tally):
+    if not tally.strip():
+        return None
+    return int(tally)
+
+
+if __name__ == "__main__":
+    eprint(f"Running sript with args: {sys.argv}")
+    since, tally = parse_since(sys.argv[1]), parse_tally(sys.argv[2])
+    dates = list(set(parse_date(" ".join(sys.argv[3:])).split()))
+    dates = sorted(dates)
+    state = update_state(since, tally, dates)
+    # state = json.dumps(update_state(since, tally, dates))
+    if len(dates) == 1 and not since and not tally:
+        output = f">{max(dates)}"
+    else:
+        output = f"<{state['since']} ~{state['tally']:02d}x~ >{max(dates)}"
+    eprint(output)
+    print(output, end="")

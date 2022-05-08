@@ -3,6 +3,8 @@
 # Find all links in notes ...
 # Ensure they point to the right places / files exist!
 
+#  Should I have a build-notes / compile-notes script?
+
 function find_links() {
 	egrep -rino -I '[[][^[]+[]][(][^)]+[)]' ${1:-.} \
 	| sed -E 's/(.*):([0-9]+):[[][^[]+[]][(]([^)]+)[)]/\1\t\2\t\3/g' 2>/dev/null \

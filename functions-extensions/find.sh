@@ -2,10 +2,14 @@
 function find_files() {
     MAX_DEPTH=${1:-3}
     find . \( \
-                   -type d -name '*.Trash' -prune \
-                -o -type d -name '*.git' -prune \
-                -o -type d -name '*node_modules' -prune \
-                -o -type f -name '*.DS_Store' -prune \
-            \) \
-            -o -type f -maxdepth ${MAX_DEPTH}
+        \( -name '*.Trash' -prune -o -name '.git' -prune -o -name 'node_modules' -prune \) \
+        -o \
+        -type f \
+    \) -and \
+    \! \( \
+        -name '.git' \
+        -o -name '.Trash' \
+        -o -name 'node_modules' \
+    \) \
+    -maxdepth ${MAX_DEPTH}
 }

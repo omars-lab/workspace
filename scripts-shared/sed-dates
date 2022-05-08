@@ -1,38 +1,258 @@
 #!/bin/bash
 
+REGX_DATE="[><#][0-9]{4}-[0-9]{2}-[0-9]{2}"
+REGX_DATES="( *${REGX_DATE} *)+"
+REGX_STATE="(${REGX_DATE}) ~([0-9]+)x~"
+
+# export DEBUG=TRUE
+
+function debug-file() {
+	test -z "${DEBUG}" || (echo "${1:?ARG1=ContextString}" && cat "${2:?ARG2=FileName}")
+}
+
+function reduce-dates() {
+	SEDDATE="${1}"
+	FILE="${2}"
+	# Insert `|` to seperate ending dates from rest of content of task 
+	# 	... on lines that don't have `|` and end with dates ... 
+	# 	... regardless if they have the term or not ... or are tasks or not ...
+	debug-file "Pre Single Quotes" "${FILE}"
+	gsed -E -i "/^.*['＇].*$/ s/['＇]/´/g" "${FILE}"
+	debug-file "Pre Verticle Bar" "${FILE}"
+	gsed -E -i "/^[^|]*$/ s/\s*(${REGX_DATES})$/ | \1/" "${FILE}"
+	debug-file "Pre Date Reduction Bar" "${FILE}"
+	# Reduce dates anywhere ... regardless if they are done or not ... so long the state was not already reduced ... regardless if it has the term or not ...
+	gsed -E -i "/[|] ${REGX_STATE} ${SEDDATE}\s*$/! s/^([^|]*)[|] (${REGX_STATE})?(${REGX_DATES})$/printf '\1| '; sed-date-reducer '\3' '\4' '\5'/e" "${FILE}" 
+	# gsed -E -i "/.*[#>]${TERM}.*${SEDDATE}\s*$/ s/(.*)(${REGX_STATE})?(${REGX_DATES})/printf '1:\1 \t 2:\2 \t 3:\3 \t 4:\4 \t 5:\5 \t 6:\6'/e" "${FILE}" 
+	debug-file "Post Date Reduction Bar" "${FILE}"
+}
+
+function expand-refs() {
+	TERM="${1}"
+	SEDDATE="${2}"
+	FILE=${3}
+	debug-file "Pre Expanding Refs" "${FILE}"
+	gsed -E -i "/.*([*-] [[][xX-][]]|${SEDDATE}).*/! s/ ([>#]${TERM})(.*)$/ \1\2 ${SEDDATE}/" "${FILE}"
+	reduce-dates "${SEDDATE}" "${FILE}"
+}
+
+function anchor-date-to-end-of-lines-with-ref() {
+	TERM="${1}"
+	SEDDATE="${2}"
+	FILE=${3}
+	# Append date to end of line ...
+	gsed -E -i "/.*([*-] [[][xX-][]]|${SEDDATE}).*/! s/ ([>#]${TERM})(.*)$/ \1\2 ${SEDDATE}/" "${FILE}"
+	#               ^^^^^^^^^^^^^^^^ Ignore done or canceled tasks ...
+	#                               ^^^^^^^^^^^ Ignore lines that already have the right date ...
+	reduce-dates "${SEDDATE}" "${FILE}"
+}
+
 function expand_refs_in_dir() (
 	DIR="${1}"
 	cd "${DIR}"
 	TERM=${2}
 	SEDDATE=$(date -v "${3}" +'>%Y-%m-%d')
+	EXPANDER=${4:-expand-refs}
 	# For file that contain the <term> string ... expand lines that haven't already been expanded
-	grep -ril ">${TERM}" . \
-		| xargs -t -I __ gsed -E -i "/.*([*-] [[][xX-][]]|${SEDDATE}).*/! s/ >${TERM}/ >${TERM} ${SEDDATE}/" "__"
+	# https://askubuntu.com/questions/344407/how-to-read-complete-line-in-for-loop-with-spaces
+	DEFAULT_IFS=${IFS}
+	IFS=$'\n'
+	for file in $(egrep -E -ril "[#>]${TERM}" .)
+	do
+		echo expanding file "${file}"
+		${EXPANDER} "${TERM}" "${SEDDATE}" "${file}"
+	done
+	IFS=${DEFAULT_IFS}
 )
+
+function date-next-business-day-delta() {
+	#  seq 1 8 | xargs -I __ date -v "+__d" +'%A'
+	WEEKDAY=$(date +'%A')
+	case ${WEEKDAY} in
+		Sunday)
+			echo "+1d"
+		;;
+		Monday)
+			echo "+1d"
+		;;
+		Tuesday)
+			echo "+1d"
+		;;
+		Wednesday)
+			echo "+1d"
+		;;
+		Thursday)
+			echo "+1d"
+		;;
+		Friday)
+			echo "+3d"
+		;;
+		Saturday)
+			echo "+2d"
+		;;
+	esac
+}
+
+function test-file-input() {
+	cat << CONTENT
+	* >today
+	* [ ] >today
+	* >today | >2022-05-06
+	* [ ] >today | >2022-05-06
+	* >2022-05-06
+	* | >2022-05-06
+	- >today
+	- [ ] >today
+	- >today | >2022-05-06
+	- [ ] >today | >2022-05-06
+	- >2022-05-06
+	- | >2022-05-06
+	- [ ] 000 I need to do wifey's stuff ... >today >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
+	- [ ] 00a I need to do stuff ... >today >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
+	- [ ] 00b I need to do stuff ... >today >2022-05-06 >2022-05-05
+	- [ ] 00c I need to do stuff ... >today
+	- [x] 00 I need to #constantly test stuff ... >2022-05-01 >2022-05-06 >2022-05-05 >2022-05-02
+	- [x] 01 I need to #constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
+	- [x] 02 I need to #constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05
+	- [x] 03 I need to #constantly test stuff ... >2022-05-07 >2022-05-06
+	- [x] 04 I need to #constantly test stuff ... >2022-05-07
+	- [x] 05 I need to #constantly test stuff ... >2022-05-06
+	- [x] 06 I need to #constantly test stuff ... >2022-05-06 >2022-05-05
+	- [x] 07 I need to #constantly test stuff ...
+	- [ ] 08 I need to #constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
+	- [ ] 09 I need to #constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05
+	- [ ] 10 I need to #constantly test stuff ... >2022-05-07 >2022-05-06
+	- [ ] 11 I need to #constantly test stuff ... >2022-05-07
+	- [ ] 12 I need to #constantly test stuff ... >2022-05-06
+	- [ ] 13 I need to #constantly test stuff ... >2022-05-06 >2022-05-05
+	- [ ] 14 I need to #constantly test stuff ...
+	- [ ] 15 I need to >constantly test stuff ... | <2022-05-05 ~4x~ >2022-05-06
+	- [ ] 16 I need to >constantly test stuff ... | <2022-05-05 ~04x~ >2022-05-07
+	- [ ] 17 I need to >constantly test stuff ... | <2022-05-05 ~4x~ >2022-05-07
+	- [ ] 18 I need to >constantly test stuff ... | <2022-05-07
+	- [ ] 19 I need to >constantly test stuff ... | <2022-05-06
+	- [ ] 20 I need to >constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
+	- [ ] 21 I need to >constantly test stuff ... >2022-05-06 >2022-05-05 >2022-05-04 >2022-05-07
+	- [ ] 22 I need to >constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05
+	- [ ] 23 I need to >constantly test stuff ... >2022-05-07 >2022-05-06
+	- [ ] 24 I need to >constantly test stuff ... >2022-05-07
+	- [ ] 25 I need to >constantly test stuff ... >2022-05-06
+	- [ ] 26 I need to >constantly test stuff ... >2022-05-06 >2022-05-05
+	- [ ] 27 I need to >constantly test stuff ...
+	- [ ] 28 I need to #constantly test stuff ... >2022-05-01 >2022-05-06 >2022-05-05 >2022-05-02
+CONTENT
+}
+
+function test-file-expected-output() {
+	cat << CONTENT
+	* >today | >2022-05-07
+	* [ ] >today | >2022-05-07
+	* >today | <2022-05-06 ~01x~ >2022-05-07
+	* [ ] >today | <2022-05-06 ~01x~ >2022-05-07
+	* | >2022-05-06
+	* | >2022-05-06
+	- >today | >2022-05-07
+	- [ ] >today | >2022-05-07
+	- >today | <2022-05-06 ~01x~ >2022-05-07
+	- [ ] >today | <2022-05-06 ~01x~ >2022-05-07
+	- | >2022-05-06
+	- | >2022-05-06
+	- [ ] 000 I need to do wifey´s stuff ... >today | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 00a I need to do stuff ... >today | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 00b I need to do stuff ... >today | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 00c I need to do stuff ... >today | >2022-05-07
+	- [x] 00 I need to #constantly test stuff ... | <2022-05-01 ~03x~ >2022-05-06
+	- [x] 01 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [x] 02 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [x] 03 I need to #constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
+	- [x] 04 I need to #constantly test stuff ... | >2022-05-07
+	- [x] 05 I need to #constantly test stuff ... | >2022-05-06
+	- [x] 06 I need to #constantly test stuff ... | <2022-05-05 ~01x~ >2022-05-06
+	- [x] 07 I need to #constantly test stuff ...
+	- [ ] 08 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 09 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 10 I need to #constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
+	- [ ] 11 I need to #constantly test stuff ... | >2022-05-07
+	- [ ] 12 I need to #constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
+	- [ ] 13 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 14 I need to #constantly test stuff ... | >2022-05-07
+	- [ ] 15 I need to >constantly test stuff ... | <2022-05-05 ~05x~ >2022-05-07
+	- [ ] 16 I need to >constantly test stuff ... | <2022-05-05 ~04x~ >2022-05-07
+	- [ ] 17 I need to >constantly test stuff ... | <2022-05-05 ~4x~ >2022-05-07
+	- [ ] 18 I need to >constantly test stuff ... | >2022-05-07
+	- [ ] 19 I need to >constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
+	- [ ] 20 I need to >constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 21 I need to >constantly test stuff ... | <2022-05-04 ~03x~ >2022-05-07
+	- [ ] 22 I need to >constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 23 I need to >constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
+	- [ ] 24 I need to >constantly test stuff ... | >2022-05-07
+	- [ ] 25 I need to >constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
+	- [ ] 26 I need to >constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 27 I need to >constantly test stuff ... | >2022-05-07
+	- [ ] 28 I need to #constantly test stuff ... | <2022-05-01 ~04x~ >2022-05-07
+CONTENT
+}
+
 
 function main() {
 	case ${1} in 
+		test)
+			INPUT_FILE=$(mktemp)
+			OUTPUT_FILE=$(mktemp)
+			test-file-input > "${INPUT_FILE}"
+			debug-file "Input File" "${FILE}"
+			anchor-date-to-end-of-lines-with-ref "constantly" ">2022-05-07" "${INPUT_FILE}"
+			expand-refs "today" ">2022-05-07" "${INPUT_FILE}"
+			debug-file "Generated Ouput File" "${FILE}"
+			test-file-expected-output > "${OUTPUT_FILE}"
+			(diff "${INPUT_FILE}" "${OUTPUT_FILE}" && echo "Test Successful") || (echo "Test Failed" && false)
+			rm "${INPUT_FILE}" "${OUTPUT_FILE}"
+		;;
+		constantly)
+			echo "Expanding references with [>#]{constantly,always,daily}"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "constantly" "+0d" anchor-date-to-end-of-lines-with-ref
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "always" "+0d" anchor-date-to-end-of-lines-with-ref
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "daily" "+0d" anchor-date-to-end-of-lines-with-ref
+		;;
 		today)
+			echo "Expanding references with [>#]{today,td}"
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "today" "+0d"
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "td" "+0d"
 		;;
 		tomorrow)
+			echo "Expanding references with [>#]{tomorrow,tm,1d}"
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "tomorrow" "+1d"
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "tm" "+1d"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "1d" "+1d"
 		;;
 		next-week)
-			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "next-week" "+7d"
-			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "nw" "+7d"
+			echo "Expanding references with [>#]{week,1w}"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "week" "+7d"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "1w" "+7d"
 		;;
 		next-month)
-			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "next-month" "+1m"
-			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "nm" "+1m"
+			echo "Expanding references with [>#]{month,1m}"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "month" "+1m"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "1m" "+1m"
+		;;
+		next-business-day)
+			echo "Expanding references with [>#]{business-day,weekday}"
+			delta=$(date-next-business-day-delta)
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "business-day" "${delta}"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "weekday" "${delta}"
 		;;
 		all)
+			main constantly
 			main today
 			main tomorrow
 			main next-week
 			main next-month
+			main next-business-day
+		;;
+		default)
+			main today
+			main next-business-day
+			main constantly
 		;;
 		*)
 			echo no options selected ...
@@ -40,4 +260,4 @@ function main() {
 	esac
 }
 
-main ${1:-today}
+main ${1:-default}
