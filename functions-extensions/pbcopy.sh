@@ -44,8 +44,12 @@ function pbcopy-vscode-link() {
 }
 
 function pbcopy-iawriter-link() ( 
-    find_iawriter_files | fzf | gsed -E "s#^#ia-writer://open?path=/Locations/#g" | tr -d '\n' | sed-url-encode | pbcopy 
+    find_iawriter_files | fzf | sed-url-encode | gsed -E "s#^#ia-writer://open?path=/Locations/#g" | tr -d '\n'| pbcopy
 )
+
+function pbcopy-document-link() {
+    find_vscode_documents | fzf| vscode-link | tr -d '\n' | pbcopy
+}
 
 function pbcopy-noteplan-shortcut() {
     noteplan-shortcuts | fzf | tr -d '\n' | pbcopy 

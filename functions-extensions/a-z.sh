@@ -1,8 +1,11 @@
 alias c=pbcopy-chrome-link
+alias d="open-document-link"
 alias e=fzf-executables
 alias f='fzf'
-alias g=pbcopy-glue-link
-alias i=pbcopy-iawriter-link
-alias n=pbcopy-noteplan-shortcut
+alias g=open-glue-link
+alias i="open-iawriter-link"
+alias n=open-noteplan-documents
+alias r=open-noteplan-references
 # alias n="iawriter:personalbook"
-alias v=pbcopy-vscode-link
+alias v=open-vscode-link
+alias i="open-iawriter-link"

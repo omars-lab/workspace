@@ -71,25 +71,25 @@ function update_time_based_shorcuts() {
   update_shortcut '@yesterday' "${YESTERDAY}"
   update_shortcut '>yesterday' "${YESTERDAY}"
 
-  update_shortcut '#today' "${TODAY}"
-  update_shortcut '@today' "${TODAY}"
-  update_shortcut '>today' ">today ${TODAY}"
+  # update_shortcut '#today' "${TODAY}"
+  # update_shortcut '@today' "${TODAY}"
+  # update_shortcut '>today' ">today ${TODAY}"
 
-  update_shortcut '#tomorrow' "${TOMORROW}"
-  update_shortcut '@tomorrow' "${TOMORROW}"
-  update_shortcut '>tomorrow' "${TOMORROW}"
+  # update_shortcut '#tomorrow' "${TOMORROW}"
+  # update_shortcut '@tomorrow' "${TOMORROW}"
+  # update_shortcut '>tomorrow' "${TOMORROW}"
 
   update_shortcut '#yd' "${YESTERDAY}"
   update_shortcut '@yd' "${YESTERDAY}"
   update_shortcut '>yd' "${YESTERDAY}"
 
-  update_shortcut '#td' "${TODAY}"
-  update_shortcut '@td' "${TODAY}"
-  update_shortcut '>td' "${TODAY}"
+  # update_shortcut '#td' "${TODAY}"
+  # update_shortcut '@td' "${TODAY}"
+  # update_shortcut '>td' "${TODAY}"
 
-  update_shortcut '#tm' "${TOMORROW}"
-  update_shortcut '@tm' "${TOMORROW}"
-  update_shortcut '>tm' "${TOMORROW}"
+  # update_shortcut '#tm' "${TOMORROW}"
+  # update_shortcut '@tm' "${TOMORROW}"
+  # update_shortcut '>tm' "${TOMORROW}"
 
   update_shortcut '<1d' "$(date -v -1d +'@done(%Y-%m-%d 00:00 %p)') #usedShortcut"
   update_shortcut '<2d' "$(date -v -2d +'@done(%Y-%m-%d 00:00 %p)') #usedShortcut"

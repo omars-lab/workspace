@@ -37,6 +37,10 @@ function noteplan-header() {
 				"${CALENDAR_DIR}" "$(date +'%Y%m{}')" "$(date +'%Y-%m-{}')"
 }
 
-function noteplan-shortcuts() {
+function noteplan-references() {
     find ~/.noteplan/Notes -name .DS_Store -prune -o -type f -exec bash -c 'head -n 1 "${0}"' "{}" \; | gsed -E 's/#\s+/[[/' | gsed -E 's/\s*$/]]/g' | sort 
+}
+
+function noteplan-vscode-xcallback() {
+    find ~/.noteplan/{Notes,Calendar} -name .DS_Store -prune -o -type f | sort | fzf | vscode-link | pbcopy
 }

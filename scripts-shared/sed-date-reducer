@@ -44,6 +44,6 @@ if __name__ == "__main__":
     if len(dates) == 1 and not since and not tally:
         output = f">{max(dates)}"
     else:
-        output = f"<{state['since']} ~{state['tally']:02d}x~ >{max(dates)}"
+        output = f"#{state['since']} ~{state['tally']:02d}x~ >{max(dates)}"
     eprint(output)
     print(output, end="")

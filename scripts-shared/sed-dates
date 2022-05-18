@@ -22,7 +22,7 @@ function reduce-dates() {
 	gsed -E -i "/^[^|]*$/ s/\s*(${REGX_DATES})$/ | \1/" "${FILE}"
 	debug-file "Pre Date Reduction Bar" "${FILE}"
 	# Reduce dates anywhere ... regardless if they are done or not ... so long the state was not already reduced ... regardless if it has the term or not ...
-	gsed -E -i "/[|] ${REGX_STATE} ${SEDDATE}\s*$/! s/^([^|]*)[|] (${REGX_STATE})?(${REGX_DATES})$/printf '\1| '; sed-date-reducer '\3' '\4' '\5'/e" "${FILE}" 
+	gsed -E -i "/[|] ${REGX_STATE} ${SEDDATE}\s*$/! s/^([^|]*)[|] (${REGX_STATE})?(${REGX_DATES})$/printf '%s' '\1| '; sed-date-reducer '\3' '\4' '\5'/e" "${FILE}" 
 	# gsed -E -i "/.*[#>]${TERM}.*${SEDDATE}\s*$/ s/(.*)(${REGX_STATE})?(${REGX_DATES})/printf '1:\1 \t 2:\2 \t 3:\3 \t 4:\4 \t 5:\5 \t 6:\6'/e" "${FILE}" 
 	debug-file "Post Date Reduction Bar" "${FILE}"
 }
@@ -95,6 +95,19 @@ function date-next-business-day-delta() {
 
 function test-file-input() {
 	cat << CONTENT
+# Pursuing Purpose
+- I need to #constantly capture aspects about me | #2022-05-05 ~02x~ >2022-05-06
+- [ ] I need to #constantly capture aspects about me | #2022-05-05 ~02x~ >2022-05-06
+* I need to #constantly capture aspects about me | #2022-05-05 ~02x~ >2022-05-06
+* [ ] I need to #constantly capture aspects about me | #2022-05-05 ~02x~ >2022-05-06
+	- Researching 1-1s >today
+	* Researching 1-1s >today
+	- Researching 1-1s >today | #2022-05-05 ~01x~ >2022-05-06
+	- [ ] Researching 1-1s >today | #2022-05-05 ~01x~ >2022-05-06
+	* Researching 1-1s >today | #2022-05-05 ~01x~ >2022-05-06
+	* [ ] Researching 1-1s >today | #2022-05-05 ~01x~ >2022-05-06
+	https://bananarepublic.gap.com/browse/product.do?pid=800040002&vid=2&tid=brpl000045&kwid=1&ap=7&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gclid=CjwKCAjwu_mSBhAYEiwA5BBmfywm7zAIFjwZtxm-LfXFhcuKZ-S0Vq9iFM0YAKTlslwnWJdDZGj7zRoCfFUQAvD_BwE&gclsrc=aw.ds#pdp-page-content >today
+	* https://bananarepublic.gap.com/browse/product.do?pid=800040002&vid=2&tid=brpl000045&kwid=1&ap=7&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gclid=CjwKCAjwu_mSBhAYEiwA5BBmfywm7zAIFjwZtxm-LfXFhcuKZ-S0Vq9iFM0YAKTlslwnWJdDZGj7zRoCfFUQAvD_BwE&gclsrc=aw.ds#pdp-page-content #2022-04-20
 	* >today
 	* [ ] >today
 	* >today | >2022-05-06
@@ -145,51 +158,64 @@ CONTENT
 
 function test-file-expected-output() {
 	cat << CONTENT
+# Pursuing Purpose
+- I need to #constantly capture aspects about me | #2022-05-05 ~03x~ >2022-05-07
+- [ ] I need to #constantly capture aspects about me | #2022-05-05 ~03x~ >2022-05-07
+* I need to #constantly capture aspects about me | #2022-05-05 ~03x~ >2022-05-07
+* [ ] I need to #constantly capture aspects about me | #2022-05-05 ~03x~ >2022-05-07
+	- Researching 1-1s >today | >2022-05-07
+	* Researching 1-1s >today | >2022-05-07
+	- Researching 1-1s >today | #2022-05-05 ~02x~ >2022-05-07
+	- [ ] Researching 1-1s >today | #2022-05-05 ~02x~ >2022-05-07
+	* Researching 1-1s >today | #2022-05-05 ~02x~ >2022-05-07
+	* [ ] Researching 1-1s >today | #2022-05-05 ~02x~ >2022-05-07
+	https://bananarepublic.gap.com/browse/product.do?pid=800040002&vid=2&tid=brpl000045&kwid=1&ap=7&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gclid=CjwKCAjwu_mSBhAYEiwA5BBmfywm7zAIFjwZtxm-LfXFhcuKZ-S0Vq9iFM0YAKTlslwnWJdDZGj7zRoCfFUQAvD_BwE&gclsrc=aw.ds#pdp-page-content >today | >2022-05-07
+	* https://bananarepublic.gap.com/browse/product.do?pid=800040002&vid=2&tid=brpl000045&kwid=1&ap=7&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gclid=CjwKCAjwu_mSBhAYEiwA5BBmfywm7zAIFjwZtxm-LfXFhcuKZ-S0Vq9iFM0YAKTlslwnWJdDZGj7zRoCfFUQAvD_BwE&gclsrc=aw.ds#pdp-page-content | >2022-04-20
 	* >today | >2022-05-07
 	* [ ] >today | >2022-05-07
-	* >today | <2022-05-06 ~01x~ >2022-05-07
-	* [ ] >today | <2022-05-06 ~01x~ >2022-05-07
+	* >today | #2022-05-06 ~01x~ >2022-05-07
+	* [ ] >today | #2022-05-06 ~01x~ >2022-05-07
 	* | >2022-05-06
 	* | >2022-05-06
 	- >today | >2022-05-07
 	- [ ] >today | >2022-05-07
-	- >today | <2022-05-06 ~01x~ >2022-05-07
-	- [ ] >today | <2022-05-06 ~01x~ >2022-05-07
+	- >today | #2022-05-06 ~01x~ >2022-05-07
+	- [ ] >today | #2022-05-06 ~01x~ >2022-05-07
 	- | >2022-05-06
 	- | >2022-05-06
-	- [ ] 000 I need to do wifey´s stuff ... >today | <2022-05-05 ~02x~ >2022-05-07
-	- [ ] 00a I need to do stuff ... >today | <2022-05-05 ~02x~ >2022-05-07
-	- [ ] 00b I need to do stuff ... >today | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 000 I need to do wifey´s stuff ... >today | #2022-05-05 ~02x~ >2022-05-07
+	- [ ] 00a I need to do stuff ... >today | #2022-05-05 ~02x~ >2022-05-07
+	- [ ] 00b I need to do stuff ... >today | #2022-05-05 ~02x~ >2022-05-07
 	- [ ] 00c I need to do stuff ... >today | >2022-05-07
-	- [x] 00 I need to #constantly test stuff ... | <2022-05-01 ~03x~ >2022-05-06
-	- [x] 01 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
-	- [x] 02 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
-	- [x] 03 I need to #constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
+	- [x] 00 I need to #constantly test stuff ... | #2022-05-01 ~03x~ >2022-05-06
+	- [x] 01 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
+	- [x] 02 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
+	- [x] 03 I need to #constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
 	- [x] 04 I need to #constantly test stuff ... | >2022-05-07
 	- [x] 05 I need to #constantly test stuff ... | >2022-05-06
-	- [x] 06 I need to #constantly test stuff ... | <2022-05-05 ~01x~ >2022-05-06
+	- [x] 06 I need to #constantly test stuff ... | #2022-05-05 ~01x~ >2022-05-06
 	- [x] 07 I need to #constantly test stuff ...
-	- [ ] 08 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
-	- [ ] 09 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
-	- [ ] 10 I need to #constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
+	- [ ] 08 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
+	- [ ] 09 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
+	- [ ] 10 I need to #constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
 	- [ ] 11 I need to #constantly test stuff ... | >2022-05-07
-	- [ ] 12 I need to #constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
-	- [ ] 13 I need to #constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 12 I need to #constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
+	- [ ] 13 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
 	- [ ] 14 I need to #constantly test stuff ... | >2022-05-07
-	- [ ] 15 I need to >constantly test stuff ... | <2022-05-05 ~05x~ >2022-05-07
+	- [ ] 15 I need to >constantly test stuff ... | #2022-05-05 ~05x~ >2022-05-07
 	- [ ] 16 I need to >constantly test stuff ... | <2022-05-05 ~04x~ >2022-05-07
 	- [ ] 17 I need to >constantly test stuff ... | <2022-05-05 ~4x~ >2022-05-07
 	- [ ] 18 I need to >constantly test stuff ... | >2022-05-07
-	- [ ] 19 I need to >constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
-	- [ ] 20 I need to >constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
-	- [ ] 21 I need to >constantly test stuff ... | <2022-05-04 ~03x~ >2022-05-07
-	- [ ] 22 I need to >constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
-	- [ ] 23 I need to >constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
+	- [ ] 19 I need to >constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
+	- [ ] 20 I need to >constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
+	- [ ] 21 I need to >constantly test stuff ... | #2022-05-04 ~03x~ >2022-05-07
+	- [ ] 22 I need to >constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
+	- [ ] 23 I need to >constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
 	- [ ] 24 I need to >constantly test stuff ... | >2022-05-07
-	- [ ] 25 I need to >constantly test stuff ... | <2022-05-06 ~01x~ >2022-05-07
-	- [ ] 26 I need to >constantly test stuff ... | <2022-05-05 ~02x~ >2022-05-07
+	- [ ] 25 I need to >constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
+	- [ ] 26 I need to >constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
 	- [ ] 27 I need to >constantly test stuff ... | >2022-05-07
-	- [ ] 28 I need to #constantly test stuff ... | <2022-05-01 ~04x~ >2022-05-07
+	- [ ] 28 I need to #constantly test stuff ... | #2022-05-01 ~04x~ >2022-05-07
 CONTENT
 }
 
