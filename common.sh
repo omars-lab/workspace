@@ -65,6 +65,8 @@ function print_variables(){
     echo $@ | xargs printenv
 }
 
+# SILENT=false
+
 # Recusively source all .sh files within a directory
 # The first param is the directoy.
 # The second param is an expression of files to ignore.

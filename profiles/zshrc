@@ -155,33 +155,6 @@ if [[ -d $HOME/.asdf/ ]] ; then
 	. $HOME/.asdf/completions/asdf.bash
 fi
 
-# Virtual Envs ---------------------------------------------------------------------------------------------------
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/bin/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/bin/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/bin/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/bin/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_CONDA_ENV} --stack
-
-# Activate Virtual Envs
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-nvm list ${DEFAULT_NVM_ENV} 1>/dev/null 2>/dev/null || nvm install ${DEFAULT_NVM_ENV}
-nvm use ${DEFAULT_NVM_ENV}
-
-# ---------------------------------------------------------------------------------------------------------
-
 # https://direnv.net/
 # eval "$(direnv hook zsh)"
 
@@ -208,3 +181,40 @@ bindkey -e
 
 SHARED_LOADER=$(first "${DIRS_ENVIRONMENT}/loader-shared.sh" "$(brew --prefix sharedspace)/loader-shared.sh")
 source "${SHARED_LOADER}" #tag:inject-sharedspace-loader
+
+# Performance Optimiation ...
+# https://code.visualstudio.com/docs/supporting/faq#_installation-appears-to-be-corrupt-unsupported
+function continue-loading-profile() {
+
+  # Activate Virtual Envs
+
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/usr/local/bin/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/usr/local/bin/miniconda3/etc/profile.d/conda.sh" ]; then
+          . "/usr/local/bin/miniconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="/usr/local/bin/miniconda3/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+  echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_CONDA_ENV} --stack
+
+  if ( brew list nvm 2>/dev/null );
+  then
+      # https://github.com/nvm-sh/nvm/issues/860
+      # source $(brew --prefix nvm)/nvm.sh
+      source $(brew --prefix)/opt/nvm/nvm.sh  # using this instead of the above for performance ...
+  fi
+
+  # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+  nvm list ${DEFAULT_NVM_ENV} 1>/dev/null 2>/dev/null || nvm install ${DEFAULT_NVM_ENV}
+  nvm use ${DEFAULT_NVM_ENV}
+
+}

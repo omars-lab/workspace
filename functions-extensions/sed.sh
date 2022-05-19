@@ -27,8 +27,6 @@ function sed-url-encode() {
     -e 's/(/%28/g' \
     -e 's/)/%29/g' \
     -e 's/+/%2b/g' \
-    -e 's/,/%2c/g' \
-    -e 's/-/%2d/g' \
     -e 's/:/%3a/g' \
     -e 's/;/%3b/g' \
     -e 's/?/%3f/g' \
@@ -36,8 +34,6 @@ function sed-url-encode() {
     -e 's/\$/%24/g' \
     -e 's/\&/%26/g' \
     -e 's/\*/%2a/g' \
-    -e 's/\./%2e/g' \
-    -e 's/\//%2f/g' \
     -e 's/\[/%5b/g' \
     -e 's/\\/%5c/g' \
     -e 's/\]/%5d/g' \
@@ -48,4 +44,8 @@ function sed-url-encode() {
     -e 's/|/%7c/g' \
     -e 's/}/%7d/g' \
     -e 's/~/%7e/g'
+    # -e 's/\//%2f/g' \
+    # -e 's/,/%2c/g' \
+    # -e 's/-/%2d/g' \
+    # -e 's/\./%2e/g' \
 }

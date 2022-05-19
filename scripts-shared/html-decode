@@ -1,0 +1,8 @@
+#!/bin/bash
+
+function html_decode_lines() {
+  # python -c 'import urllib.parse, sys; print(urllib.parse.quote(sys.stdin.read().strip()))'
+  python -c 'import urllib.parse, sys; l = sys.stdin.read().strip().split("\n"); [ print(urllib.parse.unquote(x.strip())) for x in l]'
+}
+
+html_decode_lines

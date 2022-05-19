@@ -14,10 +14,3 @@ then
   [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 fi 
-
-if ( brew list nvm 2>/dev/null );
-then
-    # https://github.com/nvm-sh/nvm/issues/860
-    # source $(brew --prefix nvm)/nvm.sh
-    source $(brew --prefix)/opt/nvm/nvm.sh  # using this instead of the above for performance ...
-fi
