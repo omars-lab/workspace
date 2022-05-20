@@ -8,4 +8,4 @@ function tabs() {
 }
 
 DEFAULT_FILE=$(ls ~/Library/"Application Support"/Firefox/Profiles/*/sessionstore-backups/previous.jsonlz4 | head -n 1)
-tabs "${1:-DEFAULT_FILE}"
+tabs "${1:-${DEFAULT_FILE}}"
