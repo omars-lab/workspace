@@ -2,7 +2,7 @@
 function find_files() {
     # MAX_DEPTH=${1:-3}
     FIND_DIR=${1:-.}
-    find "${FIND_DIR}" \( \
+    find -L "${FIND_DIR}" \( \
         \( -name '*.Trash' -prune -o -name '.git' -prune -o -name 'node_modules' -prune \) \
         -o \
         -type f \
