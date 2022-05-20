@@ -38,11 +38,9 @@ function noteplan-header() {
 }
 
 function noteplan-references() {
-	# trailing / is important if dir is a symlink
-    find -L ~/.noteplan/Notes/ -name .DS_Store -prune -o -type f -exec bash -c 'head -n 1 "${0}"' "{}" \; | gsed -E 's/#\s+/[[/' | gsed -E 's/\s*$/]]/g' | sort 
+    find -L ~/.noteplan/Notes -name .DS_Store -prune -o -type f -exec bash -c 'head -n 1 "${0}"' "{}" \; | gsed -E 's/#\s+/[[/' | gsed -E 's/\s*$/]]/g' | sort 
 }
 
 function noteplan-vscode-xcallback() {
-	# trailing / is important if dir is a symlink
-    find -L ~/.noteplan/{Notes,Calendar}/ -name .DS_Store -prune -o -type f | sort | fzf | vscode-link | pbcopy
+    find -L ~/.noteplan/{Notes,Calendar} -name .DS_Store -prune -o -type f | sort | fzf | vscode-link | pbcopy
 }
