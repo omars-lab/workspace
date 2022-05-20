@@ -65,7 +65,7 @@ function expand_refs_in_dir() (
 	IFS=${DEFAULT_IFS}
 )
 
-function date-next-business-day-delta() {
+function date-delta-for-next-weekday() {
 	#  seq 1 8 | xargs -I __ date -v "+__d" +'%A'
 	WEEKDAY=$(date +'%A')
 	case ${WEEKDAY} in
@@ -89,6 +89,34 @@ function date-next-business-day-delta() {
 		;;
 		Saturday)
 			echo "+2d"
+		;;
+	esac
+}
+
+function date-delta-for-next-weekend() {
+	#  seq 1 8 | xargs -I __ date -v "+__d" +'%A'
+	WEEKDAY=$(date +'%A')
+	case ${WEEKDAY} in
+		Sunday)
+			echo "+0d"
+		;;
+		Monday)
+			echo "+5d"
+		;;
+		Tuesday)
+			echo "+4d"
+		;;
+		Wednesday)
+			echo "+3d"
+		;;
+		Thursday)
+			echo "+2d"
+		;;
+		Friday)
+			echo "+1d"
+		;;
+		Saturday)
+			echo "+0d"
 		;;
 	esac
 }
@@ -222,6 +250,9 @@ CONTENT
 
 function main() {
 	case ${1} in 
+		test-dates)
+			date-delta-for-next-weekend
+		;;
 		test)
 			INPUT_FILE=$(mktemp)
 			OUTPUT_FILE=$(mktemp)
@@ -261,11 +292,15 @@ function main() {
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "month" "+1m"
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "1m" "+1m"
 		;;
-		next-business-day)
-			echo "Expanding references with [>#]{business-day,weekday}"
-			delta=$(date-next-business-day-delta)
-			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "business-day" "${delta}"
+		next-weekday)
+			echo "Expanding references with [>#]{weekday}"
+			delta=$(date-delta-for-next-weekday)
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "weekday" "${delta}"
+		;;
+		next-weekend)
+			echo "Expanding references with [>#]{weekend}"
+			delta=$(date-delta-for-next-weekend)
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "weekend" "${delta}"
 		;;
 		all)
 			main constantly
@@ -273,11 +308,12 @@ function main() {
 			main tomorrow
 			main next-week
 			main next-month
-			main next-business-day
+			main next-weekday
+			main next-weekend
 		;;
 		default)
 			main today
-			main next-business-day
+			main next-weekday
 			main constantly
 		;;
 		*)
