@@ -1,3 +1,4 @@
+#!/bin/bash
 
 function tabs() {
     lz4jsoncat "${1}" \
