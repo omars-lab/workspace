@@ -1,0 +1,10 @@
+
+function tabs() {
+    lz4jsoncat "${1}" \
+        | jq -r \
+            --arg bracketin "\[|\]" --arg bracketout "|" \
+            'walk(if type == "object" then with_entries(select(.key | test("image|originAttributes|csp|storage|presState|scroll|formdata") | not)) else . end) | del(.cookies, ._closedWindows) | [ .windows | .[] | .tabs | .[] | . ] | map(["- [\(.entries[-1].title)](\(.entries[-1].url))"]+[ .entries | reverse | del(.[0]) | .[] | "\t- [\(.title|gsub($bracketin;$bracketout))](\(.url))"]) | .[] |.[] '
+}
+
+DEFAULT_FILE=$(ls ~/Library/"Application Support"/Firefox/Profiles/*/sessionstore-backups/previous.jsonlz4 | head -n 1)
+tabs "${1:-DEFAULT_FILE}"
