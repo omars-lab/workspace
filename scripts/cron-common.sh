@@ -57,5 +57,5 @@ export SERIAL_NUMBER=$(get_serial_number)
 function play_click() {
 	# https://superuser.com/questions/598783/play-sound-on-mac-terminal
 	# echo -e "\a"
-	afplay /Applications/Flic.app/Contents/Resources/trigger_click.mp3 &
+	nohup afplay /Applications/Flic.app/Contents/Resources/trigger_click.mp3 >/dev/null & 
 }
