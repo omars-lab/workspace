@@ -55,7 +55,12 @@ source_if_exists /usr/local/bin/miniconda3/etc/profile.d/conda.sh \
 export SERIAL_NUMBER=$(get_serial_number)
 
 function play_click() {
+	play_sound /Applications/Flic.app/Contents/Resources/trigger_click.mp3
+}
+
+function play_sound() {
 	# https://superuser.com/questions/598783/play-sound-on-mac-terminal
 	# echo -e "\a"
-	nohup afplay /Applications/Flic.app/Contents/Resources/trigger_click.mp3 >/dev/null & 
+	nohup afplay "${1}" >/dev/null & 
 }
+
