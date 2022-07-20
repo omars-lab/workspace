@@ -17,4 +17,5 @@ function validate_links() {
 	| sort | uniq -c
 }
 
-validate_links ../../personalbook
+validate_links "${DIRS_GIT}/personalbook"
+# validate_links ../../personalbook

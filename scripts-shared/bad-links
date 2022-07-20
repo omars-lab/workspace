@@ -49,6 +49,15 @@ function find-bad-links() {
 
     find-bad-vscode-links "${DIRS_GIT}/blueprints"
     find-bad-iawriter-links "${DIRS_GIT}/blueprints"
+
+    find-broken-symlinks "${DIR_FOR_HATS}"
+}
+
+function find-broken-symlinks() {
+    find "${1}" \
+        -type l \
+        -exec bash -c \
+            'LINKPOINTER=$(readlink "${0}"); ( test -f "${0}" || test -d "${0}" ) || printf "❌ Broken sym link: %s ❌\n\t- Points To: %s\n" "${0}" "${LINKPOINTER}" ' "{}" \;
 }
 
 function assert_empty() {

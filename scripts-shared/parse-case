@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+
+# http://web.archive.org/web/20120525103427/http://www.evanfosmark.com/2009/02/sexy-lexing-with-python
+#   This won't work since we have a variable number of cases ...
+# https://www.google.com/search?q=python+bnf+parser&pws=0&sxsrf=ALiCzsaYDZRfrUXD9URx9yy9MKw_I55dJA%3A1653235782283&ei=RmCKYt_sELe4qtsPyP-QsAU&ved=0ahUKEwjfp6Gcv_P3AhU3nGoFHcg_BFYQ4dUDCA8&uact=5&oq=python+bnf+parser&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEIAEMgUIABCABDIGCAAQHhAWMgUIABCGAzIFCAAQhgMyBQgAEIYDOgcIIxCwAxAnOgcIABBHELADOggIABAeEAgQBzoFCAAQkQI6BggAEB4QBzoFCAAQogRKBAhBGABKBAhGGABQggZYySFgmCNoAnABeACAAZgBiAG-CJIBBDExLjKYAQCgAQHIAQnAAQE&sclient=gws-wiz
+
+# Base example from ...
+# /Users/omareid/Workspace/git/demo-py/discovery
+
+import sys
+
+from lark import Lark, Transformer, v_args, Tree
+from itertools import product
+
+# https://lark-parser.readthedocs.io/en/latest/examples/index.html
+# https://lark-parser.readthedocs.io/en/latest/recipes.html
+
+from lark import Lark, logger
+import logging
+
+# logger.setLevel(logging.DEBUG)
+
+bash_case_grammar = """
+
+?start: WS? start_case WS? variable WS? "in" WS? (option)+ WS? end_case WS?
+start_case: "case"
+end_case: "esac"
+variable: ( ("${" sh_variable "}") | ( "$" sh_variable ) )
+option: case_option ")" WS? (sh_command)+ ";;" WS?
+case_option: BASH_TERM
+sh_variable: BASH_TERM
+sh_command: ( BASH_TERM | WS )+
+
+BASH_TERM: /[a-zA-Z0-9*-]+/ 
+
+%import common (WORD, ESCAPED_STRING, NUMBER, WS, SH_COMMENT, NEWLINE)
+%ignore (WS? SH_COMMENT WS?)
+%ignore /.*?# /s "@start-autocomplete"
+%ignore "# @end-autocomplete" /.*/s
+"""
+
+
+def flatten_terms(terms):
+    """ 
+    [
+        { "simple_term": "A" },
+        { "simple_term": "B" },
+        { "simple_term": "C" }
+    ]
+    to
+    ["A", "B", "C"]
+    """
+    return [list(i.values())[0] if isinstance(i, dict) else i for i in terms]
+
+
+def merge_dicts(ds):
+    resp = {}
+    for d in ds:
+        resp.update(d)
+    return resp
+
+
+class TreeToQueryStruct(Transformer):
+    
+    def start(self, x):
+        return [y for y in x if y]
+
+    def variable(self, x):
+        return {"variable": str(x[0])}
+    
+    def start_case(self, x):
+        return None
+    
+    def end_case(self, x):
+        return None
+    
+    def variable(self, x):
+        return {"variable": x[0]['sh_variable']}
+    
+    def option(self, x):
+        return {"option": merge_dicts([y for y in x if y])}
+    
+    def case_option(self, x):
+        return {"case_option": x[0]}
+
+    def sh_variable(self, x):
+        return {"sh_variable": f"${{{x[0]}}}"}
+    
+    def sh_command(self, x):
+        return {"sh_command": str(x[0])}
+    
+    def BASH_TERM(self, x):
+        return str(x)
+    
+    def WS(self, x):
+        return None
+
+
+def defaults_on_exceptions(defaultGenerator):
+  def decorator(f):
+    def executed_function(*args, **kwargs):
+      try:
+         return f(*args,**kwargs)
+      except:
+         print('Exception occured, defaulting value.')
+         return defaultGenerator()
+    return executed_function
+  return decorator
+
+@defaults_on_exceptions(lambda: ([], [], []))
+def parse_case(case_statement):
+    comments = []
+    ### Create the JSON parser with Lark, using the LALR algorithm
+    query_parser = Lark(
+        bash_case_grammar, 
+        parser='lalr',
+        # parser='earley',
+        # Using the standard lexer isn't required, and isn't usually recommended.
+        # But, it's good enough for JSON, and it's slightly faster.
+        lexer='standard',
+        # Disabling propagate_positions and placeholders slightly improves speed
+        propagate_positions=False,
+        maybe_placeholders=False,
+        # Using an internal transformer is faster and more memory efficient
+        transformer=TreeToQueryStruct(),
+        lexer_callbacks={'SH_COMMENT': comments.append},
+        # debug=True
+    )
+    parse = query_parser.parse
+    ast = parse(case_statement)
+    options = [x['option']['case_option'] for x in ast if 'option' in x]
+    return ast, comments, options
+
+
+def print_case(ast, comments, options):
+    import json
+    print(ast)
+    print(json.dumps(ast, indent=4))
+    print(options)
+    print(comments)
+
+
+def test_happy_path():
+    case_statement = """
+    asdf
+    # @start-autocomplete
+    case ${1} in
+        this-weekend)
+            # some comments in here 
+            this-weekend  # here too ..
+        ;;
+        next-weekend)
+            next-weekend
+        ;;
+        next-weekday)
+            next-weekday
+        ;;
+    esac
+    # @end-autocomplete
+    """
+    (ast, comments, options) = parse_case(case_statement)
+    print_case(ast, comments, options)
+    
+
+def test_error_path():
+    case_statement = """
+    asdf
+    case ${1} in
+        this-weekend)
+            # some comments in here 
+            this-weekend  # here too ..
+        ;;
+        next-weekend)
+            next-weekend
+        ;;
+        next-weekday)
+            next-weekday
+        ;;
+    esac
+    # @end-autocomplete
+    """
+    (ast, comments, options) = parse_case(case_statement)
+    print_case(ast, comments, options)
+
+# def find_lines_between(f, start, stop): 
+#     printflag = False
+#     lines = []
+#     with open(f) as fh:
+#         for x in fh.readlines():
+#             if x.strip() == start.strip():
+#                 printflag = True
+#             elif x.strip() == stop.strip():
+#                 printflag = False
+#             elif printflag:
+#                 lines.append(x)
+#     return lines
+
+
+def main(file):
+    file = '/Users/omareid/Workspace/git/workspace/scripts-shared/date-deltas'
+    with open(file) as fh:
+        # lines = find_lines_between(file, "# @start-autocomplete", "# @end-autocomplete")
+        # (ast, comments, options) = parse_case("\n".join(lines))
+        (ast, comments, options) = parse_case(fh.read())
+        print_case(ast, comments, options)
+
+if __name__ == '__main__':
+    test_happy_path()
+    test_error_path()
+    main('')

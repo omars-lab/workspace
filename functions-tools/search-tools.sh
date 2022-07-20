@@ -6,7 +6,8 @@ function ag() {
 		--exclude-dir '.idea' \
 		--exclude-dir '.git' \
 		"${PWD}" \
-		| gsed -E -e 's#^(.*):([0-9]+):(.*)#echo "vscode://file\1:\2" | sed -e "s: :%20:g" | tr -d "\n"; echo "\t\3"#ge'
+		| gsed -E -e "s/'/＇/g" \
+		| gsed -E -e "s#^([^:]+):([0-9]+):(.+)\$#echo 'vscode://file\1:\2' | sed -e 's: :%20:g' | tr -d '\n'; echo '\t\3' #ge"
 }
 
 function google() {

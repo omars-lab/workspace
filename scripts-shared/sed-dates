@@ -22,7 +22,7 @@ function reduce-dates() {
 	gsed -E -i "/^[^|]*$/ s/\s*(${REGX_DATES})$/ | \1/" "${FILE}"
 	debug-file "Pre Date Reduction Bar" "${FILE}"
 	# Reduce dates anywhere ... regardless if they are done or not ... so long the state was not already reduced ... regardless if it has the term or not ...
-	gsed -E -i "/[|] ${REGX_STATE} ${SEDDATE}\s*$/! s/^([^|]*)[|] (${REGX_STATE})?(${REGX_DATES})$/printf '%s' '\1| '; sed-date-reducer '\3' '\4' '\5'/e" "${FILE}" 
+	gsed -E -i "/[|] ${REGX_STATE} ${SEDDATE}\s*$/! s/^([^|]*)[|] (${REGX_STATE})?(${REGX_DATES})$/printf '%s' '\1| '; sed-dates-reducer '\3' '\4' '\5'/e" "${FILE}" 
 	# gsed -E -i "/.*[#>]${TERM}.*${SEDDATE}\s*$/ s/(.*)(${REGX_STATE})?(${REGX_DATES})/printf '1:\1 \t 2:\2 \t 3:\3 \t 4:\4 \t 5:\5 \t 6:\6'/e" "${FILE}" 
 	debug-file "Post Date Reduction Bar" "${FILE}"
 }
@@ -65,206 +65,8 @@ function expand_refs_in_dir() (
 	IFS=${DEFAULT_IFS}
 )
 
-function date-delta-for-next-weekday() {
-	#  seq 1 8 | xargs -I __ date -v "+__d" +'%A'
-	WEEKDAY=$(date +'%A')
-	case ${WEEKDAY} in
-		Sunday)
-			echo "+1d"
-		;;
-		Monday)
-			echo "+1d"
-		;;
-		Tuesday)
-			echo "+1d"
-		;;
-		Wednesday)
-			echo "+1d"
-		;;
-		Thursday)
-			echo "+1d"
-		;;
-		Friday)
-			echo "+3d"
-		;;
-		Saturday)
-			echo "+2d"
-		;;
-	esac
-}
-
-function date-delta-for-next-weekend() {
-	#  seq 1 8 | xargs -I __ date -v "+__d" +'%A'
-	WEEKDAY=$(date +'%A')
-	case ${WEEKDAY} in
-		Sunday)
-			echo "+0d"
-		;;
-		Monday)
-			echo "+5d"
-		;;
-		Tuesday)
-			echo "+4d"
-		;;
-		Wednesday)
-			echo "+3d"
-		;;
-		Thursday)
-			echo "+2d"
-		;;
-		Friday)
-			echo "+1d"
-		;;
-		Saturday)
-			echo "+0d"
-		;;
-	esac
-}
-
-function test-file-input() {
-	cat << CONTENT
-# Pursuing Purpose
-- I need to #constantly capture aspects about me | #2022-05-05 ~02x~ >2022-05-06
-- [ ] I need to #constantly capture aspects about me | #2022-05-05 ~02x~ >2022-05-06
-* I need to #constantly capture aspects about me | #2022-05-05 ~02x~ >2022-05-06
-* [ ] I need to #constantly capture aspects about me | #2022-05-05 ~02x~ >2022-05-06
-	- Researching 1-1s >today
-	* Researching 1-1s >today
-	- Researching 1-1s >today | #2022-05-05 ~01x~ >2022-05-06
-	- [ ] Researching 1-1s >today | #2022-05-05 ~01x~ >2022-05-06
-	* Researching 1-1s >today | #2022-05-05 ~01x~ >2022-05-06
-	* [ ] Researching 1-1s >today | #2022-05-05 ~01x~ >2022-05-06
-	https://bananarepublic.gap.com/browse/product.do?pid=800040002&vid=2&tid=brpl000045&kwid=1&ap=7&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gclid=CjwKCAjwu_mSBhAYEiwA5BBmfywm7zAIFjwZtxm-LfXFhcuKZ-S0Vq9iFM0YAKTlslwnWJdDZGj7zRoCfFUQAvD_BwE&gclsrc=aw.ds#pdp-page-content >today
-	* https://bananarepublic.gap.com/browse/product.do?pid=800040002&vid=2&tid=brpl000045&kwid=1&ap=7&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gclid=CjwKCAjwu_mSBhAYEiwA5BBmfywm7zAIFjwZtxm-LfXFhcuKZ-S0Vq9iFM0YAKTlslwnWJdDZGj7zRoCfFUQAvD_BwE&gclsrc=aw.ds#pdp-page-content #2022-04-20
-	* >today
-	* [ ] >today
-	* >today | >2022-05-06
-	* [ ] >today | >2022-05-06
-	* >2022-05-06
-	* | >2022-05-06
-	- >today
-	- [ ] >today
-	- >today | >2022-05-06
-	- [ ] >today | >2022-05-06
-	- >2022-05-06
-	- | >2022-05-06
-	- [ ] 000 I need to do wifey's stuff ... >today >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
-	- [ ] 00a I need to do stuff ... >today >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
-	- [ ] 00b I need to do stuff ... >today >2022-05-06 >2022-05-05
-	- [ ] 00c I need to do stuff ... >today
-	- [x] 00 I need to #constantly test stuff ... >2022-05-01 >2022-05-06 >2022-05-05 >2022-05-02
-	- [x] 01 I need to #constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
-	- [x] 02 I need to #constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05
-	- [x] 03 I need to #constantly test stuff ... >2022-05-07 >2022-05-06
-	- [x] 04 I need to #constantly test stuff ... >2022-05-07
-	- [x] 05 I need to #constantly test stuff ... >2022-05-06
-	- [x] 06 I need to #constantly test stuff ... >2022-05-06 >2022-05-05
-	- [x] 07 I need to #constantly test stuff ...
-	- [ ] 08 I need to #constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
-	- [ ] 09 I need to #constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05
-	- [ ] 10 I need to #constantly test stuff ... >2022-05-07 >2022-05-06
-	- [ ] 11 I need to #constantly test stuff ... >2022-05-07
-	- [ ] 12 I need to #constantly test stuff ... >2022-05-06
-	- [ ] 13 I need to #constantly test stuff ... >2022-05-06 >2022-05-05
-	- [ ] 14 I need to #constantly test stuff ...
-	- [ ] 15 I need to >constantly test stuff ... | <2022-05-05 ~4x~ >2022-05-06
-	- [ ] 16 I need to >constantly test stuff ... | <2022-05-05 ~04x~ >2022-05-07
-	- [ ] 17 I need to >constantly test stuff ... | <2022-05-05 ~4x~ >2022-05-07
-	- [ ] 18 I need to >constantly test stuff ... | <2022-05-07
-	- [ ] 19 I need to >constantly test stuff ... | <2022-05-06
-	- [ ] 20 I need to >constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05 >2022-05-07
-	- [ ] 21 I need to >constantly test stuff ... >2022-05-06 >2022-05-05 >2022-05-04 >2022-05-07
-	- [ ] 22 I need to >constantly test stuff ... >2022-05-07 >2022-05-06 >2022-05-05
-	- [ ] 23 I need to >constantly test stuff ... >2022-05-07 >2022-05-06
-	- [ ] 24 I need to >constantly test stuff ... >2022-05-07
-	- [ ] 25 I need to >constantly test stuff ... >2022-05-06
-	- [ ] 26 I need to >constantly test stuff ... >2022-05-06 >2022-05-05
-	- [ ] 27 I need to >constantly test stuff ...
-	- [ ] 28 I need to #constantly test stuff ... >2022-05-01 >2022-05-06 >2022-05-05 >2022-05-02
-CONTENT
-}
-
-function test-file-expected-output() {
-	cat << CONTENT
-# Pursuing Purpose
-- I need to #constantly capture aspects about me | #2022-05-05 ~03x~ >2022-05-07
-- [ ] I need to #constantly capture aspects about me | #2022-05-05 ~03x~ >2022-05-07
-* I need to #constantly capture aspects about me | #2022-05-05 ~03x~ >2022-05-07
-* [ ] I need to #constantly capture aspects about me | #2022-05-05 ~03x~ >2022-05-07
-	- Researching 1-1s >today | >2022-05-07
-	* Researching 1-1s >today | >2022-05-07
-	- Researching 1-1s >today | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] Researching 1-1s >today | #2022-05-05 ~02x~ >2022-05-07
-	* Researching 1-1s >today | #2022-05-05 ~02x~ >2022-05-07
-	* [ ] Researching 1-1s >today | #2022-05-05 ~02x~ >2022-05-07
-	https://bananarepublic.gap.com/browse/product.do?pid=800040002&vid=2&tid=brpl000045&kwid=1&ap=7&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gclid=CjwKCAjwu_mSBhAYEiwA5BBmfywm7zAIFjwZtxm-LfXFhcuKZ-S0Vq9iFM0YAKTlslwnWJdDZGj7zRoCfFUQAvD_BwE&gclsrc=aw.ds#pdp-page-content >today | >2022-05-07
-	* https://bananarepublic.gap.com/browse/product.do?pid=800040002&vid=2&tid=brpl000045&kwid=1&ap=7&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gbraid=0AAAAAD_AT8uS01eUe_k7XASL_S7euGrBc&gclid=CjwKCAjwu_mSBhAYEiwA5BBmfywm7zAIFjwZtxm-LfXFhcuKZ-S0Vq9iFM0YAKTlslwnWJdDZGj7zRoCfFUQAvD_BwE&gclsrc=aw.ds#pdp-page-content | >2022-04-20
-	* >today | >2022-05-07
-	* [ ] >today | >2022-05-07
-	* >today | #2022-05-06 ~01x~ >2022-05-07
-	* [ ] >today | #2022-05-06 ~01x~ >2022-05-07
-	* | >2022-05-06
-	* | >2022-05-06
-	- >today | >2022-05-07
-	- [ ] >today | >2022-05-07
-	- >today | #2022-05-06 ~01x~ >2022-05-07
-	- [ ] >today | #2022-05-06 ~01x~ >2022-05-07
-	- | >2022-05-06
-	- | >2022-05-06
-	- [ ] 000 I need to do wifey´s stuff ... >today | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] 00a I need to do stuff ... >today | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] 00b I need to do stuff ... >today | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] 00c I need to do stuff ... >today | >2022-05-07
-	- [x] 00 I need to #constantly test stuff ... | #2022-05-01 ~03x~ >2022-05-06
-	- [x] 01 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
-	- [x] 02 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
-	- [x] 03 I need to #constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
-	- [x] 04 I need to #constantly test stuff ... | >2022-05-07
-	- [x] 05 I need to #constantly test stuff ... | >2022-05-06
-	- [x] 06 I need to #constantly test stuff ... | #2022-05-05 ~01x~ >2022-05-06
-	- [x] 07 I need to #constantly test stuff ...
-	- [ ] 08 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] 09 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] 10 I need to #constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
-	- [ ] 11 I need to #constantly test stuff ... | >2022-05-07
-	- [ ] 12 I need to #constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
-	- [ ] 13 I need to #constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] 14 I need to #constantly test stuff ... | >2022-05-07
-	- [ ] 15 I need to >constantly test stuff ... | #2022-05-05 ~05x~ >2022-05-07
-	- [ ] 16 I need to >constantly test stuff ... | <2022-05-05 ~04x~ >2022-05-07
-	- [ ] 17 I need to >constantly test stuff ... | <2022-05-05 ~4x~ >2022-05-07
-	- [ ] 18 I need to >constantly test stuff ... | >2022-05-07
-	- [ ] 19 I need to >constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
-	- [ ] 20 I need to >constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] 21 I need to >constantly test stuff ... | #2022-05-04 ~03x~ >2022-05-07
-	- [ ] 22 I need to >constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] 23 I need to >constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
-	- [ ] 24 I need to >constantly test stuff ... | >2022-05-07
-	- [ ] 25 I need to >constantly test stuff ... | #2022-05-06 ~01x~ >2022-05-07
-	- [ ] 26 I need to >constantly test stuff ... | #2022-05-05 ~02x~ >2022-05-07
-	- [ ] 27 I need to >constantly test stuff ... | >2022-05-07
-	- [ ] 28 I need to #constantly test stuff ... | #2022-05-01 ~04x~ >2022-05-07
-CONTENT
-}
-
-
 function main() {
 	case ${1} in 
-		test-dates)
-			date-delta-for-next-weekend
-		;;
-		test)
-			INPUT_FILE=$(mktemp)
-			OUTPUT_FILE=$(mktemp)
-			test-file-input > "${INPUT_FILE}"
-			debug-file "Input File" "${FILE}"
-			anchor-date-to-end-of-lines-with-ref "constantly" ">2022-05-07" "${INPUT_FILE}"
-			expand-refs "today" ">2022-05-07" "${INPUT_FILE}"
-			debug-file "Generated Ouput File" "${FILE}"
-			test-file-expected-output > "${OUTPUT_FILE}"
-			(diff "${INPUT_FILE}" "${OUTPUT_FILE}" && echo "Test Successful") || (echo "Test Failed" && false)
-			rm "${INPUT_FILE}" "${OUTPUT_FILE}"
-		;;
 		constantly)
 			echo "Expanding references with [>#]{constantly,always,daily}"
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "constantly" "+0d" anchor-date-to-end-of-lines-with-ref
@@ -293,14 +95,19 @@ function main() {
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "1m" "+1m"
 		;;
 		next-weekday)
-			echo "Expanding references with [>#]{weekday}"
-			delta=$(date-delta-for-next-weekday)
+			delta=$(date-deltas next-weekday)
+			echo "Expanding references with [>#]{weekday} by ${delta} days"
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "weekday" "${delta}"
 		;;
-		next-weekend)
-			echo "Expanding references with [>#]{weekend}"
-			delta=$(date-delta-for-next-weekend)
+		this-weekend)
+			delta=$(date-deltas this-weekend)
+			echo "Expanding references with [>#]{weekend} by ${delta} days"
 			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "weekend" "${delta}"
+		;;
+		next-weekend)
+			delta=$(date-deltas next-weekend)
+			echo "Expanding references with [>#]{next-weekend} by ${delta} days"
+			expand_refs_in_dir "${NOTEPLAN_HOME}/Notes" "next-weekend" "${delta}"
 		;;
 		all)
 			main constantly
@@ -309,6 +116,7 @@ function main() {
 			main next-week
 			main next-month
 			main next-weekday
+			main this-weekend
 			main next-weekend
 		;;
 		default)
@@ -322,4 +130,5 @@ function main() {
 	esac
 }
 
-main ${1:-default}
+# https://stackoverflow.com/questions/2683279/how-to-detect-if-a-script-is-being-sourced
+(return 0 2>/dev/null) || main ${1:-default}

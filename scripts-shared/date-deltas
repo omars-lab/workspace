@@ -1,0 +1,74 @@
+#!/bin/bash
+
+function next-weekday() {
+	#  seq 1 8 | xargs -I __ date -v "+__d" +'%A'
+	WEEKDAY=$(date +'%A')
+	case ${WEEKDAY} in
+		Sunday)
+			echo "+1d"
+		;;
+		Monday)
+			echo "+1d"
+		;;
+		Tuesday)
+			echo "+1d"
+		;;
+		Wednesday)
+			echo "+1d"
+		;;
+		Thursday)
+			echo "+1d"
+		;;
+		Friday)
+			echo "+3d"
+		;;
+		Saturday)
+			echo "+2d"
+		;;
+	esac
+}
+
+function this-weekend() {
+	WEEKDAY=$(date +'%A')
+	case ${WEEKDAY} in
+		Sunday)
+			echo "+0d"
+		;;
+		Monday)
+			echo "+5d"
+		;;
+		Tuesday)
+			echo "+4d"
+		;;
+		Wednesday)
+			echo "+3d"
+		;;
+		Thursday)
+			echo "+2d"
+		;;
+		Friday)
+			echo "+1d"
+		;;
+		Saturday)
+			echo "+0d"
+		;;
+	esac
+}
+
+function next-weekend() {
+    this-weekend | gsed -E -e 's/[+]([0-9])d/printf "+%sd" $(expr 7 + \1)/e'
+}
+
+# @start-autocomplete
+case ${1} in
+    this-weekend)
+        this-weekend
+    ;;
+    next-weekend)
+        next-weekend
+    ;;
+    next-weekday)
+        next-weekday
+    ;;
+esac
+# @end-autocomplete

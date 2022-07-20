@@ -1,0 +1,3 @@
+#compdef sed-dates
+# This is a good sample for bash scripts with a single case statement that drives options ...
+compadd $(cat $(which sed-dates) | egrep -E -o '\s+[a-zA-Z-]+[)]\s*$' | gsed -E -e 's/\s|[)]//g' | xargs echo)

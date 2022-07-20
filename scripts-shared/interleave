@@ -1,0 +1,5 @@
+#/bin/bash
+
+# ls -1 You\ Can\ Handle\ It* | interleave | sed 's/^/diff /g' | sh
+
+python -c 'import fileinput; lines = [x.strip() for x in fileinput.input()]; tuples = list(zip(lines[:-1], lines[1:])); [print(f"\"{x}\"", f"\"{y}\"") for x, y in tuples]'
