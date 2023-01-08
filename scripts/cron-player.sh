@@ -36,6 +36,10 @@ case "${NOW}" in
   07:00AM)
     play_surat_albaqarah
   ;;
+#   *)
+#    # For debugging purposes
+#    play_surat_albaqarah
+#  ;;
 esac
 
 # downloading athan
