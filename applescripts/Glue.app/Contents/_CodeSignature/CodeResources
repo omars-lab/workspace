@@ -6,15 +6,23 @@
 	<dict>
 		<key>Resources/Makefile</key>
 		<data>
-		2UBhUwbuHAdoZqf36S7gmE3WPdQ=
+		TOqfuxetbOtB40OPoEQORl4EnTM=
 		</data>
 		<key>Resources/Scripts/Makefile</key>
 		<data>
 		2ZkG4C9Lj55d0o/BjjDWejPrRB8=
 		</data>
+		<key>Resources/Scripts/glue-resolver</key>
+		<data>
+		cPKTJ7vAoUrKXRag+2M3WpnPcCY=
+		</data>
+		<key>Resources/Scripts/glue.habits.json</key>
+		<data>
+		6PRgSYGST9QI0O4WQNoyDCRs3x0=
+		</data>
 		<key>Resources/Scripts/glue.initiatives.json</key>
 		<data>
-		ThG/PL3/3T/LaVG2s8FOg+OeJpQ=
+		munJYeK2gO67BFudSmpA3U+vX4M=
 		</data>
 		<key>Resources/Scripts/glue.json</key>
 		<data>
@@ -22,11 +30,11 @@
 		</data>
 		<key>Resources/Scripts/handle-path.py</key>
 		<data>
-		47oR2rY5IQ5A6Sr8r1WZHN8IeJ8=
+		ktIHIcFpH+cuPRaa8aeOnwEIrOA=
 		</data>
 		<key>Resources/Scripts/main.scpt</key>
 		<data>
-		l/vvZL5/sRX5XhWYAhlze9CDY0Y=
+		Qrj0RpBNmrBnRP2UnK2Q783740Y=
 		</data>
 		<key>Resources/applet.icns</key>
 		<data>
@@ -38,7 +46,7 @@
 		</data>
 		<key>Resources/description.rtfd/TXT.rtf</key>
 		<data>
-		I3CkL82OVziMdOdTvZVn9MiRGYI=
+		az5HOo7xSqitrITB2ilUsi6BiUw=
 		</data>
 		<key>Resources/description.txt</key>
 		<data>
@@ -51,11 +59,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2UBhUwbuHAdoZqf36S7gmE3WPdQ=
+			TOqfuxetbOtB40OPoEQORl4EnTM=
 			</data>
 			<key>hash2</key>
 			<data>
-			vf9DyQJZrI9NXxRRUa9WbyxZf1p1fP6ZO79g+QRwlb0=
+			JJM/lFRMSOvkQvwGXuvxk+ZYzqD15IhjCSO42WRB5hg=
 			</data>
 		</dict>
 		<key>Resources/Scripts/Makefile</key>
@@ -69,15 +77,37 @@
 			TA7ShYCLQgtOeWT3nnZ/mn4Hu4sBtjR/XgZWxajO5QQ=
 			</data>
 		</dict>
+		<key>Resources/Scripts/glue-resolver</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			cPKTJ7vAoUrKXRag+2M3WpnPcCY=
+			</data>
+			<key>hash2</key>
+			<data>
+			NuFfrnylPBZQbOCqaLRIIVXMIEkeZOP2v6mNmAQjM0s=
+			</data>
+		</dict>
+		<key>Resources/Scripts/glue.habits.json</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			6PRgSYGST9QI0O4WQNoyDCRs3x0=
+			</data>
+			<key>hash2</key>
+			<data>
+			5G1qj0pS1ewkO/m4JbJ0jZHjsFGBg/94BuppUmwL5qI=
+			</data>
+		</dict>
 		<key>Resources/Scripts/glue.initiatives.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ThG/PL3/3T/LaVG2s8FOg+OeJpQ=
+			munJYeK2gO67BFudSmpA3U+vX4M=
 			</data>
 			<key>hash2</key>
 			<data>
-			30CfhtMCr/Uv4XGNJplqlSBJjZ6tzPgyhOkRWvGNE3Q=
+			0vd2dEkGFX2WqfWG65OK+B/ROVyMvPCMwC8VDzkFJCA=
 			</data>
 		</dict>
 		<key>Resources/Scripts/glue.json</key>
@@ -95,22 +125,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			47oR2rY5IQ5A6Sr8r1WZHN8IeJ8=
+			ktIHIcFpH+cuPRaa8aeOnwEIrOA=
 			</data>
 			<key>hash2</key>
 			<data>
-			E9PCR6k6fdx3EjjX7ghG1Ff1GBAp1VD3D/JizR1cTNA=
+			ff0HmQiNhTxmVKiWH+LwDY22p6CsM7GLI5X/wbPvBiY=
 			</data>
 		</dict>
 		<key>Resources/Scripts/main.scpt</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			l/vvZL5/sRX5XhWYAhlze9CDY0Y=
+			Qrj0RpBNmrBnRP2UnK2Q783740Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			a2j4oqnQhkGSHHCkIMkrbHJVlZOl0uJP2zyK6ITy2SE=
+			xKLdSIrP6CPuXr22/78KeXbclXI79uorR+k8mRLjUzM=
 			</data>
 		</dict>
 		<key>Resources/applet.icns</key>
@@ -139,11 +169,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			I3CkL82OVziMdOdTvZVn9MiRGYI=
+			az5HOo7xSqitrITB2ilUsi6BiUw=
 			</data>
 			<key>hash2</key>
 			<data>
-			Se28s76nBde81WaSNh/z4NsDqFkvDYBfFRRcoGNi2II=
+			6H0WtRqh/VXxGwrTsCPp9aKTZZ0IMHL365oDDlsgmFU=
 			</data>
 		</dict>
 		<key>Resources/description.txt</key>
