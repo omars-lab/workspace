@@ -1,5 +1,7 @@
 #!/bin/bash
 
+NOTEPLAN_LINKS_INDEX=$NOTEPLAN_HOME/.links.json
+
 function find-bad-vscode-links() {
     DIR="${1}"
     egrep -roOn 'vscode://file/([^: )]+)(:[0-9]+)*' "${DIR}" \
@@ -23,6 +25,23 @@ function find-bad-iawriter-links() {
         --arg html_space "%20" \
         '"test -f \(.pointer|@sh) || echo \"❌ Broken iawriter link: vscode://file\(.file|gsub($space; $html_space)):\(.errorLine) ❌\n\t- Points To: \(.link) \n\t- Missing File: \(.pointer)\" " '# | sh
 }
+
+function find-bad-noteplan-links() {
+    # Example noteplan xcallback: noteplan://x-callback-url/openNote?fileName=Maintaining%20our%20Relationships.txt
+    # From reference: [[[#Maintaining] [#our] Relationships]]
+    DIR="${1}"
+    jq -src \
+        --arg space " " \
+        --arg html_space "%20" \
+        '. as $input | (.[0] | from_entries) as $noteplanLinksToFilesMap | .[1] | .[] | select($noteplanLinksToFilesMap[.badLink] == null) | "\"❌ Broken noteplan link: vscode://file\(.fileWithBadLink|gsub($space; $html_space)):\(.lineBadLinkOccursOn)  ❌\n\t- Reference doesnt exist: \(.badLink)\"" ' \
+        <(cat ${NOTEPLAN_LINKS_INDEX}) \
+        <(\
+            egrep -roOn '\[\[(.*?)\]\]' "${DIR}" --exclude *.json \
+            | gsed -E 's#^([^:]+):([0-9]+):(\[\[(.*?)\]\])#{"fileWithBadLink":"\1","lineBadLinkOccursOn":"\2","badLink":"\3"}#g' \
+            | jq -s .
+        )
+}
+
 function map_ia_writer_locations_to_files() {
     HATS_DIRNAME=$(basename ${DIR_FOR_HATS})
     # echo ${HATS_DIRNAME} >&2
@@ -33,15 +52,21 @@ function map_ia_writer_locations_to_files() {
         -e "s#/Locations/${HATS_DIRNAME}#${DIR_FOR_HATS}#g"
 }
 
+# This doesnt convert all vscode links ... it ignores most links and only convers vscode links that point to noteplan files into noteplan links ...
 function convert_vscode_urls_to_noteplan() {
     # noteplan://x-callback-url/openNote?fileName=20220512.txt
     # noteplan://x-callback-url/openNote?fileName=Developing%20Software.txt
     gsed -E "s#link: vscode://file${NOTEPLAN_HOME}/(Notes|Calendar)/([^: )]+)(:[0-9]+)?#link: noteplan://x-callback-url/openNote?fileName=\2#g"
 }
 
+# Not good with spaces ...
+# function convert_filepaths_to_noteplan_links() {
+#     gsed -E "s#${NOTEPLAN_HOME}/(Notes|Calendar)/([^: )]+)(:[0-9]+)?#noteplan://x-callback-url/openNote?fileName=\2#g"
+# }
 
 function find-bad-links() {
     find-bad-vscode-links "${NOTEPLAN_HOME}"
+    find-bad-noteplan-links "${NOTEPLAN_HOME}"
     find-bad-iawriter-links "${NOTEPLAN_HOME}"
 
     find-bad-vscode-links "${DIR_FOR_HATS}"
@@ -60,8 +85,22 @@ function find-broken-symlinks() {
             'LINKPOINTER=$(readlink "${0}"); ( test -f "${0}" || test -d "${0}" ) || printf "❌ Broken sym link: %s ❌\n\t- Points To: %s\n" "${0}" "${LINKPOINTER}" ' "{}" \;
 }
 
+function index_noteplan_files() {
+    # https://askubuntu.com/questions/343727/filenames-with-spaces-breaking-for-loop-find-command
+    find ${NOTEPLAN_HOME}/Notes -type f -name '*.*' ! -name ".DS_Store" -print0 \
+        | xargs -0 -I {} bash -c ' \
+            export FILE="${0}"; \
+            export FIRST_LINE=$(head -n 1 "${FILE}" | sed -E "s/^#+ ?//g" | sed -E "s/ *\$//g"); \
+            # echo "${FILE} & ${FIRST_LINE}" ; \
+            jq -n --arg file "${FILE}" --arg firstLine "${FIRST_LINE}" "[\$file, \$firstLine]" \
+        ' {} \
+        | jq -s 'map({key: "[[\(.[1])]]", value: .[0]})' \
+        > ${NOTEPLAN_LINKS_INDEX}
+}
+
 function assert_empty() {
    ! ( egrep '.*' )
 }
 
+index_noteplan_files
 find-bad-links | convert_vscode_urls_to_noteplan | assert_empty
