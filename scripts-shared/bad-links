@@ -16,7 +16,7 @@ function find-bad-vscode-links() {
 
 function find-bad-iawriter-links() {
     DIR="${1}"
-    egrep -roOn 'ia-writer://open[?]path=([^: )]+)(:[0-9]+)*' "${DIR}" \
+    egrep -roOn 'ia-writer://open[?]path=([^: )]+)(:[0-9]+)*' "${DIR}" --exclude '*.sh' \
     | gsed -E 's#^([^:]+):([0-9]+):(ia-writer://open[?]path=([^:]+)(:[0-9]+)?(:[0-9]+)?)#{"file":"\1","errorLine":"\2","link":"\3","pointer":"\4","start":"\5","end":"\6"}#g' \
     | html-decode \
     | map_ia_writer_locations_to_files \
@@ -33,12 +33,13 @@ function find-bad-noteplan-links() {
     jq -src \
         --arg space " " \
         --arg html_space "%20" \
-        '. as $input | (.[0] | from_entries) as $noteplanLinksToFilesMap | .[1] | .[] | select($noteplanLinksToFilesMap[.badLink] == null) | "\"❌ Broken noteplan link: vscode://file\(.fileWithBadLink|gsub($space; $html_space)):\(.lineBadLinkOccursOn)  ❌\n\t- Reference doesnt exist: \(.badLink)\"" ' \
+        '. as $input | (.[0] | from_entries) as $noteplanLinksToFilesMap | .[1] | .[]  | select($noteplanLinksToFilesMap[.badLink] == null) | "❌ Broken noteplan link: vscode://file\(.fileWithBadLink|gsub($space; $html_space)):\(.lineBadLinkOccursOn)  ❌\n\t- Reference doesnt exist: \(.badLink)" ' \
         <(cat ${NOTEPLAN_LINKS_INDEX}) \
         <(\
-            egrep -roOn '\[\[(.*?)\]\]' "${DIR}" --exclude *.json \
+            egrep -roOn '\[\[(.*?)\]\]' "${DIR}" --exclude '*.json' \
+            | grep -v ".*'.*" \
             | gsed -E 's#^([^:]+):([0-9]+):(\[\[(.*?)\]\])#{"fileWithBadLink":"\1","lineBadLinkOccursOn":"\2","badLink":"\3"}#g' \
-            | jq -s .
+            | jq -s '.'
         )
 }
 
@@ -65,8 +66,9 @@ function convert_vscode_urls_to_noteplan() {
 # }
 
 function find-bad-links() {
-    find-bad-vscode-links "${NOTEPLAN_HOME}"
     find-bad-noteplan-links "${NOTEPLAN_HOME}"
+
+    find-bad-vscode-links "${NOTEPLAN_HOME}"
     find-bad-iawriter-links "${NOTEPLAN_HOME}"
 
     find-bad-vscode-links "${DIR_FOR_HATS}"
@@ -92,7 +94,7 @@ function index_noteplan_files() {
             export FILE="${0}"; \
             export FIRST_LINE=$(head -n 1 "${FILE}" | sed -E "s/^#+ ?//g" | sed -E "s/ *\$//g"); \
             # echo "${FILE} & ${FIRST_LINE}" ; \
-            jq -n --arg file "${FILE}" --arg firstLine "${FIRST_LINE}" "[\$file, \$firstLine]" \
+            jq -cn --arg file "${FILE}" --arg firstLine "${FIRST_LINE}" "[\$file, \$firstLine]" \
         ' {} \
         | jq -s 'map({key: "[[\(.[1])]]", value: .[0]})' \
         > ${NOTEPLAN_LINKS_INDEX}
