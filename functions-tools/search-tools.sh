@@ -15,4 +15,3 @@ function google() {
 	SEARCH_TERM=$@
 	/Applications/Firefox.app/Contents/MacOS/firefox --search "${SEARCH_TERM}"
 }
-

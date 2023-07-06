@@ -1,0 +1,63 @@
+#!/bin/bash
+
+source $DIR_FOR_SCRIPTS-shared/find-links
+
+function find-bad-vscode-links() {
+    DIR="${1}"
+    find-vscode-links "${DIR}" \
+    | jq -r \
+        --arg space " " \
+        --arg html_space "%20" \
+        '"test -f \(.pointer|@sh) || echo \"❌ Broken vscode link: vscode://file\(.file|gsub($space; $html_space)):\(.lineWithLink)  ❌\n\t- Points To: \(.link) \n\t- Missing File: \(.pointer)\" " '| sh
+    # '"test -f \(.pointer|@sh) || echo \"Broken link \(.link|gsub($space; $html_space)|@sh) in file vscode://file\(.file|gsub($space; $html_space)):\(.lineWithLink)\"
+}
+
+function find-bad-iawriter-links() {
+    DIR="${1}"
+    find-iawriter-links "${DIR}" \
+    | jq -r \
+        --arg space " " \
+        --arg html_space "%20" \
+        '"test -f \(.pointer|@sh) || echo \"❌ Broken iawriter link: vscode://file\(.file|gsub($space; $html_space)):\(.lineWithLink) ❌\n\t- Points To: \(.link) \n\t- Missing File: \(.pointer)\" " '# | sh
+}
+
+function find-bad-noteplan-links() {
+    # Example noteplan xcallback: noteplan://x-callback-url/openNote?fileName=Maintaining%20our%20Relationships.txt
+    # From reference: [[[#Maintaining] [#our] Relationships]]
+    DIR="${1}"
+    jq -src \
+        --arg space " " \
+        --arg html_space "%20" \
+        '. as $input | (.[0] | from_entries) as $noteplanLinksToFilesMap | .[1] | .[]  | select($noteplanLinksToFilesMap[.link] == null) | "❌ Broken noteplan link: vscode://file\(.file|gsub($space; $html_space)):\(.lineWithLink)  ❌\n\t- Reference doesnt exist: \(.link)" ' \
+        <(cat ${NOTEPLAN_LINKS_INDEX}) \
+        <(find-noteplan-links "${DIR}" | jq -s '.')
+}
+
+function find-bad-links() {
+    find-bad-noteplan-links "${NOTEPLAN_HOME}"
+
+    find-bad-vscode-links "${NOTEPLAN_HOME}"
+    find-bad-iawriter-links "${NOTEPLAN_HOME}"
+
+    find-bad-vscode-links "${DIR_FOR_HATS}"
+    find-bad-iawriter-links "${DIR_FOR_HATS}"
+
+    find-bad-vscode-links "${DIRS_GIT}/blueprints"
+    find-bad-iawriter-links "${DIRS_GIT}/blueprints"
+
+    find-broken-symlinks "${DIR_FOR_HATS}"
+}
+
+function find-broken-symlinks() {
+    find "${1}" \
+        -type l \
+        -exec bash -c \
+            'LINKPOINTER=$(readlink "${0}"); ( test -f "${0}" || test -d "${0}" ) || printf "❌ Broken sym link: %s ❌\n\t- Points To: %s\n" "${0}" "${LINKPOINTER}" ' "{}" \;
+}
+
+function assert_empty() {
+   ! ( egrep '.*' )
+}
+
+index_noteplan_files
+find-bad-links | convert_vscode_urls_to_noteplan | assert_empty

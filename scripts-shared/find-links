@@ -1,0 +1,103 @@
+#!/bin/bash
+
+export NOTEPLAN_LINKS_INDEX=$NOTEPLAN_HOME/.links.json
+
+function map_ia_writer_locations_to_files() {
+    HATS_DIRNAME=$(basename ${DIR_FOR_HATS})
+    # echo ${HATS_DIRNAME} >&2
+    # gsed -E \
+    #     -e "s#/Locations/NotePlan#${NOTEPLAN_ICLOUD_DIR}#g" \
+    #     -e "s#/Locations/iCloud#${DIR_FOR_IA_WRITER_ICLOUD}#g" \
+    #     -e "s#/Locations/iA Writer#${DIR_FOR_IA_WRITER}#g" \
+    #     -e "s#/Locations/${HATS_DIRNAME}#${DIR_FOR_HATS}#g"
+    jq -c \
+        --arg noteplan "${NOTEPLAN_ICLOUD_DIR}" \
+        --arg icloud "${DIR_FOR_IA_WRITER_ICLOUD}" \
+        --arg iawriter "${DIR_FOR_IA_WRITER}" \
+        --arg hatsDirName "${HATS_DIRNAME}" \
+        --arg hatsDir "${DIR_FOR_HATS}" \
+        ' .pointer |= ( gsub("/Locations/NotePlan"; $noteplan) | gsub("/Locations/iCloud"; $icloud) | gsub("/Locations/iA Writer"; $iawriter) | gsub("/Locations/\($hatsDirName)"; $hatsDir) )'
+}
+
+function html_decode_pointer() {
+    jq -c 'import "lib" as lib; .pointer |= lib::url_decode'
+}
+
+function find-vscode-links() {
+    DIR="${1}"
+    egrep -roOn 'vscode://file/([^: )]+)(:[0-9]+)*' "${DIR}" \
+    | gsed -E 's#^([^:]+):([0-9]+):(vscode://file([^:]+)(:[0-9]+)?(:[0-9]+)?)#{"file":"\1","lineWithLink":"\2","link":"\3","pointer":"\4","start":"\5","end":"\6","linkType":"vscode"}#g' \
+    | html_decode_pointer
+}
+
+function find-iawriter-links() {
+    DIR="${1}"
+    egrep -roOn 'ia-writer://open[?]path=([^: )]+)(:[0-9]+)*' "${DIR}" --exclude '*.sh' \
+    | gsed -E 's#^([^:]+):([0-9]+):(ia-writer://open[?]path=([^:]+)(:[0-9]+)?(:[0-9]+)?)#{"file":"\1","lineWithLink":"\2","link":"\3","pointer":"\4","start":"\5","end":"\6","linkType":"iawriter"}#g' \
+    | html_decode_pointer \
+    | map_ia_writer_locations_to_files
+}
+
+function find-noteplan-links() {
+    # Example noteplan xcallback: noteplan://x-callback-url/openNote?fileName=Maintaining%20our%20Relationships.txt
+    # From reference: [[[#Maintaining] [#our] Relationships]]
+    DIR="${1}"
+    jq -src \
+        '. as $input | (.[0] | from_entries) as $noteplanLinksToFilesMap | .[1] | .[] | ( .pointer = $noteplanLinksToFilesMap[.link] ) ' \
+        <(cat ${NOTEPLAN_LINKS_INDEX}) \
+        <(egrep -roOn '\[\[(.*?)\]\]' "${DIR}" --exclude '*.json' \
+            | grep -v ".*'.*" \
+            | gsed -E 's#^([^:]+):([0-9]+):(\[\[(.*?)\]\])#{"file":"\1","lineWithLink":"\2","link":"\3","linkType":"noteplan"}#g'\
+            | jq -s '.'\
+        )
+}
+
+# This doesnt convert all vscode links ... it ignores most links and only convers vscode links that point to noteplan files into noteplan links ...
+function convert_vscode_urls_to_noteplan() {
+    # noteplan://x-callback-url/openNote?fileName=20220512.txt
+    # noteplan://x-callback-url/openNote?fileName=Developing%20Software.txt
+    gsed -E "s#link: vscode://file${NOTEPLAN_HOME}/(Notes|Calendar)/([^: )]+)(:[0-9]+)?#link: noteplan://x-callback-url/openNote?fileName=\2#g"
+}
+
+function append_link_edit_attribute() {
+    jq -c '.editLink = ("vscode://file/\(.file|@uri):\(.lineWithLink)") '
+}
+
+# Not good with spaces ...
+# function convert_filepaths_to_noteplan_links() {
+#     gsed -E "s#${NOTEPLAN_HOME}/(Notes|Calendar)/([^: )]+)(:[0-9]+)?#noteplan://x-callback-url/openNote?fileName=\2#g"
+# }
+
+function index_noteplan_files() {
+    # https://askubuntu.com/questions/343727/filenames-with-spaces-breaking-for-loop-find-command
+    find ${NOTEPLAN_HOME}/Notes -type f -name '*.*' ! -name ".DS_Store" -print0 \
+        | xargs -0 -I {} bash -c ' \
+            export FILE="${0}"; \
+            export FIRST_LINE=$(head -n 1 "${FILE}" | sed -E "s/^#+ ?//g" | sed -E "s/ *\$//g"); \
+            # echo "${FILE} & ${FIRST_LINE}" ; \
+            jq -cn --arg file "${FILE}" --arg firstLine "${FIRST_LINE}" "[\$file, \$firstLine]" \
+        ' {} \
+        | jq -s 'map({key: "[[\(.[1])]]", value: .[0]})' \
+        > ${NOTEPLAN_LINKS_INDEX}
+}
+
+function find-links() {
+
+    find-noteplan-links "${NOTEPLAN_HOME}"
+
+    find-vscode-links "${NOTEPLAN_HOME}"
+    find-iawriter-links "${NOTEPLAN_HOME}"
+
+    find-vscode-links "${DIR_FOR_HATS}"
+    find-iawriter-links "${DIR_FOR_HATS}"
+
+    find-vscode-links "${DIRS_GIT}/blueprints"
+    find-iawriter-links "${DIRS_GIT}/blueprints"
+}
+
+function list-links() {
+    index_noteplan_files
+    find-links | append_link_edit_attribute
+}
+
+# list-links
