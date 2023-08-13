@@ -17,7 +17,7 @@ set -x
 # Posts growl notifications to iOS device using prowl & curl
 
 # Fill in with your own Prowl API key here and remove 123456789
-APIKEY=b4a1db26dfd99882feb7870d8ff0a8a6cdea3df8
+APIKEY=$(cat ~/.secrets/prowl-api-key)
 
 # Post notification to Prowl using curl
 curl -s --globoff https://api.prowlapp.com/publicapi/add \

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import os 
+
 import requests
 
 from selenium import webdriver
@@ -9,7 +11,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 # Fill in with your own Prowl API key here and remove 123456789
-APIKEY = "b4a1db26dfd99882feb7870d8ff0a8a6cdea3df8"
+with open(os.path.expanduser("~/.secrets/prowl-api-key"), "r") as f:
+	APIKEY = f.read().strip()
 
 # https://www.browserstack.com/guide/wait-commands-in-selenium-webdriver
 # https://www.w3schools.com/cssref/css_selectors.php
