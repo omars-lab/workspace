@@ -94,10 +94,3 @@ function find-links() {
     find-vscode-links "${DIRS_GIT}/blueprints"
     find-iawriter-links "${DIRS_GIT}/blueprints"
 }
-
-function list-links() {
-    index_noteplan_files
-    find-links | append_link_edit_attribute
-}
-
-# list-links

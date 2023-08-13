@@ -29,3 +29,46 @@ def url_decode:
          else [ $i + 1, .[1] + $in[$i:$i+1] ]
          end)
   | .[1];  # answer
+
+# https://stackoverflow.com/questions/40366520/replacing-underscores-in-json-using-jq
+def compressPath: (
+  gsub(".*/git/"; "") 
+  | gsub(".*/.noteplan/"; "noteplan/") 
+  | gsub(".*/Locations/"; "iawriter/") 
+  | gsub(".*/Dropbox/"; "dropbox/") 
+  | gsub(" or "; "Or") 
+  | gsub(" "; "") 
+  | gsub(".md$"; "") 
+  | gsub(".txt$"; "") 
+  | gsub( "-(?<a>[a-z])"; .a|ascii_upcase) 
+  | gsub( "-"; "") 
+  | gsub( "/(?<a>[a-z])"; "/\(.a|ascii_upcase)") 
+  | gsub( "/[Oo]verview"; "") 
+  | sub("^(?<a>[a-z])"; .a|ascii_upcase)
+  | gsub( "/./"; "/") 
+  | gsub( "/"; ".") 
+  | gsub( "(?<a>[^a-zA-Z0-9])"; "") 
+  # | gsub( "(?<a>[^a-zA-Z0-9])"; "`\(.a)") 
+);
+
+def replaceSingleQuote:(
+  gsub("[']"; "") 
+  | gsub("/./"; "/")
+);
+
+def deriveNodeCipher:(
+  . as $link 
+  | [
+    "CREATE (\($link.fileName):File {name: '\($link.fileName)', path:'\($link.file|replaceSingleQuote)'})",
+    "CREATE (\($link.pointerName):File {name: '\($link.pointerName)', path:'\($link.pointer|replaceSingleQuote)'})"
+  ] 
+  | .[]
+);
+
+def deriveRelCipher:(
+  . as $link 
+  | [
+    "CREATE (\($link.fileName))-[:REFERENCES {line:'\($link.lineWithLink)', link: '\($link.link|replaceSingleQuote)', type: '\($link.linkType)'}]->(\($link.pointerName))"
+  ] 
+  | .[]
+);

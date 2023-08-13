@@ -1,0 +1,34 @@
+#!/bin/bash
+
+source $DIR_FOR_SCRIPTS-shared/find-links
+LINKS_FILE=$(mktemp)
+
+function list-links() {
+    index_noteplan_files
+    find-links | append_link_edit_attribute
+}
+
+function deriveNodeNameForAttributeWithFile() {
+    jq -c --arg attribute ${1} 'import "lib" as lib; (.["\($attribute)Name"] = ( .["\($attribute)"] | lib::compressPath ))'
+}
+
+function deriveNodeCipher() {
+    jq -rc 'import "lib" as lib; lib::deriveNodeCipher' ${LINKS_FILE} \
+        | sort \
+        | uniq
+}
+
+function deriveRelCipher() {
+    jq -rc 'import "lib" as lib; lib::deriveRelCipher' ${LINKS_FILE} \
+        | sort
+}
+
+list-links \
+    | deriveNodeNameForAttributeWithFile file \
+    | deriveNodeNameForAttributeWithFile pointer \
+    > ${LINKS_FILE}
+
+deriveNodeCipher
+deriveRelCipher
+
+rm ${LINKS_FILE}
