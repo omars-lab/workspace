@@ -1,7 +1,7 @@
 # DEFAULTS ...
   export DEFAULT_CONDA_ENV=${DEFAULT_CONDA_ENV:-cogenv3}
   
-  export DEFAULT_NVM_ENV=${DEFAULT_NVM_ENV:-v12.7.0}
+  export DEFAULT_NVM_ENV=${DEFAULT_NVM_ENV:-v18.19.0}
 
 # The docker machine we want to use as defaul for docker-machine
   # export DEFAULT_DOCKER_MACHINE=default

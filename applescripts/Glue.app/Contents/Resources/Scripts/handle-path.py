@@ -19,12 +19,16 @@ def not_found_mapper(x):
     return "https://www.disney.com/404"
 
 def grep_ril(directory, term):
-    log.error(directory)
-    log.error(term)
+    log.debug(directory)
+    log.debug(term)
     # https://stackoverflow.com/questions/7607879/git-grep-and-word-boundaries-on-mac-os-x-and-bsd
-    process = subprocess.Popen([
-        'grep', '-rilw', f"{term}[[:>:]]", f'{directory}'
-        ],
+    # https://www.warp.dev/terminus/grep-in-directory#grep-r-vs-R
+    command = [
+        '/usr/local/bin/ggrep', '-Rilw', f"{term}", f'{directory}'
+    ]
+    log.debug(" ".join(command))
+    process = subprocess.Popen(
+        command,
         stdout=subprocess.PIPE, 
         stderr=subprocess.PIPE
     )
@@ -50,7 +54,7 @@ def get_mapper(url):
         search_dir = os.path.expanduser(f"~/workplace/git/{url.netloc}")
         results, errs = grep_ril(search_dir, url.fragment)
         if len(results) < 1:
-            log.error(f"No results found for grep {url.fragment}")
+            log.error(f"No results found for grep [{url.fragment}] in [{search_dir}]")
             # Add a debugging screen here ... 
             # return not_found_mapper
             return lambda x: f"file://{search_dir}"
@@ -60,6 +64,8 @@ def get_mapper(url):
                 f"#{url.fragment} occurs {len(results)} times in {search_dir}", 
                 f"More than 1 result for grep {url.fragment}, taking first result from: {results}"
             )
+        log.debug(f"STDOUT {results}")
+        log.debug(f"STDERR {errs}")
         return (lambda x: f"vscode://file/{results[0]}")
     return (lambda x: open_json(os.path.expanduser("~/.glue.json"))[x])
 
@@ -102,6 +108,9 @@ if __name__ == "__main__":
         format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
         datefmt='%Y-%m-%dT%H:%M:%S'
     )
-    main()
+    try:
+        main()
+    except Exception as e:
+        log.error(f"Exception: {e}")
 
 # /usr/local/bin/python3 /Applications/Glue.app/Contents/Resources/Scripts/handle-path.py ""
