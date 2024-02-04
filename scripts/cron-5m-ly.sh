@@ -36,6 +36,9 @@ function update_shortcuts() {
 function main() {
   echo "Initiated 5m Cron as $(whoami)"
   update_shortcuts
+  echo "Before selenium run"
+  ${DIR}/selenium-swappa.py
+  echo "After selenium run"
   echo "Done updating hourly shortcuts"
 }
 

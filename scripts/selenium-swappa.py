@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import os 
 
@@ -24,7 +24,7 @@ with open(os.path.expanduser("~/.secrets/prowl-api-key"), "r") as f:
 
 options = Options()
 # To hide browser ...
-# options.add_argument("--headless=new")
+options.add_argument("--headless=new")
 options.page_load_strategy = 'normal'
 driver = webdriver.Chrome(options=options)
 
