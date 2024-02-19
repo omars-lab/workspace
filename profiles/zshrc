@@ -195,9 +195,9 @@ function continue-loading-profile() {
       eval "$__conda_setup"
   else
       if [ -f "/usr/local/bin/miniconda3/etc/profile.d/conda.sh" ]; then
-          . "/usr/local/bin/miniconda3/etc/profile.d/conda.sh"
+# . "/usr/local/bin/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
       else
-          export PATH="/usr/local/bin/miniconda3/bin:$PATH"
+# export PATH="/usr/local/bin/miniconda3/bin:$PATH"  # commented out by conda initialize
       fi
   fi
   unset __conda_setup

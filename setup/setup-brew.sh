@@ -14,6 +14,10 @@ fi
 
 # Install brew packages
 # https://github.com/kislyuk/yq
+
+#   brew services start pulseaudio
+
+# brew install pulseaudio
 # brew_upstall python-yq
 # brew_upstall maven
 # brew_upstall jq
