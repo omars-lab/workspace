@@ -8,4 +8,5 @@ arrow
 catt
 lark-parser
 spacy >= 2.3.2
+ipdb
 selenium

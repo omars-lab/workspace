@@ -7,6 +7,9 @@ setup:
 	conda create -n "${CONDA_ENV}" python=3.7 pip -y
 	conda run -n "${CONDA_ENV}" pip install -r ${MAKEFILE_DIR}/requirements.txt
 
+install:
+	conda run -n "${CONDA_ENV}" pip install ipdb
+
 activate:
 	@ echo conda activate $$(basename ${PWD})
 
@@ -24,3 +27,11 @@ brew-install:
 	
 brew-test:
 	echo "Running Brew Test"
+
+# https://stackoverflow.com/questions/66603976/jq-handling-empty-strings-and-replacing-them-with-a-default-value
+passwords:
+	lpass ls | \
+		egrep -o '\[id: (\d+)\]' | \
+		egrep -o '\d+' | \
+		xargs lpass show -j | \
+		jq -r 'map(select(.name|contains("Yahoo")))|.[]|. as $$secret|([$$secret.name|ascii_upcase|gsub("[- ()]";"_"), ($$secret.note//""|select(. != "")//$$secret.password)]|"\(.[0])=\(.[1])")' > ~/.secrets/yahoo-password
