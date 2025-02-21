@@ -7,25 +7,25 @@ conda activate workspace
 
 function update_shortcuts() {
 
-  # DONE="$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
-  # BINNED_NOW=$(date +'%Y-%m-%dT%H:00:00%z')
+  DONE="$(date +'@done(%Y-%m-%d %H:%M %p)') #usedShortcut"
+  BINNED_NOW=$(date +'%Y-%m-%dT%H:00:00%z')
 
-  # shortcuts-clean.sh "hour"
-  # shortcuts-clean.sh "now"
-  # shortcuts-clean.sh "done"
+  shortcuts-clean.sh "hour"
+  shortcuts-clean.sh "now"
+  shortcuts-clean.sh "done"
 
-  # sleep 1 
+  sleep 1 
 
-  # /usr/local/bin/shortcuts update '#hour' "${BINNED_NOW}"
-  # /usr/local/bin/shortcuts update '@hour' "${BINNED_NOW}"
-  # /usr/local/bin/shortcuts update '>hour' "${BINNED_NOW}"
+  /usr/local/bin/shortcuts update '#hour' "${BINNED_NOW}"
+  /usr/local/bin/shortcuts update '@hour' "${BINNED_NOW}"
+  /usr/local/bin/shortcuts update '>hour' "${BINNED_NOW}"
 
-  # /usr/local/bin/shortcuts update '#now' "${BINNED_NOW}"
-  # /usr/local/bin/shortcuts update '@now' "${BINNED_NOW}"
-  # /usr/local/bin/shortcuts update '>now' "${BINNED_NOW}"
+  /usr/local/bin/shortcuts update '#now' "${BINNED_NOW}"
+  /usr/local/bin/shortcuts update '@now' "${BINNED_NOW}"
+  /usr/local/bin/shortcuts update '>now' "${BINNED_NOW}"
 
-  # /usr/local/bin/shortcuts update '#done' "${DONE}"
-  # /usr/local/bin/shortcuts update '>done' "${DONE}"
+  /usr/local/bin/shortcuts update '#done' "${DONE}"
+  /usr/local/bin/shortcuts update '>done' "${DONE}"
   
   # Results in cyclic deps with noteplan when shifting ...
   # /usr/local/bin/shortcuts update '@done' "${DONE}"
@@ -35,11 +35,10 @@ function update_shortcuts() {
 
 function main() {
   echo "Initiated 5m Cron as $(whoami)"
-  update_shortcuts
-  echo "Before selenium run"
-  ${DIR}/selenium-swappa.py
-  echo "After selenium run"
-  echo "Done updating hourly shortcuts"
+  # update_shortcuts
+  echo "Done updating shortcuts"
+  # ${DIR}/selenium-swappa.py
+  echo "Done running selenium"
 }
 
 # Do specific things on specific computers ...
