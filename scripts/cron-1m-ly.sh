@@ -58,8 +58,9 @@ function all {
 
 function main() (
   echo "Initiated 1m Cron as $(whoami)"
-  play_athan
-  play_quran
+  # Moved athan to launctrl
+  # play_athan
+  # play_quran
   ${DIR}/check-apis.sh
   git -C "${REPO_ROOT}" pull
   # run-homeassistant.sh
