@@ -29,7 +29,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker macos brew node npm python zsh-completions kubectl history)
+plugins=(git docker macos brew node npm python zsh-completions history)
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -218,3 +218,5 @@ function continue-loading-profile() {
   nvm use ${DEFAULT_NVM_ENV}
 
 }
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

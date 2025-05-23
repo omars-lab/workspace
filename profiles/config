@@ -26,3 +26,7 @@ host personal-aws-instance
 host personal-server
 	HostName 192.168.1.252
 	IdentityFile ~/.ssh/id_rsa
+
+host genai-server
+  User omareid
+  HostName omars-mac-mini.attlocal.net

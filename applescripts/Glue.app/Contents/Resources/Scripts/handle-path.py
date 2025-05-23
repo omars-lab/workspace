@@ -39,7 +39,7 @@ def open_json(filename):
     with open(filename) as fh:
         return json.load(fh)
 
-DIRS_WITH_TAGS=["blueprints"]
+DIRS_WITH_TAGS=["blueprints", "artifacts"]
 
 # - [x] Add the notion of a resolver ... that has different resolving algorithms .. @done(2023-01-09T08:18:17-06:00)
 def get_mapper(url):
