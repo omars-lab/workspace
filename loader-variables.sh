@@ -20,5 +20,6 @@ source ${CURRENT_DIR}/variables/apps.sh
 source ${CURRENT_DIR}/variables/aws.sh
 source ${CURRENT_DIR}/variables/opts.sh
 # Intentionally setting variables last
+source ${CURRENT_DIR}/variables/secrets.sh
 source ${CURRENT_DIR}/variables/path.sh
 source ${CURRENT_DIR}/overrides/$(get_uniq_mac_id)/variables.sh

@@ -29,3 +29,5 @@ export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/:$P
 # export PATH="/usr/local/MacGPG2/bin:$PATH"
 # export PATH="/Users/oeid/Library/Python/3.5/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

@@ -21,10 +21,8 @@ else
   exit 1
 fi
 
-#  - [ ] Make shared variables ...
+# - [ ] Make shared variables ...
 # - [ ] Todo ... add work location here ... but prefer icloud ...
-
-export NOTEPLAN_HOME=${HOME}/.noteplan
 
 echo Sourcing "${LOADER_SCRIPT}" >&2
 source ${LOADER_SCRIPT}

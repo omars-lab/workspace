@@ -4,6 +4,22 @@
 #   users | sed -e "s/$(whoami)//g" -e 's/ *//g'
 # }
 
+function secret() {
+	PASSWORD="${1}"
+	/usr/bin/security find-generic-password -l ${PASSWORD} 2>/dev/null >/dev/null || echo "Not found: ${PASSWORD}" >&2
+	bash -c "/usr/bin/sudo /usr/bin/security find-generic-password -l ${PASSWORD} -w | tr -d '\n' | pbcopy"
+}
+
+function lpass-get-note() {
+	# SECRET_NAME=${1}
+	# GROUP_ID=${2:-automation}
+	# SECRET_ID=$(lpass ls automation | grep "${SECRET_NAME}" | egrep -o -E 'id: ([0-9]+)' | sed 's/id: //g')
+	# lpass show -j automation/chatgpt-apikey
+	SECRET_ID=${1:?Secret Id Required}
+	echo "Secret ID: ${SECRET_ID}" >&2
+	lpass show -j ${SECRET_ID} | jq -r '.[]|.note'
+}
+
 function get_other_user(){
   USERS=$(dscl . list /Users | grep -v "^_" | grep --color=never eid | tr '\n' ' ')
   # This lists all "logged in" users ... this wont work if I first boot up the mac ...

@@ -2,6 +2,8 @@
 
 DEFAULT_FORMAT='+%Y-%m-%d'
 
+# date -u +"%Y-%m-%dT%H:%M:%SZ"
+
 function utc_now(){
   date -u +"%Y-%m-%dT%H:%M:%SZ"
 }

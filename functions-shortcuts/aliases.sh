@@ -24,3 +24,9 @@ alias atom="/Applications/Atom.app/Contents/Resources/app/atom.sh"
 alias x='chmod +x'
 
 alias rehash='hash -r'
+
+alias openscad='/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD'
+
+function llm() {
+    OPENAI_API_KEY=${OPENAI_API_KEY} codex $@
+}

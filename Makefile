@@ -1,13 +1,14 @@
 SHELL := /bin/bash
 MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-CONDA_ENV := $$(basename $${PWD})
+CONDA_ENV := workspace
 .PHONY: setup activate 
 
 setup:
-	conda create -n "${CONDA_ENV}" python=3.7 pip -y
-	conda run -n "${CONDA_ENV}" pip install -r ${MAKEFILE_DIR}/requirements.txt
+	(conda env list --json | jq ".envs.[]" | grep envs/ | xargs -n1 basename | grep -q ${CONDA_ENV}) \
+		|| conda create -n "${CONDA_ENV}" python=3.12 pip -y
 
-install:
+install: 
+	conda run -n "${CONDA_ENV}" pip install -r ${MAKEFILE_DIR}/requirements.txt
 	conda run -n "${CONDA_ENV}" pip install ipdb
 
 activate:

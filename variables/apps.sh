@@ -13,6 +13,10 @@
   EDITOR=vim;
   export EDITOR
 
+# Noteplan
+  export NOTEPLAN_LEGACY_HOME=${HOME}/.noteplan
+  export NOTEPLAN_HOME=${HOME}/Library/Containers/co.noteplan.NotePlan3/Data/Library/Application\ Support/co.noteplan.NotePlan3
+
 # The path of python site packages
 #   export PYTHON_SITE_PACKAGES=/usr/local/lib/python2.7/site-packages
 
