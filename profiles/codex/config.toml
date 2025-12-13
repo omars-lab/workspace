@@ -1,11 +1,58 @@
-# https://github.com/openai/codex/blob/main/.github/codex/home/config.toml
-# https://medium.com/dyfrad/getting-started-with-openai-codex-cli-on-macos-a-hands-on-guide-e8a9146991a5
-# https://platform.openai.com/docs/pricing#text-tokens
-model = "gpt-4.1-mini"
-projects = { "/Users/omareid/Workspace/git/tidy-mcp" = { trust_level = "trusted" } }
 
-# Consider setting [mcp_servers] here!
+file_opener = 'vscode'
+hide_agent_reasoning = true
+
+[projects."/Users/omareid/Workspace/git/workspace"]
+trust_level = "trusted"
+
+[projects."/Users/omareid/Workspace/git/tidy-mcp"]
+trust_level = "trusted"
+
+# Recall that in TOML, root keys must be listed before tables.
+# model = "gpt-4o"
+model = "gpt-4o-mini"
+model_provider = "openai-chat-completions"
+
+[projects."/Users/omareid/Workspace/git"]
+trust_level = "trusted"
+
+[model_providers.openai-chat-completions]
+# Name of the provider that will be displayed in the Codex UI.
+name = "OpenAI using Chat Completions"
+# The path `/chat/completions` will be amended to this URL to make the POST
+# request for the chat completions.
+base_url = "https://api.openai.com/v1"
+# If `env_key` is set, identifies an environment variable that must be set when
+# using Codex with this provider. The value of the environment variable must be
+# non-empty and will be used in the `Bearer TOKEN` HTTP header for the POST request.
+env_key = "OPENAI_API_KEY"
+# Valid values for wire_api are "chat" and "responses". Defaults to "chat" if omitted.
+wire_api = "chat"
+# If necessary, extra query params that need to be added to the URL.
+# See the Azure example below.
+query_params = {}
+
+# model_provider = "ollama"
+# model = "gemma3" doesnt support tools?
+# model = "qwen3:4b" #  takes too long 
+# model = "qwen3:8b" takes too long
+# model = 'deepseek-r1:1.5b' doestn support tools 
+# model = 'llama3.2:3b' slow ...
+# model = 'llama3.2:1b'
+
+[model_providers.ollama]
+name = "Ollama"
+base_url = "http://127.0.0.1:11434/v1"
+
 [mcp_servers.tidy-mcp]
 command = "/usr/local/bin/miniconda3/envs/tidy-mcp/bin/python"
-args = ["-m", "notes_mcp"]
-env = { "KEY" = "VALUE" }
+args = ["-m", "tidy_mcp"]
+#base_url = "http://192.168.1.252:11434/v1"
+# wire_api = "responses"
+
+# Consider setting [mcp_servers] here!
+# [mcp_servers.tidy-mcp]
+# command = "/usr/local/bin/miniconda3/envs/tidy-mcp/bin/python"
+# args = ["-m", "notes_mcp"]
+# env = { "KEY" = "VALUE" }
+

@@ -1,0 +1,45 @@
+# Makefile-scripts-role-management
+# Examples of calling each script in scripts-role-management/ directory
+# See scripts-role-management.md for full documentation
+
+SHELL := /bin/bash
+MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+SCRIPTS_DIR := $(MAKEFILE_DIR)/../scripts-role-management
+.PHONY: help
+
+help:
+	@echo "Available script examples:"
+	@echo "  make -f docs/Makefile-scripts-role-management <script-name>"
+	@echo ""
+	@echo "See docs/scripts-role-management.md for full documentation"
+
+.PHONY: activity-history fix-permissions managing-links role-metrics role-refactoring
+.PHONY: learning-catalog-link learning-catalog-refresh-links
+
+activity-history:
+	@echo "Example: Track activity history"
+	@echo "  $(SCRIPTS_DIR)/activity-history.sh"
+
+fix-permissions:
+	@echo "Example: Fix file permissions"
+	@echo "  $(SCRIPTS_DIR)/fix-permissions.sh"
+
+managing-links:
+	@echo "Example: Manage links"
+	@echo "  $(SCRIPTS_DIR)/managing-links.sh"
+
+role-metrics:
+	@echo "Example: Generate role metrics"
+	@echo "  $(SCRIPTS_DIR)/role-metrics.sh"
+
+role-refactoring:
+	@echo "Example: Refactor roles"
+	@echo "  $(SCRIPTS_DIR)/role-refactoring.sh"
+
+learning-catalog-link:
+	@echo "Example: Generate learning catalog link"
+	@echo "  $(SCRIPTS_DIR)/Generate Learning Catalog/link.sh"
+
+learning-catalog-refresh-links:
+	@echo "Example: Refresh learning catalog links"
+	@echo "  $(SCRIPTS_DIR)/Generate Learning Catalog/refresh-links.sh"

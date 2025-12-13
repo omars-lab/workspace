@@ -1,0 +1,32 @@
+# Makefile-backup
+# Examples of calling each script in backup/ directory
+# See backup.md for full documentation
+
+SHELL := /bin/bash
+MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+SCRIPTS_DIR := $(MAKEFILE_DIR)/../backup
+.PHONY: help
+
+help:
+	@echo "Available script examples:"
+	@echo "  make -f docs/Makefile-backup <script-name>"
+	@echo ""
+	@echo "See docs/backup.md for full documentation"
+
+.PHONY: backup-laptop icloud-sync reload-laptop-one-time reload-laptop
+
+backup-laptop:
+	@echo "Example: Backup laptop"
+	@echo "  $(SCRIPTS_DIR)/backup-laptop.sh"
+
+icloud-sync:
+	@echo "Example: Sync with iCloud"
+	@echo "  $(SCRIPTS_DIR)/icloud-sync"
+
+reload-laptop-one-time:
+	@echo "Example: One-time laptop reload"
+	@echo "  $(SCRIPTS_DIR)/reload-laptop-one-time.sh"
+
+reload-laptop:
+	@echo "Example: Reload laptop configuration"
+	@echo "  $(SCRIPTS_DIR)/reload-laptop.sh"

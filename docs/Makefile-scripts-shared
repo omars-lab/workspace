@@ -1,0 +1,99 @@
+# Makefile-scripts-shared
+# Examples of calling each script in scripts-shared/ directory
+# See scripts-shared.md for full documentation
+
+SHELL := /bin/bash
+MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+SCRIPTS_DIR := $(MAKEFILE_DIR)/../scripts-shared
+.PHONY: help
+
+help:
+	@echo "Available script examples:"
+	@echo "  make -f docs/Makefile-scripts-shared <script-name>"
+	@echo ""
+	@echo "See docs/scripts-shared.md for full documentation"
+
+.PHONY: color date-deltas find-links firefox-tabs html-decode html-encode
+.PHONY: interleave lib-jq list-links noteplan parse-case print-link
+.PHONY: print-vscode-link resolve search sed-dates sed-dates-reducer
+.PHONY: sed-dates-test validate-links vscode-link
+
+color:
+	@echo "Example: Color utilities"
+	@echo "  $(SCRIPTS_DIR)/color <args>"
+
+date-deltas:
+	@echo "Example: Calculate date differences"
+	@echo "  $(SCRIPTS_DIR)/date-deltas <date1> <date2>"
+
+find-links:
+	@echo "Example: Find links in files"
+	@echo "  $(SCRIPTS_DIR)/find-links <directory>"
+
+firefox-tabs:
+	@echo "Example: Manage Firefox tabs"
+	@echo "  $(SCRIPTS_DIR)/firefox-tabs <command>"
+
+html-decode:
+	@echo "Example: Decode HTML entities"
+	@echo "  $(SCRIPTS_DIR)/html-decode <input>"
+
+html-encode:
+	@echo "Example: Encode to HTML entities"
+	@echo "  $(SCRIPTS_DIR)/html-encode <input>"
+
+interleave:
+	@echo "Example: Interleave lines"
+	@echo "  $(SCRIPTS_DIR)/interleave <file1> <file2>"
+
+lib-jq:
+	@echo "Example: Use jq library"
+	@echo "  jq -f $(SCRIPTS_DIR)/lib.jq <input.json>"
+
+list-links:
+	@echo "Example: List all links"
+	@echo "  $(SCRIPTS_DIR)/list-links <directory>"
+
+noteplan:
+	@echo "Example: NotePlan utilities"
+	@echo "  $(SCRIPTS_DIR)/noteplan <command>"
+
+parse-case:
+	@echo "Example: Parse text case"
+	@echo "  $(SCRIPTS_DIR)/parse-case <input>"
+
+print-link:
+	@echo "Example: Print formatted link"
+	@echo "  $(SCRIPTS_DIR)/print-link <link>"
+
+print-vscode-link:
+	@echo "Example: Print VSCode link"
+	@echo "  $(SCRIPTS_DIR)/print-vscode-link <file>"
+
+resolve:
+	@echo "Example: Resolve file paths"
+	@echo "  $(SCRIPTS_DIR)/resolve <path>"
+
+search:
+	@echo "Example: Search utilities"
+	@echo "  $(SCRIPTS_DIR)/search <pattern> <directory>"
+
+sed-dates:
+	@echo "Example: Sed date manipulation"
+	@echo "  $(SCRIPTS_DIR)/sed-dates <input>"
+
+sed-dates-reducer:
+	@echo "Example: Reduce date data"
+	@echo "  $(SCRIPTS_DIR)/sed-dates-reducer <input>"
+
+sed-dates-test:
+	@echo "Example: Test sed-dates"
+	@echo "  $(SCRIPTS_DIR)/sed-dates.test"
+
+validate-links:
+	@echo "Example: Validate links"
+	@echo "  $(SCRIPTS_DIR)/validate-links <directory>"
+
+vscode-link:
+	@echo "Example: Generate VSCode link"
+	@echo "  $(SCRIPTS_DIR)/vscode-link <file>"

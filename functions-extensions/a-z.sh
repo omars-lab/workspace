@@ -1,4 +1,8 @@
-alias c=pbcopy-chrome-link
+function c() {
+    export OPENAI_API_KEY=${OPENAI_API_KEY:-$(lpass-get-note automation/chatgpt-apikey)}
+    codex $@
+}
+
 alias d="open-document-link"
 alias e=fzf-executables
 alias f='fzf'

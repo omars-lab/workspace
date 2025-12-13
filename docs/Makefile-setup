@@ -1,0 +1,53 @@
+# Makefile-setup
+# Examples of calling each script in setup/ directory
+# See setup.md for full documentation
+
+SHELL := /bin/bash
+MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+SCRIPTS_DIR := $(MAKEFILE_DIR)/../setup
+.PHONY: help
+
+help:
+	@echo "Available script examples:"
+	@echo "  make -f docs/Makefile-setup <script-name>"
+	@echo ""
+	@echo "See docs/setup.md for full documentation"
+
+.PHONY: setup-all setup-apps setup-binaries setup-brew setup-cron
+.PHONY: setup-git setup-link setup-python setup-zsh
+
+setup-all:
+	@echo "Example: Run all setup scripts"
+	@echo "  $(SCRIPTS_DIR)/setup-all.sh"
+
+setup-apps:
+	@echo "Example: Setup applications"
+	@echo "  $(SCRIPTS_DIR)/setup-apps.sh"
+
+setup-binaries:
+	@echo "Example: Setup binaries"
+	@echo "  $(SCRIPTS_DIR)/setup-binaries.sh"
+
+setup-brew:
+	@echo "Example: Setup Homebrew"
+	@echo "  $(SCRIPTS_DIR)/setup-brew.sh"
+
+setup-cron:
+	@echo "Example: Setup crontab"
+	@echo "  $(SCRIPTS_DIR)/setup-cron.sh"
+
+setup-git:
+	@echo "Example: Setup git"
+	@echo "  $(SCRIPTS_DIR)/setup-git.sh"
+
+setup-link:
+	@echo "Example: Setup symlinks"
+	@echo "  $(SCRIPTS_DIR)/setup-link.sh"
+
+setup-python:
+	@echo "Example: Setup Python"
+	@echo "  $(SCRIPTS_DIR)/setup-python.sh"
+
+setup-zsh:
+	@echo "Example: Setup zsh"
+	@echo "  $(SCRIPTS_DIR)/setup-zsh.sh"

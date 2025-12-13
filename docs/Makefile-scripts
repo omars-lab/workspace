@@ -1,0 +1,447 @@
+# Makefile-scripts
+# Examples of calling each script in this repository
+# See scripts.md for full documentation
+
+SHELL := /bin/bash
+MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+SCRIPTS_DIR := $(MAKEFILE_DIR)/../scripts
+.PHONY: help
+
+help:
+	@echo "Available script examples:"
+	@echo "  make -f docs/Makefile-scripts <script-name>"
+	@echo ""
+	@echo "See docs/scripts.md for full documentation"
+
+# ============================================================================
+# Shell Scripts (.sh)
+# ============================================================================
+
+.PHONY: check-apis check-disneyworld check-fridge create-initiative
+.PHONY: cron-1d-ly cron-1h-ly cron-1m-ly cron-5m-ly cron-common cron-generate-crontab cron-player
+.PHONY: download-videos functions hook-button-* image-ocr increment-and-get-counter
+.PHONY: login-script-installer noteplan-date-appender noteplan-helpers notify-iphone ocr
+.PHONY: paste2-loader python-stderr-to-vscode quotes-export report-tasks
+.PHONY: run-homeassistant send-imessage shortcuts-clean shortcuts-update
+.PHONY: start-homeassistant svg-to-png switch-users sync-secrets-locally validate-notes
+.PHONY: hook-button-cicle
+
+check-apis:
+	@echo "Example: Check APIs"
+	@echo "  $(SCRIPTS_DIR)/check-apis.sh"
+
+check-disneyworld:
+	@echo "Example: Check Disney World availability"
+	@echo "  $(SCRIPTS_DIR)/check-disneyworld.sh"
+
+check-fridge:
+	@echo "Example: Check fridge status"
+	@echo "  $(SCRIPTS_DIR)/check-fridge.sh"
+
+create-initiative:
+	@echo "Example: Create initiative"
+	@echo "  $(SCRIPTS_DIR)/create-initiative.sh <name>"
+
+cron-1d-ly:
+	@echo "Example: Daily cron job"
+	@echo "  $(SCRIPTS_DIR)/cron-1d-ly.sh"
+
+cron-1h-ly:
+	@echo "Example: Hourly cron job"
+	@echo "  $(SCRIPTS_DIR)/cron-1h-ly.sh"
+
+cron-1m-ly:
+	@echo "Example: Monthly cron job"
+	@echo "  $(SCRIPTS_DIR)/cron-1m-ly.sh"
+
+cron-5m-ly:
+	@echo "Example: 5-minute cron job"
+	@echo "  $(SCRIPTS_DIR)/cron-5m-ly.sh"
+
+cron-common:
+	@echo "Example: Common cron utilities"
+	@echo "  source $(SCRIPTS_DIR)/cron-common.sh"
+
+cron-generate-crontab:
+	@echo "Example: Generate crontab"
+	@echo "  $(SCRIPTS_DIR)/cron-generate-crontab.sh"
+
+cron-player:
+	@echo "Example: Play cron jobs"
+	@echo "  $(SCRIPTS_DIR)/cron-player.sh"
+
+download-videos:
+	@echo "Example: Download videos"
+	@echo "  $(SCRIPTS_DIR)/download-videos.sh <url>"
+
+functions:
+	@echo "Example: Load functions"
+	@echo "  source $(SCRIPTS_DIR)/functions.sh"
+
+hook-button-black:
+	@echo "Example: Hook button black"
+	@echo "  $(SCRIPTS_DIR)/hook-button-black.sh"
+
+hook-button-cicle:
+	@echo "Example: Hook button circle (typo in filename)"
+	@echo "  $(SCRIPTS_DIR)/hook-button-cicle.sh"
+
+hook-button-circle:
+	@echo "Example: Hook button circle"
+	@echo "  $(SCRIPTS_DIR)/hook-button-circle.sh"
+
+hook-button-cross:
+	@echo "Example: Hook button cross"
+	@echo "  $(SCRIPTS_DIR)/hook-button-cross.sh"
+
+hook-button-minus:
+	@echo "Example: Hook button minus"
+	@echo "  $(SCRIPTS_DIR)/hook-button-minus.sh"
+
+hook-button-plus:
+	@echo "Example: Hook button plus"
+	@echo "  $(SCRIPTS_DIR)/hook-button-plus.sh"
+
+hook-button-square:
+	@echo "Example: Hook button square"
+	@echo "  $(SCRIPTS_DIR)/hook-button-square.sh"
+
+hook-button-triangle:
+	@echo "Example: Hook button triangle"
+	@echo "  $(SCRIPTS_DIR)/hook-button-triangle.sh"
+
+image-ocr:
+	@echo "Example: Extract text from image using OCR"
+	@echo "  $(SCRIPTS_DIR)/image-ocr.sh screenshot.png"
+
+increment-and-get-counter:
+	@echo "Example: Increment and get counter"
+	@echo "  $(SCRIPTS_DIR)/increment-and-get-counter.sh <counter-name>"
+
+login-script-installer:
+	@echo "Example: Install login script"
+	@echo "  $(SCRIPTS_DIR)/login-script-installer.sh"
+
+noteplan-date-appender:
+	@echo "Example: Append date to NotePlan"
+	@echo "  $(SCRIPTS_DIR)/noteplan-date-appender.sh"
+
+noteplan-helpers:
+	@echo "Example: NotePlan helper functions"
+	@echo "  source $(SCRIPTS_DIR)/noteplan-helpers.sh"
+
+notify-iphone:
+	@echo "Example: Send notification to iPhone"
+	@echo "  $(SCRIPTS_DIR)/notify-iphone.sh \"Message\""
+
+ocr:
+	@echo "Example: OCR screenshots"
+	@echo "  $(SCRIPTS_DIR)/ocr.sh"
+
+paste2-loader:
+	@echo "Example: Load paste2 script"
+	@echo "  $(SCRIPTS_DIR)/paste2-loader.sh"
+
+python-stderr-to-vscode:
+	@echo "Example: Redirect Python stderr to VSCode"
+	@echo "  $(SCRIPTS_DIR)/python-stderr-to-vscode.sh <python-script>"
+
+quotes-export:
+	@echo "Example: Export quotes"
+	@echo "  $(SCRIPTS_DIR)/quotes-export.sh"
+
+report-tasks:
+	@echo "Example: Report tasks"
+	@echo "  $(SCRIPTS_DIR)/report-tasks.sh"
+
+run-homeassistant:
+	@echo "Example: Run Home Assistant"
+	@echo "  $(SCRIPTS_DIR)/run-homeassistant.sh"
+
+send-imessage:
+	@echo "Example: Send iMessage"
+	@echo "  $(SCRIPTS_DIR)/send-imessage.sh <phone-number> \"Message\""
+
+shortcuts-clean:
+	@echo "Example: Clean shortcuts"
+	@echo "  $(SCRIPTS_DIR)/shortcuts-clean.sh"
+
+shortcuts-update:
+	@echo "Example: Update shortcuts"
+	@echo "  $(SCRIPTS_DIR)/shortcuts-update.sh"
+
+start-homeassistant:
+	@echo "Example: Start Home Assistant"
+	@echo "  $(SCRIPTS_DIR)/start-homeassistant.sh"
+
+svg-to-png:
+	@echo "Example: Convert SVG to PNG"
+	@echo "  $(SCRIPTS_DIR)/svg-to-png.sh input.svg output.png"
+
+switch-users:
+	@echo "Example: Switch users"
+	@echo "  $(SCRIPTS_DIR)/switch-users.sh <username>"
+
+sync-secrets-locally:
+	@echo "Example: Sync secrets locally"
+	@echo "  $(SCRIPTS_DIR)/sync-secrets-locally.sh"
+
+validate-notes:
+	@echo "Example: Validate notes"
+	@echo "  $(SCRIPTS_DIR)/validate-notes.sh"
+
+# ============================================================================
+# Python Scripts (.py)
+# ============================================================================
+
+.PHONY: animate brackets-to-tree colorize costco-item-checker dateround
+.PHONY: download-link-title hash html-css-selector iphone-link-enricher parse-md-links
+.PHONY: plantuml-url-decode prepare-ndjson-for-dynamodb sample-notification
+.PHONY: selenium-swappa selenium-yahoo-emails selenium-yahoo-inbox-analytics selenium-yahoo-login shorten-url
+
+animate:
+	@echo "Example: Animate"
+	@echo "  python3 $(SCRIPTS_DIR)/animate.py <args>"
+
+brackets-to-tree:
+	@echo "Example: Convert brackets to tree"
+	@echo "  python3 $(SCRIPTS_DIR)/brackets-to-tree.py <input>"
+
+colorize:
+	@echo "Example: Colorize output"
+	@echo "  python3 $(SCRIPTS_DIR)/colorize.py <input>"
+
+costco-item-checker:
+	@echo "Example: Check Costco item availability"
+	@echo "  python3 $(SCRIPTS_DIR)/costco-item-checker.py <item-id>"
+
+dateround:
+	@echo "Example: Round dates"
+	@echo "  python3 $(SCRIPTS_DIR)/dateround.py <date>"
+
+download-link-title:
+	@echo "Example: Download link title"
+	@echo "  python3 $(SCRIPTS_DIR)/download-link-title.py <url>"
+
+hash:
+	@echo "Example: Generate hash"
+	@echo "  python3 $(SCRIPTS_DIR)/hash.py <input>"
+
+html-css-selector:
+	@echo "Example: HTML CSS selector"
+	@echo "  python3 $(SCRIPTS_DIR)/html-css-selector.py <html-file> <selector>"
+
+iphone-link-enricher:
+	@echo "Example: Enrich iPhone link"
+	@echo "  python3 $(SCRIPTS_DIR)/iphone-link-enricher.py <link>"
+
+parse-md-links:
+	@echo "Example: Parse markdown links"
+	@echo "  python3 $(SCRIPTS_DIR)/parse-md-links.py <markdown-file>"
+
+plantuml-url-decode:
+	@echo "Example: Decode PlantUML URL"
+	@echo "  python3 $(SCRIPTS_DIR)/plantuml-url-decode.py <url>"
+
+prepare-ndjson-for-dynamodb:
+	@echo "Example: Prepare NDJSON for DynamoDB"
+	@echo "  python3 $(SCRIPTS_DIR)/prepare-ndjson-for-dynamodb.py <input.ndjson>"
+
+sample-notification:
+	@echo "Example: Sample notification"
+	@echo "  python3 $(SCRIPTS_DIR)/sample-notification.py"
+
+selenium-swappa:
+	@echo "Example: Selenium Swappa scraper"
+	@echo "  python3 $(SCRIPTS_DIR)/selenium-swappa.py"
+
+selenium-yahoo-emails:
+	@echo "Example: Selenium Yahoo emails"
+	@echo "  python3 $(SCRIPTS_DIR)/selenium-yahoo-emails.py"
+
+selenium-yahoo-inbox-analytics:
+	@echo "Example: Selenium Yahoo inbox analytics"
+	@echo "  python3 $(SCRIPTS_DIR)/selenium-yahoo-inbox-analytics.py"
+
+selenium-yahoo-login:
+	@echo "Example: Selenium Yahoo login"
+	@echo "  python3 $(SCRIPTS_DIR)/selenium-yahoo-login.py"
+
+shorten-url:
+	@echo "Example: Shorten URL"
+	@echo "  python3 $(SCRIPTS_DIR)/shorten-url.py <url>"
+
+# ============================================================================
+# JavaScript Scripts (.js)
+# ============================================================================
+
+.PHONY: link-router
+
+link-router:
+	@echo "Example: Route links"
+	@echo "  node $(SCRIPTS_DIR)/link-router.js <link>"
+
+# ============================================================================
+# Other Executables
+# ============================================================================
+
+.PHONY: bookmark brew-python cat-script chrome-alert-whole-foods-cart chrome-close-tabs-with
+.PHONY: conda-create-env conda-list-envs costco-item-checker-bin generate-link
+.PHONY: git-reconfigure-author git-rewrite-author google-doc-outline-extractor html-table-to-json
+.PHONY: instock-alerts interspace-commas json-to-png map-link-in-clipboard md-to-html
+.PHONY: mermaid-to-svg noteplan-editor open-in-chrome png-to-svg puml-to-html puml-to-svg
+.PHONY: puml-to-url python-report-env python-to-json un-ascii-quote xml-to-json yaml-to-json
+
+bookmark:
+	@echo "Example: Bookmark"
+	@echo "  $(SCRIPTS_DIR)/bookmark <url>"
+
+brew-python:
+	@echo "Example: Install Python via brew"
+	@echo "  $(SCRIPTS_DIR)/brew-python"
+
+cat-script:
+	@echo "Example: Cat script"
+	@echo "  $(SCRIPTS_DIR)/cat-script <file>"
+
+chrome-alert-whole-foods-cart:
+	@echo "Example: Chrome alert Whole Foods cart"
+	@echo "  $(SCRIPTS_DIR)/chrome-alert-whole-foods-cart"
+
+chrome-close-tabs-with:
+	@echo "Example: Close Chrome tabs with pattern"
+	@echo "  $(SCRIPTS_DIR)/chrome-close-tabs-with <pattern>"
+
+conda-create-env:
+	@echo "Example: Create conda environment"
+	@echo "  $(SCRIPTS_DIR)/conda-create-env <env-name>"
+
+conda-list-envs:
+	@echo "Example: List conda environments"
+	@echo "  $(SCRIPTS_DIR)/conda-list-envs"
+
+costco-item-checker-bin:
+	@echo "Example: Check Costco item (binary)"
+	@echo "  $(SCRIPTS_DIR)/costco-item-checker <item-id>"
+
+generate-link:
+	@echo "Example: Generate link"
+	@echo "  $(SCRIPTS_DIR)/generate-link <url>"
+
+git-reconfigure-author:
+	@echo "Example: Reconfigure git author"
+	@echo "  $(SCRIPTS_DIR)/git-reconfigure-author"
+
+git-rewrite-author:
+	@echo "Example: Rewrite git author"
+	@echo "  $(SCRIPTS_DIR)/git-rewrite-author <old-email> <new-email>"
+
+google-doc-outline-extractor:
+	@echo "Example: Extract Google Doc outline"
+	@echo "  $(SCRIPTS_DIR)/google-doc-outline-extractor <doc-id>"
+
+html-table-to-json:
+	@echo "Example: Convert HTML table to JSON"
+	@echo "  $(SCRIPTS_DIR)/html-table-to-json <html-file>"
+
+instock-alerts:
+	@echo "Example: In-stock alerts"
+	@echo "  $(SCRIPTS_DIR)/instock-alerts"
+
+interspace-commas:
+	@echo "Example: Interspace commas"
+	@echo "  $(SCRIPTS_DIR)/interspace-commas <input>"
+
+json-to-png:
+	@echo "Example: Convert JSON to PNG"
+	@echo "  $(SCRIPTS_DIR)/json-to-png <json-file>"
+
+map-link-in-clipboard:
+	@echo "Example: Map link in clipboard"
+	@echo "  $(SCRIPTS_DIR)/map-link-in-clipboard"
+
+md-to-html:
+	@echo "Example: Convert markdown to HTML"
+	@echo "  $(SCRIPTS_DIR)/md-to-html <markdown-file>"
+
+mermaid-to-svg:
+	@echo "Example: Convert Mermaid to SVG"
+	@echo "  $(SCRIPTS_DIR)/mermaid-to-svg <mermaid-file>"
+
+noteplan-editor:
+	@echo "Example: Open NotePlan editor"
+	@echo "  $(SCRIPTS_DIR)/noteplan-editor"
+
+open-in-chrome:
+	@echo "Example: Open URL in Chrome"
+	@echo "  $(SCRIPTS_DIR)/open-in-chrome <url>"
+
+png-to-svg:
+	@echo "Example: Convert PNG to SVG"
+	@echo "  $(SCRIPTS_DIR)/png-to-svg <png-file>"
+
+puml-to-html:
+	@echo "Example: Convert PlantUML to HTML"
+	@echo "  $(SCRIPTS_DIR)/puml-to-html <puml-file>"
+
+puml-to-svg:
+	@echo "Example: Convert PlantUML to SVG"
+	@echo "  $(SCRIPTS_DIR)/puml-to-svg <puml-file>"
+
+puml-to-url:
+	@echo "Example: Convert PlantUML to URL"
+	@echo "  $(SCRIPTS_DIR)/puml-to-url <puml-file>"
+
+python-report-env:
+	@echo "Example: Report Python environment"
+	@echo "  $(SCRIPTS_DIR)/python-report-env"
+
+python-to-json:
+	@echo "Example: Convert Python to JSON"
+	@echo "  $(SCRIPTS_DIR)/python-to-json <python-file>"
+
+un-ascii-quote:
+	@echo "Example: Un-ASCII quote"
+	@echo "  $(SCRIPTS_DIR)/un-ascii-quote <input>"
+
+xml-to-json:
+	@echo "Example: Convert XML to JSON"
+	@echo "  $(SCRIPTS_DIR)/xml-to-json <xml-file>"
+
+yaml-to-json:
+	@echo "Example: Convert YAML to JSON"
+	@echo "  $(SCRIPTS_DIR)/yaml-to-json <yaml-file>"
+
+# ============================================================================
+# AppleScript Files (.scpt)
+# ============================================================================
+
+.PHONY: mindnode-to-png
+
+mindnode-to-png:
+	@echo "Example: Convert MindNode to PNG"
+	@echo "  osascript $(SCRIPTS_DIR)/mindnode-to-png.scpt"
+
+# ============================================================================
+# JAR Files
+# ============================================================================
+
+.PHONY: plantuml
+
+plantuml:
+	@echo "Example: Run PlantUML"
+	@echo "  java -jar $(SCRIPTS_DIR)/plantuml.jar <puml-file>"
+
+# ============================================================================
+# JQ Files
+# ============================================================================
+
+.PHONY: check-disneyworld-jq html-table-to-json-jq
+
+check-disneyworld-jq:
+	@echo "Example: Check Disney World with JQ"
+	@echo "  jq -f $(SCRIPTS_DIR)/check-disneyworld.jq <input.json>"
+
+html-table-to-json-jq:
+	@echo "Example: Convert HTML table to JSON with JQ"
+	@echo "  jq -f $(SCRIPTS_DIR)/html-table-to-json.jq <input.html>"

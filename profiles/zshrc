@@ -214,3 +214,7 @@ function continue-loading-profile() {
 }
 
 continue-loading-profile
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/omareid/.lmstudio/bin"
+# End of LM Studio CLI section
+

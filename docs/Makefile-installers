@@ -1,0 +1,24 @@
+# Makefile-installers
+# Examples of calling each script in installers/ directory
+# See installers.md for full documentation
+
+SHELL := /bin/bash
+MAKEFILE_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+SCRIPTS_DIR := $(MAKEFILE_DIR)/../installers
+.PHONY: help
+
+help:
+	@echo "Available script examples:"
+	@echo "  make -f docs/Makefile-installers <script-name>"
+	@echo ""
+	@echo "See docs/installers.md for full documentation"
+
+.PHONY: brew-debugger sharedworkspace-installer
+
+brew-debugger:
+	@echo "Example: Debug Homebrew installation"
+	@echo "  $(SCRIPTS_DIR)/brew-debugger.sh <install-prefix>"
+
+sharedworkspace-installer:
+	@echo "Example: Install shared workspace"
+	@echo "  $(SCRIPTS_DIR)/sharedworkspace-installer.sh"

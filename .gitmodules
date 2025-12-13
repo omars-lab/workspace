@@ -1,0 +1,3 @@
+[submodule "profiles/codex/prompts"]
+	path = profiles/codex/prompts
+	url = https://github.com/omars-lab/prompts
