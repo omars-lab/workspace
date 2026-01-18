@@ -29,7 +29,12 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker macos brew node npm python zsh-completions history)
+plugins=(git docker macos brew node npm python history)
+# Add zsh-completions if it exists (it's a custom plugin, not always installed)
+# Note: ZSH is set above, so we can use it here
+if [[ -d "${ZSH_CUSTOM:-${ZSH}/custom}/plugins/zsh-completions" ]]; then
+    plugins+=(zsh-completions)
+fi
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -95,7 +100,13 @@ source ${ZSH}/oh-my-zsh.sh
 
 # The following assumes that ~/.zshrc is a symbolic link to the environment dir ...
 # This needs to run after oh my zsh since it messes with ps1
-source $(dirname $(dirname ${HOME}/$(readlink ${HOME}/.zshrc)))/loader.sh
+ZSHRC_LINK=$(readlink ${HOME}/.zshrc 2>/dev/null)
+if [ -n "${ZSHRC_LINK}" ]; then
+    LOADER_PATH=$(dirname $(dirname ${HOME}/${ZSHRC_LINK}))/loader.sh
+    if [ -f "${LOADER_PATH}" ]; then
+        source "${LOADER_PATH}"
+    fi
+fi
 
 
 # Load ZSH Packages antigen ...
@@ -119,11 +130,14 @@ fi
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 # Source career functions too ...
-CAREER_WORKSPACE_DIR=$(dirname $(dirname $(readlink ${HOME}/.zshenv)))/../workspace-career
-if [[ -d "${CAREER_WORKSPACE_DIR}" ]]
-then
-    source ${CAREER_WORKSPACE_DIR}/functions.sh
-    source ${CAREER_WORKSPACE_DIR}/aliases.sh
+ZSENV_LINK=$(readlink ${HOME}/.zshenv 2>/dev/null)
+if [ -n "${ZSENV_LINK}" ]; then
+    CAREER_WORKSPACE_DIR=$(dirname $(dirname ${HOME}/${ZSENV_LINK}))/../workspace-career
+    if [[ -d "${CAREER_WORKSPACE_DIR}" ]]
+    then
+        source ${CAREER_WORKSPACE_DIR}/functions.sh
+        source ${CAREER_WORKSPACE_DIR}/aliases.sh
+    fi
 fi
 
 # Loading iterm zsh integration
