@@ -5,7 +5,7 @@ source $(dirname $(dirname $(readlink ${HOME}/.bash_profile)))/loader.sh
 
 nvm use v8.12.0
 
-. /Users/oeid/Workspace/binaries/miniconda3/etc/profile.d/conda.sh
+. ${DIR_CONDA_HOME}/etc/profile.d/conda.sh
 conda activate cogenv3
 
 export NVM_DIR="$HOME/Workspace/binaries/nvm"

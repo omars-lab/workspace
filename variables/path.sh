@@ -18,7 +18,7 @@ export PATH="/usr/local/sbin:$PATH"
 
 export PATH="${DIR_FOR_BINARIES}:$PATH"
 export PATH="${DIR_FOR_BINARY_REFS}:$PATH"
-export PATH="${DIR_FOR_BINARIES}/miniconda3/bin:$PATH"
+export PATH="${DIR_CONDA_HOME}/bin:$PATH"
 export PATH="${DIR_FOR_BACKUPS}:$PATH"
 # export PATH="${DIR_FOR_SCRIPTS}:$PATH"
 export PATH="${DIR_FOR_CAREER_WORKSPACE}/scripts:$PATH"

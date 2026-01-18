@@ -7,6 +7,8 @@
 # SCRIPT_FILE=${(%):-%x}
 # CURRENT_DIR="$( cd "$( dirname "${SCRIPT_FILE}" )" >/dev/null && pwd )"
 
+which brew && ( ( brew tap | grep -q omars-lab) || brew tap omars-lab/tap )
+
 # eval "$(cat ${CURRENT_DIR}/variables.sh)"
 source ${CURRENT_DIR}/loader-variables.sh
 source ${CURRENT_DIR}/common.sh >/dev/null

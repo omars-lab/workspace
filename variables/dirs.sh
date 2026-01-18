@@ -10,7 +10,7 @@
 # The directory that contains the github code:
   export DIRS_GIT=${DIRS_GIT:-${DIRS_WORKSPACE}/git}
 # The directoy containing my github environment settings
-  export DIRS_ENVIRONMENT=${DIRS_ENVIRONMENT:-${DIRS_GIT}/environment}
+  export DIRS_ENVIRONMENT=${DIRS_ENVIRONMENT:-$(first "${DIRS_GIT}/workspace" "${DIRS_GIT}/environment")}
 # The area where my experiment code lies:
   export DIRS_PLAGROUND="${DIRS_GIT}/playground"
 # The area where my raw binaries lie:
@@ -25,6 +25,8 @@
   export DIR_FOR_CAREER_WORKSPACE="${DIRS_GIT}/workspace-career"
 # ...
   export DIR_FOR_HATS=$(first "${DIRS_GIT}/personalbook" "${DIRS_GIT}/hats")
+# The conda install dir
+  export DIR_CONDA_HOME=${DIR_CONDA_HOME:-$(first "${HOME}/miniconda3" "${DIR_FOR_BINARIES}/miniconda3")}
 
 # Dirs for Apps ...
   if [[ -d ${HOME}'/Dropbox (Personal)' ]] ; then

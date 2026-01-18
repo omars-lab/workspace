@@ -184,28 +184,33 @@ function continue-loading-profile() {
 
   # >>> conda initialize >>>
   # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('/usr/local/bin/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  __conda_setup="$('${DIR_CONDA_HOME}/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
       eval "$__conda_setup"
   else
-      if [ -f "/usr/local/bin/miniconda3/etc/profile.d/conda.sh" ]; then
-# . "/usr/local/bin/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
+      if [ -f "${DIR_CONDA_HOME}/etc/profile.d/conda.sh" ]; then
+	. "${DIR_CONDA_HOME}/etc/profile.d/conda.sh"  # commented out by conda initialize
       else
-# export PATH="/usr/local/bin/miniconda3/bin:$PATH"  # commented out by conda initialize
+	# export PATH="${DIR_CONDA_HOME}/bin:$PATH"  # commented out by conda initialize
       fi
   fi
   unset __conda_setup
   # <<< conda initialize <<<
-  echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_CONDA_ENV} --stack
+  
+  # Install env if not existing
+  (conda env list --json | jq -r '.envs | map(select(contains("/envs/"))) | .[]' | xargs basename | grep -q ${DEFAULT_CONDA_ENV}) || conda create -n ${DEFAULT_CONDA_ENV} -y python=3 pip
+  echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_CONDA_ENV}
 
   if ( brew list nvm 2>/dev/null );
   then
       # https://github.com/nvm-sh/nvm/issues/860
       # source $(brew --prefix nvm)/nvm.sh
       source $(brew --prefix)/opt/nvm/nvm.sh  # using this instead of the above for performance ...
+  else 
+	if ( test -d "$HOME/.nvm" );
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   fi
-
-  # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
   nvm list ${DEFAULT_NVM_ENV} 1>/dev/null 2>/dev/null || nvm install ${DEFAULT_NVM_ENV}
@@ -214,6 +219,7 @@ function continue-loading-profile() {
 }
 
 continue-loading-profile
+
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/omareid/.lmstudio/bin"
 # End of LM Studio CLI section
