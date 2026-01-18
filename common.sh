@@ -111,8 +111,11 @@ function recursive_source(){
 
 function first(){
   # picks the first valid file ... recrsively ...
+  # Set SILENT_FIRST=true to suppress error messages
+  local silent=${SILENT_FIRST:-true}
+  
   if [[ "$#" == "0" ]]; then
-    echo "No files/dirs satisfied!" >&2
+    [[ "$silent" != "true" ]] && echo "No files/dirs satisfied!" >&2
     return
   fi
 
@@ -121,7 +124,7 @@ function first(){
     echo "${1}"
     return
   else 
-    echo "File not found: [${1}]" >&2
+    [[ "$silent" != "true" ]] && echo "File not found: [${1}]" >&2
   fi
 
   if [[ -d "${1}" ]]; 
@@ -129,7 +132,7 @@ function first(){
     echo "${1}"
     return
   else 
-    echo "Dir not found: [${1}]" >&2
+    [[ "$silent" != "true" ]] && echo "Dir not found: [${1}]" >&2
   fi
 
   shift

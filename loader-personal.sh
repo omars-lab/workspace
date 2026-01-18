@@ -9,6 +9,12 @@
 
 which brew && ( ( brew tap | grep -q omars-lab) || brew tap omars-lab/tap )
 
+# Check dependencies by default (set CHECK_DEPS=false to disable)
+# This only warns, doesn't fail, so it's safe to enable by default
+if [ "${CHECK_DEPS:-true}" != "false" ]; then
+    source ${CURRENT_DIR}/setup/ensure-deps.sh 2>/dev/null || true
+fi
+
 # eval "$(cat ${CURRENT_DIR}/variables.sh)"
 source ${CURRENT_DIR}/loader-variables.sh
 source ${CURRENT_DIR}/common.sh >/dev/null
