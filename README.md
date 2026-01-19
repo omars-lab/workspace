@@ -22,6 +22,57 @@ My personal unix development environment.
 ------------------------------------------
 ### ZSH Configuration Mechanisms
 
+#### Sourcing Flow Diagram
+
+The following diagram illustrates how configuration files are sourced during shell initialization:
+
+```mermaid
+flowchart TD
+    A[.zshrc] --> B[loader.sh]
+    B --> C[loader-personal.sh]
+    B --> D[loader-shared.sh]
+    
+    C --> E[loader-variables.sh]
+    E --> F[common.sh]
+    E --> G[variables/icloud.sh]
+    E --> H[variables/hardware.sh]
+    E --> I[variables/dirs.sh]
+    E --> J[variables/fzf.sh]
+    E --> K[variables/ssh.sh]
+    E --> L[variables/apps.sh]
+    E --> M[variables/aws.sh]
+    E --> N[variables/opts.sh]
+    E --> O[variables/secrets.sh]
+    E --> P[variables/path.sh]
+    E --> Q[overrides/mac_id/variables.sh]
+    
+    C --> R[common.sh]
+    C --> S[envmgr/envmgr.sh]
+    C --> T[ifttt/maker.sh]
+    C --> U[ifttt/functions.sh]
+    C --> V[themes/theme.sh]
+    C --> W[recursive_source functions-personal/]
+    
+    D --> X[loader-brew.sh]
+    X --> Y[common.sh]
+    X --> Z[recursive_source functions-completion/]
+    X --> AA[recursive_source functions-extensions/]
+    X --> AB[recursive_source functions-shortcuts/]
+    X --> AC[recursive_source functions-tools/]
+    
+    style A fill:#e1f5ff
+    style B fill:#b3e5fc
+    style C fill:#81d4fa
+    style D fill:#81d4fa
+    style E fill:#4fc3f7
+    style X fill:#4fc3f7
+    style W fill:#29b6f6
+    style Z fill:#29b6f6
+    style AA fill:#29b6f6
+    style AB fill:#29b6f6
+    style AC fill:#29b6f6
+```
+
 The `profiles/zshrc` file sources multiple mechanisms in the following order:
 
 #### 1. **Oh My Zsh Framework**

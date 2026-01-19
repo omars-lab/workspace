@@ -54,9 +54,9 @@ See also:
 
 ## Usage Examples
 
-For detailed usage examples of each script, see [Makefile-scripts-shared](cursor://file/Users/omareid/Workspace/git/workspace/docs/Makefile-scripts-shared) in the docs directory.
+For detailed usage examples of each script, see [Makefile-scripts-shared](cursor://file/Users/omareid/Workspace/git/workspace/makefiles/Makefile-scripts-shared) in the makefiles directory.
 
 You can run examples using:
 ```bash
-make -f docs/Makefile-scripts-shared <script-name>
+make -f makefiles/Makefile-scripts-shared <script-name>
 ```

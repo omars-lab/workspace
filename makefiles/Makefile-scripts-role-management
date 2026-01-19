@@ -9,7 +9,7 @@ SCRIPTS_DIR := $(MAKEFILE_DIR)/../scripts-role-management
 
 help:
 	@echo "Available script examples:"
-	@echo "  make -f docs/Makefile-scripts-role-management <script-name>"
+	@echo "  make -f makefiles/Makefile-scripts-role-management <script-name>"
 	@echo ""
 	@echo "See docs/scripts-role-management.md for full documentation"
 

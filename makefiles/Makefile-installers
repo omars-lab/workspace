@@ -9,7 +9,7 @@ SCRIPTS_DIR := $(MAKEFILE_DIR)/../installers
 
 help:
 	@echo "Available script examples:"
-	@echo "  make -f docs/Makefile-installers <script-name>"
+	@echo "  make -f makefiles/Makefile-installers <script-name>"
 	@echo ""
 	@echo "See docs/installers.md for full documentation"
 

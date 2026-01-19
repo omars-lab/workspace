@@ -22,9 +22,9 @@ See also:
 
 ## Usage Examples
 
-For detailed usage examples of each script, see [Makefile-backup](cursor://file/Users/omareid/Workspace/git/workspace/docs/Makefile-backup) in the docs directory.
+For detailed usage examples of each script, see [Makefile-backup](cursor://file/Users/omareid/Workspace/git/workspace/makefiles/Makefile-backup) in the makefiles directory.
 
 You can run examples using:
 ```bash
-make -f docs/Makefile-backup <script-name>
+make -f makefiles/Makefile-backup <script-name>
 ```

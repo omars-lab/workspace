@@ -287,15 +287,15 @@ For scripts in other directories, see:
 
 ## Usage Examples
 
-For detailed usage examples of each script, see [Makefile-scripts](cursor://file/Users/omareid/Workspace/git/workspace/docs/Makefile-scripts) in the docs directory.
+For detailed usage examples of each script, see [Makefile-scripts](cursor://file/Users/omareid/Workspace/git/workspace/makefiles/Makefile-scripts) in the makefiles directory.
 
 You can run examples using:
 ```bash
-make -f docs/Makefile-scripts <script-name>
+make -f makefiles/Makefile-scripts <script-name>
 ```
 
 For example:
 ```bash
-make -f docs/Makefile-scripts image-ocr
-make -f docs/Makefile-scripts check-apis
+make -f makefiles/Makefile-scripts image-ocr
+make -f makefiles/Makefile-scripts check-apis
 ```

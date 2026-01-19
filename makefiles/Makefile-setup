@@ -9,7 +9,7 @@ SCRIPTS_DIR := $(MAKEFILE_DIR)/../setup
 
 help:
 	@echo "Available script examples:"
-	@echo "  make -f docs/Makefile-setup <script-name>"
+	@echo "  make -f makefiles/Makefile-setup <script-name>"
 	@echo ""
 	@echo "See docs/setup.md for full documentation"
 

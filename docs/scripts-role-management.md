@@ -28,9 +28,9 @@ See also:
 
 ## Usage Examples
 
-For detailed usage examples of each script, see [Makefile-scripts-role-management](cursor://file/Users/omareid/Workspace/git/workspace/docs/Makefile-scripts-role-management) in the docs directory.
+For detailed usage examples of each script, see [Makefile-scripts-role-management](cursor://file/Users/omareid/Workspace/git/workspace/makefiles/Makefile-scripts-role-management) in the makefiles directory.
 
 You can run examples using:
 ```bash
-make -f docs/Makefile-scripts-role-management <script-name>
+make -f makefiles/Makefile-scripts-role-management <script-name>
 ```

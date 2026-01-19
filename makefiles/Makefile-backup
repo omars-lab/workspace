@@ -9,7 +9,7 @@ SCRIPTS_DIR := $(MAKEFILE_DIR)/../backup
 
 help:
 	@echo "Available script examples:"
-	@echo "  make -f docs/Makefile-backup <script-name>"
+	@echo "  make -f makefiles/Makefile-backup <script-name>"
 	@echo ""
 	@echo "See docs/backup.md for full documentation"
 

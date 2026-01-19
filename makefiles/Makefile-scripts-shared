@@ -9,7 +9,7 @@ SCRIPTS_DIR := $(MAKEFILE_DIR)/../scripts-shared
 
 help:
 	@echo "Available script examples:"
-	@echo "  make -f docs/Makefile-scripts-shared <script-name>"
+	@echo "  make -f makefiles/Makefile-scripts-shared <script-name>"
 	@echo ""
 	@echo "See docs/scripts-shared.md for full documentation"
 

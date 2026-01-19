@@ -135,8 +135,10 @@ if [ -n "${ZSENV_LINK}" ]; then
     CAREER_WORKSPACE_DIR=$(dirname $(dirname ${HOME}/${ZSENV_LINK}))/../workspace-career
     if [[ -d "${CAREER_WORKSPACE_DIR}" ]]
     then
-        source ${CAREER_WORKSPACE_DIR}/functions.sh
-        source ${CAREER_WORKSPACE_DIR}/aliases.sh
+        [[ -f ${CAREER_WORKSPACE_DIR}/functions.sh ]] && source ${CAREER_WORKSPACE_DIR}/functions.sh || echo "Warning: ${CAREER_WORKSPACE_DIR}/functions.sh not found" >&2
+        [[ -f ${CAREER_WORKSPACE_DIR}/aliases.sh ]] && source ${CAREER_WORKSPACE_DIR}/aliases.sh || echo "Warning: ${CAREER_WORKSPACE_DIR}/aliases.sh not found" >&2
+    else
+        echo "Warning: Career workspace directory not found: ${CAREER_WORKSPACE_DIR}" >&2
     fi
 fi
 
@@ -229,6 +231,26 @@ function continue-loading-profile() {
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
   nvm list ${DEFAULT_NVM_ENV} 1>/dev/null 2>/dev/null || nvm install ${DEFAULT_NVM_ENV}
   nvm use ${DEFAULT_NVM_ENV}
+
+  # Setup AI dependencies
+  if command -v npm >/dev/null 2>&1; then
+    echo "Setting up AI dependencies..." >&2
+    # Check and install @google/gemini-cli
+    if ! npm list -g @google/gemini-cli >/dev/null 2>&1; then
+      echo "Installing @google/gemini-cli..." >&2
+      npm install -g @google/gemini-cli
+    fi
+    # Check and install @anthropic-ai/claude-code
+    if ! npm list -g @anthropic-ai/claude-code >/dev/null 2>&1; then
+      echo "Installing @anthropic-ai/claude-code..." >&2
+      npm install -g @anthropic-ai/claude-code
+    fi
+    # Check and install @musistudio/claude-code-router
+    if ! npm list -g @musistudio/claude-code-router >/dev/null 2>&1; then
+      echo "Installing @musistudio/claude-code-router..." >&2
+      npm install -g @musistudio/claude-code-router
+    fi
+  fi
 
 }
 

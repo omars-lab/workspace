@@ -18,9 +18,9 @@ See also:
 
 ## Usage Examples
 
-For detailed usage examples of each script, see [Makefile-installers](cursor://file/Users/omareid/Workspace/git/workspace/docs/Makefile-installers) in the docs directory.
+For detailed usage examples of each script, see [Makefile-installers](cursor://file/Users/omareid/Workspace/git/workspace/makefiles/Makefile-installers) in the makefiles directory.
 
 You can run examples using:
 ```bash
-make -f docs/Makefile-installers <script-name>
+make -f makefiles/Makefile-installers <script-name>
 ```
