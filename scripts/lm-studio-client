@@ -1,0 +1,720 @@
+#!/bin/bash
+
+################################################################################
+# lm-studio-client
+#
+# Simple LM Studio API client for discovering models and metadata.
+#
+# This script provides a clean interface to interact with LM Studio:
+#   - List all available models
+#   - Get detailed model information and metadata
+#   - Uses lms CLI for rich metadata (maxContextLength, architecture, etc.)
+#   - Falls back to HTTP API if CLI unavailable
+#
+# Dependencies:
+#   - jq (for JSON parsing)
+#   - lms CLI (from LM Studio app) - preferred for rich metadata
+#   - curl (for HTTP fallback)
+#
+# Usage:
+#   lm-studio-client <command> [args...]
+#   lm-studio-client help          # Show full help
+#
+# Examples:
+#   lm-studio-client list                    # List all models
+#   lm-studio-client list --metadata         # List with context info
+#   lm-studio-client info "model-name"       # Get model info (JSON)
+#   lm-studio-client metadata "model-name"   # Get formatted metadata
+#
+################################################################################
+
+set -e
+
+# Get script directory and workspace root
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+WORKSPACE_DIR="$(dirname "${SCRIPT_DIR}")"
+
+# Default LM Studio endpoint
+DEFAULT_ENDPOINT="${LM_STUDIO_ENDPOINT:-http://192.168.1.131:1234}"
+DEFAULT_MODELS_URL="${DEFAULT_ENDPOINT}/v1/models"
+
+# LM Studio CLI path (try specific app path first, then PATH)
+LMS_CLI="${LMS_CLI:-/Applications/LM Studio.app/Contents/Resources/app/.webpack/lms}"
+if [ ! -f "${LMS_CLI}" ] || [ ! -x "${LMS_CLI}" ]; then
+    # Fallback to PATH
+    LMS_CLI="lms"
+fi
+
+# Source workspace helper functions
+if [ -f "${WORKSPACE_DIR}/common.sh" ]; then
+    source "${WORKSPACE_DIR}/common.sh" 2>/dev/null
+fi
+
+# No colors needed - plain text output
+
+################################################################################
+# Helper Functions
+################################################################################
+
+# Check if jq is available (required for JSON parsing)
+check_jq() {
+    if ! command -v jq >/dev/null 2>&1; then
+        echo "Error: jq is required but not found."
+        echo "Install with: brew install jq"
+        exit 1
+    fi
+}
+
+################################################################################
+# Model Fetching Functions
+################################################################################
+
+# Fetch models using HTTP REST API (fallback when CLI unavailable)
+# Returns JSON array of models
+fetch_models_http() {
+    local endpoint="${1:-${DEFAULT_MODELS_URL}}"
+    
+    local response
+    response=$(curl -s "${endpoint}" 2>/dev/null)
+    
+    if [ $? -ne 0 ] || [ -z "${response}" ]; then
+        echo "⚠ Failed to fetch from ${endpoint}" >&2
+        return 1
+    fi
+    
+    if ! echo "${response}" | jq empty >/dev/null 2>&1; then
+        echo "⚠ Invalid JSON response" >&2
+        return 1
+    fi
+    
+    echo "${response}"
+    return 0
+}
+
+# Extract host and port from endpoint URL for remote connections
+# Handles http://, https://, ws://, wss:// formats
+extract_host_port() {
+    local endpoint="$1"
+    local host=""
+    local port=""
+    
+    # Extract from URL (http://host:port or ws://host:port)
+    if [[ "${endpoint}" =~ ^(https?|ws|wss)://([^:/]+)(:([0-9]+))? ]]; then
+        host="${BASH_REMATCH[2]}"
+        port="${BASH_REMATCH[4]}"
+    fi
+    
+    # Default to remote host if no host specified (use DEFAULT_ENDPOINT)
+    if [ -z "${host}" ]; then
+        # Extract from DEFAULT_ENDPOINT
+        if [[ "${DEFAULT_ENDPOINT}" =~ ^(https?|ws|wss)://([^:/]+)(:([0-9]+))? ]]; then
+            host="${BASH_REMATCH[2]}"
+            port="${BASH_REMATCH[4]}"
+        else
+            host="192.168.1.131"  # Default remote host
+        fi
+    fi
+    # Default port
+    [ -z "${port}" ] && port="1234"
+    
+    echo "${host}|${port}"
+}
+
+# Fetch models using lms CLI (provides rich metadata including maxContextLength)
+# This is the preferred method as it includes context length and other metadata
+# not available via HTTP API
+fetch_models_cli() {
+    local endpoint="${1:-${DEFAULT_MODELS_URL}}"
+    
+    # Check if lms CLI is available
+    if [ "${LMS_CLI}" == "lms" ] && ! command -v lms >/dev/null 2>&1; then
+        # Try the app path
+        if [ -f "/Applications/LM Studio.app/Contents/Resources/app/.webpack/lms" ]; then
+            LMS_CLI="/Applications/LM Studio.app/Contents/Resources/app/.webpack/lms"
+        else
+            echo "⚠ lms CLI not found. Install from: https://lmstudio.ai" >&2
+            return 1
+        fi
+    fi
+    
+    # Extract host and port from endpoint for remote connections
+    local host_port
+    host_port=$(extract_host_port "${endpoint}")
+    local host=$(echo "${host_port}" | cut -d'|' -f1)
+    local port=$(echo "${host_port}" | cut -d'|' -f2)
+    
+    # Build lms command array to handle paths with spaces
+    local lms_cmd_array=("${LMS_CLI}" "ls" "--json" "--quiet")
+    
+    # Always specify host and port for remote connections
+    # For localhost, only specify if port is non-default
+    if [ "${host}" == "127.0.0.1" ] || [ "${host}" == "localhost" ]; then
+        # Localhost - only specify port if non-default
+        if [ "${port}" != "1234" ]; then
+            lms_cmd_array+=("--port" "${port}")
+        fi
+        # For default localhost:1234, let CLI auto-detect (no flags needed)
+    else
+        # Remote host - always specify both host and port
+        lms_cmd_array+=("--host" "${host}" "--port" "${port}")
+    fi
+    
+    local response
+    # Capture output - CLI outputs JSON (may have status messages mixed in)
+    local raw_output
+    raw_output=$("${lms_cmd_array[@]}" 2>&1)
+    local exit_code=$?
+    
+    # Check for error messages first
+    if echo "${raw_output}" | grep -qiE "error|failed|cannot|unable|connection refused|timeout|not found"; then
+        return 1
+    fi
+    
+    # Extract JSON lines (start with [ or {)
+    response=$(echo "${raw_output}" | grep -E "^\[|^\{")
+    
+    # If no JSON found, try the whole output (might be pure JSON)
+    if [ -z "${response}" ]; then
+        response="${raw_output}"
+    fi
+    
+    if [ ${exit_code} -ne 0 ] || [ -z "${response}" ]; then
+        # Command failed or empty response
+        return 1
+    fi
+    
+    if ! echo "${response}" | jq empty >/dev/null 2>&1; then
+        echo "⚠ Invalid JSON response from lms CLI" >&2
+        return 1
+    fi
+    
+    echo "${response}"
+    return 0
+}
+
+# Fetch models - tries CLI first, falls back to HTTP if CLI unavailable
+# CLI provides rich metadata (maxContextLength) that HTTP API doesn't have
+fetch_models() {
+    local endpoint="${1:-${DEFAULT_MODELS_URL}}"
+    
+    # Always use CLI - it provides rich metadata (maxContextLength) that HTTP API doesn't
+    # Check if lms CLI is available (try app path or PATH)
+    if [ -f "/Applications/LM Studio.app/Contents/Resources/app/.webpack/lms" ] || command -v lms >/dev/null 2>&1; then
+        fetch_models_cli "${endpoint}"
+        return $?
+    fi
+    
+    # If CLI not available, try HTTP as last resort (but warn about missing metadata)
+    echo "⚠ lms CLI not found, falling back to HTTP API (limited metadata)" >&2
+    fetch_models_http "${endpoint}"
+    return $?
+}
+
+# Infer context size from model name (e.g., "model-8k" -> 8000)
+# Common patterns: 8k, 32k, 128k, etc.
+infer_context_from_name() {
+    local model_name="$1"
+    
+    # Common patterns: model-name-8k, model-name-32k, model-name-128k, etc.
+    if echo "${model_name}" | grep -qiE '[0-9]+k'; then
+        local size=$(echo "${model_name}" | grep -oiE '[0-9]+k' | head -1 | tr -d 'k')
+        echo $((size * 1000))
+        return 0
+    fi
+    
+    # Patterns like model-name-8K, model-name-32K
+    if echo "${model_name}" | grep -qiE '[0-9]+K'; then
+        local size=$(echo "${model_name}" | grep -oiE '[0-9]+K' | head -1 | tr -d 'K')
+        echo $((size * 1000))
+        return 0
+    fi
+    
+    # Patterns like model-name-128000
+    if echo "${model_name}" | grep -qiE '[0-9]{5,}'; then
+        local size=$(echo "${model_name}" | grep -oiE '[0-9]{5,}' | head -1)
+        if [ -n "${size}" ] && [ "${size}" -gt 10000 ]; then
+            echo "${size}"
+            return 0
+        fi
+    fi
+    
+    return 1
+}
+
+################################################################################
+# User-Facing Commands
+################################################################################
+
+# List all available models from LM Studio
+# Can show simple list or detailed metadata
+list_models() {
+    local endpoint="${1:-${DEFAULT_MODELS_URL}}"
+    local show_metadata="${2:-false}"
+    local json_only="${3:-false}"  # New parameter for JSON-only output
+    
+    if [ "${json_only}" != "true" ]; then
+        echo "Fetching models..."
+        echo ""
+    fi
+    
+    # Try CLI first for rich metadata, fallback to HTTP
+    local response
+    response=$(fetch_models "${endpoint}")
+    
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+    
+    # Parse models from response (handle both CLI JSON and HTTP API formats)
+    local models
+    # CLI format: array of objects with modelKey
+    if echo "${response}" | jq -e '.[]?.modelKey' >/dev/null 2>&1; then
+        models=$(echo "${response}" | jq -r '.[]?.modelKey // empty' 2>/dev/null)
+    # HTTP API format: .data[]?.id
+    elif echo "${response}" | jq -e '.data[]?.id' >/dev/null 2>&1; then
+        models=$(echo "${response}" | jq -r '.data[]?.id // empty' 2>/dev/null)
+    # HTTP API format: []?.id
+    elif echo "${response}" | jq -e '.[]?.id' >/dev/null 2>&1; then
+        models=$(echo "${response}" | jq -r '.[]?.id // empty' 2>/dev/null)
+    # Simple array format
+    elif echo "${response}" | jq -e '.models[]' >/dev/null 2>&1; then
+        models=$(echo "${response}" | jq -r '.models[]? // empty' 2>/dev/null)
+    else
+        echo "⚠ Unexpected response format"
+        return 1
+    fi
+    
+    if [ -z "${models}" ]; then
+        echo "⚠ No models found"
+        return 1
+    fi
+    
+    echo "Available models:"
+    
+    if [[ "${show_metadata}" == "true" ]]; then
+        # Show models with metadata
+        local models_json
+        # CLI format: array of objects
+        if echo "${response}" | jq -e '.[]?.modelKey' >/dev/null 2>&1; then
+            models_json=$(echo "${response}" | jq -c '.[]?' 2>/dev/null)
+        # HTTP API format: .data[]
+        elif echo "${response}" | jq -e '.data[]?' >/dev/null 2>&1; then
+            models_json=$(echo "${response}" | jq -c '.data[]?' 2>/dev/null)
+        # HTTP API format: []
+        elif echo "${response}" | jq -e '.[]?' >/dev/null 2>&1; then
+            models_json=$(echo "${response}" | jq -c '.[]?' 2>/dev/null)
+        fi
+        
+        if [ -n "${models_json}" ]; then
+            echo "${models_json}" | while IFS= read -r model_json; do
+                if [ -n "${model_json}" ]; then
+                    # Extract model ID (CLI uses modelKey, HTTP uses id)
+                    local model_id=$(echo "${model_json}" | jq -r '.modelKey // .id // empty' 2>/dev/null)
+                    
+                    if [ -z "${model_id}" ] || [ "${model_id}" == "null" ]; then
+                        continue
+                    fi
+                    
+                    echo "  ${model_id}"
+                    
+                    # Extract context length (CLI format uses maxContextLength, HTTP uses context_length)
+                    local context_length=$(echo "${model_json}" | jq -r '.maxContextLength // .context_length // .max_tokens // empty' 2>/dev/null | head -1)
+                    
+                    # Try to infer context from name if still not found
+                    if [ -z "${context_length}" ] || [ "${context_length}" == "null" ]; then
+                        local inferred=$(infer_context_from_name "${model_id}" 2>/dev/null)
+                        if [ -n "${inferred}" ]; then
+                            context_length="${inferred} (inferred)"
+                        fi
+                    fi
+                    
+                    # Extract additional metadata from CLI format
+                    local architecture=$(echo "${model_json}" | jq -r '.architecture // empty' 2>/dev/null)
+                    local format=$(echo "${model_json}" | jq -r '.format // empty' 2>/dev/null)
+                    local size_bytes=$(echo "${model_json}" | jq -r '.sizeBytes // empty' 2>/dev/null)
+                    local owned_by=$(echo "${model_json}" | jq -r '.owned_by // .publisher // empty' 2>/dev/null)
+                    local display_name=$(echo "${model_json}" | jq -r '.displayName // empty' 2>/dev/null)
+                    
+                    [ -n "${context_length}" ] && [ "${context_length}" != "null" ] && echo "    Context: ${context_length} tokens"
+                    [ -n "${architecture}" ] && [ "${architecture}" != "null" ] && echo "    Architecture: ${architecture}"
+                    [ -n "${format}" ] && [ "${format}" != "null" ] && echo "    Format: ${format}"
+                    if [ -n "${size_bytes}" ] && [ "${size_bytes}" != "null" ] && [ "${size_bytes}" != "0" ]; then
+                        local size_mb=$(echo "scale=2; ${size_bytes} / 1024 / 1024" | bc 2>/dev/null)
+                        local size_gb=$(echo "scale=2; ${size_bytes} / 1024 / 1024 / 1024" | bc 2>/dev/null)
+                        if [ -n "${size_gb}" ] && (( $(echo "${size_gb} >= 1" | bc -l 2>/dev/null || echo 0) )); then
+                            echo "    Size: ${size_gb} GB"
+                        elif [ -n "${size_mb}" ]; then
+                            echo "    Size: ${size_mb} MB"
+                        fi
+                    fi
+                    [ -n "${display_name}" ] && [ "${display_name}" != "null" ] && echo "    Display Name: ${display_name}"
+                    [ -n "${owned_by}" ] && [ "${owned_by}" != "null" ] && echo "    Publisher: ${owned_by}"
+                    echo ""
+                fi
+            done
+        else
+            # Fallback to simple list
+            echo "${models}" | while IFS= read -r model; do
+                [ -n "${model}" ] && echo "  - ${model}"
+            done
+        fi
+    else
+        # Simple list
+        echo "${models}" | while IFS= read -r model; do
+            [ -n "${model}" ] && echo "  - ${model}"
+        done
+    fi
+    
+    return 0
+}
+
+# Get full model information in JSON format
+model_info() {
+    local model="$1"
+    local endpoint="${2:-${DEFAULT_MODELS_URL}}"
+    
+    if [ -z "${model}" ]; then
+        echo "Usage: model-info <model_id> [endpoint]"
+        return 1
+    fi
+    
+    local response
+    response=$(fetch_models "${endpoint}")
+    
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+    
+    # Try to find model in response
+    local model_data
+    if echo "${response}" | jq -e '.data[]?' >/dev/null 2>&1; then
+        model_data=$(echo "${response}" | jq -r --arg model "${model}" '.data[]? | select(.id == $model)' 2>/dev/null)
+    elif echo "${response}" | jq -e '.[]?' >/dev/null 2>&1; then
+        model_data=$(echo "${response}" | jq -r --arg model "${model}" '.[]? | select(.id == $model)' 2>/dev/null)
+    fi
+    
+    if [ -z "${model_data}" ] || [ "${model_data}" == "null" ]; then
+        echo "⚠ Model not found: ${model}"
+        return 1
+    fi
+    
+    echo "Model Information: ${model}"
+    echo ""
+    echo "${model_data}" | jq .
+    
+    return 0
+}
+
+# Try to fetch model details from individual model endpoint (/v1/models/{id})
+# This is a fallback when model isn't found in the list
+fetch_model_details_endpoint() {
+    local model="$1"
+    local endpoint="${2:-${DEFAULT_MODELS_URL}}"
+    
+    # Extract base URL
+    local base_url=$(echo "${endpoint}" | sed 's|/v1/models.*||')
+    [ -z "${base_url}" ] && base_url="http://192.168.1.131:1234"
+    
+    # Try /v1/models/{model_id} endpoint
+    local model_endpoint="${base_url}/v1/models/${model}"
+    local response
+    response=$(curl -s "${model_endpoint}" 2>/dev/null)
+    
+    if [ $? -eq 0 ] && [ -n "${response}" ] && echo "${response}" | jq empty >/dev/null 2>&1; then
+        echo "${response}"
+        return 0
+    fi
+    
+    return 1
+}
+
+# Get detailed model metadata in a human-readable format
+# Shows context length, capabilities, architecture, pricing, etc.
+model_metadata() {
+    local model="$1"
+    local endpoint="${2:-${DEFAULT_MODELS_URL}}"
+    
+    if [ -z "${model}" ]; then
+        echo "Usage: model-metadata <model_id> [endpoint]"
+        return 1
+    fi
+    
+    # Try CLI first for rich metadata, fallback to HTTP
+    local response
+    response=$(fetch_models "${endpoint}")
+    
+    if [ $? -ne 0 ]; then
+        return 1
+    fi
+    
+    # Extract key metadata (handle both CLI and HTTP formats)
+    local model_data
+    # CLI format: array with modelKey (use -c for compact JSON)
+    if echo "${response}" | jq -e '.[]?.modelKey' >/dev/null 2>&1; then
+        model_data=$(echo "${response}" | jq -c --arg model "${model}" '.[]? | select(.modelKey == $model or .id == $model)' 2>/dev/null)
+    # HTTP API format: .data[]
+    elif echo "${response}" | jq -e '.data[]?' >/dev/null 2>&1; then
+        model_data=$(echo "${response}" | jq -c --arg model "${model}" '.data[]? | select(.id == $model)' 2>/dev/null)
+    # HTTP API format: []
+    elif echo "${response}" | jq -e '.[]?' >/dev/null 2>&1; then
+        model_data=$(echo "${response}" | jq -c --arg model "${model}" '.[]? | select(.id == $model)' 2>/dev/null)
+    fi
+    
+    # If not found, try individual model endpoint (HTTP only)
+    if [ -z "${model_data}" ] || [ "${model_data}" == "null" ]; then
+        local details_response
+        details_response=$(fetch_model_details_endpoint "${model}" "${endpoint}")
+        if [ $? -eq 0 ] && [ -n "${details_response}" ]; then
+            model_data="${details_response}"
+        fi
+    fi
+    
+    if [ -z "${model_data}" ] || [ "${model_data}" == "null" ]; then
+        echo "⚠ Model not found: ${model}"
+        return 1
+    fi
+    
+    echo "Model Metadata: ${model}"
+    echo ""
+    
+    # Extract all available fields (handle both CLI and HTTP formats)
+    local id=$(echo "${model_data}" | jq -r '.modelKey // .id // "N/A"' 2>/dev/null)
+    local object=$(echo "${model_data}" | jq -r '.object // "N/A"' 2>/dev/null)
+    local created=$(echo "${model_data}" | jq -r '.created // "N/A"' 2>/dev/null)
+    local owned_by=$(echo "${model_data}" | jq -r '.owned_by // .publisher // "N/A"' 2>/dev/null)
+    local display_name=$(echo "${model_data}" | jq -r '.displayName // "N/A"' 2>/dev/null)
+    local architecture=$(echo "${model_data}" | jq -r '.architecture // "N/A"' 2>/dev/null)
+    local format=$(echo "${model_data}" | jq -r '.format // "N/A"' 2>/dev/null)
+    local size_bytes=$(echo "${model_data}" | jq -r '.sizeBytes // empty' 2>/dev/null)
+    
+    # Context/Max tokens (CLI uses maxContextLength, HTTP uses various field names)
+    local context_length=$(echo "${model_data}" | jq -r '
+        .maxContextLength //
+        .context_length // 
+        .max_tokens // 
+        .permission[].max_tokens // 
+        .max_context_length //
+        .max_input_tokens //
+        empty
+    ' 2>/dev/null | head -1)
+    
+    # If not found in API response, try to infer from model name
+    if [ -z "${context_length}" ] || [ "${context_length}" == "null" ] || [ "${context_length}" == "" ]; then
+        local inferred_context
+        inferred_context=$(infer_context_from_name "${model}")
+        if [ $? -eq 0 ] && [ -n "${inferred_context}" ]; then
+            context_length="${inferred_context} (inferred from name)"
+        fi
+    fi
+    
+    local max_output_tokens=$(echo "${model_data}" | jq -r '.max_output_tokens // .max_completion_tokens // empty' 2>/dev/null)
+    
+    # Model capabilities
+    local supports_streaming=$(echo "${model_data}" | jq -r '.streaming // .supports_streaming // "N/A"' 2>/dev/null)
+    local supports_function_calling=$(echo "${model_data}" | jq -r '.function_calling // .supports_function_calling // "N/A"' 2>/dev/null)
+    
+    # Model size/architecture info
+    local model_size=$(echo "${model_data}" | jq -r '.size // .model_size // "N/A"' 2>/dev/null)
+    local architecture=$(echo "${model_data}" | jq -r '.architecture // .model_architecture // "N/A"' 2>/dev/null)
+    
+    # Pricing/rate limits (if available)
+    local pricing=$(echo "${model_data}" | jq -r '.pricing // "N/A"' 2>/dev/null)
+    local rate_limit=$(echo "${model_data}" | jq -r '.rate_limit // "N/A"' 2>/dev/null)
+    
+    # Display basic info
+    echo "  ID: ${id}"
+    [ "${display_name}" != "N/A" ] && [ "${display_name}" != "null" ] && echo "  Display Name: ${display_name}"
+    [ "${object}" != "N/A" ] && [ "${object}" != "null" ] && echo "  Object: ${object}"
+    [ "${created}" != "N/A" ] && [ "${created}" != "null" ] && echo "  Created: ${created}"
+    [ "${owned_by}" != "N/A" ] && [ "${owned_by}" != "null" ] && echo "  Publisher/Owner: ${owned_by}"
+    
+    echo ""
+    echo "  Context & Limits:"
+    if [ -n "${context_length}" ] && [ "${context_length}" != "N/A" ] && [ "${context_length}" != "null" ] && [ "${context_length}" != "" ]; then
+        echo "    Max Context Length: ${context_length} tokens"
+    else
+        echo "    Max Context Length: Not available"
+    fi
+    if [ -n "${max_output_tokens}" ] && [ "${max_output_tokens}" != "N/A" ] && [ "${max_output_tokens}" != "null" ] && [ "${max_output_tokens}" != "" ]; then
+        echo "    Max Output Tokens: ${max_output_tokens}"
+    fi
+    
+    echo ""
+    echo "  Capabilities:"
+    [ "${supports_streaming}" != "N/A" ] && [ "${supports_streaming}" != "null" ] && echo "    Streaming: ${supports_streaming}"
+    [ "${supports_function_calling}" != "N/A" ] && [ "${supports_function_calling}" != "null" ] && echo "    Function Calling: ${supports_function_calling}"
+    
+    # Model architecture info
+    if [ "${model_size}" != "N/A" ] || [ "${architecture}" != "N/A" ] || [ "${format}" != "N/A" ] || [ -n "${size_bytes}" ]; then
+        echo ""
+        echo "  Model Details:"
+        [ "${architecture}" != "N/A" ] && [ "${architecture}" != "null" ] && echo "    Architecture: ${architecture}"
+        [ "${format}" != "N/A" ] && [ "${format}" != "null" ] && echo "    Format: ${format}"
+        if [ -n "${size_bytes}" ] && [ "${size_bytes}" != "null" ] && [ "${size_bytes}" != "0" ]; then
+            local size_mb=$(echo "scale=2; ${size_bytes} / 1024 / 1024" | bc 2>/dev/null)
+            local size_gb=$(echo "scale=2; ${size_bytes} / 1024 / 1024 / 1024" | bc 2>/dev/null)
+            if [ -n "${size_gb}" ] && (( $(echo "${size_gb} >= 1" | bc -l 2>/dev/null || echo 0) )); then
+                echo "    Size: ${size_gb} GB"
+            elif [ -n "${size_mb}" ]; then
+                echo "    Size: ${size_mb} MB"
+            fi
+        fi
+        [ "${model_size}" != "N/A" ] && [ "${model_size}" != "null" ] && echo "    Size (other): ${model_size}"
+    fi
+    
+    # Pricing/rate limits
+    if [ "${pricing}" != "N/A" ] || [ "${rate_limit}" != "N/A" ]; then
+        echo ""
+        echo "  Pricing & Limits:"
+        [ "${pricing}" != "N/A" ] && [ "${pricing}" != "null" ] && echo "    Pricing: ${pricing}"
+        [ "${rate_limit}" != "N/A" ] && [ "${rate_limit}" != "null" ] && echo "    Rate Limit: ${rate_limit}"
+    fi
+    
+    # Show any additional fields that might be present
+    local all_keys=$(echo "${model_data}" | jq -r 'keys[]?' 2>/dev/null)
+    local shown_keys=("id" "object" "created" "owned_by" "context_length" "max_tokens" "permission" "max_output_tokens" "streaming" "supports_streaming" "function_calling" "supports_function_calling" "size" "model_size" "architecture" "model_architecture" "pricing" "rate_limit")
+    
+    echo ""
+    echo "  Additional Fields:"
+    local has_additional=false
+    echo "${all_keys}" | while IFS= read -r key; do
+        local is_shown=false
+        for shown_key in "${shown_keys[@]}"; do
+            if [[ "${key}" == "${shown_key}" ]]; then
+                is_shown=true
+                break
+            fi
+        done
+        
+        if [ "${is_shown}" == "false" ]; then
+            local value=$(echo "${model_data}" | jq -r --arg key "${key}" ".[\$key] // empty" 2>/dev/null)
+            if [ -n "${value}" ] && [ "${value}" != "null" ]; then
+                echo "    ${key}: ${value}"
+                has_additional=true
+            fi
+        fi
+    done
+    
+    if [ "${has_additional}" == "false" ]; then
+        echo "    (none)"
+    fi
+    
+    return 0
+}
+
+################################################################################
+# Main Entry Point
+################################################################################
+
+# Main function - routes commands to appropriate handlers
+main() {
+    check_jq
+    
+    local command="${1:-list}"
+    
+    case "${command}" in
+        list)
+            shift
+            local show_metadata="false"
+            local json_only="false"
+            local endpoint="${1:-${DEFAULT_MODELS_URL}}"
+            
+            # Check for --json flag (for programmatic use)
+            if [[ "$*" == *"--json"* ]]; then
+                json_only="true"
+                # Remove --json flag from endpoint
+                endpoint=$(echo "$@" | sed 's/--json//g' | xargs)
+                [ -z "${endpoint}" ] && endpoint="${DEFAULT_MODELS_URL}"
+            fi
+            
+            # Check for --metadata flag
+            if [[ "$*" == *"--metadata"* ]] || [[ "$*" == *"-m"* ]]; then
+                show_metadata="true"
+                # Remove flags from endpoint
+                endpoint=$(echo "$@" | sed 's/--metadata//g' | sed 's/-m//g' | xargs)
+                [ -z "${endpoint}" ] && endpoint="${DEFAULT_MODELS_URL}"
+            fi
+            
+            # If --json, output only JSON (no formatting)
+            if [ "${json_only}" == "true" ]; then
+                local response
+                response=$(fetch_models "${endpoint}")
+                if [ $? -eq 0 ] && [ -n "${response}" ]; then
+                    echo "${response}"
+                    return 0
+                else
+                    return 1
+                fi
+            fi
+            
+            list_models "${endpoint}" "${show_metadata}" "${json_only}"
+            ;;
+        info)
+            shift
+            model_info "$@"
+            ;;
+        metadata)
+            shift
+            model_metadata "$@"
+            ;;
+        help|--help|-h)
+            cat <<EOF
+lm-studio-client - Simple LM Studio API client
+
+Usage: lm-studio-client <command> [args...]
+
+Commands:
+  list [endpoint] [--metadata|-m]
+                           List all available models
+                           Use --metadata or -m to show context length and owner
+                           Default endpoint: ${DEFAULT_MODELS_URL}
+  
+  info <model_id> [endpoint]
+                           Show full model information (JSON)
+  
+  metadata <model_id> [endpoint]
+                           Show detailed model metadata including:
+                           - Max context length (from API or inferred from name)
+                           - Capabilities (streaming, function calling)
+                           - Architecture info
+                           - Pricing/rate limits
+                           - All available fields
+  
+  help                     Show this help message
+
+Environment Variables:
+  LM_STUDIO_ENDPOINT       Override default endpoint (default: ${DEFAULT_ENDPOINT})
+                          Can be http://host:port or ws://host:port format
+  LMS_CLI                  Override path to lms CLI binary
+                          (default: /Applications/LM Studio.app/Contents/Resources/app/.webpack/lms)
+
+Remote Connections:
+  The script automatically detects remote connections from the endpoint URL.
+  For example:
+    lm-studio-client list http://192.168.1.100:1234/v1/models
+    LM_STUDIO_ENDPOINT=ws://remote-host:1234 lm-studio-client list
+
+Examples:
+  # List all models
+  lm-studio-client list
+  
+  # Get model info
+  lm-studio-client info "mistralai/devstral-small-2-2512"
+  
+  # Get model metadata
+  lm-studio-client metadata "mistralai/devstral-small-2-2512"
+  
+  # Use custom endpoint
+  LM_STUDIO_ENDPOINT=http://localhost:1234 lm-studio-client list
+EOF
+            ;;
+        *)
+            echo "Unknown command: ${command}"
+            echo "Run 'lm-studio-client help' for usage information"
+            exit 1
+            ;;
+    esac
+}
+
+# Run main function
+main "$@"

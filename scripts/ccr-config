@@ -1,0 +1,985 @@
+#!/bin/bash
+
+################################################################################
+# ccr-config
+#
+# Simplified Claude Code Router (CCR) configuration manager using presets.
+# 
+# This script provides a simple interface to manage CCR configurations by:
+#   - Discovering models from LM Studio (via lm-studio-client)
+#   - Creating presets for models with accurate context sizes
+#   - Loading presets to configure CCR
+#   - Syncing all available models from LM Studio
+#   - Updating existing presets with current model metadata
+#
+# Dependencies:
+#   - jq (for JSON parsing)
+#   - lm-studio-client (in same directory)
+#   - lms CLI (from LM Studio app) for rich metadata
+#
+# Usage:
+#   ccr-config <command> [args...]
+#   ccr-config help          # Show full help
+#
+# Examples:
+#   ccr-config list-models              # List all models from LM Studio
+#   ccr-config use "model-name"         # Create and load preset for a model
+#   ccr-config sync                     # Create presets for all models
+#   ccr-config update-sync               # Update all existing presets
+#   ccr-config load preset-name         # Load an existing preset
+#   ccr-config show                     # Show current CCR configuration
+#
+# Tab Completion:
+#   Zsh tab completion is available via:
+#   functions-completion/zsh/_ccr-config
+#   This provides tab completion for commands and model names.
+#
+################################################################################
+
+set -e
+
+# Get script directory and workspace root
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+WORKSPACE_DIR="$(dirname "${SCRIPT_DIR}")"
+CCR_CONFIG="${HOME}/.claude-code-router/config.json"
+CCR_PRESETS_DIR="${HOME}/.claude-code-router/presets"
+LM_STUDIO_CLIENT="${SCRIPT_DIR}/lm-studio-client"
+
+# Default endpoint
+DEFAULT_ENDPOINT="${LM_STUDIO_ENDPOINT:-http://192.168.1.131:1234}"
+DEFAULT_MODELS_URL="${DEFAULT_ENDPOINT}/v1/models"
+DEFAULT_CHAT_URL="${DEFAULT_ENDPOINT}/v1/chat/completions"
+
+# Source workspace helper functions
+if [ -f "${WORKSPACE_DIR}/common.sh" ]; then
+    source "${WORKSPACE_DIR}/common.sh" 2>/dev/null
+fi
+
+# No colors needed - plain text output
+
+################################################################################
+# Helper Functions
+################################################################################
+
+# Check if jq is available (required for JSON parsing)
+check_jq() {
+    if ! command -v jq >/dev/null 2>&1; then
+        echo "Error: jq is required but not found."
+        echo "Install with: brew install jq"
+        exit 1
+    fi
+}
+
+################################################################################
+# Model Discovery Functions (delegate to lm-studio-client)
+################################################################################
+
+# List all available models from LM Studio
+list_models() {
+    if [ ! -f "${LM_STUDIO_CLIENT}" ]; then
+        echo "Error: LM Studio client not found: ${LM_STUDIO_CLIENT}"
+        return 1
+    fi
+    
+    "${LM_STUDIO_CLIENT}" list "$@"
+}
+
+# Get detailed information about a specific model (JSON format)
+model_info() {
+    if [ -z "$1" ]; then
+        echo "Usage: model-info <model_id>"
+        echo "Example: ccr-config info \"mistralai/devstral-small-2-2512\""
+        return 1
+    fi
+    
+    if [ ! -f "${LM_STUDIO_CLIENT}" ]; then
+        echo "Error: LM Studio client not found: ${LM_STUDIO_CLIENT}"
+        return 1
+    fi
+    
+    "${LM_STUDIO_CLIENT}" info "$@"
+}
+
+# Get simplified metadata about a model (formatted output)
+model_metadata() {
+    if [ -z "$1" ]; then
+        echo "Usage: model-metadata <model_id>"
+        echo "Example: ccr-config metadata \"mistralai/devstral-small-2-2512\""
+        return 1
+    fi
+    
+    if [ ! -f "${LM_STUDIO_CLIENT}" ]; then
+        echo "Error: LM Studio client not found: ${LM_STUDIO_CLIENT}"
+        return 1
+    fi
+    
+    "${LM_STUDIO_CLIENT}" metadata "$@"
+}
+
+################################################################################
+# Preset Management Functions
+################################################################################
+
+# Fetch model details from LM Studio (uses lms CLI for rich metadata)
+# Returns JSON with model information including maxContextLength
+fetch_model_details() {
+    local models_endpoint="$1"
+    local model="$2"
+    
+    if [ -z "${models_endpoint}" ] || [ -z "${model}" ]; then
+        return 1
+    fi
+    
+    # First try LM Studio client (provides rich metadata including maxContextLength)
+    if [ -f "${LM_STUDIO_CLIENT}" ]; then
+        # Get JSON list of all models (includes maxContextLength)
+        local models_json
+        # Don't pass endpoint - let client use its default (which uses CLI with remote connection)
+        # Get raw output and extract JSON (filter out color codes and status messages)
+        local raw_output
+        raw_output=$("${LM_STUDIO_CLIENT}" list --json 2>&1)
+        local client_exit=$?
+        
+        if [ ${client_exit} -eq 0 ] && [ -n "${raw_output}" ]; then
+            # Extract JSON lines (start with [ or {)
+            models_json=$(echo "${raw_output}" | grep -E "^\[|^\{")
+            
+            # If no JSON found, try the whole output (might be pure JSON)
+            if [ -z "${models_json}" ]; then
+                models_json="${raw_output}"
+            fi
+            
+            # Validate JSON first
+            if echo "${models_json}" | jq empty >/dev/null 2>&1; then
+                # Extract model data from JSON array (CLI format uses modelKey)
+                local model_data
+                model_data=$(echo "${models_json}" | jq -c --arg model "${model}" '.[]? | select(.modelKey == $model or .id == $model)' 2>/dev/null)
+                if [ -n "${model_data}" ] && [ "${model_data}" != "null" ] && [ "${model_data}" != "" ]; then
+                    echo "${model_data}"
+                    return 0
+                fi
+            fi
+        fi
+    fi
+    
+    # No HTTP fallback - lms CLI is required for rich metadata (maxContextLength)
+    # If CLI fails, we can't get accurate context size, so return error
+    return 1
+}
+
+# Extract max context length from model details JSON
+# Handles both lms CLI format (maxContextLength) and HTTP API format
+get_max_tokens() {
+    local model_details="$1"
+    
+    if [ -z "${model_details}" ]; then
+        return 1
+    fi
+    
+    local max_tokens
+    # Try CLI format first (maxContextLength), then HTTP API formats
+    max_tokens=$(echo "${model_details}" | jq -r '.maxContextLength // .context_length // .max_tokens // .permission[].max_tokens // empty' 2>/dev/null | head -1)
+    
+    if [ -n "${max_tokens}" ] && [ "${max_tokens}" != "null" ] && [ "${max_tokens}" != "" ]; then
+        echo "${max_tokens}"
+        return 0
+    fi
+    
+    return 1
+}
+
+# Create a preset for a model
+# A preset includes:
+#   - config.json: CCR configuration with model and context threshold
+#   - manifest.json: Preset metadata and input schema
+create_preset() {
+    local model="$1"
+    local provider_name="${2:-ollama}"
+    local api_base_url="${3:-${DEFAULT_CHAT_URL}}"
+    local api_key="${4:-ollama}"
+    local max_tokens="${5:-}"
+    local models_endpoint="${6:-${DEFAULT_MODELS_URL}}"
+    local skip_existing="${7:-false}"
+    
+    if [ -z "${model}" ]; then
+        return 1
+    fi
+    
+    # Sanitize model name for preset directory name
+    local preset_name="${model//\//-}"
+    preset_name="${preset_name//:/_}"
+    preset_name="${preset_name// /_}"
+    preset_name="model-${preset_name}"
+    
+    local preset_dir="${CCR_PRESETS_DIR}/${preset_name}"
+    
+    # Check if preset already exists
+    if [ -d "${preset_dir}" ] && [ -f "${preset_dir}/config.json" ] && [ -f "${preset_dir}/manifest.json" ]; then
+        if [[ "${skip_existing}" == "true" ]]; then
+            echo "⊘ Preset already exists: ${preset_name}"
+            return 0
+        else
+            return 1
+        fi
+    fi
+    
+    mkdir -p "${preset_dir}"
+    
+    # Fetch model details if max_tokens not provided
+    if [ -z "${max_tokens}" ]; then
+        local model_details
+        model_details=$(fetch_model_details "${models_endpoint}" "${model}" 2>/dev/null)
+        local fetch_exit=$?
+        
+        if [ ${fetch_exit} -eq 0 ] && [ -n "${model_details}" ]; then
+            max_tokens=$(get_max_tokens "${model_details}" 2>/dev/null)
+            # Verify we got a valid number
+            if [ -z "${max_tokens}" ] || [ "${max_tokens}" == "null" ] || ! [[ "${max_tokens}" =~ ^[0-9]+$ ]]; then
+                max_tokens=""
+            fi
+        fi
+        
+        # If we still don't have max_tokens, try to infer from model name
+        if [ -z "${max_tokens}" ]; then
+            # Try to infer from model name (e.g., model-8k, model-32k, model-128k)
+            if echo "${model}" | grep -qiE '[0-9]+k'; then
+                local size=$(echo "${model}" | grep -oiE '[0-9]+k' | head -1 | tr -d 'k')
+                if [ -n "${size}" ]; then
+                    max_tokens=$((size * 1000))
+                fi
+            fi
+        fi
+    fi
+    
+    # Default max_tokens if still not found (last resort)
+    if [ -z "${max_tokens}" ] || [ "${max_tokens}" == "null" ] || ! [[ "${max_tokens}" =~ ^[0-9]+$ ]]; then
+        echo "⚠ Warning: Could not determine max context length for ${model}, using default 32768" >&2
+        max_tokens="32768"  # Default fallback
+    fi
+    
+    # Create config.json for preset
+    local config_json=$(cat <<EOF
+{
+  "LOG": true,
+  "LOG_LEVEL": "debug",
+  "HOST": "127.0.0.1",
+  "PORT": 3456,
+  "APIKEY": "{{APIKEY}}",
+  "API_TIMEOUT_MS": 600000,
+  "NON_INTERACTIVE_MODE": false,
+  "Providers": [
+    {
+      "name": "${provider_name}",
+      "api_base_url": "${api_base_url}",
+      "api_key": "{{api_key}}",
+      "models": ["${model}"]
+    }
+  ],
+  "Router": {
+    "default": "${provider_name},${model}",
+    "longContextThreshold": ${max_tokens},
+    "background": "${provider_name},${model}"
+  }
+}
+EOF
+)
+    
+    echo "${config_json}" > "${preset_dir}/config.json"
+    
+    # Create manifest.json
+    local manifest_json=$(cat <<EOF
+{
+  "name": "${preset_name}",
+  "version": "1.0.0",
+  "description": "Preset for model ${model} on ${provider_name}",
+  "author": "ccr-config",
+  "tags": ["model", "${provider_name}", "${model}"],
+  "created": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+  "config_file": "config.json",
+  "inputs": [
+    {
+      "name": "APIKEY",
+      "description": "CCR API key",
+      "type": "string",
+      "required": false,
+      "default": "test-key"
+    },
+    {
+      "name": "api_key",
+      "description": "Provider API key for ${provider_name}",
+      "type": "string",
+      "required": false,
+      "default": "${api_key}"
+    }
+  ]
+}
+EOF
+)
+    
+    echo "${manifest_json}" | jq . > "${preset_dir}/manifest.json"
+    
+    echo "✓ Created preset: ${preset_name}"
+    return 0
+}
+
+# Backup current CCR config before loading a preset
+backup_config() {
+    if [ -f "${CCR_CONFIG}" ]; then
+        local timestamp=$(date +"%Y%m%d_%H%M%S")
+        local backup="${CCR_CONFIG}.backup.${timestamp}"
+        cp "${CCR_CONFIG}" "${backup}" 2>/dev/null || true
+    fi
+}
+
+# Validate that the CCR config file contains valid JSON
+validate_json() {
+    if [ ! -f "${CCR_CONFIG}" ]; then
+        return 1
+    fi
+    
+    if ! jq empty "${CCR_CONFIG}" >/dev/null 2>&1; then
+        echo "⚠ Invalid JSON in config file" >&2
+        return 1
+    fi
+    return 0
+}
+
+# Load a preset into CCR configuration
+# - Backs up current config
+# - Replaces API keys from environment variables
+# - Converts endpoints if needed
+# - Validates the resulting JSON
+load_preset() {
+    local preset_name="$1"
+    local silent="${2:-false}"
+    
+    if [ -z "${preset_name}" ]; then
+        return 1
+    fi
+    
+    if ! check_jq; then
+        return 1
+    fi
+    
+    local preset_dir="${CCR_PRESETS_DIR}/${preset_name}"
+    local manifest_file="${preset_dir}/manifest.json"
+    local config_file="${preset_dir}/config.json"
+    
+    if [ ! -d "${preset_dir}" ]; then
+        [ "${silent}" != "true" ] && echo "✗ Preset not found: ${preset_name}" >&2
+        return 1
+    fi
+    
+    if [ ! -f "${config_file}" ]; then
+        [ "${silent}" != "true" ] && echo "✗ Config file not found in preset: ${config_file}" >&2
+        return 1
+    fi
+    
+    # Set default environment variables from manifest if not already set
+    if [ -f "${manifest_file}" ] && command -v jq >/dev/null 2>&1; then
+        local inputs
+        inputs=$(jq -r '.inputs[]? | "\(.name)|\(.default // "")"' "${manifest_file}" 2>/dev/null)
+        
+        while IFS='|' read -r name default; do
+            [ -z "${name}" ] && continue
+            
+            local env_var=$(echo "${name}" | tr '[:lower:]' '[:upper:]')
+            
+            # Set default if not already set
+            if [ -z "${!env_var}" ] && [ -n "${default}" ]; then
+                export "${env_var}"="${default}"
+            fi
+        done < <(echo "${inputs}")
+    fi
+    
+    # Set hardcoded defaults if still not set (fallback)
+    export APIKEY="${APIKEY:-test-key}"
+    export API_KEY="${API_KEY:-ollama}"
+    
+    [ "${silent}" != "true" ] && echo "Loading preset: ${preset_name}" >&2
+    
+    # Backup current config
+    backup_config
+    
+    # Read preset config
+    local preset_config
+    preset_config=$(cat "${config_file}")
+    
+    # Resolve inputs (replace placeholders with environment variables or defaults)
+    if [ -f "${manifest_file}" ] && command -v jq >/dev/null 2>&1; then
+        local inputs
+        inputs=$(jq -r '.inputs[]? | "\(.name)|\(.default // "")"' "${manifest_file}" 2>/dev/null)
+        
+        # Use process substitution to avoid subshell issues
+        while IFS='|' read -r name default; do
+            [ -z "${name}" ] && continue
+            
+            local env_var=$(echo "${name}" | tr '[:lower:]' '[:upper:]')
+            local value="${!env_var}"
+            
+            if [ -z "${value}" ] && [ -n "${default}" ]; then
+                value="${default}"
+            fi
+            
+            if [ -n "${value}" ]; then
+                # Replace placeholder in config (escape special chars for sed)
+                local escaped_value=$(echo "${value}" | sed 's/[[\.*^$()+?{|]/\\&/g')
+                preset_config=$(echo "${preset_config}" | sed "s|{{${name}}}|${escaped_value}|g")
+            fi
+        done < <(echo "${inputs}")
+    fi
+    
+    # Fix endpoint: Default to /v1/chat/completions (response endpoint) unless USE_COMPLETION_URL=true
+    # Convert /v1/completions to /v1/chat/completions if needed
+    if [[ "${USE_COMPLETION_URL}" != "true" ]]; then
+        # Check if preset uses completions endpoint and convert to chat/completions
+        if echo "${preset_config}" | grep -q '/v1/completions"' && ! echo "${preset_config}" | grep -q '/v1/chat/completions"'; then
+            [ "${silent}" != "true" ] && echo "  Converting endpoint: /v1/completions → /v1/chat/completions" >&2
+            preset_config=$(echo "${preset_config}" | sed 's|/v1/completions"|/v1/chat/completions"|g')
+        fi
+        # Also convert /v1/responses to /v1/chat/completions (in case old presets used responses)
+        if echo "${preset_config}" | grep -q '/v1/responses"' && ! echo "${preset_config}" | grep -q '/v1/chat/completions"'; then
+            [ "${silent}" != "true" ] && echo "  Converting endpoint: /v1/responses → /v1/chat/completions" >&2
+            preset_config=$(echo "${preset_config}" | sed 's|/v1/responses"|/v1/chat/completions"|g')
+        fi
+    fi
+    
+    # Write to main config
+    echo "${preset_config}" | jq . > "${CCR_CONFIG}" 2>/dev/null
+    
+    if [ $? -ne 0 ]; then
+        [ "${silent}" != "true" ] && echo "✗ Failed to write config" >&2
+        return 1
+    fi
+    
+    # Validate
+    if ! validate_json >/dev/null 2>&1; then
+        [ "${silent}" != "true" ] && echo "✗ Config validation failed" >&2
+        return 1
+    fi
+    
+    [ "${silent}" != "true" ] && echo "✓ Preset loaded successfully" >&2
+    return 0
+}
+
+# Update an existing preset with current model metadata
+# This is useful for fixing presets that were created with incorrect context sizes
+update_preset() {
+    local preset_name="$1"
+    
+    if [ -z "${preset_name}" ]; then
+        echo "Usage: update-preset <preset_name>"
+        echo "Example: ccr-config update model-mistralai-devstral-small-2-2512"
+        return 1
+    fi
+    
+    local preset_dir="${CCR_PRESETS_DIR}/${preset_name}"
+    local config_file="${preset_dir}/config.json"
+    
+    if [ ! -f "${config_file}" ]; then
+        echo "Error: Preset not found: ${preset_name}"
+        return 1
+    fi
+    
+    if ! check_jq; then
+        return 1
+    fi
+    
+    # Extract model name from config
+    local model
+    model=$(jq -r '.Providers[0].models[0] // empty' "${config_file}" 2>/dev/null)
+    
+    if [ -z "${model}" ] || [ "${model}" == "null" ]; then
+        echo "Error: Could not extract model name from preset"
+        return 1
+    fi
+    
+    echo "Updating preset: ${preset_name}"
+    echo "Model: ${model}"
+    echo ""
+    
+    # Extract current provider settings
+    local provider_name
+    provider_name=$(jq -r '.Providers[0].name // "ollama"' "${config_file}" 2>/dev/null)
+    local api_base_url
+    api_base_url=$(jq -r '.Providers[0].api_base_url // empty' "${config_file}" 2>/dev/null)
+    local api_key
+    api_key=$(jq -r '.Providers[0].api_key // "ollama"' "${config_file}" 2>/dev/null)
+    
+    # If api_base_url contains placeholders, use default
+    if [[ "${api_base_url}" == *"{{"* ]]; then
+        api_base_url="${DEFAULT_CHAT_URL}"
+    fi
+    if [ -z "${api_base_url}" ]; then
+        api_base_url="${DEFAULT_CHAT_URL}"
+    fi
+    
+    # Backup old config
+    local backup_file="${config_file}.backup.$(date +%Y%m%d_%H%M%S)"
+    cp "${config_file}" "${backup_file}" 2>/dev/null || true
+    
+    # Remove old preset directory
+    rm -rf "${preset_dir}"
+    
+    # Recreate preset with current metadata
+    if create_preset "${model}" "${provider_name}" "${api_base_url}" "${api_key}" "" "${DEFAULT_MODELS_URL}" false; then
+        echo "✓ Preset updated successfully"
+        echo "  Backup saved to: ${backup_file}"
+        return 0
+    else
+        # Restore backup on failure
+        if [ -f "${backup_file}" ]; then
+            mkdir -p "${preset_dir}"
+            cp "${backup_file}" "${config_file}"
+        fi
+        echo "Error: Failed to update preset"
+        return 1
+    fi
+}
+
+# Auto-load preset from CCR_PRESET environment variable
+# Used during shell initialization (called from zshrc)
+auto_load_preset() {
+    local preset_name="${CCR_PRESET:-}"
+    
+    if [ -z "${preset_name}" ]; then
+        return 0  # No preset specified, skip
+    fi
+    
+    # Silently load preset (for use in shell initialization)
+    load_preset "${preset_name}" true
+    return $?
+}
+
+# Use a model - creates preset if needed, then loads it
+# This is the simplest way to switch to a different model
+use_model() {
+    local model="$1"
+    
+    if [ -z "${model}" ]; then
+        echo "Usage: use-model <model_id>"
+        echo "Example: ccr-config use-model mistralai/devstral-small-2-2512"
+        return 1
+    fi
+    
+    check_jq
+    
+    # Sanitize model name for preset
+    local preset_name="${model//\//-}"
+    preset_name="${preset_name//:/_}"
+    preset_name="${preset_name// /_}"
+    preset_name="model-${preset_name}"
+    
+    # Check if preset exists, create if not
+    local preset_dir="${CCR_PRESETS_DIR}/${preset_name}"
+    
+    if [ ! -d "${preset_dir}" ] || [ ! -f "${preset_dir}/config.json" ]; then
+        echo "Creating preset for model: ${model}"
+        create_preset "${model}" ollama "${DEFAULT_CHAT_URL}" ollama "" "${DEFAULT_MODELS_URL}" false
+        if [ $? -ne 0 ]; then
+            echo "✗ Failed to create preset"
+            return 1
+        fi
+    else
+        echo "Preset already exists: ${preset_name}"
+    fi
+    
+    # Load the preset
+    load_preset "${preset_name}" false
+}
+
+# Update all existing presets with current model metadata
+# This is useful for fixing presets that were created with incorrect context sizes
+update_all_presets() {
+    echo "Updating all existing presets with current model metadata..."
+    echo ""
+    
+    check_jq
+    
+    if [ ! -d "${CCR_PRESETS_DIR}" ]; then
+        echo "⚠ No presets directory found: ${CCR_PRESETS_DIR}"
+        return 1
+    fi
+    
+    # Find all preset directories
+    local presets
+    presets=$(find "${CCR_PRESETS_DIR}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | sort)
+    
+    if [ -z "${presets}" ]; then
+        echo "⚠ No presets found to update"
+        return 1
+    fi
+    
+    local updated=0
+    local failed=0
+    local skipped=0
+    
+    while IFS= read -r preset_dir; do
+        if [ -z "${preset_dir}" ]; then
+            continue
+        fi
+        
+        local preset_name=$(basename "${preset_dir}")
+        local config_file="${preset_dir}/config.json"
+        
+        if [ ! -f "${config_file}" ]; then
+            echo "⊘ Skipping ${preset_name} (no config.json)"
+            skipped=$((skipped + 1))
+            continue
+        fi
+        
+        # Extract model name from config
+        local model
+        model=$(jq -r '.Providers[0].models[0] // empty' "${config_file}" 2>/dev/null)
+        
+        if [ -z "${model}" ] || [ "${model}" == "null" ]; then
+            echo "⊘ Skipping ${preset_name} (could not extract model name)"
+            skipped=$((skipped + 1))
+            continue
+        fi
+        
+        # Extract current context threshold
+        local current_threshold
+        current_threshold=$(jq -r '.Router.longContextThreshold // empty' "${config_file}" 2>/dev/null)
+        
+        # Fetch current model metadata
+        local model_details
+        model_details=$(fetch_model_details "${DEFAULT_MODELS_URL}" "${model}" 2>/dev/null)
+        local fetch_exit=$?
+        
+        if [ ${fetch_exit} -ne 0 ] || [ -z "${model_details}" ]; then
+            echo "⚠ Failed to fetch metadata for ${preset_name} (model: ${model})"
+            failed=$((failed + 1))
+            continue
+        fi
+        
+        # Get correct context size
+        local correct_threshold
+        correct_threshold=$(get_max_tokens "${model_details}" 2>/dev/null)
+        
+        if [ -z "${correct_threshold}" ] || [ "${correct_threshold}" == "null" ]; then
+            echo "⚠ Could not determine context size for ${preset_name} (model: ${model})"
+            failed=$((failed + 1))
+            continue
+        fi
+        
+        # Check if update is needed
+        if [ "${current_threshold}" == "${correct_threshold}" ]; then
+            echo "✓ ${preset_name} already has correct context size (${correct_threshold})"
+            continue
+        fi
+        
+        # Update the preset
+        echo "Updating ${preset_name}: ${current_threshold} → ${correct_threshold}"
+        if update_preset "${preset_name}" >/dev/null 2>&1; then
+            updated=$((updated + 1))
+        else
+            echo "  ✗ Failed to update ${preset_name}"
+            failed=$((failed + 1))
+        fi
+    done < <(echo "${presets}")
+    
+    echo ""
+    echo "Update complete:"
+    echo "  Updated: ${updated}"
+    [ ${failed} -gt 0 ] && echo "  Failed: ${failed}"
+    [ ${skipped} -gt 0 ] && echo "  Skipped: ${skipped}"
+}
+
+# Sync all models from LM Studio - create presets for all available models
+# Skips models that already have presets
+sync_models() {
+    echo "Syncing models from LM Studio..."
+    echo ""
+    
+    check_jq
+    
+    # Fetch all models
+    local models
+    if [ ! -f "${LM_STUDIO_CLIENT}" ]; then
+        echo "✗ LM Studio client not found: ${LM_STUDIO_CLIENT}"
+        return 1
+    fi
+    
+    # Use --json flag to get structured data directly from lms CLI
+    local models_json
+    models_json=$("${LM_STUDIO_CLIENT}" list --json 2>/dev/null)
+    
+    if [ $? -ne 0 ] || [ -z "${models_json}" ]; then
+        echo "⚠ Failed to fetch models from LM Studio"
+        return 1
+    fi
+    
+    # Extract model IDs from JSON (CLI format uses modelKey, HTTP uses id)
+    models=$(echo "${models_json}" | jq -r '.[]?.modelKey // .[]?.id // empty' 2>/dev/null)
+    
+    if [ -z "${models}" ]; then
+        echo "⚠ No models found"
+        return 1
+    fi
+    
+    # Create presets directory
+    mkdir -p "${CCR_PRESETS_DIR}"
+    
+    # Create preset for each model (skip existing)
+    local created=0
+    local skipped=0
+    
+    echo "Creating presets..."
+    echo ""
+    
+    while IFS= read -r model; do
+        if [ -n "${model}" ]; then
+            # Check if preset already exists
+            local preset_name="${model//\//-}"
+            preset_name="${preset_name//:/_}"
+            preset_name="${preset_name// /_}"
+            preset_name="model-${preset_name}"
+            local preset_dir="${CCR_PRESETS_DIR}/${preset_name}"
+            
+            if [ -d "${preset_dir}" ] && [ -f "${preset_dir}/config.json" ] && [ -f "${preset_dir}/manifest.json" ]; then
+                echo "⊘ Preset already exists: ${preset_name}"
+                skipped=$((skipped + 1))
+            else
+                if create_preset "${model}" ollama "${DEFAULT_CHAT_URL}" ollama "" "${DEFAULT_MODELS_URL}" false >/dev/null 2>&1; then
+                    created=$((created + 1))
+                fi
+            fi
+        fi
+    done < <(echo "${models}")
+    
+    echo ""
+    echo "✓ Preset sync complete"
+    echo "  Created: ${created}"
+    [ ${skipped} -gt 0 ] && echo "  Skipped (already exist): ${skipped}"
+    echo "  Total presets: $((created + skipped))"
+}
+
+# List all available presets with their metadata
+list_presets() {
+    if [ ! -d "${CCR_PRESETS_DIR}" ]; then
+        echo "⚠ No presets directory found: ${CCR_PRESETS_DIR}"
+        return 1
+    fi
+    
+    local presets
+    presets=$(find "${CCR_PRESETS_DIR}" -name "manifest.json" -type f 2>/dev/null | sort)
+    
+    if [ -z "${presets}" ]; then
+        echo "⚠ No presets found"
+        return 1
+    fi
+    
+    echo "Available Presets:"
+    echo ""
+    
+    echo "${presets}" | while IFS= read -r manifest; do
+        local preset_dir=$(dirname "${manifest}")
+        local preset_name=$(basename "${preset_dir}")
+        
+        if [ -f "${manifest}" ] && command -v jq >/dev/null 2>&1; then
+            local description
+            description=$(jq -r '.description // "No description"' "${manifest}" 2>/dev/null)
+            local model
+            model=$(jq -r '.tags[]? | select(. != "model" and . != "ollama")' "${manifest}" 2>/dev/null | head -1)
+            
+            echo "  ${preset_name}"
+            echo "    Model: ${model:-N/A}"
+            echo "    Description: ${description}"
+            echo ""
+        else
+            echo "  ${preset_name}"
+            echo ""
+        fi
+    done
+}
+
+# Show current CCR configuration in a readable format
+show_config() {
+    check_jq
+    
+    if [ ! -f "${CCR_CONFIG}" ]; then
+        echo "⚠ Config file not found: ${CCR_CONFIG}"
+        return 1
+    fi
+    
+    echo "Current CCR Configuration:"
+    echo ""
+    
+    # Show basic settings
+    echo "Basic Settings:"
+    jq -r '
+        "  HOST: " + (.HOST // "not set"),
+        "  PORT: " + (.PORT // "not set" | tostring),
+        "  LOG: " + (.LOG // "not set" | tostring),
+        "  LOG_LEVEL: " + (.LOG_LEVEL // "not set")
+    ' "${CCR_CONFIG}" 2>/dev/null || echo "  Error reading config"
+    
+    echo ""
+    echo "Providers:"
+    jq -r '.Providers[]? | 
+        "  Name: " + .name,
+        "    API Base URL: " + (.api_base_url // "not set"),
+        "    Models: " + ((.models // []) | join(", ") // "none"),
+        ""
+    ' "${CCR_CONFIG}" 2>/dev/null || echo "  No providers configured"
+    
+    echo ""
+    echo "Router Configuration:"
+    if jq -e '.Router' "${CCR_CONFIG}" >/dev/null 2>&1; then
+        jq -r '.Router | 
+            "  default: " + (.default // "not set"),
+            "  longContextThreshold: " + ((.longContextThreshold // "not set") | tostring),
+            "  background: " + (.background // "not set"),
+            "  think: " + (.think // "not set"),
+            "  longContext: " + (.longContext // "not set"),
+            "  webSearch: " + (.webSearch // "not set")
+        ' "${CCR_CONFIG}" 2>/dev/null
+    else
+        echo "  Router section not configured"
+    fi
+}
+
+################################################################################
+# Main Entry Point
+################################################################################
+
+# Main function - routes commands to appropriate handlers
+main() {
+    local command="${1:-show}"
+    
+    # Handle auto-load command (for shell initialization)
+    if [[ "${command}" == "auto-load" ]] || [[ "${command}" == "auto" ]]; then
+        auto_load_preset
+        exit $?
+    fi
+    
+    case "${command}" in
+        list-models|models)
+            shift
+            list_models "$@"
+            ;;
+        model-info|info)
+            shift
+            model_info "$@"
+            ;;
+        model-metadata|metadata)
+            shift
+            model_metadata "$@"
+            ;;
+        use-model|use)
+            shift
+            use_model "$@"
+            ;;
+        sync-models|sync)
+            sync_models
+            ;;
+        update-sync|update-all)
+            update_all_presets
+            ;;
+        update-preset|update)
+            shift
+            if [ -z "$1" ]; then
+                echo "Usage: update-preset <preset_name>"
+                echo "Example: ccr-config update model-mistralai-devstral-small-2-2512"
+                exit 1
+            fi
+            update_preset "$1"
+            ;;
+        list-presets|presets)
+            list_presets
+            ;;
+        load-preset|load)
+            shift
+            if [ -z "$1" ]; then
+                echo "Usage: load-preset <preset_name>"
+                echo "Example: ccr-config load model-mistralai-devstral-small-2-2512"
+                exit 1
+            fi
+            load_preset "$1" false
+            ;;
+        auto-load|auto)
+            auto_load_preset
+            ;;
+        show|config)
+            show_config
+            ;;
+        help|--help|-h)
+            cat <<EOF
+ccr-config - Simplified CCR configuration using presets
+
+Usage: ccr-config <command> [args...]
+
+Commands:
+  list-models, models       List all available models from LM Studio
+                            Uses lm-studio-client internally
+  
+  model-info, info <model>  Show full model information
+                            Example: ccr-config info "mistralai/devstral-small-2-2512"
+  
+  model-metadata, metadata <model>
+                            Show model metadata (simplified)
+                            Example: ccr-config metadata "mistralai/devstral-small-2-2512"
+  
+  use-model, use <model>    Use a model (creates/loads preset automatically)
+                            Example: ccr-config use "mistralai/devstral-small-2-2512"
+  
+  sync-models, sync         Create presets for all available models
+                            Scans LM Studio and creates missing presets
+  
+  update-sync, update-all   Update all existing presets with current model metadata
+                            Useful for fixing presets with incorrect context sizes
+  
+  update-preset, update <name>
+                            Update an existing preset with current model metadata
+                            Useful for fixing incorrect context sizes
+                            Example: ccr-config update model-mistralai-devstral-small-2-2512
+  
+  list-presets, presets     List all available presets
+  
+  load-preset, load <name>  Load a preset by name
+                            Example: ccr-config load model-mistralai-devstral-small-2-2512
+  
+  auto-load, auto           Auto-load preset from CCR_PRESET environment variable
+                            (used during shell initialization)
+  
+  show, config              Show current CCR configuration
+  
+  help                      Show this help message
+
+Tab Completion:
+         Zsh tab completion is available via:
+         functions-completion/zsh/_ccr-config
+         This provides tab completion for commands and model names.
+       
+       Environment Variables:
+  LM_STUDIO_ENDPOINT        Override default LM Studio endpoint
+                            (default: http://192.168.1.131:1234)
+
+Examples:
+  # List all models
+  ccr-config list-models
+  
+  # Get model info
+  ccr-config info "mistralai/devstral-small-2-2512"
+  
+  # Use a model (creates preset and loads it)
+  ccr-config use "mistralai/devstral-small-2-2512"
+  
+  # Sync all models (create presets for all)
+  ccr-config sync
+  
+  # Show current config
+  ccr-config show
+EOF
+            ;;
+        *)
+            echo "Unknown command: ${command}"
+            echo "Run 'ccr-config help' for usage information"
+            exit 1
+            ;;
+    esac
+}
+
+# Run main function
+main "$@"

@@ -230,6 +230,14 @@ function continue-loading-profile() {
       npm install -g @musistudio/claude-code-router >/dev/null 2>&1
     fi
     _loader_msg_simple "🤖" "AI dependencies" "done"
+    
+    # Load CCR preset if specified (optional)
+    if [ -n "${CCR_PRESET:-}" ] && [ -f "${DIRS_ENVIRONMENT}/scripts/ccr-config" ]; then
+      _loader_msg_simple "⚙️" "Loading CCR preset: ${CCR_PRESET}" "start"
+      source "${DIRS_ENVIRONMENT}/scripts/ccr-config" auto-load >/dev/null 2>&1 && \
+        _loader_msg_simple "⚙️" "CCR preset: ${CCR_PRESET}" "done" || \
+        _loader_msg_simple "⚙️" "CCR preset: ${CCR_PRESET}" "skip"
+    fi
   fi
 
 }

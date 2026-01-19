@@ -1,0 +1,91 @@
+#compdef ccr-config
+
+# Tab completion for ccr-config
+# Automatically loaded from functions-completion/zsh/
+
+_ccr-config() {
+    local context state state_descr line
+    local -a commands
+    
+    commands=(
+        'list-models:List all available models from LM Studio'
+        'models:List all available models from LM Studio (alias)'
+        'model-info:Show full model information'
+        'info:Show full model information (alias)'
+        'model-metadata:Show model metadata (simplified)'
+        'metadata:Show model metadata (alias)'
+        'use-model:Use a model (creates/loads preset automatically)'
+        'use:Use a model (alias)'
+        'sync-models:Create presets for all available models'
+        'sync:Create presets for all available models (alias)'
+        'update-sync:Update all existing presets with current model metadata'
+        'update-all:Update all existing presets with current model metadata (alias)'
+        'update-preset:Update an existing preset with current model metadata'
+        'update:Update an existing preset with current model metadata (alias)'
+        'list-presets:List all available presets'
+        'presets:List all available presets (alias)'
+        'load-preset:Load a preset by name'
+        'load:Load a preset by name (alias)'
+        'auto-load:Auto-load preset from CCR_PRESET environment variable'
+        'auto:Auto-load preset from CCR_PRESET environment variable (alias)'
+        'show:Show current CCR configuration'
+        'config:Show current CCR configuration (alias)'
+        'help:Show help message'
+    )
+    
+    _arguments -C \
+        "1: :->command" \
+        "*::arg:->args"
+    
+    case $state in
+        command)
+            _describe 'command' commands
+            ;;
+        args)
+            case $words[2] in
+                model-info|info|model-metadata|metadata|use-model|use)
+                    if [ $CURRENT -eq 3 ]; then
+                        # Fetch models for completion using lm-studio-client
+                        local script_dir="$(dirname $(dirname ${0:A}))/scripts"
+                        local lm_client="${script_dir}/lm-studio-client"
+                        if [ -f "${lm_client}" ] && command -v jq >/dev/null 2>&1; then
+                            # Use lm-studio-client for consistent model discovery
+                            local models_json
+                            models_json=$("${lm_client}" list --json 2>/dev/null)
+                            if [ $? -eq 0 ] && [ -n "${models_json}" ]; then
+                                compadd $(echo "${models_json}" | jq -r '.[]?.modelKey // .[]?.id // empty' 2>/dev/null | tr '\n' ' ')
+                            fi
+                        fi
+                    fi
+                    ;;
+                load-preset|load)
+                    if [ $CURRENT -eq 3 ]; then
+                        # Complete with preset names
+                        if [ -d "${HOME}/.claude-code-router/presets" ]; then
+                            local -a presets
+                            presets=($(find "${HOME}/.claude-code-router/presets" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null))
+                            if [ ${#presets[@]} -gt 0 ]; then
+                                _describe 'preset' presets
+                            fi
+                        fi
+                    fi
+                    ;;
+                update-preset|update)
+                    if [ $CURRENT -eq 3 ]; then
+                        # Complete with preset names
+                        if [ -d "${HOME}/.claude-code-router/presets" ]; then
+                            local -a presets
+                            presets=($(find "${HOME}/.claude-code-router/presets" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null))
+                            if [ ${#presets[@]} -gt 0 ]; then
+                                _describe 'preset' presets
+                            fi
+                        fi
+                    fi
+                    ;;
+                list-models|models|sync-models|sync|update-sync|update-all|list-presets|presets|auto-load|auto|show|config|help)
+                    # No arguments needed
+                    ;;
+            esac
+            ;;
+    esac
+}

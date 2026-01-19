@@ -1,0 +1,48 @@
+#compdef lm-studio-client
+
+# Tab completion for lm-studio-client
+# Automatically loaded from functions-completion/zsh/
+
+_lm-studio-client() {
+    local context state state_descr line
+    local -a commands
+    
+    commands=(
+        'list:List all available models'
+        'info:Show full model information (JSON)'
+        'metadata:Show model metadata (simplified)'
+        'help:Show help message'
+    )
+    
+    _arguments -C \
+        "1: :->command" \
+        "*::arg:->args"
+    
+    case $state in
+        command)
+            _describe 'command' commands
+            ;;
+        args)
+            case $words[2] in
+                info|metadata)
+                    if [ $CURRENT -eq 3 ]; then
+                        # Fetch models for completion using the script itself
+                        local script_dir="$(dirname $(dirname ${0:A}))/scripts"
+                        local lm_client="${script_dir}/lm-studio-client"
+                        if [ -f "${lm_client}" ] && command -v jq >/dev/null 2>&1; then
+                            # Use lm-studio-client for consistent model discovery
+                            local models_json
+                            models_json=$("${lm_client}" list --json 2>/dev/null)
+                            if [ $? -eq 0 ] && [ -n "${models_json}" ]; then
+                                compadd $(echo "${models_json}" | jq -r '.[]?.modelKey // .[]?.id // empty' 2>/dev/null | tr '\n' ' ')
+                            fi
+                        fi
+                    fi
+                    ;;
+                list|help)
+                    # No arguments needed
+                    ;;
+            esac
+            ;;
+    esac
+}
