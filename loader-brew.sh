@@ -25,11 +25,34 @@
 
 source ${CURRENT_DIR}/common.sh
 
+# _loader_msg is now defined in common.sh (sourced above)
+# This script uses the unified _loader_msg function from common.sh
+
+# Use loader_checkpoint if available (from common.sh), otherwise use _loader_msg
+if type loader_checkpoint >/dev/null 2>&1; then
+    LOADER_MSG_START="loader_checkpoint"
+    LOADER_MSG_DONE="loader_checkpoint_done"
+else
+    LOADER_MSG_START="_loader_msg start"
+    LOADER_MSG_DONE="_loader_msg done"
+fi
+
 # main bash profile 
     # source brew loader from within brew package .. if it exsts 
     # source brew loader from cloned repo if it exists ...
 
-recursive_source ${CURRENT_DIR}/functions-completion
-recursive_source ${CURRENT_DIR}/functions-extensions
-recursive_source ${CURRENT_DIR}/functions-shortcuts
-recursive_source ${CURRENT_DIR}/functions-tools
+_loader_msg "start" "📦" "Loading completion functions"
+recursive_source ${CURRENT_DIR}/functions-completion 2>/dev/null
+_loader_msg "done" "📦" "Completion functions"
+
+_loader_msg "start" "🔌" "Loading extension functions"
+recursive_source ${CURRENT_DIR}/functions-extensions 2>/dev/null
+_loader_msg "done" "🔌" "Extension functions"
+
+_loader_msg "start" "⌨️" "Loading shortcuts"
+recursive_source ${CURRENT_DIR}/functions-shortcuts 2>/dev/null
+_loader_msg "done" "⌨️" "Shortcuts"
+
+_loader_msg "start" "🛠️" "Loading tool functions"
+recursive_source ${CURRENT_DIR}/functions-tools 2>/dev/null
+_loader_msg "done" "🛠️" "Tool functions"

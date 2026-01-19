@@ -1,5 +1,283 @@
 # Contains general Linux/Unix helper functions
 
+# ============================================================================
+# Visual Feedback Functions for Loaders
+# ============================================================================
+
+# Enable visual feedback by default (set SHOW_LOADER_PROGRESS=false to disable)
+SHOW_LOADER_PROGRESS=${SHOW_LOADER_PROGRESS:-true}
+
+# Emoji and symbols
+CHECKMARK="✓"
+SPINNER_CHARS="⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"
+SPINNER_INDEX=0
+
+# ============================================================================
+# Terminal Capability Detection
+# ============================================================================
+
+# Only run terminal detection once (common.sh may be sourced multiple times)
+# Check if detection has already been done
+if [[ -z "${COMMON_TERMINAL_DETECTED:-}" ]]; then
+    # Detect if we're in a terminal (not piped/redirected)
+    # Note: Check stdout first, then stderr (stderr might be redirected during sourcing)
+    IS_TERMINAL=false
+    if [[ -t 1 ]]; then
+        # If stdout is a terminal, we're in a terminal (even if stderr is redirected)
+        IS_TERMINAL=true
+    elif [[ -t 2 ]]; then
+        # Fallback: check stderr if stdout check failed
+        IS_TERMINAL=true
+    fi
+
+    # Detect if running over SSH
+    IS_SSH=false
+    if [[ -n "${SSH_CLIENT}" ]] || [[ -n "${SSH_TTY}" ]] || [[ -n "${SSH_CONNECTION}" ]]; then
+        IS_SSH=true
+    fi
+
+    # Detect color support (check if terminal supports at least 8 colors)
+    # Check TERM first - it's more reliable than -t checks (which can fail if stderr is redirected)
+    SUPPORTS_COLORS=false
+    if [[ -n "${TERM:-}" ]] && [[ "${TERM}" != "dumb" ]]; then
+        # First, check TERM variable for common color-capable terminals (fastest check)
+        case "${TERM}" in
+            xterm*|screen*|tmux*|rxvt*|ansi|*color*)
+                SUPPORTS_COLORS=true
+                ;;
+            linux|vt100*)
+                SUPPORTS_COLORS=false
+                ;;
+            *)
+                # If TERM doesn't give us a clear answer, try tput (if available)
+                if command -v tput >/dev/null 2>&1; then
+                    COLORS=$(tput colors 2>/dev/null || echo "0")
+                    if [[ "${COLORS}" =~ ^[0-9]+$ ]] && [[ "${COLORS}" -ge 8 ]]; then
+                        SUPPORTS_COLORS=true
+                    fi
+                elif [[ "${IS_TERMINAL}" == "true" ]]; then
+                    # If we're in a terminal but tput isn't available, assume colors
+                    SUPPORTS_COLORS=true
+                fi
+                ;;
+        esac
+    elif [[ "${IS_TERMINAL}" == "true" ]]; then
+        # TERM not set but we're in a terminal - try tput
+        if command -v tput >/dev/null 2>&1; then
+            COLORS=$(tput colors 2>/dev/null || echo "0")
+            if [[ "${COLORS}" =~ ^[0-9]+$ ]] && [[ "${COLORS}" -ge 8 ]]; then
+                SUPPORTS_COLORS=true
+            fi
+        else
+            # Last resort: assume colors if we're in a terminal
+            SUPPORTS_COLORS=true
+        fi
+    fi
+
+    # Detect emoji support (most modern terminals support emojis, but some don't)
+    # Use SUPPORTS_COLORS as the indicator (more reliable than IS_TERMINAL)
+    SUPPORTS_EMOJIS=false
+    if [[ "${SUPPORTS_COLORS}" == "true" ]]; then
+        # Most color terminals support emojis, but check for known problematic ones
+        case "${TERM:-}" in
+            linux|vt100*|dumb)
+                SUPPORTS_EMOJIS=false
+                ;;
+            *)
+                # Assume emoji support for modern terminals
+                SUPPORTS_EMOJIS=true
+                ;;
+        esac
+        # Disable emojis over SSH if NO_COLOR is set (common convention)
+        if [[ "${IS_SSH}" == "true" ]] && [[ -n "${NO_COLOR}" ]]; then
+            SUPPORTS_EMOJIS=false
+        fi
+    fi
+    
+    # Mark detection as complete
+    export COMMON_TERMINAL_DETECTED=true
+fi
+
+# Set colors based on terminal capabilities
+if [[ "${SUPPORTS_COLORS}" == "true" ]]; then
+    COLOR_RESET="\033[0m"
+    COLOR_GREEN="\033[0;32m"
+    COLOR_YELLOW="\033[1;33m"
+    COLOR_BLUE="\033[0;34m"
+    COLOR_CYAN="\033[0;36m"
+    COLOR_GRAY="\033[0;90m"
+else
+    COLOR_RESET=""
+    COLOR_GREEN=""
+    COLOR_YELLOW=""
+    COLOR_BLUE=""
+    COLOR_CYAN=""
+    COLOR_GRAY=""
+fi
+
+# Export detection variables for use in other scripts
+export IS_TERMINAL
+export IS_SSH
+export SUPPORTS_COLORS
+export SUPPORTS_EMOJIS
+
+# Function to show a checkpoint (loading state)
+loader_checkpoint() {
+    local emoji=$1
+    local message=$2
+    if [[ "${SHOW_LOADER_PROGRESS}" == "true" ]]; then
+        local display_emoji="${emoji}"
+        [[ "${SUPPORTS_EMOJIS}" != "true" ]] && display_emoji=""
+        echo -ne "${COLOR_CYAN}${display_emoji}${display_emoji:+ }${COLOR_RESET}${COLOR_GRAY}${message}...${COLOR_RESET}" >&2
+    fi
+}
+
+# Function to show a checkpoint with spinner
+loader_checkpoint_spinner() {
+    local emoji=$1
+    local message=$2
+    if [[ "${SHOW_LOADER_PROGRESS}" == "true" ]]; then
+        local spinner_char=${SPINNER_CHARS:$((SPINNER_INDEX % 10)):1}
+        SPINNER_INDEX=$((SPINNER_INDEX + 1))
+        echo -ne "\r${COLOR_CYAN}${spinner_char}${COLOR_RESET} ${COLOR_GRAY}${emoji} ${message}...${COLOR_RESET}" >&2
+    fi
+}
+
+# Function to mark a checkpoint as complete
+loader_checkpoint_done() {
+    local emoji=$1
+    local message=$2
+    if [[ "${SHOW_LOADER_PROGRESS}" == "true" ]]; then
+        local display_emoji="${emoji}"
+        [[ "${SUPPORTS_EMOJIS}" != "true" ]] && display_emoji=""
+        local checkmark="${CHECKMARK}"
+        [[ "${SUPPORTS_COLORS}" != "true" ]] && checkmark="OK"
+        # Clear the line first (carriage return + clear to end of line), then print the done message
+        # Add tab after emoji for alignment
+        printf "\r\033[K" >&2
+        echo -ne "${COLOR_GREEN}${checkmark}${COLOR_RESET} ${COLOR_GREEN}${display_emoji}${display_emoji:+ }\t${COLOR_RESET}${COLOR_GREEN}${message}${COLOR_RESET}\n" >&2
+    fi
+}
+
+# Function to mark a checkpoint as skipped
+loader_checkpoint_skip() {
+    local emoji=$1
+    local message=$2
+    if [[ "${SHOW_LOADER_PROGRESS}" == "true" ]]; then
+        local display_emoji="${emoji}"
+        [[ "${SUPPORTS_EMOJIS}" != "true" ]] && display_emoji=""
+        local skip_marker="⊘"
+        [[ "${SUPPORTS_COLORS}" != "true" ]] && skip_marker="SKIP"
+        echo -ne "\r\033[K${COLOR_GRAY}${skip_marker}${COLOR_RESET} ${COLOR_GRAY}${display_emoji}${display_emoji:+ }${COLOR_RESET}${COLOR_GRAY}${message} (skipped)${COLOR_RESET}\n" >&2
+    fi
+}
+
+# Function to show an error checkpoint
+loader_checkpoint_error() {
+    local emoji=$1
+    local message=$2
+    if [[ "${SHOW_LOADER_PROGRESS}" == "true" ]]; then
+        local display_emoji="${emoji}"
+        [[ "${SUPPORTS_EMOJIS}" != "true" ]] && display_emoji=""
+        local warning_marker="⚠️"
+        [[ "${SUPPORTS_EMOJIS}" != "true" ]] && warning_marker="WARN"
+        echo -ne "\r\033[K${COLOR_YELLOW}${warning_marker}${COLOR_RESET}${COLOR_YELLOW}${warning_marker:+ }${display_emoji}${display_emoji:+ }${COLOR_RESET}${COLOR_YELLOW}${message} (warning)${COLOR_RESET}\n" >&2
+    fi
+}
+
+# ============================================================================
+# Unified Loader Message Functions
+# ============================================================================
+
+# Unified loader message function (replaces _loader_msg and _loader_msg_simple)
+# Note: 'status' is read-only in zsh, so we use 'msg_type' instead
+_loader_msg() {
+    local msg_type=$1
+    local emoji=$2
+    local message=$3
+    
+    if [[ "${SHOW_LOADER_PROGRESS:-true}" != "true" ]]; then
+        return
+    fi
+    
+    # Use terminal detection from common.sh (already set up at this point)
+    local display_emoji="${emoji}"
+    [[ "${SUPPORTS_EMOJIS}" != "true" ]] && display_emoji=""
+    
+    case "${msg_type}" in
+        "start")
+            if [[ "${SUPPORTS_COLORS}" == "true" ]]; then
+                echo -ne "${COLOR_CYAN}${display_emoji}${display_emoji:+ }${COLOR_RESET}${COLOR_GRAY}${message}...${COLOR_RESET}" >&2
+            else
+                echo -ne "[*] ${message}..." >&2
+            fi
+            ;;
+        "done")
+            local checkmark="${CHECKMARK}"
+            [[ "${SUPPORTS_COLORS}" != "true" ]] && checkmark="OK"
+            # Clear the line first (carriage return + clear to end of line), then print the done message
+            # Use both \r and \033[K for maximum compatibility
+            # Add tab after emoji for alignment
+            if [[ "${SUPPORTS_COLORS}" == "true" ]]; then
+                printf "\r\033[K" >&2
+                echo -ne "${COLOR_GREEN}${checkmark}${COLOR_RESET} ${COLOR_GREEN}${display_emoji}${display_emoji:+ }\t${COLOR_RESET}${COLOR_GREEN}${message}${COLOR_RESET}\n" >&2
+            else
+                printf "\r\033[K" >&2
+                echo -ne "[${checkmark}] ${display_emoji}${display_emoji:+ }\t${message}\n" >&2
+            fi
+            ;;
+        "skip")
+            local skip_marker="⊘"
+            [[ "${SUPPORTS_COLORS}" != "true" ]] && skip_marker="SKIP"
+            # Clear the line first, then print the skip message
+            if [[ "${SUPPORTS_COLORS}" == "true" ]]; then
+                printf "\r\033[K" >&2
+                echo -ne "${COLOR_GRAY}${skip_marker}${COLOR_RESET} ${COLOR_GRAY}${display_emoji}${display_emoji:+ }${COLOR_RESET}${COLOR_GRAY}${message} (skipped)${COLOR_RESET}\n" >&2
+            else
+                printf "\r\033[K" >&2
+                echo -ne "[${skip_marker}] ${display_emoji}${display_emoji:+ }${message} (skipped)\n" >&2
+            fi
+            ;;
+        "error")
+            local warning_marker="⚠️"
+            [[ "${SUPPORTS_EMOJIS}" != "true" ]] && warning_marker="WARN"
+            # Clear the line first, then print the error message
+            if [[ "${SUPPORTS_COLORS}" == "true" ]]; then
+                printf "\r\033[K" >&2
+                echo -ne "${COLOR_YELLOW}${warning_marker}${COLOR_RESET}${COLOR_YELLOW}${warning_marker:+ }${display_emoji}${display_emoji:+ }${COLOR_RESET}${COLOR_YELLOW}${message} (warning)${COLOR_RESET}\n" >&2
+            else
+                printf "\r\033[K" >&2
+                echo -ne "[${warning_marker}] ${display_emoji}${display_emoji:+ }${message} (warning)\n" >&2
+            fi
+            ;;
+    esac
+}
+
+# Alias for _loader_msg with simpler name (for use in zshrc and other scripts)
+# This is the same function, just a more convenient name
+_loader_msg_simple() {
+    _loader_msg "$@"
+}
+
+# Function to wrap a command with checkpoint feedback
+loader_wrap() {
+    local emoji=$1
+    local message=$2
+    shift 2
+    local cmd="$@"
+    
+    loader_checkpoint "${emoji}" "${message}"
+    if eval "$cmd" 2>/dev/null; then
+        loader_checkpoint_done "${emoji}" "${message}"
+        return 0
+    else
+        loader_checkpoint_error "${emoji}" "${message}"
+        return 1
+    fi
+}
+
+# ============================================================================
+
 # function get_other_user(){
 #   users | sed -e "s/$(whoami)//g" -e 's/ *//g'
 # }

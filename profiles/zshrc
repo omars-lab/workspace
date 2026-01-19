@@ -1,118 +1,77 @@
-# set -x
+# ============================================================================
+# Oh My Zsh Configuration
+# ============================================================================
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/$(whoami)/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Theme configuration
 ZSH_THEME="robbyrussell"
 
-# Uncomment the following line to use case-sensitive completion.
+# Completion settings
 CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable auto-setting terminal title.
+# Terminal behavior
 DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
 HIST_STAMPS="yyyy-mm-dd"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# Plugin configuration
 plugins=(git docker macos brew node npm python history)
 # Add zsh-completions if it exists (it's a custom plugin, not always installed)
-# Note: ZSH is set above, so we can use it here
 if [[ -d "${ZSH_CUSTOM:-${ZSH}/custom}/plugins/zsh-completions" ]]; then
     plugins+=(zsh-completions)
 fi
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# ============================================================================
+# Environment Variables
+# ============================================================================
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# ------------------------------------------------------------------------------
-
-# User configuration
-
-## Env vars that throw applications off ...
-
+# Application-specific environment variables
 export DEFAULT_CONDA_ENV=py3
 export ZSH_DISABLE_COMPFIX=true
-
-# You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Unset Var that throws Brew off
+# Unset variables that interfere with applications
 unset SSL_CERT_FILE
 
+# Build tool paths
 export M2_HOME=/usr/local/Cellar/maven/3.6.0/libexec
 export M2=${M2_HOME}/bin
 
+# Compilation flags
 export LDFLAGS="-L/usr/local/opt/libffi/lib -L/usr/local/opt/gettext/lib"
 export CPPFLAGS="-I/usr/local/opt/gettext/include"
 
+# Python virtual environment
 export VIRTUALENVWRAPPER_PYTHON=$(brew --prefix python)/bin/python3
-# export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 
-# ------------------------------------------------------------------------------
+# ============================================================================
+# Oh My Zsh Initialization
+# ============================================================================
 
 source ${ZSH}/oh-my-zsh.sh
 
+# ============================================================================
+# Workspace Loader
+# ============================================================================
 # The following assumes that ~/.zshrc is a symbolic link to the environment dir ...
 # This needs to run after oh my zsh since it messes with ps1
+
 ZSHRC_LINK=$(readlink ${HOME}/.zshrc 2>/dev/null)
 if [ -n "${ZSHRC_LINK}" ]; then
     LOADER_PATH=$(dirname $(dirname ${HOME}/${ZSHRC_LINK}))/loader.sh
     if [ -f "${LOADER_PATH}" ]; then
-        source "${LOADER_PATH}"
+        source "${LOADER_PATH}" 2>&1
     fi
 fi
 
+# ============================================================================
+# ZSH Plugins & Extensions
+# ============================================================================
 
-# Load ZSH Packages antigen ...
-if test -f "${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh" ;
-then
-  # Load antigen
+# Antigen plugin manager
+if test -f "${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh" ; then
   source ${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh
   # Load antigen plugins ... order important!
   # https://github.com/unixorn/awesome-zsh-plugins/blob/master/README.md#installation
@@ -126,74 +85,93 @@ then
   antigen apply
 fi
 
-# Load Auto Jump
+# Auto Jump - intelligent directory jumping
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-# Source career functions too ...
+# ============================================================================
+# Career Workspace (Optional)
+# ============================================================================
+
+# _loader_msg_simple is defined in common.sh (loaded via loader.sh above)
+# No fallback needed - common.sh is guaranteed to be loaded by this point
+
 ZSENV_LINK=$(readlink ${HOME}/.zshenv 2>/dev/null)
 if [ -n "${ZSENV_LINK}" ]; then
     CAREER_WORKSPACE_DIR=$(dirname $(dirname ${HOME}/${ZSENV_LINK}))/../workspace-career
-    if [[ -d "${CAREER_WORKSPACE_DIR}" ]]
-    then
-        [[ -f ${CAREER_WORKSPACE_DIR}/functions.sh ]] && source ${CAREER_WORKSPACE_DIR}/functions.sh || echo "Warning: ${CAREER_WORKSPACE_DIR}/functions.sh not found" >&2
-        [[ -f ${CAREER_WORKSPACE_DIR}/aliases.sh ]] && source ${CAREER_WORKSPACE_DIR}/aliases.sh || echo "Warning: ${CAREER_WORKSPACE_DIR}/aliases.sh not found" >&2
-    else
-        echo "Warning: Career workspace directory not found: ${CAREER_WORKSPACE_DIR}" >&2
+    if [[ -d "${CAREER_WORKSPACE_DIR}" ]]; then
+        _loader_msg_simple "💼" "Loading career workspace" "start"
+        [[ -f ${CAREER_WORKSPACE_DIR}/functions.sh ]] && source ${CAREER_WORKSPACE_DIR}/functions.sh 2>/dev/null
+        [[ -f ${CAREER_WORKSPACE_DIR}/aliases.sh ]] && source ${CAREER_WORKSPACE_DIR}/aliases.sh 2>/dev/null
+        _loader_msg_simple "💼" "Career workspace" "done"
     fi
 fi
 
-# Loading iterm zsh integration
+# ============================================================================
+# Terminal Integration
+# ============================================================================
+
+# iTerm2 shell integration
 ITERM_INTEGRATION=$(which iterm2_shell_integration.zsh)
-if test -f "${ITERM_INTEGRATION}" ;
-then
+if test -f "${ITERM_INTEGRATION}" ; then
   source "${ITERM_INTEGRATION}"
 fi
 
-# Load zsh completion scripts
+# ============================================================================
+# Completion System
+# ============================================================================
 # https://github.com/zsh-users/zsh-completions/issues/277#issuecomment-414139674
+
 fpath=(${DIRS_ENVIRONMENT}/functions-completion/zsh $fpath)
-if test -f "${CAREER_WORKSPACE_DIR}/" ;
-then 
+if test -f "${CAREER_WORKSPACE_DIR}/" ; then 
   fpath=(${DIRS_ENVIRONMENT}/../workspace-career/completion-functions/zsh $fpath)
 fi
-rm -f "$HOME/.zcompdump"; 
+rm -f "$HOME/.zcompdump"
 autoload -U compinit
 # https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
 compinit -u
 
-# set -o vi
-# source $(brew --prefix autoenv)/activate.sh
+# Additional completion configuration
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
 
+# ============================================================================
+# Version Managers
+# ============================================================================
+
+# ASDF version manager
 if [[ -d $HOME/.asdf/ ]] ; then 
 	. $HOME/.asdf/asdf.sh
 	. $HOME/.asdf/completions/asdf.bash
 fi
 
-# https://direnv.net/
-# eval "$(direnv hook zsh)"
-
-# Getting all the nix stuff loaded!
-# . /Users/$(whoami)/.nix-profile/etc/profile.d/nix.sh
-
-# ----------------------------------------------------------------------------------------------------------
+# ============================================================================
+# Keybindings & Editor Mode
+# ============================================================================
 
 bindkey -v
 # https://stackoverflow.com/questions/58187542/how-to-setup-vi-editing-mode-for-zsh#:~:text=bindkey%20%2Dv%20is%20enough%20to,%22insert%22%20mode%20by%20default.
 
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-fpath+=~/.zfunc
-
-# To fix conrol a and e
+# To fix control a and e
 # https://superuser.com/questions/523564/emacs-keybindings-in-zsh-not-working-ctrl-a-ctrl-e
 bindkey -e
 
-SHARED_LOADER=$(first "${DIRS_ENVIRONMENT}/loader-shared.sh" "$(brew --prefix sharedspace)/loader-shared.sh")
-echo "Using Loader: ${SHARED_LOADER}" >&2
-source "${SHARED_LOADER}" #tag:inject-sharedspace-loader
+# ============================================================================
+# Shared Workspace Loader
+# ============================================================================
 
-# Performance Optimiation ...
+SHARED_LOADER=$(first "${DIRS_ENVIRONMENT}/loader-shared.sh" "$(brew --prefix sharedspace)/loader-shared.sh" 2>/dev/null)
+if [ -n "${SHARED_LOADER}" ] && [ -f "${SHARED_LOADER}" ]; then
+    [[ "${DEBUG_LOADER:-false}" == "true" ]] && echo "Using Loader: ${SHARED_LOADER}" >&2
+    source "${SHARED_LOADER}" #tag:inject-sharedspace-loader
+fi
+
+# ============================================================================
+# Python & Node Environment Setup
+# ============================================================================
+# Performance Optimization: Deferred loading of heavy environments
 # https://code.visualstudio.com/docs/supporting/faq#_installation-appears-to-be-corrupt-unsupported
+
 function continue-loading-profile() {
 
   # Activate Virtual Envs
@@ -214,54 +192,70 @@ function continue-loading-profile() {
   # <<< conda initialize <<<
   
   # Install env if not existing
-  (conda env list --json | jq -r '.envs | map(select(contains("/envs/"))) | .[]' | xargs basename | grep -q ${DEFAULT_CONDA_ENV}) || conda create -n ${DEFAULT_CONDA_ENV} -y python=3 pip
-  echo "Activating Conda Env: [${DEFAULT_CONDA_ENV}]" && conda activate ${DEFAULT_CONDA_ENV}
+  _loader_msg_simple "🐍" "Initializing Conda" "start"
+  (conda env list --json 2>/dev/null | jq -r '.envs | map(select(contains("/envs/"))) | .[]' 2>/dev/null | xargs basename 2>/dev/null | grep -q ${DEFAULT_CONDA_ENV} 2>/dev/null) || conda create -n ${DEFAULT_CONDA_ENV} -y python=3 pip >/dev/null 2>&1
+  conda activate ${DEFAULT_CONDA_ENV} >/dev/null 2>&1
+  _loader_msg_simple "🐍" "Conda env [${DEFAULT_CONDA_ENV}]" "done"
 
-  if ( brew list nvm 2>/dev/null );
-  then
+  # NVM (Node Version Manager)
+  _loader_msg_simple "📦" "Initializing NVM" "start"
+  if ( brew list nvm 2>/dev/null ); then
       # https://github.com/nvm-sh/nvm/issues/860
       # source $(brew --prefix nvm)/nvm.sh
-      source $(brew --prefix)/opt/nvm/nvm.sh  # using this instead of the above for performance ...
+      source $(brew --prefix)/opt/nvm/nvm.sh 2>/dev/null # using this instead of the above for performance ...
   else 
 	if ( test -d "$HOME/.nvm" );
 	export NVM_DIR="$HOME/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 2>/dev/null # This loads nvm
   fi
 
-  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-  nvm list ${DEFAULT_NVM_ENV} 1>/dev/null 2>/dev/null || nvm install ${DEFAULT_NVM_ENV}
-  nvm use ${DEFAULT_NVM_ENV}
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" 2>/dev/null # This loads nvm bash_completion
+  nvm list ${DEFAULT_NVM_ENV} 1>/dev/null 2>/dev/null || nvm install ${DEFAULT_NVM_ENV} >/dev/null 2>&1
+  nvm use ${DEFAULT_NVM_ENV} >/dev/null 2>&1
+  _loader_msg_simple "📦" "Node $(nvm current 2>/dev/null || echo 'N/A')" "done"
 
   # Setup AI dependencies
   if command -v npm >/dev/null 2>&1; then
-    echo "Setting up AI dependencies..." >&2
+    _loader_msg_simple "🤖" "Setting up AI dependencies" "start"
     # Check and install @google/gemini-cli
     if ! npm list -g @google/gemini-cli >/dev/null 2>&1; then
-      echo "Installing @google/gemini-cli..." >&2
-      npm install -g @google/gemini-cli
+      npm install -g @google/gemini-cli >/dev/null 2>&1
     fi
     # Check and install @anthropic-ai/claude-code
     if ! npm list -g @anthropic-ai/claude-code >/dev/null 2>&1; then
-      echo "Installing @anthropic-ai/claude-code..." >&2
-      npm install -g @anthropic-ai/claude-code
+      npm install -g @anthropic-ai/claude-code >/dev/null 2>&1
     fi
     # Check and install @musistudio/claude-code-router
     if ! npm list -g @musistudio/claude-code-router >/dev/null 2>&1; then
-      echo "Installing @musistudio/claude-code-router..." >&2
-      npm install -g @musistudio/claude-code-router
+      npm install -g @musistudio/claude-code-router >/dev/null 2>&1
     fi
+    _loader_msg_simple "🤖" "AI dependencies" "done"
   fi
 
 }
 
 continue-loading-profile
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/omareid/.lmstudio/bin"
-# End of LM Studio CLI section
+# ============================================================================
+# Application-Specific Setup
+# ============================================================================
 
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+# LM Studio CLI
+export PATH="$PATH:/Users/omareid/.lmstudio/bin"
+
+# Docker CLI completions
 fpath=(/Users/omareid/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
-# End of Docker CLI completions
+
+# ============================================================================
+# Commented Out / Future Configuration
+# ============================================================================
+
+# set -x  # Debug mode
+# set -o vi  # Vi editing mode
+# source $(brew --prefix autoenv)/activate.sh
+# https://direnv.net/
+# eval "$(direnv hook zsh)"
+# Getting all the nix stuff loaded!
+# . /Users/$(whoami)/.nix-profile/etc/profile.d/nix.sh
