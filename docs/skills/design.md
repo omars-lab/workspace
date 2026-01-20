@@ -120,7 +120,12 @@ Keep component design in the main document when:
    - Parent design reference
    - Problem statement
 
-2. **Architecture**
+2. **Component Architecture**
+   - Architecture diagram (Mermaid) showing:
+     - Input/output layers
+     - Processing layers
+     - Analysis layers
+     - Support components
    - Component inputs/outputs
    - Internal structure
    - Sub-components
@@ -138,22 +143,50 @@ Keep component design in the main document when:
    - Edge cases
    - Performance considerations
 
-5. **Implementation Details**
-   - Technology stack
-   - Dependencies
-   - Configuration
-   - Error handling
+5. **Activity Diagrams**
+   - Main processing flow (Mermaid)
+   - Sub-process flows (if complex)
+   - Error handling paths
+   - Decision points
 
-6. **Testing Strategy**
-   - Unit tests
-   - Integration tests
-   - Edge cases
-   - Performance tests
+6. **Context Diagram**
+   - Component's place in system (Mermaid)
+   - External systems
+   - Consuming components
+   - Support systems
 
-7. **Related Components**
-   - Dependencies
-   - Integration points
-   - Usage examples
+7. **Sequence Diagrams**
+   - Main interaction sequence (Mermaid)
+   - Sub-process sequences (if complex)
+   - Error scenarios
+   - Cache interactions (if applicable)
+
+8. **Implementation Details**
+   - **Script/Code Location**: Exact file paths (e.g., `/path/to/scripts/component-name`)
+   - **Technology Stack**: Languages, libraries, versions
+   - **Dependencies**: External libraries, system requirements
+   - **Command-Line Interface**: Full CLI specification with examples
+   - **Configuration**: Config files, environment variables, defaults
+   - **Error Handling**: Error codes, messages, graceful degradation
+   - **Safety Requirements**: Read-only operations, validation checks, safety guarantees
+
+9. **Testing Strategy**
+   - **Test Location**: Exact test directory path (e.g., `/path/to/tests/component-name/`)
+   - **Test Structure**: Test files, fixtures directory, expected outputs
+   - **Sample Test Data**: Specifications for test fixtures with examples
+   - **Git Hooks**: Pre-commit hook requirements and setup
+   - **Test Categories**: 
+     - Unit tests (parsing, logic, edge cases)
+     - Integration tests (with real data)
+     - Safety tests (read-only verification)
+     - Performance tests (if applicable)
+   - **Test Script**: Test runner implementation details
+
+10. **Related Components**
+    - Dependencies
+    - Integration points
+    - Usage examples
+    - How other components use this component
 
 ## Design Process
 
@@ -245,12 +278,25 @@ For components requiring separate designs:
 - Document complexity assessment
 - Note trade-offs and alternatives considered
 
-### 5. Use Visual Aids
+### 5. Use Visual Aids (Mermaid Diagrams)
 
-- Component diagrams in high-level design
-- Detailed architecture diagrams in component designs
-- Activity flow diagrams for processes
-- Data flow diagrams for complex interactions
+**High-Level Design Should Include**:
+- System architecture diagram (component relationships)
+- Activity/workflow diagrams (process flows, decision points)
+- Context diagram (system boundaries, external interactions)
+
+**Detailed Component Design Should Include**:
+- **Architecture Diagram**: Internal component structure, layers, sub-components
+- **Activity Diagrams**: Processing flows, decision points, error handling
+- **Context Diagram**: Component's place in system, interactions with other components
+- **Sequence Diagrams**: Component interactions, data flow, timing
+
+**Diagram Best Practices**:
+- Use Mermaid syntax for version-controllable diagrams
+- Color-code by component type or layer
+- Include error paths and edge cases
+- Show read-only vs read-write operations clearly
+- Label all flows and decision points
 
 ### 6. Progressive Disclosure
 
@@ -311,42 +357,89 @@ For components requiring separate designs:
 
 ## Overview
 [Component purpose, problem statement]
+[Critical safety requirements if applicable - e.g., read-only operations]
 
-## Architecture
-[Inputs/outputs, internal structure]
+## Component Architecture
+[Architecture diagram in Mermaid showing internal structure]
+
+## Activity Diagrams
+[Activity/workflow diagrams in Mermaid showing processing flows]
+
+## Context Diagram
+[Context diagram in Mermaid showing component's place in system]
+
+## Sequence Diagrams
+[Sequence diagrams in Mermaid showing component interactions]
 
 ## Data Structures
-[Interfaces, models, schemas]
+[Interfaces, models, schemas, type definitions]
 
 ## Algorithms
-[Processing steps, pseudo-code]
+[Processing steps, pseudo-code, detailed logic]
 
 ## Implementation Details
-[Tech stack, dependencies, configuration]
+- **Script/Code Location**: Exact file paths
+- **Technology Stack**: Languages, libraries, dependencies
+- **Command-Line Interface**: If applicable, full CLI specification
+- **Configuration**: Config files, environment variables
+- **Error Handling**: Error codes, error messages, graceful degradation
+- **Safety Requirements**: Read-only operations, validation checks
 
 ## Testing Strategy
-[Unit tests, integration tests]
+- **Test Location**: Exact test directory path
+- **Test Structure**: Test files, fixtures, expected outputs
+- **Sample Test Data**: Specifications for test fixtures
+- **Git Hooks**: Pre-commit testing requirements
+- **Test Categories**: Unit tests, integration tests, edge cases
+- **Read-Only Verification**: Tests to verify no source file modification
 
 ## Related Components
-[Dependencies, integration points]
+[Dependencies, integration points, usage examples]
+
+## Implementation Checklist
+[Detailed checklist of implementation tasks]
 ```
 
 ## Checklist
 
-When creating design documents, ensure:
+### High-Level Design Checklist
 
 - [ ] High-level design covers entire system
 - [ ] All components identified and described
 - [ ] Complex components assessed for separate design
-- [ ] Detailed designs created for complex components
 - [ ] References maintained between designs
 - [ ] High-level design remains readable (not too detailed)
-- [ ] Detailed designs are implementable (sufficient detail)
-- [ ] Visual diagrams included where helpful
 - [ ] Requirements addressed (stakeholder concerns)
 - [ ] Implementation plan is clear
 - [ ] Design decisions documented
 - [ ] Open questions identified
+- [ ] **Visual Diagrams**:
+  - [ ] System architecture diagram (Mermaid)
+  - [ ] Activity/workflow diagrams (Mermaid)
+  - [ ] Context diagram (Mermaid)
+
+### Detailed Component Design Checklist
+
+- [ ] Detailed designs are implementable (sufficient detail)
+- [ ] Exact file paths and locations specified
+- [ ] Command-line interface fully specified (if applicable)
+- [ ] Safety requirements clearly stated (read-only, validation)
+- [ ] **Visual Diagrams**:
+  - [ ] Architecture diagram (internal component structure)
+  - [ ] Activity diagrams (processing flows)
+  - [ ] Context diagram (component's place in system)
+  - [ ] Sequence diagrams (component interactions)
+- [ ] **Testing Requirements**:
+  - [ ] Test directory structure specified
+  - [ ] Sample test fixtures described
+  - [ ] Git hook requirements specified
+  - [ ] Read-only verification tests included
+- [ ] **Implementation Details**:
+  - [ ] Technology stack specified
+  - [ ] Dependencies listed
+  - [ ] Error handling documented
+  - [ ] Configuration options defined
+- [ ] Implementation checklist included
 
 ## Common Patterns
 
@@ -359,6 +452,14 @@ When creating design documents, ensure:
 - Format converters
 
 **Reason**: Complex parsing logic, detailed data structures, edge cases
+
+**Design Requirements**:
+- Architecture diagram showing parsing layers
+- Activity diagrams for parsing flow
+- Sequence diagrams for parser interactions
+- Detailed data structures for parsed output
+- Comprehensive test fixtures (various input formats)
+- Read-only operation emphasis (if processing source files)
 
 ### Pattern 2: AI/ML Components
 
@@ -404,9 +505,32 @@ When creating design documents, ensure:
 ### Recommended Tools
 
 - **Markdown**: For all design documents (readable, version-controllable)
-- **Mermaid**: For diagrams (flowcharts, sequence diagrams, component diagrams)
-- **JSON/YAML**: For data structure examples
-- **Code Blocks**: For algorithms, pseudo-code, examples
+- **Mermaid**: For diagrams (flowcharts, sequence diagrams, component diagrams, architecture diagrams)
+  - Use consistent color coding
+  - Include error paths
+  - Show read-only vs read-write operations
+- **JSON/YAML**: For data structure examples, configuration examples
+- **Code Blocks**: For algorithms, pseudo-code, examples, CLI usage
+
+### Diagram Types in Mermaid
+
+**For High-Level Designs**:
+- `graph TB` or `graph LR`: System architecture, component relationships
+- `flowchart TD`: Activity/workflow diagrams
+- `graph TB`: Context diagrams (system boundaries)
+
+**For Detailed Component Designs**:
+- `graph TB`: Architecture diagrams (internal component structure)
+- `flowchart TD`: Activity diagrams (processing flows, decision points)
+- `graph TB`: Context diagrams (component's place in system)
+- `sequenceDiagram`: Sequence diagrams (component interactions, timing)
+
+**Diagram Best Practices**:
+- Use descriptive node labels
+- Color-code by component type or layer
+- Include error/exception paths
+- Show validation and safety checks
+- Use consistent styling across all diagrams
 
 ### File Organization
 
@@ -428,6 +552,10 @@ A well-designed system has:
 4. **Clear References**: Easy to navigate between high-level and detailed designs
 5. **Complete Coverage**: All components designed (either inline or separate)
 6. **Implementable**: Designs provide sufficient detail for implementation
+7. **Visual Clarity**: Diagrams make architecture and flows immediately understandable
+8. **Testable**: Test requirements and fixtures are clearly specified
+9. **Safe**: Safety requirements (read-only, validation) are explicitly documented
+10. **Executable**: Exact file paths, CLI specs, and setup instructions enable immediate implementation
 
 ## Related Skills
 
@@ -437,7 +565,31 @@ A well-designed system has:
 - **Component Design**: Designing individual components
 - **Diagramming**: Creating visual representations
 
+## Key Learnings from Document Splitter Design
+
+### What Made the Design Effective
+
+1. **Comprehensive Diagrams**: Including architecture, activity, context, and sequence diagrams provided complete visual specification
+2. **Exact Implementation Details**: Specifying exact file paths (`/Users/omareid/Workspace/git/workspace/scripts/noteplan-parse`) enabled immediate implementation
+3. **Safety Emphasis**: Explicitly documenting read-only operations prevented accidental data modification
+4. **Test Specifications**: Detailed test structure, fixtures, and git hooks ensured quality from the start
+5. **CLI Specification**: Full command-line interface specification made the component immediately usable
+6. **Implementation Checklist**: Step-by-step checklist ensured nothing was missed
+
+### Patterns to Replicate
+
+- **Multiple Diagram Types**: Architecture + Activity + Context + Sequence = Complete picture
+- **Exact Paths**: Don't use placeholders, specify exact file locations
+- **Safety First**: Document read-only operations, validation checks, error handling
+- **Test-Driven**: Specify test structure, fixtures, and automation (git hooks) upfront
+- **CLI-First**: If it's a script, fully specify the CLI interface
+- **Progressive Detail**: High-level overview → Detailed sections → Implementation checklist
+
 ## References
 
 - Example High-Level Design: `docs/plans/noteplan-organization.md`
 - Example Detailed Component Design: `docs/plans/document-splitter-design.md`
+  - Shows comprehensive Mermaid diagrams (architecture, activity, context, sequence)
+  - Shows exact implementation paths and CLI specification
+  - Shows testing requirements with git hooks
+  - Shows read-only operation emphasis

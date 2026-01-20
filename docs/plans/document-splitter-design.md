@@ -147,8 +147,86 @@ Random thought about productivity...
 
 ## Component Architecture
 
+### Architecture Diagram
+
+```mermaid
+graph TB
+    subgraph "Input Layer"
+        MD[Markdown Document<br/>Daily Note File]
+        FP[File Path<br/>Reference]
+    end
+    
+    subgraph "Parsing Layer"
+        FE[Frontmatter Extractor<br/>YAML Parser]
+        HD[Heading Detector<br/>Markdown Scanner]
+        SH[Section Hierarchy Builder<br/>Tree Constructor]
+        IP[Item Parser<br/>List Parser]
+        CD[Context Detector<br/>Text Analyzer]
+    end
+    
+    subgraph "Analysis Layer"
+        EA[Extractability Analyzer<br/>Dependency Checker]
+        RM[Relationship Mapper<br/>Parent-Child-Sibling]
+    end
+    
+    subgraph "Output Layer"
+        JF[JSON Formatter<br/>Structure Serializer]
+        VF[Visual Formatter<br/>Tree Renderer]
+        SF[Summary Formatter<br/>Stats Generator]
+    end
+    
+    subgraph "Support Components"
+        CACHE[Cache Manager<br/>Hash-based Caching]
+        VAL[Validator<br/>Input Validation]
+        ERR[Error Handler<br/>Graceful Degradation]
+    end
+    
+    MD --> VAL
+    FP --> VAL
+    VAL --> FE
+    VAL --> HD
+    
+    FE --> SH
+    HD --> SH
+    SH --> IP
+    SH --> CD
+    
+    IP --> RM
+    CD --> RM
+    RM --> EA
+    
+    EA --> JF
+    EA --> VF
+    EA --> SF
+    
+    CACHE --> FE
+    CACHE --> HD
+    CACHE --> SH
+    
+    ERR --> FE
+    ERR --> HD
+    ERR --> SH
+    ERR --> IP
+    
+    style MD fill:#e1f5ff,stroke:#01579b
+    style FP fill:#e1f5ff,stroke:#01579b
+    style FE fill:#fff3e0,stroke:#e65100
+    style HD fill:#fff3e0,stroke:#e65100
+    style SH fill:#fff3e0,stroke:#e65100
+    style IP fill:#fff3e0,stroke:#e65100
+    style CD fill:#fff3e0,stroke:#e65100
+    style EA fill:#f3e5f5,stroke:#4a148c
+    style RM fill:#f3e5f5,stroke:#4a148c
+    style JF fill:#e8f5e9,stroke:#1b5e20
+    style VF fill:#e8f5e9,stroke:#1b5e20
+    style SF fill:#e8f5e9,stroke:#1b5e20
+    style CACHE fill:#fce4ec,stroke:#880e4f
+    style VAL fill:#fce4ec,stroke:#880e4f
+    style ERR fill:#fce4ec,stroke:#880e4f
+```
+
 ### Input
-- Markdown document (daily note file)
+- Markdown document (daily note file) - **READ-ONLY**
 - File path for reference
 
 ### Output
@@ -257,6 +335,90 @@ interface DocumentStructure {
     parser_version: string;
   };
 }
+```
+
+## Activity Diagram
+
+### Document Parsing Flow
+
+```mermaid
+flowchart TD
+    Start([Start: noteplan-parse]) --> Validate[Validate Input<br/>Check file exists, readable]
+    Validate -->|File Invalid| Error1[Error: File not found<br/>Exit code 3]
+    Validate -->|Valid| CheckCache{Check Cache<br/>Hash match?}
+    
+    CheckCache -->|Cache Hit| LoadCache[Load from Cache<br/>Return cached structure]
+    CheckCache -->|Cache Miss| ReadFile[Read File<br/>READ-ONLY mode]
+    
+    ReadFile --> ExtractFM[Extract Frontmatter<br/>Parse YAML block]
+    ExtractFM --> DetectHeadings[Detect Headings<br/>Scan for # patterns]
+    
+    DetectHeadings --> BuildHierarchy[Build Section Hierarchy<br/>Create tree structure]
+    BuildHierarchy --> ParseItems[Parse Items<br/>Bullets, lists, tasks]
+    
+    ParseItems --> DetectContext[Detect Context<br/>Associate text with sections]
+    DetectContext --> MapRelations[Map Relationships<br/>Parent-child-sibling]
+    
+    MapRelations --> AnalyzeExtract[Analyze Extractability<br/>Check dependencies]
+    AnalyzeExtract --> FormatOutput[Format Output<br/>JSON/Visual/Summary]
+    
+    FormatOutput --> ValidateOutput{Output Path<br/>Same as input?}
+    ValidateOutput -->|Yes| Error2[Error: Output = Input<br/>Exit code 2]
+    ValidateOutput -->|No| WriteOutput[Write Output<br/>To file or stdout]
+    
+    WriteOutput --> SaveCache[Save to Cache<br/>For future use]
+    SaveCache --> End([End: Return structure])
+    
+    LoadCache --> End
+    Error1 --> End
+    Error2 --> End
+    
+    style Validate fill:#ffebee,stroke:#c62828
+    style ReadFile fill:#e3f2fd,stroke:#1565c0
+    style ExtractFM fill:#fff3e0,stroke:#e65100
+    style DetectHeadings fill:#fff3e0,stroke:#e65100
+    style BuildHierarchy fill:#fff3e0,stroke:#e65100
+    style ParseItems fill:#fff3e0,stroke:#e65100
+    style DetectContext fill:#fff3e0,stroke:#e65100
+    style MapRelations fill:#f3e5f5,stroke:#4a148c
+    style AnalyzeExtract fill:#f3e5f5,stroke:#4a148c
+    style FormatOutput fill:#e8f5e9,stroke:#1b5e20
+    style ValidateOutput fill:#ffebee,stroke:#c62828
+    style WriteOutput fill:#e8f5e9,stroke:#1b5e20
+    style Error1 fill:#ffcdd2,stroke:#b71c1c
+    style Error2 fill:#ffcdd2,stroke:#b71c1c
+```
+
+### Section Hierarchy Building Flow
+
+```mermaid
+flowchart TD
+    Start([Start: Build Hierarchy]) --> Init[Initialize Stack<br/>Empty section stack]
+    Init --> ReadHeading[Read Next Heading<br/>From document]
+    
+    ReadHeading -->|No More| Finalize[Finalize All Sections<br/>Set line_end]
+    ReadHeading -->|Has Heading| GetLevel[Get Heading Level<br/>Count # characters]
+    
+    GetLevel --> PopStack{Pop Stack<br/>Until parent found}
+    PopStack -->|Stack empty| CreateRoot[Create Root Section<br/>Level 1]
+    PopStack -->|Parent found| CreateChild[Create Child Section<br/>Link to parent]
+    
+    CreateRoot --> PushStack[Push to Stack<br/>Add to sections list]
+    CreateChild --> PushStack
+    
+    PushStack --> ReadHeading
+    Finalize --> SetEndLines[Set line_end<br/>For each section]
+    SetEndLines --> End([End: Hierarchy built])
+    
+    style Init fill:#e3f2fd,stroke:#1565c0
+    style ReadHeading fill:#fff3e0,stroke:#e65100
+    style GetLevel fill:#fff3e0,stroke:#e65100
+    style PopStack fill:#fff3e0,stroke:#e65100
+    style CreateRoot fill:#fff3e0,stroke:#e65100
+    style CreateChild fill:#fff3e0,stroke:#e65100
+    style PushStack fill:#fff3e0,stroke:#e65100
+    style Finalize fill:#e8f5e9,stroke:#1b5e20
+    style SetEndLines fill:#e8f5e9,stroke:#1b5e20
 ```
 
 ## Parsing Algorithm
@@ -1338,6 +1500,204 @@ noteplan-parse "${CHANGED_NOTE}" \
 2. **Context Preservation**: Better handling of shared context
 3. **Cross-Reference Detection**: Detect references between sections
 4. **Template Recognition**: Identify common patterns (meeting notes, todos, etc.)
+
+## Context Diagram
+
+### System Context and Interactions
+
+```mermaid
+graph TB
+    subgraph "External Systems"
+        FS[File System<br/>Markdown Files]
+        USER[User/CLI<br/>Command Line]
+    end
+    
+    subgraph "noteplan-parse Script"
+        MAIN[Main Script<br/>noteplan-parse]
+        PARSER[Document Parser<br/>Core Logic]
+        CACHE[Cache Manager<br/>Hash-based]
+        FORMAT[Output Formatters<br/>JSON/Visual/Summary]
+    end
+    
+    subgraph "Consuming Components"
+        CS[Content Sectioner<br/>organize-noteplan.sh]
+        CA[Content Analyzer<br/>AI Analysis]
+        PM[Plan Maker<br/>Extraction Planning]
+    end
+    
+    subgraph "Support Systems"
+        GIT[Git Repository<br/>Version Control]
+        TEST[Test Suite<br/>tests/noteplan-parse/]
+    end
+    
+    USER -->|CLI Args| MAIN
+    FS -->|Read Files<br/>READ-ONLY| MAIN
+    
+    MAIN -->|Orchestrates| PARSER
+    MAIN -->|Uses| CACHE
+    MAIN -->|Uses| FORMAT
+    
+    PARSER -->|Reads| FS
+    CACHE -->|Reads/Writes| FS
+    
+    MAIN -->|Output JSON| CS
+    MAIN -->|Output JSON| CA
+    MAIN -->|Output JSON| PM
+    
+    CS -->|Calls| MAIN
+    PM -->|Calls| MAIN
+    
+    TEST -->|Tests| MAIN
+    MAIN -->|Commits| GIT
+    
+    style USER fill:#e1f5ff,stroke:#01579b
+    style FS fill:#e1f5ff,stroke:#01579b
+    style MAIN fill:#fff3e0,stroke:#e65100
+    style PARSER fill:#fff3e0,stroke:#e65100
+    style CACHE fill:#fce4ec,stroke:#880e4f
+    style FORMAT fill:#e8f5e9,stroke:#1b5e20
+    style CS fill:#f3e5f5,stroke:#4a148c
+    style CA fill:#f3e5f5,stroke:#4a148c
+    style PM fill:#f3e5f5,stroke:#4a148c
+    style GIT fill:#e8f5e9,stroke:#1b5e20
+    style TEST fill:#ffebee,stroke:#c62828
+```
+
+## Sequence Diagram
+
+### Document Parsing Sequence
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Main as noteplan-parse
+    participant Validator
+    participant Cache
+    participant Parser as Document Parser
+    participant FE as Frontmatter Extractor
+    participant HD as Heading Detector
+    participant SH as Section Hierarchy
+    participant IP as Item Parser
+    participant EA as Extractability Analyzer
+    participant Formatter
+    
+    User->>Main: noteplan-parse file.txt --output out.json
+    Main->>Validator: Validate input file
+    Validator-->>Main: File valid, readable
+    
+    Main->>Cache: Check cache (hash)
+    Cache-->>Main: Cache miss
+    
+    Main->>Parser: Parse document (read-only)
+    Parser->>FE: Extract frontmatter
+    FE-->>Parser: YAML metadata
+    
+    Parser->>HD: Detect headings
+    HD-->>Parser: Heading list with levels
+    
+    Parser->>SH: Build hierarchy
+    SH->>SH: Create section tree
+    SH-->>Parser: Section structure
+    
+    Parser->>IP: Parse items
+    IP->>IP: Parse bullets, lists, tasks
+    IP-->>Parser: Item structure
+    
+    Parser->>EA: Analyze extractability
+    EA->>EA: Check dependencies
+    EA-->>Parser: Extractability flags
+    
+    Parser-->>Main: Document structure
+    
+    Main->>Validator: Validate output path
+    Validator-->>Main: Output != input, valid
+    
+    Main->>Formatter: Format as JSON
+    Formatter-->>Main: JSON string
+    
+    Main->>Main: Write to output file
+    Main->>Cache: Save to cache
+    
+    Main-->>User: Success (exit 0)
+```
+
+### Extractability Analysis Sequence
+
+```mermaid
+sequenceDiagram
+    participant EA as Extractability Analyzer
+    participant Section
+    participant Parent
+    participant Sibling
+    participant RM as Relationship Mapper
+    
+    EA->>Section: Analyze section
+    Section->>EA: Section data
+    
+    EA->>RM: Get parent section
+    RM-->>EA: Parent section (if exists)
+    
+    alt Has Parent
+        EA->>Parent: Check context dependency
+        Parent-->>EA: Has context text
+        EA->>EA: Check if section references parent context
+        alt References Parent Context
+            EA->>EA: Mark as dependent
+        end
+    end
+    
+    EA->>RM: Get sibling sections
+    RM-->>EA: Sibling list
+    
+    loop For Each Sibling
+        EA->>Sibling: Check cross-references
+        Sibling-->>EA: Has references
+        alt Cross-References Found
+            EA->>EA: Add to dependencies
+        end
+    end
+    
+    EA->>EA: Calculate extractability
+    alt No Dependencies
+        EA->>Section: Mark as extractable
+    else Has Dependencies
+        EA->>Section: Mark as non-extractable
+        EA->>Section: Store dependency list
+    end
+    
+    EA-->>Section: Extractability result
+```
+
+### Cache Interaction Sequence
+
+```mermaid
+sequenceDiagram
+    participant Main as noteplan-parse
+    participant Cache
+    participant FS as File System
+    participant Parser
+    
+    Main->>FS: Read input file
+    FS-->>Main: File content
+    
+    Main->>Main: Calculate content hash
+    Main->>Cache: Check cache (hash key)
+    
+    alt Cache Hit
+        Cache-->>Main: Cached structure found
+        Main->>Main: Load from cache
+        Main-->>Main: Return cached structure
+    else Cache Miss
+        Cache-->>Main: No cache entry
+        Main->>Parser: Parse document
+        Parser-->>Main: Parsed structure
+        Main->>Cache: Save to cache (hash key)
+        Cache->>FS: Write cache file
+        FS-->>Cache: Cache saved
+        Cache-->>Main: Cache updated
+        Main-->>Main: Return parsed structure
+    end
+```
 
 ## Related Components
 
