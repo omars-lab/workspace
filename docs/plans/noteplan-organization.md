@@ -252,6 +252,7 @@ This system is designed in two distinct phases:
 
 **Human Actions**:
 - Review sample content extractions
+- **Review visualizations**: Use `noteplan-visualize` to generate HTML visualizations of parsed documents for easier review
 - Approve/modify bucket assignments
 - Approve extraction plan (or request modifications)
 
@@ -807,6 +808,7 @@ graph TB
     subgraph "Organization Agent System"
         subgraph "Phase 1: Setup Components"
             DS[Document Splitter<br/>📄 Parses markdown structure<br/>See: document-splitter-design.md]
+            DV[Document Visualizer<br/>🎨 Generates HTML cards<br/>See: document-visualizer-design.md]
             CA[Content Analyzer<br/>🤖 Identifies sections]
             CS[Content Sectioner<br/>🤖 Uses Document Splitter]
             NI[Content Indexer<br/>🤖 Builds content index]
@@ -846,6 +848,8 @@ graph TB
     GR -->|Read daily notes| DD
     
     DS -->|Parses structure| CS
+    DS -->|Outputs JSON| DV
+    DV -->|Generates HTML| HR
     CS -->|Uses parsed structure| CA
     CA -->|Uses| CCR
     OA -->|Uses| CCR
@@ -884,6 +888,8 @@ graph TB
     
     style CA fill:#87ceeb,stroke:#4682b4
     style CS fill:#87ceeb,stroke:#4682b4
+    style DS fill:#87ceeb,stroke:#4682b4
+    style DV fill:#ffb6c1,stroke:#ff69b4
     style NI fill:#87ceeb,stroke:#4682b4
     style BA fill:#87ceeb,stroke:#4682b4
     style OA fill:#87ceeb,stroke:#4682b4
@@ -902,6 +908,7 @@ graph TB
 
 **Phase 1 Components**:
 - **Document Splitter**: Parses markdown structure (frontmatter, headings, subsections, items) - **See detailed design**: `docs/plans/document-splitter-design.md`
+- **Document Visualizer**: Generates HTML visualization of parsed document structure - **See detailed design**: `docs/plans/document-visualizer-design.md`
 - **Content Sectioner**: Uses Document Splitter to identify extractable content sections
 - **Content Analyzer**: Analyzes content sections to determine type, topic, project
 - **Content Indexer**: Builds comprehensive index of all content sections
@@ -1479,22 +1486,28 @@ This high-level design references detailed component designs:
    - **Status**: Detailed design complete
    - **Complexity**: High - requires separate design document
 
-2. **Content Analyzer** (inline in this document)
+2. **Document Visualizer** (`docs/plans/document-visualizer-design.md`)
+   - Generates HTML visualization of parsed document structure
+   - Shows sections as interactive cards for review
+   - **Status**: Detailed design complete
+   - **Complexity**: High - requires separate design document (HTML generation, templates, future interactivity)
+
+3. **Content Analyzer** (inline in this document)
    - Analyzes content sections to determine type, topic, project
    - **Status**: Design in main document
    - **Complexity**: Medium - sufficient detail in main document
 
-3. **Bucket Analyzer** (inline in this document)
+4. **Bucket Analyzer** (inline in this document)
    - Identifies target bucket files from patterns
    - **Status**: Design in main document
    - **Complexity**: Medium - sufficient detail in main document
 
-4. **Delta Processor** (inline in this document)
+5. **Delta Processor** (inline in this document)
    - Processes new/changed notes for delta extraction
    - **Status**: Design in main document
    - **Complexity**: Medium - sufficient detail in main document
 
-**Decision**: Only Document Splitter requires separate detailed design due to complexity of markdown parsing, hierarchical structure building, and extractability analysis.
+**Decision**: Document Splitter and Document Visualizer require separate detailed designs due to complexity (parsing logic, HTML generation, templates, future interactivity).
 
 ## Design Considerations
 
