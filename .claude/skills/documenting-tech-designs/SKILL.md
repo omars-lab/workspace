@@ -1,3 +1,8 @@
+---
+name: documenting-tech-designs
+description: Guidance on documeting the design of tech components.
+---
+
 # Design Documentation Skill
 
 **Purpose**: Document the methodology for creating engineering design documents, starting with high-level designs and breaking into detailed component designs as needed.

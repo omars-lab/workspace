@@ -43,16 +43,16 @@ fi
 
 _loader_msg "start" "📦" "Loading completion functions"
 recursive_source ${CURRENT_DIR}/functions-completion 2>/dev/null
-_loader_msg "done" "📦" "Completion functions"
+_loader_msg "done" "📦" "Loading completion functions"
 
 _loader_msg "start" "🔌" "Loading extension functions"
 recursive_source ${CURRENT_DIR}/functions-extensions 2>/dev/null
-_loader_msg "done" "🔌" "Extension functions"
+_loader_msg "done" "🔌" "Loading extension functions"
 
 _loader_msg "start" "⌨️" "Loading shortcuts"
 recursive_source ${CURRENT_DIR}/functions-shortcuts 2>/dev/null
-_loader_msg "done" "⌨️" "Shortcuts"
+_loader_msg "done" "⌨️" "Loading shortcuts"
 
 _loader_msg "start" "🛠️" "Loading tool functions"
 recursive_source ${CURRENT_DIR}/functions-tools 2>/dev/null
-_loader_msg "done" "🛠️" "Tool functions"
+_loader_msg "done" "🛠️" "Loading tool functions"

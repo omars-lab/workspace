@@ -206,6 +206,11 @@ _loader_msg() {
     
     case "${msg_type}" in
         "start")
+            # Store start time for timing calculation
+            if command -v python3 >/dev/null 2>&1; then
+                export LOADER_START_TIME=$(python3 -c 'import time; print(time.time())' 2>/dev/null)
+                export LOADER_START_MESSAGE="${message}"
+            fi
             if [[ "${SUPPORTS_COLORS}" == "true" ]]; then
                 echo -ne "${COLOR_CYAN}${display_emoji}${display_emoji:+ }${COLOR_RESET}${COLOR_GRAY}${message}...${COLOR_RESET}" >&2
             else
@@ -215,18 +220,42 @@ _loader_msg() {
         "done")
             local checkmark="${CHECKMARK}"
             [[ "${SUPPORTS_COLORS}" != "true" ]] && checkmark="OK"
+            
+            # Calculate duration if start time was recorded
+            local duration_str=""
+            if [[ -n "${LOADER_START_TIME:-}" ]] && [[ "${LOADER_START_MESSAGE:-}" == "${message}" ]] && command -v python3 >/dev/null 2>&1; then
+                local end_time=$(python3 -c 'import time; print(time.time())' 2>/dev/null)
+                if [[ -n "${end_time}" ]]; then
+                    local duration_ms=$(python3 -c "print(int((${end_time} - ${LOADER_START_TIME}) * 1000))" 2>/dev/null)
+                    if [[ -n "${duration_ms}" ]] && [[ "${duration_ms}" =~ ^[0-9]+$ ]]; then
+                        duration_str=" ${COLOR_GRAY}(${duration_ms}ms)${COLOR_RESET}"
+                    fi
+                fi
+                unset LOADER_START_TIME
+                unset LOADER_START_MESSAGE
+            fi
+            
             # Clear the line first (carriage return + clear to end of line), then print the done message
             # Use both \r and \033[K for maximum compatibility
             # Add tab after emoji for alignment
             if [[ "${SUPPORTS_COLORS}" == "true" ]]; then
                 printf "\r\033[K" >&2
-                echo -ne "${COLOR_GREEN}${checkmark}${COLOR_RESET} ${COLOR_GREEN}${display_emoji}${display_emoji:+ }\t${COLOR_RESET}${COLOR_GREEN}${message}${COLOR_RESET}\n" >&2
+                echo -ne "${COLOR_GREEN}${checkmark}${COLOR_RESET} ${COLOR_GREEN}${display_emoji}${display_emoji:+ }\t${COLOR_RESET}${COLOR_GREEN}${message}${duration_str}${COLOR_RESET}\n" >&2
             else
                 printf "\r\033[K" >&2
-                echo -ne "[${checkmark}] ${display_emoji}${display_emoji:+ }\t${message}\n" >&2
+                local duration_plain=""
+                if [[ -n "${duration_str}" ]]; then
+                    duration_plain=$(echo "${duration_str}" | sed 's/\x1b\[[0-9;]*m//g' | sed 's/^ //')
+                fi
+                echo -ne "[${checkmark}] ${display_emoji}${display_emoji:+ }\t${message}${duration_plain}\n" >&2
             fi
             ;;
         "skip")
+            # Clear start time if it was set
+            if [[ -n "${LOADER_START_TIME:-}" ]] && [[ "${LOADER_START_MESSAGE:-}" == "${message}" ]]; then
+                unset LOADER_START_TIME
+                unset LOADER_START_MESSAGE
+            fi
             local skip_marker="⊘"
             [[ "${SUPPORTS_COLORS}" != "true" ]] && skip_marker="SKIP"
             # Clear the line first, then print the skip message
@@ -239,6 +268,11 @@ _loader_msg() {
             fi
             ;;
         "error")
+            # Clear start time if it was set
+            if [[ -n "${LOADER_START_TIME:-}" ]] && [[ "${LOADER_START_MESSAGE:-}" == "${message}" ]]; then
+                unset LOADER_START_TIME
+                unset LOADER_START_MESSAGE
+            fi
             local warning_marker="⚠️"
             [[ "${SUPPORTS_EMOJIS}" != "true" ]] && warning_marker="WARN"
             # Clear the line first, then print the error message

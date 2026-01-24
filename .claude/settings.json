@@ -1,0 +1,26 @@
+{
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/scripts/statusline-bar.sh"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(wc:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(sed:*)",
+      "Bash(tr:*)",
+      "Bash(cut:*)",
+      "Bash(pbpaste:*)"
+    ]
+  }
+}

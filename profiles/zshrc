@@ -72,6 +72,7 @@ fi
 
 # Antigen plugin manager
 if test -f "${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh" ; then
+  _loader_msg "start" "🧩" "Loading Antigen plugins"
   source ${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh
   # Load antigen plugins ... order important!
   # https://github.com/unixorn/awesome-zsh-plugins/blob/master/README.md#installation
@@ -83,10 +84,15 @@ if test -f "${HOME}/.oh-my-zsh/plugins/antigen/antigen.zsh" ; then
   # https://github.com/sindresorhus/pure
   # antigen bundle sindresorhus/pure
   antigen apply
+  _loader_msg "done" "🧩" "Loading Antigen plugins"
 fi
 
 # Auto Jump - intelligent directory jumping
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+if [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]]; then
+  _loader_msg "start" "🚀" "Loading Auto Jump"
+  . $(brew --prefix)/etc/profile.d/autojump.sh
+  _loader_msg "done" "🚀" "Loading Auto Jump"
+fi
 
 # ============================================================================
 # Career Workspace (Optional)
@@ -99,10 +105,10 @@ ZSENV_LINK=$(readlink ${HOME}/.zshenv 2>/dev/null)
 if [ -n "${ZSENV_LINK}" ]; then
     CAREER_WORKSPACE_DIR=$(dirname $(dirname ${HOME}/${ZSENV_LINK}))/../workspace-career
     if [[ -d "${CAREER_WORKSPACE_DIR}" ]]; then
-        _loader_msg_simple "💼" "Loading career workspace" "start"
+        _loader_msg "start" "💼" "Loading career workspace"
         [[ -f ${CAREER_WORKSPACE_DIR}/functions.sh ]] && source ${CAREER_WORKSPACE_DIR}/functions.sh 2>/dev/null
         [[ -f ${CAREER_WORKSPACE_DIR}/aliases.sh ]] && source ${CAREER_WORKSPACE_DIR}/aliases.sh 2>/dev/null
-        _loader_msg_simple "💼" "Career workspace" "done"
+        _loader_msg "done" "💼" "Loading career workspace"
     fi
 fi
 
@@ -113,7 +119,9 @@ fi
 # iTerm2 shell integration
 ITERM_INTEGRATION=$(which iterm2_shell_integration.zsh)
 if test -f "${ITERM_INTEGRATION}" ; then
+  _loader_msg "start" "🖥️" "Loading iTerm2 integration"
   source "${ITERM_INTEGRATION}"
+  _loader_msg "done" "🖥️" "Loading iTerm2 integration"
 fi
 
 # ============================================================================
@@ -121,6 +129,7 @@ fi
 # ============================================================================
 # https://github.com/zsh-users/zsh-completions/issues/277#issuecomment-414139674
 
+_loader_msg "start" "📋" "Initializing completion system"
 fpath=(${DIRS_ENVIRONMENT}/functions-completion/zsh $fpath)
 if test -f "${CAREER_WORKSPACE_DIR}/" ; then 
   fpath=(${DIRS_ENVIRONMENT}/../workspace-career/completion-functions/zsh $fpath)
@@ -134,6 +143,7 @@ compinit -u
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
+_loader_msg "done" "📋" "Initializing completion system"
 
 # ============================================================================
 # Version Managers
@@ -141,8 +151,10 @@ fpath+=~/.zfunc
 
 # ASDF version manager
 if [[ -d $HOME/.asdf/ ]] ; then 
+	_loader_msg "start" "🔧" "Loading ASDF version manager"
 	. $HOME/.asdf/asdf.sh
 	. $HOME/.asdf/completions/asdf.bash
+	_loader_msg "done" "🔧" "Loading ASDF version manager"
 fi
 
 # ============================================================================
@@ -163,7 +175,15 @@ bindkey -e
 SHARED_LOADER=$(first "${DIRS_ENVIRONMENT}/loader-shared.sh" "$(brew --prefix sharedspace)/loader-shared.sh" 2>/dev/null)
 if [ -n "${SHARED_LOADER}" ] && [ -f "${SHARED_LOADER}" ]; then
     [[ "${DEBUG_LOADER:-false}" == "true" ]] && echo "Using Loader: ${SHARED_LOADER}" >&2
+    _loader_msg "start" "🔗" "Loading shared workspace"
+    # Save start time before nested loader calls that will overwrite it
+    SAVED_START_TIME="${LOADER_START_TIME:-}"
+    SAVED_START_MESSAGE="${LOADER_START_MESSAGE:-}"
     source "${SHARED_LOADER}" #tag:inject-sharedspace-loader
+    # Restore start time for timing calculation
+    export LOADER_START_TIME="${SAVED_START_TIME}"
+    export LOADER_START_MESSAGE="${SAVED_START_MESSAGE}"
+    _loader_msg "done" "🔗" "Loading shared workspace"
 fi
 
 # ============================================================================
@@ -178,6 +198,7 @@ function continue-loading-profile() {
 
   # >>> conda initialize >>>
   # !! Contents within this block are managed by 'conda init' !!
+  _loader_msg "start" "🐍" "Initializing Conda"
   __conda_setup="$('${DIR_CONDA_HOME}/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
       eval "$__conda_setup"
@@ -192,13 +213,14 @@ function continue-loading-profile() {
   # <<< conda initialize <<<
   
   # Install env if not existing
-  _loader_msg_simple "🐍" "Initializing Conda" "start"
+  _loader_msg "done" "🐍" "Initializing Conda"
+  _loader_msg "start" "🐍" "Setting up Conda environment"
   (conda env list --json 2>/dev/null | jq -r '.envs | map(select(contains("/envs/"))) | .[]' 2>/dev/null | xargs basename 2>/dev/null | grep -q ${DEFAULT_CONDA_ENV} 2>/dev/null) || conda create -n ${DEFAULT_CONDA_ENV} -y python=3 pip >/dev/null 2>&1
   conda activate ${DEFAULT_CONDA_ENV} >/dev/null 2>&1
-  _loader_msg_simple "🐍" "Conda env [${DEFAULT_CONDA_ENV}]" "done"
+  _loader_msg "done" "🐍" "Setting up Conda environment"
 
   # NVM (Node Version Manager)
-  _loader_msg_simple "📦" "Initializing NVM" "start"
+  _loader_msg "start" "📦" "Initializing NVM"
   if ( brew list nvm 2>/dev/null ); then
       # https://github.com/nvm-sh/nvm/issues/860
       # source $(brew --prefix nvm)/nvm.sh
@@ -212,11 +234,14 @@ function continue-loading-profile() {
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion" 2>/dev/null # This loads nvm bash_completion
   nvm list ${DEFAULT_NVM_ENV} 1>/dev/null 2>/dev/null || nvm install ${DEFAULT_NVM_ENV} >/dev/null 2>&1
   nvm use ${DEFAULT_NVM_ENV} >/dev/null 2>&1
-  _loader_msg_simple "📦" "Node $(nvm current 2>/dev/null || echo 'N/A')" "done"
+  _loader_msg "done" "📦" "Initializing NVM"
+
+  # Ensure ~/.local/bin comes before NVM paths
+  export PATH="${HOME}/.local/bin:$PATH"
 
   # Setup AI dependencies
   if command -v npm >/dev/null 2>&1; then
-    _loader_msg_simple "🤖" "Setting up AI dependencies" "start"
+    _loader_msg "start" "🤖" "Setting up AI dependencies"
     # Check and install @google/gemini-cli
     if ! npm list -g @google/gemini-cli >/dev/null 2>&1; then
       npm install -g @google/gemini-cli >/dev/null 2>&1
@@ -229,14 +254,14 @@ function continue-loading-profile() {
     if ! npm list -g @musistudio/claude-code-router >/dev/null 2>&1; then
       npm install -g @musistudio/claude-code-router >/dev/null 2>&1
     fi
-    _loader_msg_simple "🤖" "AI dependencies" "done"
+    _loader_msg "done" "🤖" "Setting up AI dependencies"
     
     # Load CCR preset if specified (optional)
     if [ -n "${CCR_PRESET:-}" ] && [ -f "${DIRS_ENVIRONMENT}/scripts/ccr-config" ]; then
-      _loader_msg_simple "⚙️" "Loading CCR preset: ${CCR_PRESET}" "start"
+      _loader_msg "start" "⚙️" "Loading CCR preset: ${CCR_PRESET}"
       source "${DIRS_ENVIRONMENT}/scripts/ccr-config" auto-load >/dev/null 2>&1 && \
-        _loader_msg_simple "⚙️" "CCR preset: ${CCR_PRESET}" "done" || \
-        _loader_msg_simple "⚙️" "CCR preset: ${CCR_PRESET}" "skip"
+        _loader_msg "done" "⚙️" "Loading CCR preset: ${CCR_PRESET}" || \
+        _loader_msg "skip" "⚙️" "Loading CCR preset: ${CCR_PRESET}"
     fi
   fi
 
@@ -252,9 +277,11 @@ continue-loading-profile
 export PATH="$PATH:/Users/omareid/.lmstudio/bin"
 
 # Docker CLI completions
+_loader_msg "start" "🐳" "Loading Docker completions"
 fpath=(/Users/omareid/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
+_loader_msg "done" "🐳" "Loading Docker completions"
 
 # ============================================================================
 # Commented Out / Future Configuration
