@@ -1,0 +1,16 @@
+# Work
+
+## Meeting Notes
+
+Discussed project status:
+- Feature A: Complete
+  - Tests passing
+  - Documentation done
+- Feature B: In progress
+  - Code review pending
+
+## Todos
+
+- [ ] Review PR
+- [x] Update docs
+- [ ] Deploy to staging

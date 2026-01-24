@@ -1,0 +1,568 @@
+#!/usr/bin/env python3
+"""
+noteplan-parse - Parse NotePlan markdown documents into structured hierarchy
+
+Usage:
+    noteplan-parse [OPTIONS] FILE...
+
+This script parses markdown documents (daily notes) into a structured
+hierarchy of sections, subsections, and items. It identifies extractable
+content units and their dependencies.
+
+CRITICAL: This script is READ-ONLY. It never modifies source files.
+All output goes to separate files or stdout.
+
+Test Fixtures:
+    Test fixtures are located at: tests/noteplan-parse/fixtures/
+    Each fixture is a markdown file (e.g., simple-daily-note.txt)
+
+Sample Outputs:
+    Sample JSON outputs are located at: docs/samples/noteplan-parse/
+    Each sample corresponds to a test fixture (e.g., simple-daily-note.json)
+    Generate samples: scripts/noteplan-parse tests/noteplan-parse/fixtures/*.txt \
+                      --output-dir docs/samples/noteplan-parse/
+
+See: docs/plans/document-splitter-design.md for full specification.
+"""
+
+import sys
+import argparse
+import json
+import hashlib
+import os
+from pathlib import Path
+from datetime import datetime, timezone
+from typing import Dict, List, Optional, Tuple
+import re
+
+# Try to import yaml, but make it optional
+try:
+    import yaml
+    HAS_YAML = True
+except ImportError:
+    HAS_YAML = False
+    print("Warning: pyyaml not installed. Frontmatter parsing will be limited.", file=sys.stderr)
+
+# Version
+PARSER_VERSION = "1.0.0"
+
+# Paths (for reference and documentation)
+TEST_FIXTURES_DIR = "tests/noteplan-parse/fixtures"
+SAMPLE_OUTPUTS_DIR = "docs/samples/noteplan-parse"
+
+class DocumentParser:
+    """Parses markdown documents into structured hierarchy."""
+    
+    def __init__(self):
+        self.section_counter = 0
+        self.item_counter = 0
+        self.sections: List[Dict] = []
+        self.items: List[Dict] = []
+        self.section_map: Dict[str, Dict] = {}
+        self.item_map: Dict[str, Dict] = {}
+    
+    def parse(self, content: str, file_path: str) -> Dict:
+        """Parse document content into structured format."""
+        lines = content.split('\n')
+        
+        # Extract frontmatter
+        frontmatter, content_start = self._extract_frontmatter(lines)
+        
+        # Detect headings
+        headings = self._detect_headings(lines, content_start)
+        
+        # Build section hierarchy
+        self._build_section_hierarchy(headings, lines)
+        
+        # Parse items within sections
+        for section in self.sections:
+            section['items'] = self._parse_items_in_section(section, lines)
+            section['context'] = self._extract_context(section, lines)
+        
+        # Analyze extractability
+        self._analyze_extractability()
+        
+        # Flatten items
+        all_items = self._flatten_items()
+        
+        return {
+            'path': file_path,
+            'frontmatter': frontmatter,
+            'sections': self.sections,
+            'items': all_items,
+            'metadata': {
+                'total_lines': len(lines),
+                'total_sections': len(self.sections),
+                'total_items': len(all_items),
+                'parse_timestamp': datetime.now(timezone.utc).isoformat(),
+                'parser_version': PARSER_VERSION
+            }
+        }
+    
+    def _extract_frontmatter(self, lines: List[str]) -> Tuple[Optional[Dict], int]:
+        """Extract YAML frontmatter if present."""
+        if not lines or not lines[0].strip().startswith('---'):
+            return None, 0
+        
+        frontmatter_lines = []
+        end_line = None
+        
+        for i, line in enumerate(lines[1:], start=1):
+            if line.strip() == '---':
+                end_line = i
+                break
+            frontmatter_lines.append(line)
+        
+        if end_line is None:
+            return None, 0
+        
+        if not HAS_YAML:
+            return {'raw': '\n'.join(frontmatter_lines)}, end_line + 1
+        
+        try:
+            frontmatter_text = '\n'.join(frontmatter_lines)
+            frontmatter = yaml.safe_load(frontmatter_text) or {}
+            # Convert date objects to strings for JSON serialization
+            frontmatter = self._serialize_frontmatter(frontmatter)
+            return frontmatter, end_line + 1
+        except yaml.YAMLError:
+            return {'raw': '\n'.join(frontmatter_lines), 'parse_error': True}, end_line + 1
+    
+    def _serialize_frontmatter(self, data):
+        """Convert frontmatter data types to JSON-serializable formats."""
+        if isinstance(data, dict):
+            return {k: self._serialize_frontmatter(v) for k, v in data.items()}
+        elif isinstance(data, list):
+            return [self._serialize_frontmatter(item) for item in data]
+        elif hasattr(data, 'isoformat'):  # datetime/date objects
+            return data.isoformat()
+        else:
+            return data
+    
+    def _detect_headings(self, lines: List[str], start_line: int) -> List[Dict]:
+        """Detect markdown headings."""
+        headings = []
+        for i, line in enumerate(lines[start_line:], start=start_line):
+            match = re.match(r'^(#{1,6})\s+(.+)$', line.strip())
+            if match:
+                level = len(match.group(1))
+                text = match.group(2).strip()
+                headings.append({
+                    'level': level,
+                    'text': text,
+                    'full_text': line.strip(),
+                    'line_number': i
+                })
+        return headings
+    
+    def _build_section_hierarchy(self, headings: List[Dict], lines: List[str]):
+        """Build section hierarchy from headings."""
+        stack = []
+        
+        for heading in headings:
+            # Pop stack until we find parent at correct level
+            while stack and stack[-1]['level'] >= heading['level']:
+                stack.pop()
+            
+            section_id = f"sect-{self.section_counter:03d}"
+            self.section_counter += 1
+            
+            section = {
+                'id': section_id,
+                'level': heading['level'],
+                'heading': heading['full_text'],
+                'heading_text': heading['text'],
+                'line_start': heading['line_number'],
+                'line_end': len(lines),  # Will be updated later
+                'content_start': heading['line_number'] + 1,
+                'content_end': len(lines),  # Will be updated later
+                'parent_id': stack[-1]['id'] if stack else None,
+                'children': [],
+                'items': [],
+                'context': None,
+                'extractable': True,
+                'extraction_dependencies': []
+            }
+            
+            if stack:
+                parent = self.section_map[stack[-1]['id']]
+                parent['children'].append(section_id)
+            
+            stack.append({'id': section_id, 'level': heading['level']})
+            self.sections.append(section)
+            self.section_map[section_id] = section
+        
+        # Set line_end for each section
+        for i, section in enumerate(self.sections):
+            if i + 1 < len(self.sections):
+                section['line_end'] = self.sections[i + 1]['line_start'] - 1
+            else:
+                section['line_end'] = len(lines)
+            section['content_end'] = section['line_end']
+    
+    def _parse_items_in_section(self, section: Dict, lines: List[str]) -> List[Dict]:
+        """Parse items within a section."""
+        items = []
+        current_item = None
+        
+        for line_num in range(section['content_start'], min(section['content_end'] + 1, len(lines))):
+            line = lines[line_num]
+            indent = len(line) - len(line.lstrip())
+            stripped = line.strip()
+            
+            # Check if this is a bullet point or numbered list
+            bullet_match = re.match(r'^[-*+]\s+(.+)$', stripped)
+            numbered_match = re.match(r'^\d+[.)]\s+(.+)$', stripped)
+            task_match = re.match(r'^[-*+]\s+\[([ x])\]\s+(.+)$', stripped)
+            
+            if bullet_match or numbered_match or task_match:
+                # New top-level item
+                if current_item:
+                    current_item['line_end'] = line_num - 1
+                    items.append(current_item)
+                
+                if task_match:
+                    item_type = "task"
+                    content = task_match.group(2)
+                elif bullet_match:
+                    item_type = "bullet"
+                    content = bullet_match.group(1)
+                else:
+                    item_type = "numbered"
+                    content = numbered_match.group(1)
+                
+                item_id = f"item-{section['id']}-{len(items):03d}"
+                self.item_counter += 1
+                
+                current_item = {
+                    'id': item_id,
+                    'type': item_type,
+                    'content': content,
+                    'line_start': line_num,
+                    'line_end': line_num,
+                    'indent_level': indent // 2,  # Assume 2 spaces per indent
+                    'parent_item_id': None,
+                    'children': [],
+                    'context': None,
+                    'extractable': True
+                }
+                self.item_map[item_id] = current_item
+            elif current_item and indent > current_item['indent_level'] * 2:
+                # Sub-item or context
+                if stripped.startswith('-') or stripped.startswith('*') or stripped.startswith('+'):
+                    # Sub-item
+                    sub_match = re.match(r'^[-*+]\s+(.+)$', stripped)
+                    if sub_match:
+                        sub_item_id = f"{current_item['id']}-{len(current_item['children']):03d}"
+                        sub_item = {
+                            'id': sub_item_id,
+                            'type': "bullet",
+                            'content': sub_match.group(1),
+                            'line_start': line_num,
+                            'line_end': line_num,
+                            'indent_level': indent // 2,
+                            'parent_item_id': current_item['id'],
+                            'children': [],
+                            'context': None,
+                            'extractable': True
+                        }
+                        current_item['children'].append(sub_item_id)
+                        self.item_map[sub_item_id] = sub_item
+                else:
+                    # Context text
+                    if not current_item['context']:
+                        current_item['context'] = ""
+                    current_item['context'] += stripped + "\n"
+            elif stripped:
+                # Paragraph context (not part of current item)
+                pass
+        
+        if current_item:
+            items.append(current_item)
+        
+        return items
+    
+    def _extract_context(self, section: Dict, lines: List[str]) -> Optional[str]:
+        """Extract context text for a section."""
+        context_lines = []
+        in_items = False
+        
+        for line_num in range(section['content_start'], min(section['content_end'] + 1, len(lines))):
+            line = lines[line_num]
+            stripped = line.strip()
+            
+            # Check if this line starts an item
+            if re.match(r'^[-*+]\s+', stripped) or re.match(r'^\d+[.)]\s+', stripped):
+                in_items = True
+                continue
+            
+            # If we haven't hit items yet, this is context
+            if not in_items and stripped:
+                context_lines.append(stripped)
+        
+        if context_lines:
+            return '\n'.join(context_lines)
+        return None
+    
+    def _analyze_extractability(self):
+        """Analyze extractability of sections."""
+        for section in self.sections:
+            dependencies = []
+            
+            # Check parent context dependency
+            if section['parent_id']:
+                parent = self.section_map[section['parent_id']]
+                if parent.get('context') and self._references_parent_context(section, parent):
+                    dependencies.append(section['parent_id'])
+            
+            # Check sibling dependencies (simplified - check for cross-references)
+            siblings = [s for s in self.sections 
+                       if s['parent_id'] == section['parent_id'] and s['id'] != section['id']]
+            for sibling in siblings:
+                if self._cross_references(section, sibling):
+                    dependencies.append(sibling['id'])
+            
+            section['extraction_dependencies'] = dependencies
+            section['extractable'] = len(dependencies) == 0
+    
+    def _references_parent_context(self, section: Dict, parent: Dict) -> bool:
+        """Check if section references parent context."""
+        # Simplified: check if section context mentions parent heading
+        if section.get('context'):
+            return parent['heading_text'].lower() in section['context'].lower()
+        return False
+    
+    def _cross_references(self, section1: Dict, section2: Dict) -> bool:
+        """Check if sections cross-reference each other."""
+        # Simplified: check if headings are mentioned in each other's content
+        text1 = (section1.get('context') or '') + ' ' + section1['heading_text']
+        text2 = (section2.get('context') or '') + ' ' + section2['heading_text']
+        return section2['heading_text'].lower() in text1.lower() or \
+               section1['heading_text'].lower() in text2.lower()
+    
+    def _flatten_items(self) -> List[Dict]:
+        """Flatten all items into a single list."""
+        all_items = []
+        for section in self.sections:
+            all_items.extend(section['items'])
+            # Add sub-items
+            for item in section['items']:
+                for child_id in item['children']:
+                    if child_id in self.item_map:
+                        all_items.append(self.item_map[child_id])
+        return all_items
+
+
+class CacheManager:
+    """Manages caching of parsed structures."""
+    
+    def __init__(self, cache_dir: Optional[str] = None):
+        if cache_dir:
+            self.cache_dir = Path(cache_dir)
+        else:
+            self.cache_dir = Path.home() / '.cache' / 'noteplan-parse'
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+    
+    def get_cache_key(self, file_path: str, content: str) -> str:
+        """Generate cache key from file path and content hash."""
+        content_hash = hashlib.sha256(content.encode()).hexdigest()
+        file_hash = hashlib.sha256(f"{file_path}:{content_hash}".encode()).hexdigest()
+        return file_hash
+    
+    def get_cached(self, cache_key: str) -> Optional[Dict]:
+        """Get cached structure if exists."""
+        cache_file = self.cache_dir / f"{cache_key}.json"
+        if cache_file.exists():
+            try:
+                with open(cache_file, 'r') as f:
+                    return json.load(f)
+            except (json.JSONDecodeError, IOError):
+                return None
+        return None
+    
+    def save_cache(self, cache_key: str, structure: Dict):
+        """Save structure to cache."""
+        cache_file = self.cache_dir / f"{cache_key}.json"
+        try:
+            with open(cache_file, 'w') as f:
+                json.dump(structure, f, indent=2)
+        except IOError:
+            pass  # Fail silently if cache can't be written
+
+
+def read_document(file_path: str) -> str:
+    """Read document in read-only mode."""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return f.read()
+    except IOError as e:
+        print(f"ERROR: Cannot read file {file_path}: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def validate_output_path(output_path: str, input_files: List[str]) -> bool:
+    """Safety check: ensure output is not an input file."""
+    if output_path:
+        output_path_resolved = Path(output_path).resolve()
+        for input_file in input_files:
+            input_path_resolved = Path(input_file).resolve()
+            if output_path_resolved == input_path_resolved:
+                print(f"ERROR: Output file cannot be same as input file: {input_path_resolved}", 
+                      file=sys.stderr)
+                sys.exit(2)
+    return True
+
+
+def format_output(structure: Dict, format_type: str) -> str:
+    """Format output based on format type."""
+    if format_type == 'json':
+        return json.dumps(structure, indent=2)
+    elif format_type == 'visual':
+        return format_visual(structure)
+    elif format_type == 'summary':
+        return format_summary(structure)
+    else:
+        return json.dumps(structure, indent=2)
+
+
+def format_visual(structure: Dict) -> str:
+    """Format as visual tree structure."""
+    lines = [f"📄 {structure['path']}", ""]
+    
+    for section in structure['sections']:
+        extractable = "✅ Extractable" if section['extractable'] else f"⚠️ Has Dependencies ({len(section['extraction_dependencies'])})"
+        lines.append(f"┌─ {section['heading']} [{section['id']}] {extractable}")
+        
+        for child_id in section['children']:
+            child = next((s for s in structure['sections'] if s['id'] == child_id), None)
+            if child:
+                extractable = "✅ Extractable" if child['extractable'] else "⚠️ Has Dependencies"
+                lines.append(f"│  └─ {child['heading']} [{child['id']}] {extractable}")
+        
+        lines.append("")
+    
+    return '\n'.join(lines)
+
+
+def format_summary(structure: Dict) -> str:
+    """Format as summary statistics."""
+    extractable_count = sum(1 for s in structure['sections'] if s['extractable'])
+    return f"""Document: {structure['path']}
+Total Sections: {structure['metadata']['total_sections']}
+Total Items: {structure['metadata']['total_items']}
+Extractable Units: {extractable_count}
+Dependencies: {sum(len(s['extraction_dependencies']) for s in structure['sections'])}
+"""
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='Parse NotePlan markdown documents into structured hierarchy (READ-ONLY)',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=f'''See docs/plans/document-splitter-design.md for full specification.
+
+Test Fixtures: {TEST_FIXTURES_DIR}/
+Sample Outputs: {SAMPLE_OUTPUTS_DIR}/
+
+Example: Generate samples from fixtures:
+  for f in {TEST_FIXTURES_DIR}/*.txt; do
+    scripts/noteplan-parse "$f" --output {SAMPLE_OUTPUTS_DIR}/$(basename "$f" .txt).json
+  done'''
+    )
+    
+    parser.add_argument('files', nargs='+', 
+                       help='Input markdown files to parse (test fixtures: tests/noteplan-parse/fixtures/*.txt)')
+    parser.add_argument('--output', '-o', 
+                       help='Output JSON file (default: stdout). For samples: docs/samples/noteplan-parse/<name>.json')
+    parser.add_argument('--output-dir', 
+                       help='Output directory for multiple files (e.g., docs/samples/noteplan-parse/)')
+    parser.add_argument('--format', choices=['json', 'visual', 'summary'], default='json',
+                       help='Output format (default: json)')
+    parser.add_argument('--include-extractability', action='store_true', default=True,
+                       help='Include extractability analysis (default: true)')
+    parser.add_argument('--extractable-only', action='store_true',
+                       help='Show only extractable units')
+    parser.add_argument('--visual', '-v', action='store_true',
+                       help='Show visual tree structure (alias for --format visual)')
+    parser.add_argument('--summary', '-s', action='store_true',
+                       help='Show summary statistics only (alias for --format summary)')
+    parser.add_argument('--cache-dir', help='Directory for caching parsed structures')
+    parser.add_argument('--no-cache', action='store_true', help='Disable caching')
+    parser.add_argument('--verbose', action='store_true', help='Verbose output')
+    
+    args = parser.parse_args()
+    
+    # Handle format aliases
+    if args.visual:
+        args.format = 'visual'
+    if args.summary:
+        args.format = 'summary'
+    
+    # Safety check: output cannot be input file
+    if args.output:
+        validate_output_path(args.output, args.files)
+    
+    # Initialize cache
+    cache = None if args.no_cache else CacheManager(args.cache_dir)
+    
+    # Process files
+    results = []
+    for file_path in args.files:
+        if args.verbose:
+            print(f"Processing: {file_path}", file=sys.stderr)
+        
+        # Read file (read-only)
+        content = read_document(file_path)
+        
+        # Check cache
+        structure = None
+        if cache:
+            cache_key = cache.get_cache_key(file_path, content)
+            structure = cache.get_cached(cache_key)
+            if structure and args.verbose:
+                print(f"  Using cached result", file=sys.stderr)
+        
+        # Parse if not cached
+        if not structure:
+            parser = DocumentParser()
+            structure = parser.parse(content, file_path)
+            
+            # Save to cache
+            if cache:
+                cache.save_cache(cache_key, structure)
+        
+        # Filter extractable only if requested
+        if args.extractable_only:
+            structure['sections'] = [s for s in structure['sections'] if s['extractable']]
+        
+        results.append((file_path, structure))
+    
+    # Output results
+    if len(results) == 1:
+        # Single file
+        _, structure = results[0]
+        output = format_output(structure, args.format)
+        
+        if args.output:
+            with open(args.output, 'w') as f:
+                f.write(output)
+        else:
+            print(output)
+    else:
+        # Multiple files
+        output_dir = Path(args.output_dir) if args.output_dir else Path('.')
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        for file_path, structure in results:
+            output = format_output(structure, args.format)
+            output_file = output_dir / f"{Path(file_path).stem}.json"
+            with open(output_file, 'w') as f:
+                f.write(output)
+            if args.verbose:
+                print(f"Wrote: {output_file}", file=sys.stderr)
+    
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

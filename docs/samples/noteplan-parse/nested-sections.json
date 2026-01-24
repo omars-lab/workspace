@@ -1,0 +1,120 @@
+{
+  "path": "tests/noteplan-parse/fixtures/nested-sections.txt",
+  "frontmatter": null,
+  "sections": [
+    {
+      "id": "sect-000",
+      "level": 1,
+      "heading": "# Level 1",
+      "heading_text": "Level 1",
+      "line_start": 0,
+      "line_end": 1,
+      "content_start": 1,
+      "content_end": 1,
+      "parent_id": null,
+      "children": [
+        "sect-001"
+      ],
+      "items": [],
+      "context": null,
+      "extractable": true,
+      "extraction_dependencies": []
+    },
+    {
+      "id": "sect-001",
+      "level": 2,
+      "heading": "## Level 2",
+      "heading_text": "Level 2",
+      "line_start": 2,
+      "line_end": 3,
+      "content_start": 3,
+      "content_end": 3,
+      "parent_id": "sect-000",
+      "children": [
+        "sect-002"
+      ],
+      "items": [],
+      "context": null,
+      "extractable": true,
+      "extraction_dependencies": []
+    },
+    {
+      "id": "sect-002",
+      "level": 3,
+      "heading": "### Level 3",
+      "heading_text": "Level 3",
+      "line_start": 4,
+      "line_end": 5,
+      "content_start": 5,
+      "content_end": 5,
+      "parent_id": "sect-001",
+      "children": [
+        "sect-003"
+      ],
+      "items": [],
+      "context": null,
+      "extractable": true,
+      "extraction_dependencies": []
+    },
+    {
+      "id": "sect-003",
+      "level": 4,
+      "heading": "#### Level 4",
+      "heading_text": "Level 4",
+      "line_start": 6,
+      "line_end": 7,
+      "content_start": 7,
+      "content_end": 7,
+      "parent_id": "sect-002",
+      "children": [
+        "sect-004"
+      ],
+      "items": [],
+      "context": null,
+      "extractable": true,
+      "extraction_dependencies": []
+    },
+    {
+      "id": "sect-004",
+      "level": 5,
+      "heading": "##### Level 5",
+      "heading_text": "Level 5",
+      "line_start": 8,
+      "line_end": 9,
+      "content_start": 9,
+      "content_end": 9,
+      "parent_id": "sect-003",
+      "children": [
+        "sect-005"
+      ],
+      "items": [],
+      "context": null,
+      "extractable": true,
+      "extraction_dependencies": []
+    },
+    {
+      "id": "sect-005",
+      "level": 6,
+      "heading": "###### Level 6",
+      "heading_text": "Level 6",
+      "line_start": 10,
+      "line_end": 12,
+      "content_start": 11,
+      "content_end": 12,
+      "parent_id": "sect-004",
+      "children": [],
+      "items": [],
+      "context": null,
+      "extractable": true,
+      "extraction_dependencies": []
+    }
+  ],
+  "items": [],
+  "metadata": {
+    "total_lines": 12,
+    "total_sections": 6,
+    "total_items": 0,
+    "parse_timestamp": "2026-01-21T04:11:31.836207+00:00",
+    "parser_version": "1.0.0"
+  }
+}

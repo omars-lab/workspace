@@ -1,0 +1,212 @@
+{
+  "path": "tests/noteplan-parse/fixtures/task-items.txt",
+  "frontmatter": null,
+  "sections": [
+    {
+      "id": "sect-000",
+      "level": 1,
+      "heading": "# Tasks",
+      "heading_text": "Tasks",
+      "line_start": 0,
+      "line_end": 1,
+      "content_start": 1,
+      "content_end": 1,
+      "parent_id": null,
+      "children": [
+        "sect-001",
+        "sect-002"
+      ],
+      "items": [],
+      "context": null,
+      "extractable": true,
+      "extraction_dependencies": []
+    },
+    {
+      "id": "sect-001",
+      "level": 2,
+      "heading": "## Personal",
+      "heading_text": "Personal",
+      "line_start": 2,
+      "line_end": 7,
+      "content_start": 3,
+      "content_end": 7,
+      "parent_id": "sect-000",
+      "children": [],
+      "items": [
+        {
+          "id": "item-sect-001-000",
+          "type": "task",
+          "content": "Buy groceries",
+          "line_start": 3,
+          "line_end": 3,
+          "indent_level": 0,
+          "parent_item_id": null,
+          "children": [],
+          "context": null,
+          "extractable": true
+        },
+        {
+          "id": "item-sect-001-001",
+          "type": "task",
+          "content": "Milk",
+          "line_start": 4,
+          "line_end": 4,
+          "indent_level": 1,
+          "parent_item_id": null,
+          "children": [],
+          "context": null,
+          "extractable": true
+        },
+        {
+          "id": "item-sect-001-002",
+          "type": "task",
+          "content": "Bread",
+          "line_start": 5,
+          "line_end": 5,
+          "indent_level": 1,
+          "parent_item_id": null,
+          "children": [],
+          "context": null,
+          "extractable": true
+        },
+        {
+          "id": "item-sect-001-003",
+          "type": "task",
+          "content": "Call dentist",
+          "line_start": 6,
+          "line_end": 6,
+          "indent_level": 0,
+          "parent_item_id": null,
+          "children": [],
+          "context": null,
+          "extractable": true
+        }
+      ],
+      "context": null,
+      "extractable": true,
+      "extraction_dependencies": []
+    },
+    {
+      "id": "sect-002",
+      "level": 2,
+      "heading": "## Work",
+      "heading_text": "Work",
+      "line_start": 8,
+      "line_end": 12,
+      "content_start": 9,
+      "content_end": 12,
+      "parent_id": "sect-000",
+      "children": [],
+      "items": [
+        {
+          "id": "item-sect-002-000",
+          "type": "task",
+          "content": "Review code",
+          "line_start": 9,
+          "line_end": 9,
+          "indent_level": 0,
+          "parent_item_id": null,
+          "children": [],
+          "context": null,
+          "extractable": true
+        },
+        {
+          "id": "item-sect-002-001",
+          "type": "task",
+          "content": "Write tests",
+          "line_start": 10,
+          "line_end": 10,
+          "indent_level": 0,
+          "parent_item_id": null,
+          "children": [],
+          "context": null,
+          "extractable": true
+        }
+      ],
+      "context": null,
+      "extractable": true,
+      "extraction_dependencies": []
+    }
+  ],
+  "items": [
+    {
+      "id": "item-sect-001-000",
+      "type": "task",
+      "content": "Buy groceries",
+      "line_start": 3,
+      "line_end": 3,
+      "indent_level": 0,
+      "parent_item_id": null,
+      "children": [],
+      "context": null,
+      "extractable": true
+    },
+    {
+      "id": "item-sect-001-001",
+      "type": "task",
+      "content": "Milk",
+      "line_start": 4,
+      "line_end": 4,
+      "indent_level": 1,
+      "parent_item_id": null,
+      "children": [],
+      "context": null,
+      "extractable": true
+    },
+    {
+      "id": "item-sect-001-002",
+      "type": "task",
+      "content": "Bread",
+      "line_start": 5,
+      "line_end": 5,
+      "indent_level": 1,
+      "parent_item_id": null,
+      "children": [],
+      "context": null,
+      "extractable": true
+    },
+    {
+      "id": "item-sect-001-003",
+      "type": "task",
+      "content": "Call dentist",
+      "line_start": 6,
+      "line_end": 6,
+      "indent_level": 0,
+      "parent_item_id": null,
+      "children": [],
+      "context": null,
+      "extractable": true
+    },
+    {
+      "id": "item-sect-002-000",
+      "type": "task",
+      "content": "Review code",
+      "line_start": 9,
+      "line_end": 9,
+      "indent_level": 0,
+      "parent_item_id": null,
+      "children": [],
+      "context": null,
+      "extractable": true
+    },
+    {
+      "id": "item-sect-002-001",
+      "type": "task",
+      "content": "Write tests",
+      "line_start": 10,
+      "line_end": 10,
+      "indent_level": 0,
+      "parent_item_id": null,
+      "children": [],
+      "context": null,
+      "extractable": true
+    }
+  ],
+  "metadata": {
+    "total_lines": 12,
+    "total_sections": 3,
+    "total_items": 6,
+    "parse_timestamp": "2026-01-21T04:11:31.909969+00:00",
+    "parser_version": "1.0.0"
+  }
+}

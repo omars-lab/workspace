@@ -1,0 +1,57 @@
+{
+  "path": "tests/noteplan-parse/fixtures/with-frontmatter.txt",
+  "frontmatter": {
+    "title": "Daily Notes",
+    "tags": [
+      "work",
+      "personal"
+    ],
+    "date": "2025-01-13"
+  },
+  "sections": [
+    {
+      "id": "sect-000",
+      "level": 1,
+      "heading": "# Content",
+      "heading_text": "Content",
+      "line_start": 6,
+      "line_end": 9,
+      "content_start": 7,
+      "content_end": 9,
+      "parent_id": null,
+      "children": [
+        "sect-001"
+      ],
+      "items": [],
+      "context": "Some content here.",
+      "extractable": true,
+      "extraction_dependencies": []
+    },
+    {
+      "id": "sect-001",
+      "level": 2,
+      "heading": "## Subsection",
+      "heading_text": "Subsection",
+      "line_start": 10,
+      "line_end": 14,
+      "content_start": 11,
+      "content_end": 14,
+      "parent_id": "sect-000",
+      "children": [],
+      "items": [],
+      "context": "More content.",
+      "extractable": false,
+      "extraction_dependencies": [
+        "sect-000"
+      ]
+    }
+  ],
+  "items": [],
+  "metadata": {
+    "total_lines": 14,
+    "total_sections": 2,
+    "total_items": 0,
+    "parse_timestamp": "2026-01-21T04:11:31.947005+00:00",
+    "parser_version": "1.0.0"
+  }
+}

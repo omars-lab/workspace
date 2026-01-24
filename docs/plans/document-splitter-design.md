@@ -983,6 +983,15 @@ jq '.document.sections | length' /tmp/test-output.json
 - **Test Fixtures**: `/Users/omareid/Workspace/git/workspace/tests/noteplan-parse/fixtures/`
 - **Test Output**: `/Users/omareid/Workspace/git/workspace/tests/noteplan-parse/output/` (temporary, gitignored)
 
+### Sample Outputs
+
+- **Samples Directory**: `/Users/omareid/Workspace/git/workspace/docs/samples/noteplan-parse/`
+- **Purpose**: Store example JSON outputs for documentation and reference
+- **Structure**: Organized by script name (matches test fixtures structure)
+- **Files**: One sample JSON per test fixture showing expected output format
+- **Naming**: `<fixture-name>.json` (e.g., `simple-daily-note.json` - matches fixture name)
+- **Mapping**: Each fixture in `tests/noteplan-parse/fixtures/` has corresponding sample in `docs/samples/noteplan-parse/`
+
 ### Test Structure
 
 ```
@@ -1011,6 +1020,74 @@ tests/noteplan-parse/
 ```
 tests/noteplan-parse/output/
 ```
+
+### Sample Outputs Directory
+
+```
+docs/samples/
+└── noteplan-parse/                            # Script-specific samples directory
+    ├── simple-daily-note.json                 # Sample from simple-daily-note.txt
+    ├── nested-sections.json                   # Sample from nested-sections.txt
+    ├── with-frontmatter.json                  # Sample from with-frontmatter.txt
+    ├── mixed-content.json                    # Sample from mixed-content.txt
+    ├── task-items.json                       # Sample from task-items.txt
+    ├── malformed-markdown.json               # Sample from malformed-markdown.txt
+    ├── empty-sections.json                   # Sample from empty-sections.txt
+    ├── complex-hierarchy.json                # Sample from complex-hierarchy.txt
+    ├── numbered-lists.json                   # Sample from numbered-lists.txt
+    └── cross-references.json                 # Sample from cross-references.txt
+```
+
+**Structure**:
+- Samples organized by script name (matches test fixtures structure)
+- Each fixture has a corresponding sample JSON file
+- Sample file names match fixture names (without `.txt` extension)
+
+**Purpose**: 
+- Provide reference examples of parser output format
+- Help developers understand expected JSON structure
+- Serve as documentation examples
+- Can be used for visualizer testing
+- Enable comparison: fixture → sample (input → expected output)
+
+**Generation**: Samples should be generated from test fixtures:
+```bash
+# Generate samples (one per fixture)
+SAMPLES_DIR="docs/samples/noteplan-parse"
+mkdir -p "${SAMPLES_DIR}"
+
+for fixture in tests/noteplan-parse/fixtures/*.txt; do
+    fixture_name=$(basename "${fixture}" .txt)
+    scripts/noteplan-parse "${fixture}" \
+        --output "${SAMPLES_DIR}/${fixture_name}.json"
+done
+```
+
+**Verification**: Each fixture should have a corresponding sample:
+```bash
+# Verify all fixtures have samples
+for fixture in tests/noteplan-parse/fixtures/*.txt; do
+    fixture_name=$(basename "${fixture}" .txt)
+    sample="docs/samples/noteplan-parse/${fixture_name}.json"
+    if [ ! -f "${sample}" ]; then
+        echo "Missing sample: ${sample}"
+    fi
+done
+```
+
+**Sample File Structure**:
+- Samples are in `docs/samples/noteplan-parse/` directory
+- Each sample file name matches its fixture name (without `.txt` extension)
+- Samples are valid JSON that can be used for:
+  - Documentation examples
+  - Visualizer component testing
+  - Integration testing
+  - Reference outputs
+
+**Maintenance**: 
+- Samples should be regenerated when parser logic changes
+- Samples serve as "golden" reference outputs
+- Can be used in tests to verify parser output format
 
 ### Unit Tests
 
@@ -1740,6 +1817,20 @@ This component is used by:
   - [ ] `numbered-lists.txt` - Numbered lists
   - [ ] `cross-references.txt` - Sections with links
 - [ ] Create expected output JSON files: `tests/noteplan-parse/expected/`
+- [ ] Create samples directory: `/Users/omareid/Workspace/git/workspace/docs/samples/noteplan-parse/`
+- [ ] Generate sample JSON outputs from fixtures (one sample per fixture):
+  - [ ] `simple-daily-note.json` (from `simple-daily-note.txt`)
+  - [ ] `nested-sections.json` (from `nested-sections.txt`)
+  - [ ] `with-frontmatter.json` (from `with-frontmatter.txt`)
+  - [ ] `mixed-content.json` (from `mixed-content.txt`)
+  - [ ] `task-items.json` (from `task-items.txt`)
+  - [ ] `malformed-markdown.json` (from `malformed-markdown.txt`)
+  - [ ] `empty-sections.json` (from `empty-sections.txt`)
+  - [ ] `complex-hierarchy.json` (from `complex-hierarchy.txt`)
+  - [ ] `numbered-lists.json` (from `numbered-lists.txt`)
+  - [ ] `cross-references.json` (from `cross-references.txt`)
+- [ ] Create `docs/samples/README.md` explaining sample directory structure
+- [ ] Ensure sample file names match fixture names (without extension)
 - [ ] Implement test functions:
   - [ ] Basic parsing tests
   - [ ] Read-only safety tests

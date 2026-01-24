@@ -1,0 +1,19 @@
+# Work
+
+## Project X
+
+- Task 1
+- Task 2
+
+## Project Y
+
+- Task 3
+  - Subtask 3.1
+  - Subtask 3.2
+
+# Personal
+
+## Todos
+
+- [ ] Buy groceries
+- [x] Call dentist

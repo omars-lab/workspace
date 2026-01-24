@@ -1,0 +1,13 @@
+---
+title: "Daily Notes"
+tags: [work, personal]
+date: 2025-01-13
+---
+
+# Content
+
+Some content here.
+
+## Subsection
+
+More content.
