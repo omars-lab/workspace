@@ -2,7 +2,8 @@
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true
   },
-  "alwaysThinkingEnabled": true,
+  "plansDirectory": ".claude/plans",
+  "alwaysThinkingEnabled": false,
   "statusLine": {
     "type": "command",
     "command": "~/.claude/scripts/statusline-bar.sh"
