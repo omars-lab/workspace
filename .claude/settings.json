@@ -20,7 +20,8 @@
       "Bash(sed:*)",
       "Bash(tr:*)",
       "Bash(cut:*)",
-      "Bash(pbpaste:*)"
+      "Bash(pbpaste:*)",
+      "Bash(git rev-parse:*)"
     ]
   }
 }
