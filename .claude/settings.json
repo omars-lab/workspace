@@ -1,13 +1,4 @@
 {
-  "enabledPlugins": {
-    "swift-lsp@claude-plugins-official": true
-  },
-  "plansDirectory": ".claude/plans",
-  "alwaysThinkingEnabled": false,
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/scripts/statusline-bar.sh"
-  },
   "permissions": {
     "allow": [
       "Bash(head:*)",
@@ -22,7 +13,91 @@
       "Bash(tr:*)",
       "Bash(cut:*)",
       "Bash(pbpaste:*)",
-      "Bash(git rev-parse:*)"
-    ]
-  }
+      "Bash(git rev-parse:*)",
+      "Bash(make:*)",
+      "Bash(brew:*)",
+      "Bash(git:*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/scripts/statusline-bar.sh"
+  },
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true,
+    "discover-oeid-plugins@oeid-claude-plugins": true,
+    "config-manager@oeid-claude-plugins": true,
+    "noteplan-manager@oeid-claude-plugins": true,
+    "script-manager@oeid-claude-plugins": true,
+    "claude-manager@oeid-claude-plugins": true,
+    "architecture-manager@oeid-claude-plugins": true,
+    "code-repository-manager@oeid-claude-plugins": true,
+    "spirituality-manager@oeid-claude-plugins": true,
+    "knowledge-manager@oeid-claude-plugins": true,
+    "servicenow-manager@oeid-claude-plugins": true,
+    "note-manager@oeid-claude-plugins": true,
+    "plan-manager@oeid-claude-plugins": true,
+    "experiment-manager@oeid-claude-plugins": true,
+    "code-quality-manager@oeid-claude-plugins": true,
+    "role-manager@oeid-claude-plugins": true,
+    "supabase@claude-plugins-official": true,
+    "mcp-server-dev@claude-plugins-official": true,
+    "discover-earlbear-plugins@earlbear-claude-plugins": true,
+    "deck-manager@earlbear-claude-plugins": true,
+    "wireframe-manager@earlbear-claude-plugins": true,
+    "artifact-manager@earlbear-claude-plugins": true,
+    "jira-manager@earlbear-claude-plugins": true,
+    "cloud-agent-manager@earlbear-claude-plugins": true,
+    "earlbear-docs-manager@earlbear-claude-plugins": true,
+    "dev-tools-manager@earlbear-claude-plugins": true,
+    "marketplace-manager@earlbear-claude-plugins": true,
+    "jira-manager@marketplace-claude-plugins": true,
+    "deck-manager@marketplace-claude-plugins": true,
+    "dev-tools-manager@marketplace-claude-plugins": true,
+    "shopify-plugin@shopify-ai-toolkit": true,
+    "shopify-manager@earlbear-claude-plugins": true,
+    "document-co-author@oeid-claude-plugins": true,
+    "profile-manager@oeid-claude-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "earlbear-claude-plugins": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/omareid/Workspace/git/earlbear-claude-plugin-marketplace"
+      }
+    },
+    "marketplace-claude-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "EarlBear/marketplace-claude-plugins"
+      }
+    },
+    "ui-ux-pro-max-skill": {
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+      }
+    },
+    "claude-design-skillstack": {
+      "source": {
+        "source": "github",
+        "repo": "freshtechbro/claudedesignskills"
+      }
+    },
+    "shopify-ai-toolkit": {
+      "source": {
+        "source": "github",
+        "repo": "Shopify/shopify-ai-toolkit"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "high",
+  "plansDirectory": ".claude/plans",
+  "theme": "light-daltonized",
+  "remoteControlAtStartup": false,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
+  "skipWorkflowUsageWarning": true
 }
