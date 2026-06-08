@@ -20,6 +20,21 @@
     ],
     "defaultMode": "auto"
   },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/check-suggested-plugins.sh",
+            "timeout": 5,
+            "statusMessage": "Checking suggested plugins..."
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/scripts/statusline-bar.sh"
@@ -95,9 +110,9 @@
   "alwaysThinkingEnabled": false,
   "effortLevel": "high",
   "plansDirectory": ".claude/plans",
+  "skipWorkflowUsageWarning": true,
   "theme": "light-daltonized",
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "skipWorkflowUsageWarning": true
+  "skipAutoPermissionPrompt": true
 }
