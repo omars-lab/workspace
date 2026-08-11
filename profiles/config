@@ -30,3 +30,13 @@ host personal-server
 host genai-server
   User omareid
   HostName omars-mac-mini.attlocal.net
+
+host mac-studio
+	HostName mac-studio.local
+	User omareid
+	IdentityFile ~/.ssh/id_rsa
+
+host studio
+	HostName mac-studio.local
+	User omareid
+	IdentityFile ~/.ssh/id_rsa

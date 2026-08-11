@@ -294,3 +294,82 @@ _loader_msg "done" "🐳" "Loading Docker completions"
 # eval "$(direnv hook zsh)"
 # Getting all the nix stuff loaded!
 # . /Users/$(whoami)/.nix-profile/etc/profile.d/nix.sh
+
+export CLAUDE_CODE_DISABLE_1M_CONTEXT=1
+
+
+
+
+
+
+
+# >>> scripts configuration >>>
+# Add hidapitester to PATH
+export PATH="/Users/omareid/PublicRepositories/hidapitester:$PATH"
+
+# Add scripts bin directory to PATH
+export PATH="/Users/omareid/workplace/git/scripts/bin:$PATH"
+
+# Studio sync configuration. SYNC_STUDIO_ROOT is written with the resolved
+# true-case, symlink-free spelling — see the comment in setup.sh for why.
+export STUDIO_HOST="${STUDIO_HOST:-studio}"
+export SYNC_STUDIO_ROOT="${SYNC_STUDIO_ROOT:-/Users/omareid/Workspace}"
+# Role is machine-specific and lives in ~/.zshrc.local (untracked), sourced at
+# the top of the profile. Default to the safe "secondary" if it wasn't set.
+export STUDIO_ROLE="${STUDIO_ROLE:-secondary}"
+
+# BOTH machines auto-back up ~/.claude on shell startup (throttled +
+# backgrounded, so it never blocks the prompt). This is deliberately NOT gated
+# on the role: the backup is namespaced by hardware serial, so the primary and
+# secondary can never collide, and gating it meant the secondary silently never
+# backed up at all.  Role gates repo *pushes* (sync-studio), not backups.
+command -v backup-claude-maybe >/dev/null 2>&1 && backup-claude-maybe
+
+# --- studio sync hooks ---------------------------------------------
+# Thin convenience layer over the role-aware sync scripts. This lives here
+# rather than in profiles/zshrc because ~/.zshrc may symlink into a DIFFERENT
+# repo's profile; installing it via the marker block guarantees it lands in
+# whichever rc is actually loaded.
+STUDIO_SYNC_STAMP="$HOME/.cache/studio-sync.last"
+
+# push-studio == the canonical role-aware push: repos (primary: auto /
+# secondary: --force) then ~/.claude, recording the run time. Flags pass through.
+push-studio() {
+    sync-studio "$@"; local rc=$?
+    mkdir -p "$(dirname "$STUDIO_SYNC_STAMP")"; date +%s > "$STUDIO_SYNC_STAMP"
+    return $rc
+}
+
+# One full bidirectional sync: pull the other machine's work down, then push.
+studio-sync-now() {
+    command -v pull-studio >/dev/null 2>&1 && pull-studio "$@"
+    push-studio "$@"
+}
+
+# Auto-run a full sync on a new interactive shell if it's been >= 24h.
+if [[ -o interactive ]] 2>/dev/null && command -v sync-studio >/dev/null 2>&1; then
+    _studio_now=$(date +%s)
+    _studio_last=0
+    [[ -f "$STUDIO_SYNC_STAMP" ]] && _studio_last=$(cat "$STUDIO_SYNC_STAMP" 2>/dev/null)
+    if (( _studio_now - ${_studio_last:-0} >= 86400 )); then
+        # Claim the slot up front so parallel new shells don't double-fire.
+        mkdir -p "$(dirname "$STUDIO_SYNC_STAMP")"
+        echo "$_studio_now" > "$STUDIO_SYNC_STAMP"
+        echo "studio: last sync >24h ago — running full sync (pull → push → backup)..."
+        studio-sync-now
+    fi
+    unset _studio_now _studio_last
+fi
+
+# Load completion based on shell
+if [[ -n "$ZSH_VERSION" ]]; then
+    # Initialize zsh completion system if not already done
+    autoload -Uz compinit
+    compinit -C
+    # Zsh completion
+    source "/Users/omareid/workplace/git/scripts/completions/lights-completion.zsh"
+elif [[ -n "$BASH_VERSION" ]]; then
+    # Bash completion
+    source "/Users/omareid/workplace/git/scripts/completions/lights-completion.bash"
+fi
+# <<< scripts configuration <<<

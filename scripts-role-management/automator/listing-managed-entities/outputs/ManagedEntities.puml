@@ -1,0 +1,4 @@
+@startmindmap
+* Managed Resources
+!include ManagedEntities.iuml
+@endmindmap
