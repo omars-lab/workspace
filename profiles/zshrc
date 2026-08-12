@@ -1,4 +1,19 @@
 # ============================================================================
+# Machine-local overrides (untracked)
+# ============================================================================
+# This profile is a symlink into a tracked repo that EVERY machine loads, so
+# anything true of only one machine cannot live here. It lives in
+# ~/.zshrc.local instead, and this is the line that reads it.
+#
+# It has to come first. Everything below — STUDIO_ROLE, SYNC_STUDIO_ROOT,
+# STUDIO_LOCAL — is set with ${VAR:-default}, which defers only to a value that
+# is ALREADY exported. Sourced later, the file would be read but could no longer
+# change anything: setup.sh would still write STUDIO_ROLE=primary and the shell
+# would still come up secondary, which is exactly what was happening before this
+# line existed.
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+# ============================================================================
 # Oh My Zsh Configuration
 # ============================================================================
 
@@ -297,13 +312,6 @@ _loader_msg "done" "🐳" "Loading Docker completions"
 
 export CLAUDE_CODE_DISABLE_1M_CONTEXT=1
 
-
-
-
-
-
-
-
 # >>> scripts configuration >>>
 # Every path below is $HOME-relative and existence-guarded, because this block
 # is installed into an rc that MULTIPLE machines load through a symlinked,
@@ -353,7 +361,10 @@ studio-sync-now() {
 }
 
 # Auto-run a full sync on a new interactive shell if it's been >= 24h.
-if [[ -o interactive ]] 2>/dev/null && command -v sync-studio >/dev/null 2>&1; then
+# STUDIO_AUTO_SYNC=0 opts a machine out. That matters where the scanned tree
+# holds overlaid uncommitted work: pull-studio would auto-stash it on a timer,
+# with no human in the loop to notice.
+if [[ "${STUDIO_AUTO_SYNC:-1}" != "0" ]] && [[ -o interactive ]] 2>/dev/null && command -v sync-studio >/dev/null 2>&1; then
     _studio_now=$(date +%s)
     _studio_last=0
     [[ -f "$STUDIO_SYNC_STAMP" ]] && _studio_last=$(cat "$STUDIO_SYNC_STAMP" 2>/dev/null)
