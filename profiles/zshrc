@@ -261,10 +261,14 @@ function continue-loading-profile() {
     if ! npm list -g @google/gemini-cli >/dev/null 2>&1; then
       npm install -g @google/gemini-cli >/dev/null 2>&1
     fi
-    # Check and install @anthropic-ai/claude-code
-    if ! npm list -g @anthropic-ai/claude-code >/dev/null 2>&1; then
-      npm install -g @anthropic-ai/claude-code >/dev/null 2>&1
-    fi
+    # NOT @anthropic-ai/claude-code — install it natively, via
+    # `curl -fsSL https://claude.ai/install.sh | bash`, not from here.
+    # The npm package's postinstall picks its prebuilt binary by
+    # process.arch, so it inherits whatever node nvm happens to have
+    # selected. On studio that is x64 v18.19.0, which silently produced
+    # an x86_64 claude on an arm64 host — running under Rosetta and
+    # warning "CPU lacks AVX support, strange crashes may occur" on
+    # every launch. The native installer reads the machine, not node.
     # Check and install @musistudio/claude-code-router
     if ! npm list -g @musistudio/claude-code-router >/dev/null 2>&1; then
       npm install -g @musistudio/claude-code-router >/dev/null 2>&1
