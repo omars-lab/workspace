@@ -141,15 +141,6 @@ if [ $? -eq 0 ]; then
         ((ISSUES++))
     fi
     
-    # Check @anthropic-ai/claude-code
-    if npm list -g @anthropic-ai/claude-code >/dev/null 2>&1; then
-        echo -e "    ${GREEN}✓${NC} @anthropic-ai/claude-code is installed"
-    else
-        echo -e "    ${RED}✗${NC} @anthropic-ai/claude-code is not installed"
-        echo "    Run: npm install -g @anthropic-ai/claude-code"
-        ((ISSUES++))
-    fi
-    
     # Check @musistudio/claude-code-router
     if npm list -g @musistudio/claude-code-router >/dev/null 2>&1; then
         echo -e "    ${GREEN}✓${NC} @musistudio/claude-code-router is installed"
@@ -158,6 +149,28 @@ if [ $? -eq 0 ]; then
         echo "    Run: npm install -g @musistudio/claude-code-router"
         ((ISSUES++))
     fi
+fi
+
+# Check Claude Code (installed via the native installer, not npm)
+# The recommended install is the standalone binary at ~/.local/bin/claude, which
+# self-updates. The old `npm install -g @anthropic-ai/claude-code` method is
+# deprecated; migrate with `claude install` (or reinstall via the script below).
+if command -v claude >/dev/null 2>&1; then
+    claude_version=$(claude --version 2>/dev/null | awk '{print $1}')
+    claude_path=$(command -v claude)
+    echo -e "${GREEN}✓${NC} claude (Claude Code) is installed: ${claude_version:-unknown} (${claude_path})"
+    case "${claude_path}" in
+        *node_modules*|*/npm/*|*/lib/node_modules/*)
+            echo -e "  ${YELLOW}⚠${NC} Installed via npm (deprecated). Migrate to the native installer:"
+            echo "    curl -fsSL https://claude.ai/install.sh | bash"
+            ((WARNINGS++))
+            ;;
+    esac
+else
+    echo -e "${RED}✗${NC} claude (Claude Code) is not installed"
+    echo "    Run: curl -fsSL https://claude.ai/install.sh | bash"
+    echo "    (installs the native binary to ~/.local/bin/claude; ensure ~/.local/bin is on PATH)"
+    ((ISSUES++))
 fi
 
 # Check ollama

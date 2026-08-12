@@ -303,17 +303,23 @@ export CLAUDE_CODE_DISABLE_1M_CONTEXT=1
 
 
 
+
 # >>> scripts configuration >>>
-# Add hidapitester to PATH
-export PATH="/Users/omareid/PublicRepositories/hidapitester:$PATH"
+# Every path below is $HOME-relative and existence-guarded, because this block
+# is installed into an rc that MULTIPLE machines load through a symlinked,
+# tracked profile. A machine that lacks one of these directories skips that line
+# instead of erroring on every shell start.
+
+# Add hidapitester to PATH (lights; not present on every machine)
+[ -d "$HOME/PublicRepositories/hidapitester" ] && export PATH="$HOME/PublicRepositories/hidapitester:$PATH"
 
 # Add scripts bin directory to PATH
-export PATH="/Users/omareid/workplace/git/scripts/bin:$PATH"
+[ -d "$HOME/Workspace/git/scripts/bin" ] && export PATH="$HOME/Workspace/git/scripts/bin:$PATH"
 
 # Studio sync configuration. SYNC_STUDIO_ROOT is written with the resolved
 # true-case, symlink-free spelling — see the comment in setup.sh for why.
 export STUDIO_HOST="${STUDIO_HOST:-studio}"
-export SYNC_STUDIO_ROOT="${SYNC_STUDIO_ROOT:-/Users/omareid/Workspace}"
+export SYNC_STUDIO_ROOT="${SYNC_STUDIO_ROOT:-$HOME/Workspace}"
 # Role is machine-specific and lives in ~/.zshrc.local (untracked), sourced at
 # the top of the profile. Default to the safe "secondary" if it wasn't set.
 export STUDIO_ROLE="${STUDIO_ROLE:-secondary}"
@@ -361,15 +367,17 @@ if [[ -o interactive ]] 2>/dev/null && command -v sync-studio >/dev/null 2>&1; t
     unset _studio_now _studio_last
 fi
 
-# Load completion based on shell
+# Load completion based on shell. Guarded with [ -f ]: an unguarded source of a
+# missing file is a hard error on every single shell start, which is exactly what
+# a machine that keeps this repo somewhere else would hit.
 if [[ -n "$ZSH_VERSION" ]]; then
     # Initialize zsh completion system if not already done
     autoload -Uz compinit
     compinit -C
     # Zsh completion
-    source "/Users/omareid/workplace/git/scripts/completions/lights-completion.zsh"
+    [ -f "$HOME/Workspace/git/scripts/completions/lights-completion.zsh" ] && source "$HOME/Workspace/git/scripts/completions/lights-completion.zsh"
 elif [[ -n "$BASH_VERSION" ]]; then
     # Bash completion
-    source "/Users/omareid/workplace/git/scripts/completions/lights-completion.bash"
+    [ -f "$HOME/Workspace/git/scripts/completions/lights-completion.bash" ] && source "$HOME/Workspace/git/scripts/completions/lights-completion.bash"
 fi
 # <<< scripts configuration <<<
