@@ -31,12 +31,37 @@ host genai-server
   User omareid
   HostName omars-mac-mini.attlocal.net
 
-host mac-studio
-	HostName mac-studio.local
+# ------------------------------------------------------------------
+# studio — one box, two paths to it, same user and same key.
+#
+# The TAILNET name is the default and mac-studio.local is the fallback,
+# which is the opposite of what it looks like it should be:
+#
+#   * mac-studio.local is mDNS. It resolves only on the home LAN, and off
+#     it getaddrinfo does not fail fast — it hangs ~5s per connection
+#     before erroring. sync-studio touches ~50 studio repos in a run, so
+#     that is minutes of dead time to arrive at a failure.
+#   * Tailscale connects two peers on the same LAN directly over that LAN,
+#     so the tailnet name costs nothing at home and is the only one of the
+#     two that also works away from home.
+#
+# studio-ts / mac-studio-ts pin the tailnet path explicitly (same thing as
+# `studio` today, but stable if this default is ever flipped back).
+# studio-lan / mac-studio-lan are the escape hatch for a machine where
+# tailscale is down or not installed but the home LAN is present.
+#
+# The scripts take a host override, so no edit here is needed to switch:
+#   STUDIO_HOST=studio-lan sync-studio
+# Git remotes are spelled `studio:` / `mac-studio:` and follow whatever
+# those two aliases point at — which is why they are the ones that move.
+# ------------------------------------------------------------------
+
+host studio mac-studio studio-ts mac-studio-ts
+	HostName mac-studio.tail93f05d.ts.net
 	User omareid
 	IdentityFile ~/.ssh/id_rsa
 
-host studio
+host studio-lan mac-studio-lan
 	HostName mac-studio.local
 	User omareid
 	IdentityFile ~/.ssh/id_rsa
