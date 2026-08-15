@@ -1,6 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 36500,
+  "env": {
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "364000",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE_IGNORE": "100"
+  },
   "permissions": {
     "allow": [
       "Bash(head:*)",
@@ -18,10 +22,12 @@
       "Bash(git rev-parse:*)",
       "Bash(make:*)",
       "Bash(brew:*)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "mcp__chrome-devtools__new_page"
     ],
     "defaultMode": "auto"
   },
+  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
@@ -42,46 +48,41 @@
     "command": "~/.claude/scripts/statusline-bar.sh"
   },
   "enabledPlugins": {
-    "swift-lsp@claude-plugins-official": true,
+    "reporting-manager@earlbear-claude-plugins": true,
+    "plugin-marketplace-manager@earlbear-claude-plugins": true,
+    "task-management-manager@earlbear-claude-plugins": true,
+    "living-artifacts-manager@earlbear-claude-plugins": true,
+    "repo-identity-manager@earlbear-claude-plugins": true,
+    "decision-tracking-manager@earlbear-claude-plugins": true,
+    "claude-routine-manager@earlbear-claude-plugins": true,
     "discover-oeid-plugins@oeid-claude-plugins": true,
     "config-manager@oeid-claude-plugins": true,
     "noteplan-manager@oeid-claude-plugins": true,
     "script-manager@oeid-claude-plugins": true,
     "claude-manager@oeid-claude-plugins": true,
-    "architecture-manager@oeid-claude-plugins": true,
-    "code-repository-manager@oeid-claude-plugins": true,
     "spirituality-manager@oeid-claude-plugins": true,
     "knowledge-manager@oeid-claude-plugins": true,
-    "servicenow-manager@oeid-claude-plugins": true,
     "note-manager@oeid-claude-plugins": true,
     "plan-manager@oeid-claude-plugins": true,
     "experiment-manager@oeid-claude-plugins": true,
     "code-quality-manager@oeid-claude-plugins": true,
+    "servicenow-manager@oeid-claude-plugins": true,
     "role-manager@oeid-claude-plugins": true,
-    "supabase@claude-plugins-official": true,
-    "mcp-server-dev@claude-plugins-official": true,
-    "discover-earlbear-plugins@earlbear-claude-plugins": true,
-    "deck-manager@earlbear-claude-plugins": true,
-    "wireframe-manager@earlbear-claude-plugins": true,
-    "artifact-manager@earlbear-claude-plugins": true,
-    "jira-manager@earlbear-claude-plugins": true,
-    "cloud-agent-manager@earlbear-claude-plugins": true,
-    "earlbear-docs-manager@earlbear-claude-plugins": true,
-    "dev-tools-manager@earlbear-claude-plugins": true,
-    "marketplace-manager@earlbear-claude-plugins": true,
-    "jira-manager@marketplace-claude-plugins": true,
-    "deck-manager@marketplace-claude-plugins": true,
-    "dev-tools-manager@marketplace-claude-plugins": true,
-    "shopify-plugin@shopify-ai-toolkit": true,
-    "shopify-manager@earlbear-claude-plugins": true,
+    "screenshot-manager@oeid-claude-plugins": true,
+    "architecture-manager@oeid-claude-plugins": true,
+    "cron-manager@oeid-claude-plugins": true,
+    "profile-manager@oeid-claude-plugins": true,
+    "code-repository-manager@oeid-claude-plugins": true,
+    "design-partner@oeid-claude-plugins": true,
     "document-co-author@oeid-claude-plugins": true,
-    "profile-manager@oeid-claude-plugins": true
+    "local-guide@oeid-claude-plugins": true,
+    "consumer@oeid-claude-plugins": true
   },
   "extraKnownMarketplaces": {
     "earlbear-claude-plugins": {
       "source": {
         "source": "directory",
-        "path": "/Users/omareid/Workspace/git/earlbear-claude-plugin-marketplace"
+        "path": "/Users/omareid/Workspace/git-earlbear/earlbear-claude-plugin-marketplace"
       }
     },
     "marketplace-claude-plugins": {
@@ -109,9 +110,10 @@
       }
     }
   },
-  "alwaysThinkingEnabled": false,
   "effortLevel": "high",
   "plansDirectory": ".claude/plans",
+  "tui": "default",
+  "autoMemoryDirectory": ".claude/memory",
   "skipWorkflowUsageWarning": true,
   "theme": "light-daltonized",
   "remoteControlAtStartup": false,
