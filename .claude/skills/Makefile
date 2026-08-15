@@ -1,39 +1,43 @@
-# Makefile for building and distributing Skills
+# Package the skills in this directory as ZIPs.
+#
+# This is NOT how the skills run. Claude Code reads .claude/skills/<name>/SKILL.md
+# directly out of the repo, with no build step. The zips are only for handing a
+# skill to something that cannot read this repo — uploading to claude.ai.
+#
+# Skills are discovered, not listed: any directory holding a SKILL.md is one, so
+# adding a skill needs no edit here.
 
-SKILLS_DIR := skills
-DIST_DIR := dist
-ASKING_QUESTIONS_SKILL := asking-questions
-ASKING_QUESTIONS_DIR := $(SKILLS_DIR)/$(ASKING_QUESTIONS_SKILL)
+SKILLS := $(sort $(patsubst %/,%,$(dir $(wildcard */SKILL.md))))
+DIST   := dist
 
-.PHONY: all clean build-asking-questions dist-asking-questions help
+# dist-<skill> is deliberately NOT .PHONY: make skips implicit-rule search for
+# phony targets, so declaring them would leave the pattern rule below unused
+# ("nothing to be done"). Nothing ever creates a file named dist-<skill>, so
+# they rebuild every time regardless.
+.PHONY: all list clean help
 
-# Default target
-all: dist-asking-questions
+all: $(addprefix dist-,$(SKILLS))
 
-# Create distribution directory
-$(DIST_DIR):
-	@mkdir -p $(DIST_DIR)
+list:
+	@printf '%s\n' $(SKILLS)
 
-# Build asking-questions skill zip
-build-asking-questions: $(DIST_DIR)
-	@echo "Building $(ASKING_QUESTIONS_SKILL).zip..."
-	@cd $(SKILLS_DIR) && zip -r ../$(DIST_DIR)/$(ASKING_QUESTIONS_SKILL).zip $(ASKING_QUESTIONS_SKILL)/
-	@echo "✓ Created $(DIST_DIR)/$(ASKING_QUESTIONS_SKILL).zip"
+$(DIST):
+	@mkdir -p $(DIST)
 
-# Alias for build-asking-questions
-dist-asking-questions: build-asking-questions
+# dist-<skill> -> dist/<skill>.zip, rebuilt from scratch each time so a removed
+# file cannot survive inside an old archive.
+dist-%: | $(DIST)
+	@test -f $*/SKILL.md || { echo "no such skill: $*" >&2; exit 1; }
+	@rm -f $(DIST)/$*.zip
+	@zip -qr $(DIST)/$*.zip $*/
+	@echo "✓ $(DIST)/$*.zip"
 
-# Clean distribution files
 clean:
-	@echo "Cleaning distribution files..."
-	@rm -rf $(DIST_DIR)
-	@echo "✓ Cleaned $(DIST_DIR)"
+	@rm -rf $(DIST)
+	@echo "✓ cleaned $(DIST)"
 
-# Help target
 help:
-	@echo "Available targets:"
-	@echo "  all                    - Build all skills (default)"
-	@echo "  build-asking-questions - Build asking-questions skill zip"
-	@echo "  dist-asking-questions  - Alias for build-asking-questions"
-	@echo "  clean                  - Remove all distribution files"
-	@echo "  help                   - Show this help message"
+	@echo "make list          - list the skills in this directory"
+	@echo "make dist-<skill>  - package one skill into $(DIST)/<skill>.zip"
+	@echo "make all           - package every skill"
+	@echo "make clean         - remove $(DIST)/"
