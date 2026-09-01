@@ -396,3 +396,29 @@ elif [[ -n "$BASH_VERSION" ]]; then
     [ -f "$HOME/Workspace/git/scripts/completions/lights-completion.bash" ] && source "$HOME/Workspace/git/scripts/completions/lights-completion.bash"
 fi
 # <<< scripts configuration <<<
+
+# ============================================================================
+# Claude Code Router (CCR) — quick launch for local LM Studio model on mac-studio
+# ----------------------------------------------------------------------------
+# Isolation contract: the CCR "default-claude-code" profile's settingsFile is
+# pinned (in ~/.claude-code-router/config.sqlite) to ~/.claude-studio/settings.json,
+# so CCR's launch wrapper exports CLAUDE_CONFIG_DIR=~/.claude-studio and injects its
+# ANTHROPIC_* env into THAT home. Your global ~/.claude/ is never touched. If CCR is
+# reinstalled/reset, re-pin it: see the claude-studio-launch skill.
+# ============================================================================
+claude-studio() {
+  export NVM_DIR="$HOME/.nvm"; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" 2>/dev/null
+  nvm use 22 >/dev/null 2>&1
+  # Ensure the CCR gateway is up (starts it if the core health port :3457 isn't answering).
+  if ! curl -s --max-time 2 http://127.0.0.1:3457/health >/dev/null 2>&1; then
+    echo "claude-studio: starting CCR gateway…"
+    ccr start --no-open >/dev/null 2>&1
+    for i in 1 2 3 4 5 6 7 8; do
+      curl -s --max-time 2 http://127.0.0.1:3457/health >/dev/null 2>&1 && break
+      sleep 1
+    done
+  fi
+  # Launch Claude Code through the profile; model defaults to the reasoning MoE.
+  # First positional arg overrides the model; any further args pass through to claude.
+  ccr default-claude-code cli -- --model "${1:-qwen3.5-35b-a3b}" "${@:2}"
+}
