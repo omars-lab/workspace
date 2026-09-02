@@ -178,6 +178,29 @@ ccr default-claude-code cli -- --model qwen3.5-35b-a3b -p "Reply with exactly OK
 Do not use `zsh -ic` to call the `claude-studio` function from a script: sourcing the interactive
 zshrc runs the daily Studio sync. Call `ccr default-claude-code cli -- …` directly instead.
 
+### Switching the CCR default model (and the gateway-discovery caveat)
+
+Two independent "defaults" decide which LM Studio model a session actually uses:
+
+1. **Server route** — `Router.default` (and `Router.fallback.models`) in `config.sqlite`, plus the
+   `models` order in the `lmstudio` provider. Set these with `ccr stop` → edit → checkpoint →
+   `ccr start` (same recipe as the `extraBody` block above). To switch the default to, e.g.,
+   `qwen3.6-35b-a3b-mtp`: put it first in the provider `models`, set `Router.default` to
+   `lmstudio,qwen3.6-35b-a3b-mtp`, and point `Router.fallback.models` at it too. Also update the
+   warm-model LaunchAgent on the Studio (`automation-hub/scripts/lmstudio/warm-model.sh`,
+   `WARM_MODEL`) so the new default is the one kept resident.
+
+2. **Client pick** — the studio settings carry `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1`, so
+   Claude Code discovers models from the gateway (`GET :3456/v1/models`) and sends a **concrete**
+   opaque model id (`anthropic/claude-ccr-h<hex>`, where `<hex>` is `lmstudio/<model>` hex-encoded).
+   That concrete id **bypasses `Router.default`** — the gateway decodes it straight to that model.
+   So after a server-side switch, `/v1/models` lists the new model first, but a client that has a
+   remembered pick (or print-mode `-p`, which resolved to the old `qwen3.5-35b-a3b` in testing)
+   keeps using the old one. Verify with the Studio server log (`~/.lmstudio/server-logs/.../*.log`
+   tags each line with the model). To move the client default, use `/model` inside an interactive
+   session (the newly-first model is at the top of the list) — that is the reliable, session-safe
+   lever. `ANTHROPIC_MODEL` in the profile `env` did **not** take effect for print-mode `-p` runs.
+
 Config surface with no CLI equivalent (`ccr provider add` does not exist): the **web UI** at
 `http://127.0.0.1:3458/?ccr_web_token=…` (token printed by `ccr start`). Ports: **3456**
 Anthropic proxy (`/v1/messages`), **3457** core (`/health`), **3458** web UI.

@@ -85,8 +85,12 @@ Via API per request: temperature, `max_tokens`, `response_format`, `stream_optio
       `qwen3.6-35b-a3b-mtp`) → `records/2026-09-01-mtp-qwen36.md`: draft acceptance 0.83–0.95 but decode
       unchanged (105 vs 106 tok/s) on llama.cpp Metal, `--parallel 1` no help → MTP off. Bonus: Qwen3.6
       decodes 105–114 tok/s vs 78 for the 3.5 default, same RAM → candidate new default (T61)
-- [ ] T61 Decide whether to switch the CCR default to `qwen3.6-35b-a3b-mtp` (no MTP flag): re-run the
-      T58 quality set with ≥5 KG texts, then flip `WARM_MODEL`, the provider `models` list and `Router.default`
+- [x] T61 Switched the CCR default to `qwen3.6-35b-a3b-mtp` (no MTP flag) — 2026-09-02. `WARM_MODEL`
+      default in `warm-model.sh` (PR #9), provider `models` (first) + `Router.default` + `Router.fallback.models`
+      in `config.sqlite`; Studio warmed on 3.6 (131072/parallel 4), 3.5 unloaded. Server routing verified.
+      Caveat recorded in `claude-studio-launch`: gateway model discovery makes the interactive client default a
+      client-side `/model` pick that bypasses `Router.default` (print-mode `-p` still resolved to 3.5). Deeper
+      T58 quality set (≥5 KG texts) still open before fully retiring 3.5
 - [x] T60 Standard load: `-c 131072 --parallel 4`, no TTL, enforced by LaunchAgent
       `com.automationhub.lmstudio-warm` (automation-hub `scripts/lmstudio/`, PR https://github.com/omars-lab/automation-hub/pull/9)
 
