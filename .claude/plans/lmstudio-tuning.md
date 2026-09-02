@@ -24,6 +24,7 @@ Companion skill: `claude-studio-launch` (launch path + CCR isolation). This plan
 
 Installed models (format / quant / size):
 - `qwen3.5-35b-a3b` GGUF Q4_K_M 20 GB (MoE, ~3B active) — current default via CCR
+- `qwen3.6-35b-a3b-mtp` GGUF UD-Q4_K_M 21 GB (Unsloth, ships MTP head; added 2026-09-01, T59)
 - `qwen/qwen3-coder-30b` MLX 4bit 16 GB (MoE, tool-calling)
 - `qwen/qwen3.8-27b` MLX 4bit 14 GB (dense; the MLX 4bit quant does **not** carry a usable MTP head) — haiku slot
 - `qwen3.5-9b` GGUF Q4_K_M 6 GB; `mistralai/ministral-3-14b-reasoning` GGUF 8 GB
@@ -80,9 +81,12 @@ Via API per request: temperature, `max_tokens`, `response_format`, `stream_optio
       `output_tokens 2, thinking_tokens 0`, Studio log body ends with the field. Recipe in `claude-studio-launch`
 - [x] T58 bench.sh captures outputs (`BENCH_OUT`, `BENCH_NOCACHE`); scored 35b-a3b vs coder-30b →
       `records/2026-09-01-quality-ab.md`: keep 35b-a3b as CCR default (12 vs 10 on agent-turn), KG tie
-- [ ] T59 Re-test MTP with a quant that ships the MTP head: `unsloth/Qwen3.6-35B-A3B-MTP-GGUF`
-      UD-Q4_K_M (21.1 GB) downloading to the Studio (`lms get` can't fetch non-catalog repos → curl into
-      `~/.lmstudio/models/unsloth/…`); then A/B `--speculative-draft-mtp` on agent-turn/kg-extract
+- [x] T59 MTP re-test with a real MTP head (`unsloth/Qwen3.6-35B-A3B-MTP-GGUF` UD-Q4_K_M, key
+      `qwen3.6-35b-a3b-mtp`) → `records/2026-09-01-mtp-qwen36.md`: draft acceptance 0.83–0.95 but decode
+      unchanged (105 vs 106 tok/s) on llama.cpp Metal, `--parallel 1` no help → MTP off. Bonus: Qwen3.6
+      decodes 105–114 tok/s vs 78 for the 3.5 default, same RAM → candidate new default (T61)
+- [ ] T61 Decide whether to switch the CCR default to `qwen3.6-35b-a3b-mtp` (no MTP flag): re-run the
+      T58 quality set with ≥5 KG texts, then flip `WARM_MODEL`, the provider `models` list and `Router.default`
 - [x] T60 Standard load: `-c 131072 --parallel 4`, no TTL, enforced by LaunchAgent
       `com.automationhub.lmstudio-warm` (automation-hub `scripts/lmstudio/`, PR https://github.com/omars-lab/automation-hub/pull/9)
 
@@ -95,6 +99,8 @@ Via API per request: temperature, `max_tokens`, `response_format`, `stream_optio
 | qwen3.5-35b-a3b GGUF Q4_K_M (thinking on) | agent-turn | 0.30 | 1049 | 77.1 | 13.6 @1024 tok | **no** (1024 reasoning tokens) |
 | qwen3.5-35b-a3b + `reasoning_effort:"none"` | agent-turn | 0.32 | 1011 | 78.0 | **3.1** | yes, 217 tok |
 | qwen3-coder-30b MLX 4bit | agent-turn | 0.36 | 824 | 90.1 | **3.0** | yes, 243 tok |
+| qwen3.6-35b-a3b-mtp GGUF UD-Q4_K_M, no MTP (T59) | agent-turn / kg-extract | 0.40 / 0.27 | 786 / 877 | **104 / 113** | 2.9 / 5.1 | yes, 11/12 · ~8/9 |
+| qwen3.6-35b-a3b-mtp + `--speculative-draft-mtp` | agent-turn / kg-extract | 0.32 / 0.28 | 1009 / 850 | 106 / 112 | 2.8 / 5.5 | same (acceptance 0.86 / 0.94, no speedup) |
 | CCR → 35b-a3b, `extraBody` reasoning_effort none (T57) | 20K-tok Claude Code system prompt | — | 1326 (server log) | — | 15.6 total, 2 output tok, 0 thinking | yes (`OK`) |
 
 - **Thinking dominates agent-turn latency**; `reasoning_effort:"none"` is the only switch that
@@ -116,10 +122,12 @@ Via API per request: temperature, `max_tokens`, `response_format`, `stream_optio
 1. ~~GGUF 35b-a3b vs MLX coder-30b~~ answered (T58): agent-turn 35b-a3b 12/12 vs coder-30b 10/12
    (coder drifts `args`/`arguments`); KG extraction 8/9 each with opposite failure modes
    (35b-a3b misses `competes_with`, coder paraphrases evidence). n=2 — rerun with ≥5 texts.
-2. ~~MTP on qwen3.8-27b MLX~~ answered: no-op (quant lacks MTP head). Re-ask with a GGUF/MTP build (T59).
-3. Is a `@q8_0` GGUF of 35b-a3b (≈40 GB) worth it vs Q4_K_M for KG-extraction accuracy?
-4. `--parallel` sweet spot when CCR fans out sub-agents (2 / 4 / 8).
-5. Is there a REST or config-file path to set Flash Attention / KV quant without the GUI?
+2. ~~MTP~~ answered twice: MLX 4bit 27B = no head (no-op); GGUF Qwen3.6 with head = engages at
+   0.83–0.95 acceptance but **zero decode gain on llama.cpp Metal**. Only an MLX build with the head is left to try.
+3. Is Qwen3.6's +40% decode the model or Unsloth's UD quant? Bench a 3.5 UD-Q4_K_M to separate them.
+4. Is a `@q8_0` GGUF of 35b-a3b (≈40 GB) worth it vs Q4_K_M for KG-extraction accuracy?
+5. `--parallel` sweet spot when CCR fans out sub-agents (2 / 4 / 8).
+6. Is there a REST or config-file path to set Flash Attention / KV quant without the GUI?
 
 ## Sources
 
@@ -153,7 +161,7 @@ Leaderboards / model discovery
 Artifacts produced
 - Skill: `.claude/skills/lmstudio-tuning/` (SKILL.md · SOURCES.md · scripts/bench.sh · scripts/ab.sh · prompts/ · records/)
 - Sub-agent: `.claude/agents/lmstudio-tuner.md`
-- Records: `records/2026-09-01-first-pass.md` (speed), `records/2026-09-01-quality-ab.md` (quality + decisions), raw outputs in `records/out/`
+- Records: `records/2026-09-01-first-pass.md` (speed), `records/2026-09-01-quality-ab.md` (quality + decisions), `records/2026-09-01-mtp-qwen36.md` (MTP + Qwen3.6), raw outputs in `records/out/`
 - Studio LaunchAgent: `automation-hub/scripts/lmstudio/` (PR #9)
 - PRs: workspace https://github.com/omars-lab/workspace/pull/2 · automation-hub https://github.com/omars-lab/automation-hub/pull/9
 - Companion: `.claude/skills/claude-studio-launch/` (CCR isolation, provider repair)

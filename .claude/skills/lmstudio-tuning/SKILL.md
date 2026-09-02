@@ -121,7 +121,13 @@ decision where it lives:
   `lmstudio` provider's `extraBody` (done 2026-09-01; recipe + proof in `claude-studio-launch`).
 - `--speculative-draft-mtp` only works "when supported by the model": an MLX 4bit conversion
   without the MTP head silently loads without it (no draft lines in the server log,
-  identical tok/s). Check the model card for MTP weights before testing.
+  identical tok/s). Check the model card for MTP weights before testing. And even **with** the head
+  (Qwen3.6-35B-A3B GGUF: `draft acceptance = 0.86–0.94` in the server log) llama.cpp Metal gave
+  **no decode gain** (105 vs 106 tok/s; `--parallel 1` no help). Leave MTP off on GGUF loads.
+- Non-catalog HF GGUFs: `lms get user/repo@quant` fails ("artifact does not exist"); `curl -L -C -`
+  the file, then `lms import <file> --user-repo user/repo -y` (a hand-placed file under
+  `~/.lmstudio/models/` is not indexed). First import prompts "Do you wish to continue?" which
+  `-y` does not answer: `printf 'Y\n' | ssh -tt mac-studio 'lms import …'`. Key becomes lowercase repo name.
 - `lms load` defaults to the model's **full** context (256K for Qwen3.5 → ~58 GB estimated
   peak for the 27B) and `--parallel 4`. Always pass `-c` for the session size you need.
 - Same-prompt repeats hit the prompt cache: warm "prefill" of 5000+ tok/s is cache reuse.
