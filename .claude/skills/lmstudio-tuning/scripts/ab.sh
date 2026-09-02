@@ -8,7 +8,7 @@
 #   e.g. scripts/ab.sh "qwen/qwen3.8-27b" "qwen/qwen3.8-27b|--speculative-draft-mtp" 3
 set -euo pipefail
 A="${1:?config A}"; B="${2:?config B}"; RUNS="${3:-3}"; PF="${4:-}"; MAXTOK="${5:-256}"
-HERE="$(cd "$(dirname "$0")" && pwd)"; LOG="$HERE/../records/bench-log.jsonl"
+HERE="$(cd "$(dirname "$0")" && pwd)"; LOG="$HERE/../records/bench-log.jsonl"; export BENCH_OUT="${BENCH_OUT:-$HERE/../records/out}"
 LMS="'/Applications/LM Studio.app/Contents/Resources/app/.webpack/lms'"
 run_cfg() {
   local cfg="$1" model flags

@@ -74,15 +74,17 @@ Via API per request: temperature, `max_tokens`, `response_format`, `stream_optio
       `scripts/bench.sh`, `scripts/ab.sh`, `prompts/`, `records/TEMPLATE.md`)
 - [x] T53 Write `lmstudio-tuner` sub-agent → `.claude/agents/lmstudio-tuner.md` (preloads skill)
 - [x] T54 Run the scripts for real → `records/2026-09-01-first-pass.md` + `records/bench-log.jsonl`
-- [ ] T56 Commit skill + agent + plan; PR (push/PR needs user OK)
-- [ ] T57 Make CCR send `reasoning_effort:"none"` for the `lmstudio` provider (transformer /
-      router option) and prove it with a `claude-studio -p` run whose usage shows 0 reasoning tokens
-- [ ] T58 bench.sh: capture `content` + `tool_calls` per run to `records/out/`, then score
-      35b-a3b(no-think) vs coder-30b on the 0–3 rubric → decide the CCR default
-- [ ] T59 Re-test MTP with a quant that ships the MTP head (GGUF Qwen3.5/3.6 builds, or Gemma 4
-      MLX) and log `--speculative-draft-max-tokens` sweeps
-- [ ] T60 Decide a standard `lms load -c <N> --parallel <N> --ttl <s>` for the CCR default and
-      put it in a LaunchAgent on the Studio (currently loads at full 256K ctx, parallel 4)
+- [x] T56 Commit skill + agent + plan; PR → https://github.com/omars-lab/workspace/pull/2
+- [x] T57 CCR sends `reasoning_effort:"none"` to the `lmstudio` provider via provider `extraBody`
+      (`{"default":{...}}`, deep-merged by `@the-next-ai/ai-gateway`); proven: `-p` run → `OK`,
+      `output_tokens 2, thinking_tokens 0`, Studio log body ends with the field. Recipe in `claude-studio-launch`
+- [x] T58 bench.sh captures outputs (`BENCH_OUT`, `BENCH_NOCACHE`); scored 35b-a3b vs coder-30b →
+      `records/2026-09-01-quality-ab.md`: keep 35b-a3b as CCR default (12 vs 10 on agent-turn), KG tie
+- [ ] T59 Re-test MTP with a quant that ships the MTP head: `unsloth/Qwen3.6-35B-A3B-MTP-GGUF`
+      UD-Q4_K_M (21.1 GB) downloading to the Studio (`lms get` can't fetch non-catalog repos → curl into
+      `~/.lmstudio/models/unsloth/…`); then A/B `--speculative-draft-mtp` on agent-turn/kg-extract
+- [x] T60 Standard load: `-c 131072 --parallel 4`, no TTL, enforced by LaunchAgent
+      `com.automationhub.lmstudio-warm` (automation-hub `scripts/lmstudio/`, PR https://github.com/omars-lab/automation-hub/pull/9)
 
 ## Measured findings (2026-09-01, details in `records/2026-09-01-first-pass.md`)
 
@@ -93,21 +95,27 @@ Via API per request: temperature, `max_tokens`, `response_format`, `stream_optio
 | qwen3.5-35b-a3b GGUF Q4_K_M (thinking on) | agent-turn | 0.30 | 1049 | 77.1 | 13.6 @1024 tok | **no** (1024 reasoning tokens) |
 | qwen3.5-35b-a3b + `reasoning_effort:"none"` | agent-turn | 0.32 | 1011 | 78.0 | **3.1** | yes, 217 tok |
 | qwen3-coder-30b MLX 4bit | agent-turn | 0.36 | 824 | 90.1 | **3.0** | yes, 243 tok |
+| CCR → 35b-a3b, `extraBody` reasoning_effort none (T57) | 20K-tok Claude Code system prompt | — | 1326 (server log) | — | 15.6 total, 2 output tok, 0 thinking | yes (`OK`) |
 
 - **Thinking dominates agent-turn latency**; `reasoning_effort:"none"` is the only switch that
   works through LM Studio's API (`enable_thinking` kwarg and `/no_think` do not). → T57.
 - GGUF 35B-A3B vs MLX coder-30B is a **wash on speed** once thinking is off (3.1 vs 3.0 s per
   turn); MLX decodes ~15% faster, GGUF prefills ~25% faster. Quality decides → T58.
 - `lms load` defaults: full 256K context + `--parallel 4`; server log `context_fit` estimated
-  57.6 GB peak for the 27B. Pass `-c`. → T60.
+  57.6 GB peak for the 27B. Pass `-c`. → T60 done: LaunchAgent keeps 35b-a3b at 131072/4.
+- CCR v3 has no plugin-transformer API; the supported hook is provider `extraBody` /
+  `extraHeaders` (`default` + per-model) and declarative `providerPlugins` (`bodySet`/`bodyMerge`).
+  A 20K-token Claude Code system prompt prefills at ~1330 tok/s on the 35B-A3B → ~15 s first turn;
+  prompt cache makes later turns cheap.
 - Same-prompt repeats hit the prompt cache (5000+ tok/s "prefill"); bench with `BENCH_NOCACHE=1`.
 - Server logs: `~/.lmstudio/server-logs/YYYY-MM/`; no speculative acceptance stats exposed, and
   `/api/v0` `stats` only has tok/s, TTFT, generation_time, stop_reason.
 
 ## Open questions to answer with data
 
-1. ~~GGUF 35b-a3b vs MLX coder-30b~~ speed answered (tie); **quality** still open — needs
-   captured outputs + rubric over a multi-turn transcript (T58).
+1. ~~GGUF 35b-a3b vs MLX coder-30b~~ answered (T58): agent-turn 35b-a3b 12/12 vs coder-30b 10/12
+   (coder drifts `args`/`arguments`); KG extraction 8/9 each with opposite failure modes
+   (35b-a3b misses `competes_with`, coder paraphrases evidence). n=2 — rerun with ≥5 texts.
 2. ~~MTP on qwen3.8-27b MLX~~ answered: no-op (quant lacks MTP head). Re-ask with a GGUF/MTP build (T59).
 3. Is a `@q8_0` GGUF of 35b-a3b (≈40 GB) worth it vs Q4_K_M for KG-extraction accuracy?
 4. `--parallel` sweet spot when CCR fans out sub-agents (2 / 4 / 8).
@@ -145,7 +153,9 @@ Leaderboards / model discovery
 Artifacts produced
 - Skill: `.claude/skills/lmstudio-tuning/` (SKILL.md · SOURCES.md · scripts/bench.sh · scripts/ab.sh · prompts/ · records/)
 - Sub-agent: `.claude/agents/lmstudio-tuner.md`
-- First record: `.claude/skills/lmstudio-tuning/records/2026-09-01-first-pass.md`
+- Records: `records/2026-09-01-first-pass.md` (speed), `records/2026-09-01-quality-ab.md` (quality + decisions), raw outputs in `records/out/`
+- Studio LaunchAgent: `automation-hub/scripts/lmstudio/` (PR #9)
+- PRs: workspace https://github.com/omars-lab/workspace/pull/2 · automation-hub https://github.com/omars-lab/automation-hub/pull/9
 - Companion: `.claude/skills/claude-studio-launch/` (CCR isolation, provider repair)
 
 Sub-agent authoring

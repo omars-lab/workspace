@@ -107,7 +107,9 @@ Write `records/YYYY-MM-DD-<topic>.md` using `records/TEMPLATE.md`: hypothesis, c
 decision where it lives:
 - CCR default model / tiers → `claude-studio-launch` skill (SQLite provider + `~/.claude-studio/settings.json`).
 - Knowledge pipeline models → `knowledge-manager:model-select`.
-- Long-lived load flags (TTL, parallel, MTP) → the `claude-studio` function or a LaunchAgent on the Studio.
+- Long-lived load flags (context, parallel, TTL, MTP) → the `com.automationhub.lmstudio-warm`
+  LaunchAgent on the Studio: `automation-hub/scripts/lmstudio/warm-model.sh` (+ `install-warm-model.sh`).
+  Current standard: `-c 131072 --parallel 4`, no TTL, checked every 15 min and at login.
 
 ## Gotchas collected so far
 
@@ -115,7 +117,8 @@ decision where it lives:
   `reasoning_tokens` before a 5-token answer. `"reasoning_effort": "none"` in the request body
   disables it (measured: 375 → 6 completion tokens); `chat_template_kwargs.enable_thinking`
   and `/no_think` do **not** work through LM Studio's API. Bench with
-  `BENCH_EXTRA='{"reasoning_effort":"none"}'`; for CCR sessions the router must add it.
+  `BENCH_EXTRA='{"reasoning_effort":"none"}'`. For CCR sessions the router adds it via the
+  `lmstudio` provider's `extraBody` (done 2026-09-01; recipe + proof in `claude-studio-launch`).
 - `--speculative-draft-mtp` only works "when supported by the model": an MLX 4bit conversion
   without the MTP head silently loads without it (no draft lines in the server log,
   identical tok/s). Check the model card for MTP weights before testing.

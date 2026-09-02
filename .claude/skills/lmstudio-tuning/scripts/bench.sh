@@ -8,6 +8,7 @@
 #   LMS_URL=http://192.168.1.131:1234  (default)
 #   BENCH_LABEL=gguf-fa-on-kvq8        (free text stored with the result)
 #   BENCH_EXTRA='{"reasoning_effort":"none"}'  (JSON merged into every request body: per-request levers)
+#   BENCH_OUT=records/out              (dir; when set, each run's content/reasoning/tool_calls is saved as JSON for quality scoring)
 #   BENCH_NOCACHE=1                    (prepend a per-run nonce: measures true prefill instead of prompt-cache reuse;
 #                                       default keeps the prompt identical, which is what an agent loop sees)
 #
@@ -21,12 +22,14 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 [ -z "$PROMPT_FILE" ] && PROMPT_FILE="$HERE/../prompts/agent-turn.md"
 [ -f "$PROMPT_FILE" ] || { echo "no prompt file: $PROMPT_FILE" >&2; exit 2; }
 
-python3 - "$MODEL" "$RUNS" "$PROMPT_FILE" "$MAXTOK" "$LMS_URL" "$LABEL" "${BENCH_NOCACHE:-0}" "${BENCH_EXTRA:-{\}}" <<'PY'
-import uuid, json, sys, time, urllib.request, statistics, datetime
+python3 - "$MODEL" "$RUNS" "$PROMPT_FILE" "$MAXTOK" "$LMS_URL" "$LABEL" "${BENCH_NOCACHE:-0}" "${BENCH_EXTRA:-{\}}" "${BENCH_OUT:-}" <<'PY'
+import uuid, json, sys, time, urllib.request, statistics, datetime, os, re
 model, runs, pf, maxtok, url, label = sys.argv[1], int(sys.argv[2]), sys.argv[3], int(sys.argv[4]), sys.argv[5], sys.argv[6]
 prompt = open(pf).read()
 nocache = sys.argv[7] == "1"
 extra = json.loads(sys.argv[8] or "{}")
+outdir = sys.argv[9]
+if outdir: os.makedirs(outdir, exist_ok=True)
 
 def resident():
     try:
@@ -44,6 +47,7 @@ def one():
     req = urllib.request.Request(url + "/v1/chat/completions", data=json.dumps(body).encode(),
                                  headers={"Content-Type": "application/json"})
     t0 = time.time(); first = None; n = 0; usage = None
+    content, reasoning, tool_calls, finish = [], [], {}, None
     with urllib.request.urlopen(req, timeout=900) as r:
         for line in r:
             line = line.decode().strip()
@@ -55,9 +59,16 @@ def one():
             ch = d.get("choices") or []
             if ch:
                 delta = ch[0].get("delta", {})
-                if delta.get("content") or delta.get("reasoning_content"):
+                if delta.get("content") or delta.get("reasoning_content") or delta.get("tool_calls"):
                     if first is None: first = time.time()
                     n += 1
+                if delta.get("content"): content.append(delta["content"])
+                if delta.get("reasoning_content"): reasoning.append(delta["reasoning_content"])
+                for tc in delta.get("tool_calls") or []:
+                    slot = tool_calls.setdefault(tc.get("index", 0), {"name": "", "arguments": ""})
+                    fn = tc.get("function") or {}
+                    slot["name"] += fn.get("name") or ""; slot["arguments"] += fn.get("arguments") or ""
+                if ch[0].get("finish_reason"): finish = ch[0]["finish_reason"]
     t1 = time.time()
     pt = (usage or {}).get("prompt_tokens"); ct = (usage or {}).get("completion_tokens") or n
     ttft = (first - t0) if first else None
@@ -66,12 +77,19 @@ def one():
             "decode_tps": round(ct / (t1 - first), 1) if (first and t1 > first) else None,
             "prompt_tokens": pt, "completion_tokens": ct,
             "reasoning_tokens": ((usage or {}).get("completion_tokens_details") or {}).get("reasoning_tokens"),
-            "wall_s": round(t1 - t0, 3)}
+            "wall_s": round(t1 - t0, 3), "finish_reason": finish,
+            "_output": {"content": "".join(content), "reasoning": "".join(reasoning),
+                        "tool_calls": [tool_calls[k] for k in sorted(tool_calls)]}}
 
 was_loaded = resident()
 out = []
 for i in range(runs):
     r = one(); r.update({"run": i + 1, "cold": (i == 0 and was_loaded is False)})
+    output = r.pop("_output")
+    if outdir:
+        fn = "%s-%s-%s-r%d.json" % (datetime.datetime.now().strftime("%Y%m%dT%H%M%S"), re.sub(r"[^A-Za-z0-9.-]+", "_", model), pf.split("/")[-1].rsplit(".",1)[0], i + 1)
+        json.dump({"model": model, "label": label, "prompt_file": pf, "extra": extra, "metrics": r, **output}, open(os.path.join(outdir, fn), "w"), indent=1)
+        r["out"] = fn
     print(json.dumps(r)); out.append(r)
 warm = [r for r in out if not r["cold"]] or out
 def med(k):

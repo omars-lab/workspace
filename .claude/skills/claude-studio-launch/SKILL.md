@@ -146,6 +146,38 @@ PY
 ccr start --no-open
 ```
 
+### Per-provider request injection: `extraBody` (turn off Qwen thinking for every CCR turn)
+
+CCR v3's gateway (`@the-next-ai/ai-gateway`) deep-merges a provider-level `extraBody` into
+every upstream body. Shape: `{"default": {...}, "<model-id>": {...}}` (per-model keys override
+`default`). This is how CCR sends `reasoning_effort:"none"` to LM Studio so Qwen3.5 agent
+turns skip thinking (measured 13.6 s → 3.1 s per turn; see the `lmstudio-tuning` skill):
+
+```bash
+ccr stop            # never edit config.sqlite while CCR runs
+python3 - <<'PY2'
+import sqlite3, json
+db="/Users/omareid/.claude-code-router/config.sqlite"
+con=sqlite3.connect(db)
+cfg=json.loads(con.execute("SELECT value_json FROM app_config WHERE key='default'").fetchone()[0])
+for p in cfg["Providers"]:
+    if p["name"]=="lmstudio":
+        p["extraBody"]={"default":{"reasoning_effort":"none"}}
+con.execute("UPDATE app_config SET value_json=?, updated_at=datetime('now') WHERE key='default'",(json.dumps(cfg),))
+con.commit(); con.execute("PRAGMA wal_checkpoint(TRUNCATE)"); con.close()
+PY2
+ccr start --no-open
+# prove it (non-interactive; ~15 s for the 20K-token system prompt):
+ccr default-claude-code cli -- --model qwen3.5-35b-a3b -p "Reply with exactly OK" --output-format json \
+  | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d["result"], d["usage"]["output_tokens"], d["usage"]["output_tokens_details"])'
+#   -> OK 2 {'thinking_tokens': 0}
+# and on the Studio the logged request body ends with  "reasoning_effort": "none"
+#   ssh mac-studio 'grep -c reasoning_effort ~/.lmstudio/server-logs/$(date +%Y-%m)/$(date +%F).1.log'
+```
+
+Do not use `zsh -ic` to call the `claude-studio` function from a script: sourcing the interactive
+zshrc runs the daily Studio sync. Call `ccr default-claude-code cli -- …` directly instead.
+
 Config surface with no CLI equivalent (`ccr provider add` does not exist): the **web UI** at
 `http://127.0.0.1:3458/?ccr_web_token=…` (token printed by `ccr start`). Ports: **3456**
 Anthropic proxy (`/v1/messages`), **3457** core (`/health`), **3458** web UI.
