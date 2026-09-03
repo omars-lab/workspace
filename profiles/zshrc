@@ -418,7 +418,23 @@ claude-studio() {
       sleep 1
     done
   fi
-  # Launch Claude Code through the profile; model defaults to the reasoning MoE.
-  # First positional arg overrides the model; any further args pass through to claude.
-  ccr default-claude-code cli -- --model "${1:-qwen3.5-35b-a3b}" "${@:2}"
+  # Resolve the model OURSELVES rather than let gateway model-discovery pick a stale
+  # remembered id (with CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY, a no --model client
+  # sends a concrete opaque id that bypasses Router.default). A leading non-flag arg is an
+  # explicit override; otherwise ssh the Studio and use whatever model is actually resident
+  # (so the session matches what's warm); fall back to the preferred default if unreachable.
+  local model="" ; local -a rest
+  if [[ -n "$1" && "$1" != -* ]]; then model="$1"; rest=("${@:2}"); else rest=("$@"); fi
+  if [[ -z "$model" ]]; then
+    local _lms='/Applications/LM Studio.app/Contents/Resources/app/.webpack/lms'
+    model=$(ssh -o ConnectTimeout=3 -o BatchMode=yes mac-studio "'$_lms' ps --json 2>/dev/null" 2>/dev/null       | python3 -c 'import sys,json
+try: d=json.load(sys.stdin) or []
+except Exception: d=[]
+print(d[0].get("identifier") or d[0].get("modelKey","") if d else "")' 2>/dev/null)
+  fi
+  : "${model:=qwen3.6-35b-a3b-mtp}"   # preferred default when discovery finds nothing
+  echo "claude-studio: model = $model"
+  # Explicit --model bypasses gateway discovery, so the session always uses this model.
+  ccr default-claude-code cli -- --model "$model" "${rest[@]}"
 }
+export AWS_PROFILE=daily

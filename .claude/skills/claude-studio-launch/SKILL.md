@@ -21,9 +21,10 @@ mutating your global `~/.claude/` config.**
 ## Quick launch
 
 ```bash
-claude-studio                       # default model qwen3.5-35b-a3b
-claude-studio qwen/qwen3-coder-30b  # override model (first arg)
-claude-studio qwen3.5-35b-a3b -p "…"  # extra args pass through to `claude`
+claude-studio                       # auto-picks whatever model is resident on the Studio
+claude-studio qwen/qwen3-coder-30b  # override model (first non-flag arg)
+claude-studio -p "…"                # no model arg: discovers, then passes flags to `claude`
+claude-studio qwen3.6-35b-a3b-mtp -p "…"  # explicit model + passthrough args
 ```
 
 `claude-studio` is a **function** in `~/.zshrc` (target: `Workspace/git/workspace/profiles/zshrc`). It:
@@ -31,7 +32,12 @@ claude-studio qwen3.5-35b-a3b -p "…"  # extra args pass through to `claude`
 2. **Ensures the CCR gateway is running** — probes `http://127.0.0.1:3457/health`, and if
    it's not answering, runs `ccr start --no-open` and waits for it (this is the "make sure
    CCR is running, not paused" requirement).
-3. Launches `ccr default-claude-code cli -- --model <model>`, which routes through CCR → LM Studio.
+3. **Resolves the model itself** rather than trusting gateway model-discovery (see the caveat
+   below): a leading non-flag arg is an explicit override; otherwise it `ssh`es the Studio
+   (`lms ps --json`, 3 s ConnectTimeout) and uses the **resident** model so the session matches
+   what is warm; if the Studio is unreachable it falls back to `qwen3.6-35b-a3b-mtp`.
+4. Launches `ccr default-claude-code cli -- --model <model>`. Because `--model` is always
+   passed explicitly, the session bypasses discovery's remembered pick entirely.
 
 ## Why isolation is needed (the trap this skill exists to solve)
 
