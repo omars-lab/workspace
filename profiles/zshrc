@@ -44,6 +44,7 @@ fi
 
 # Application-specific environment variables
 export DEFAULT_CONDA_ENV=py3
+export DEFAULT_NVM_ENV=22   # the NVM block below does `nvm install/use ${DEFAULT_NVM_ENV}`
 export ZSH_DISABLE_COMPFIX=true
 export LANG=en_US.UTF-8
 
