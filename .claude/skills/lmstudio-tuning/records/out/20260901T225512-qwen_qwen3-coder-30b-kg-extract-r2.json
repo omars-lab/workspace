@@ -1,0 +1,23 @@
+{
+ "model": "qwen/qwen3-coder-30b",
+ "label": "quality-ab reasoning_effort=none",
+ "prompt_file": "../prompts/kg-extract.md",
+ "extra": {
+  "reasoning_effort": "none"
+ },
+ "metrics": {
+  "ttft_s": 0.329,
+  "prefill_tps": 695.9,
+  "decode_tps": 88.5,
+  "prompt_tokens": 229,
+  "completion_tokens": 788,
+  "reasoning_tokens": 0,
+  "wall_s": 9.232,
+  "finish_reason": "stop",
+  "run": 2,
+  "cold": false
+ },
+ "content": "{\n  \"entities\": [\n    {\n      \"id\": \"Mara Lindqvist\",\n      \"type\": \"Person\",\n      \"name\": \"Mara Lindqvist\"\n    },\n    {\n      \"id\": \"Norrsken Labs\",\n      \"type\": \"Org\",\n      \"name\": \"Norrsken Labs\"\n    },\n    {\n      \"id\": \"Ledger Bay\",\n      \"type\": \"Org\",\n      \"name\": \"Ledger Bay\"\n    },\n    {\n      \"id\": \"Stockholm\",\n      \"type\": \"Place\",\n      \"name\": \"Stockholm\"\n    },\n    {\n      \"id\": \"Trino\",\n      \"type\": \"Product\",\n      \"name\": \"Trino\"\n    },\n    {\n      \"id\": \"Kvarn Bank\",\n      \"type\": \"Org\",\n      \"name\": \"Kvarn Bank\"\n    },\n    {\n      \"id\": \"Anders Falk\",\n      \"type\": \"Person\",\n      \"name\": \"Anders Falk\"\n    },\n    {\n      \"id\": \"Snowflake\",\n      \"type\": \"Product\",\n      \"name\": \"Snowflake\"\n    },\n    {\n      \"id\": \"Data Cloud Summit\",\n      \"type\": \"Event\",\n      \"name\": \"Data Cloud Summit\"\n    }\n  ],\n  \"relations\": [\n    {\n      \"from\": \"Mara Lindqvist\",\n      \"to\": \"Norrsken Labs\",\n      \"type\": \"works_at\",\n      \"evidence\": \"Mara Lindqvist left Norrsken Labs in March 2025\"\n    },\n    {\n      \"from\": \"Mara Lindqvist\",\n      \"to\": \"Ledger Bay\",\n      \"type\": \"founded\",\n      \"evidence\": \"Mara Lindqvist left Norrsken Labs in March 2025 to found Ledger Bay\"\n    },\n    {\n      \"from\": \"Ledger Bay\",\n      \"to\": \"Stockholm\",\n      \"type\": \"located_in\",\n      \"evidence\": \"Ledger Bay is a Stockholm startup\"\n    },\n    {\n      \"from\": \"Ledger Bay\",\n      \"to\": \"Trino\",\n      \"type\": \"uses\",\n      \"evidence\": \"Ledger Bay builds reconciliation software on top of the open-source Trino engine\"\n    },\n    {\n      \"from\": \"Mara Lindqvist\",\n      \"to\": \"Kvarn Bank\",\n      \"type\": \"works_at\",\n      \"evidence\": \"Lindqvist had previously run the payments team under CTO Anders Falk at Kvarn Bank\"\n    },\n    {\n      \"from\": \"Anders Falk\",\n      \"to\": \"Kvarn Bank\",\n      \"type\": \"works_at\",\n      \"evidence\": \"Anders Falk was CTO at Kvarn Bank\"\n    },\n    {\n      \"from\": \"Anders Falk\",\n      \"to\": \"Ledger Bay\",\n      \"type\": \"works_at\",\n      \"evidence\": \"Falk now advises Ledger Bay\"\n    },\n    {\n      \"from\": \"Snowflake\",\n      \"to\": \"Data Cloud Summit\",\n      \"type\": \"occurred_at\",\n      \"evidence\": \"Snowflake announced a Stockholm office at its Data Cloud Summit in June\"\n    },\n    {\n      \"from\": \"Snowflake\",\n      \"to\": \"Stockholm\",\n      \"type\": \"located_in\",\n      \"evidence\": \"Snowflake announced a Stockholm office\"\n    },\n    {\n      \"from\": \"Trino\",\n      \"to\": \"Snowflake\",\n      \"type\": \"competes_with\",\n      \"evidence\": \"Falk has argued that Trino-based tooling will eat into Snowflake's mid-market share\"\n    }\n  ]\n}",
+ "reasoning": "",
+ "tool_calls": []
+}
