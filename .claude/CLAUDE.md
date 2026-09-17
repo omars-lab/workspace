@@ -63,6 +63,16 @@ files are not yours to stage, restore, or delete. Never `git add -A`, never `git
 never range cherry-pick (`A..B`). A second concurrent session gets its own worktree
 (`git worktree add ../<repo>-<name> <branch>`).
 
+**Work every conflict by hand.** A merge, rebase or cherry-pick conflict is resolved by opening
+the file, reading both sides, keeping both intents and re-running the gates — then `git add` that
+file by name and continue. Never `-X ours`/`-X theirs`, `-s ours`, `checkout --ours`/`--theirs`,
+`merge-file --ours`/`--theirs` or a `merge=ours` driver: each discards one side's work silently,
+usually the other session's, and nothing downstream notices. Never regenerate or overwrite a
+conflicted file, and never close-and-recreate a PR to dodge a conflict; when a force-push is
+denied, a fresh branch off main is fine, but the conflict itself is still worked by hand on it.
+The `guardrail-manager` plugin's `block-git-ours-theirs` hook denies the flags; the rest is on
+you. (bikar #205→#206, 2026-09-17: both PRs added to the same doc section — both kept.)
+
 ## Checkpoint before trying new things
 
 Before a change that could lose work — a rewrite, a risky refactor, swapping out a working approach
