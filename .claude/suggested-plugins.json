@@ -3,7 +3,7 @@
   "plugins": [
     { "plugin": "architecture-manager@oeid-claude-plugins", "required": true,
       "reason": "architecture decisions + changelog tooling" },
-    { "plugin": "claude-manager@oeid-claude-plugins", "required": true,
+    { "plugin": "skill-manager@oeid-claude-plugins", "required": true,
       "reason": "authoring/evaluating Claude config, skills, plugins" },
     { "plugin": "code-quality-manager@oeid-claude-plugins", "required": true,
       "reason": "docs, Makefiles, repo standards" },
