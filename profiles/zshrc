@@ -383,18 +383,17 @@ if [[ "${STUDIO_AUTO_SYNC:-1}" != "0" ]] && [[ -o interactive ]] 2>/dev/null && 
     unset _studio_now _studio_last
 fi
 
-# Load completion based on shell. Guarded with [ -f ]: an unguarded source of a
-# missing file is a hard error on every single shell start, which is exactly what
-# a machine that keeps this repo somewhere else would hit.
+# Load every completion in the repo's completions/ folder, so a new one needs
+# no edit here: <cmd>-completion.zsh for zsh, <cmd>-completion.bash for bash.
+# The zsh glob's (N) and bash's [ -f ] keep a machine without the folder quiet
+# instead of erroring on every shell start.
 if [[ -n "$ZSH_VERSION" ]]; then
     # Initialize zsh completion system if not already done
     autoload -Uz compinit
     compinit -C
-    # Zsh completion
-    [ -f "$HOME/Workspace/git/scripts/completions/lights-completion.zsh" ] && source "$HOME/Workspace/git/scripts/completions/lights-completion.zsh"
+    for _c in "$HOME/Workspace/git/scripts"/completions/*.zsh(N); do source "$_c"; done; unset _c
 elif [[ -n "$BASH_VERSION" ]]; then
-    # Bash completion
-    [ -f "$HOME/Workspace/git/scripts/completions/lights-completion.bash" ] && source "$HOME/Workspace/git/scripts/completions/lights-completion.bash"
+    for _c in "$HOME/Workspace/git/scripts"/completions/*.bash; do [ -f "$_c" ] && source "$_c"; done; unset _c
 fi
 # <<< scripts configuration <<<
 

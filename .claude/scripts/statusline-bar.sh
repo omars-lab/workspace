@@ -172,7 +172,12 @@ fi
 # Build output: Model | Dir | Branch (uncommitted) | Context
 output="${C_ACCENT}${model}${C_GRAY} | 📁${dir}"
 [[ -n "$branch" ]] && output+=" | 🔀${branch} ${git_status}"
-output+=" | ${ctx}${C_RESET}"
+output+=" | ${ctx}"
+
+# When the prompt cache runs out (from the cache-nudge skill's installed hook; empty if not installed)
+cache_seg=$(echo "$input" | "$HOME/.nvm/versions/node/v20.20.2/bin/node" "$HOME/.claude/hooks/claude-cache-nudge.mjs" statusline 2>/dev/null)
+[[ -n "$cache_seg" ]] && output+=" | ⏳${cache_seg}"
+output+="${C_RESET}"
 
 printf '%b\n' "$output"
 
