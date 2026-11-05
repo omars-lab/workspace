@@ -1,0 +1,23 @@
+{
+ "model": "qwen3.6-35b-a3b-mtp",
+ "label": "-c 131072 --parallel 4 --speculative-draft-mtp",
+ "prompt_file": "prompts/kg-extract.md",
+ "extra": {
+  "reasoning_effort": "none"
+ },
+ "metrics": {
+  "ttft_s": 0.335,
+  "prefill_tps": 718.7,
+  "decode_tps": 111.9,
+  "prompt_tokens": 241,
+  "completion_tokens": 601,
+  "reasoning_tokens": 0,
+  "wall_s": 5.706,
+  "finish_reason": "stop",
+  "run": 1,
+  "cold": false
+ },
+ "content": "{\n\"entities\": [\n{\"id\": \"Mara Lindqvist\", \"type\": \"Person\", \"name\": \"Mara Lindqvist\"},\n{\"id\": \"Norrsken Labs\", \"type\": \"Org\", \"name\": \"Norrsken Labs\"},\n{\"id\": \"Ledger Bay\", \"type\": \"Org\", \"name\": \"Ledger Bay\"},\n{\"id\": \"Stockholm\", \"type\": \"Place\", \"name\": \"Stockholm\"},\n{\"id\": \"Trino\", \"type\": \"Product\", \"name\": \"Trino\"},\n{\"id\": \"Kvarn Bank\", \"type\": \"Org\", \"name\": \"Kvarn Bank\"},\n{\"id\": \"Anders Falk\", \"type\": \"Person\", \"name\": \"Anders Falk\"},\n{\"id\": \"Snowflake\", \"type\": \"Org\", \"name\": \"Snowflake\"},\n{\"id\": \"Data Cloud Summit\", \"type\": \"Event\", \"name\": \"Data Cloud Summit\"}\n],\n\"relations\": [\n{\"from\": \"Mara Lindqvist\", \"to\": \"Norrsken Labs\", \"type\": \"works_at\", \"evidence\": \"Mara Lindqvist left Norrsken Labs in March 2025\"},\n{\"from\": \"Mara Lindqvist\", \"to\": \"Ledger Bay\", \"type\": \"founded\", \"evidence\": \"to found Ledger Bay\"},\n{\"from\": \"Ledger Bay\", \"to\": \"Stockholm\", \"type\": \"located_in\", \"evidence\": \"a Stockholm startup\"},\n{\"from\": \"Ledger Bay\", \"to\": \"Trino\", \"type\": \"uses\", \"evidence\": \"builds reconciliation software on top of the open-source Trino engine\"},\n{\"from\": \"Mara Lindqvist\", \"to\": \"Kvarn Bank\", \"type\": \"works_at\", \"evidence\": \"Lindqvist had previously run the payments team under CTO Anders Falk [at Kvarn Bank]\"},\n{\"from\": \"Anders Falk\", \"to\": \"Ledger Bay\", \"type\": \"related_to\", \"evidence\": \"Falk, who now advises Ledger Bay\"},\n{\"from\": \"Mara Lindqvist\", \"to\": \"Anders Falk\", \"type\": \"works_at\", \"evidence\": \"run the payments team under CTO Anders Falk\"},\n{\"from\": \"Snowflake\", \"to\": \"Stockholm\", \"type\": \"located_in\", \"evidence\": \"announced a Stockholm office\"},\n{\"from\": \"Data Cloud Summit\", \"to\": \"Stockholm\", \"type\": \"occurred_at\", \"evidence\": \"at its Data Cloud Summit in June [context implies location or association with the Stockholm announcement]\"}\n]\n}",
+ "reasoning": "",
+ "tool_calls": []
+}

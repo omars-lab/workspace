@@ -396,3 +396,45 @@ elif [[ -n "$BASH_VERSION" ]]; then
     [ -f "$HOME/Workspace/git/scripts/completions/lights-completion.bash" ] && source "$HOME/Workspace/git/scripts/completions/lights-completion.bash"
 fi
 # <<< scripts configuration <<<
+
+# ============================================================================
+# Claude Code Router (CCR) — quick launch for local LM Studio model on mac-studio
+# ----------------------------------------------------------------------------
+# Isolation contract: the CCR "default-claude-code" profile's settingsFile is
+# pinned (in ~/.claude-code-router/config.sqlite) to ~/.claude-studio/settings.json,
+# so CCR's launch wrapper exports CLAUDE_CONFIG_DIR=~/.claude-studio and injects its
+# ANTHROPIC_* env into THAT home. Your global ~/.claude/ is never touched. If CCR is
+# reinstalled/reset, re-pin it: see the claude-studio-launch skill.
+# ============================================================================
+claude-studio() {
+  export NVM_DIR="$HOME/.nvm"; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" 2>/dev/null
+  nvm use 22 >/dev/null 2>&1
+  # Ensure the CCR gateway is up (starts it if the core health port :3457 isn't answering).
+  if ! curl -s --max-time 2 http://127.0.0.1:3457/health >/dev/null 2>&1; then
+    echo "claude-studio: starting CCR gateway…"
+    ccr start --no-open >/dev/null 2>&1
+    for i in 1 2 3 4 5 6 7 8; do
+      curl -s --max-time 2 http://127.0.0.1:3457/health >/dev/null 2>&1 && break
+      sleep 1
+    done
+  fi
+  # Resolve the model OURSELVES rather than let gateway model-discovery pick a stale
+  # remembered id (with CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY, a no --model client
+  # sends a concrete opaque id that bypasses Router.default). A leading non-flag arg is an
+  # explicit override; otherwise ssh the Studio and use whatever model is actually resident
+  # (so the session matches what's warm); fall back to the preferred default if unreachable.
+  local model="" ; local -a rest
+  if [[ -n "$1" && "$1" != -* ]]; then model="$1"; rest=("${@:2}"); else rest=("$@"); fi
+  if [[ -z "$model" ]]; then
+    local _lms='/Applications/LM Studio.app/Contents/Resources/app/.webpack/lms'
+    model=$(ssh -o ConnectTimeout=3 -o BatchMode=yes mac-studio "'$_lms' ps --json 2>/dev/null" 2>/dev/null       | python3 -c 'import sys,json
+try: d=json.load(sys.stdin) or []
+except Exception: d=[]
+print(d[0].get("identifier") or d[0].get("modelKey","") if d else "")' 2>/dev/null)
+  fi
+  : "${model:=qwen3.6-35b-a3b-mtp}"   # preferred default when discovery finds nothing
+  echo "claude-studio: model = $model"
+  # Explicit --model bypasses gateway discovery, so the session always uses this model.
+  ccr default-claude-code cli -- --model "$model" "${rest[@]}"
+}
+export AWS_PROFILE=daily

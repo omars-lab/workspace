@@ -1,0 +1,23 @@
+{
+ "model": "qwen3.6-35b-a3b-mtp",
+ "label": "-c 131072 --parallel 4",
+ "prompt_file": "prompts/kg-extract.md",
+ "extra": {
+  "reasoning_effort": "none"
+ },
+ "metrics": {
+  "ttft_s": 0.273,
+  "prefill_tps": 877.0,
+  "decode_tps": 113.3,
+  "prompt_tokens": 239,
+  "completion_tokens": 550,
+  "reasoning_tokens": 0,
+  "wall_s": 5.128,
+  "finish_reason": "stop",
+  "run": 3,
+  "cold": false
+ },
+ "content": "{\n\"entities\": [\n{\"id\": \"1\", \"type\": \"Person\", \"name\": \"Mara Lindqvist\"},\n{\"id\": \"2\", \"type\": \"Org\", \"name\": \"Norrsken Labs\"},\n{\"id\": \"3\", \"type\": \"Org\", \"name\": \"Ledger Bay\"},\n{\"id\": \"4\", \"type\": \"Place\", \"name\": \"Stockholm\"},\n{\"id\": \"5\", \"type\": \"Product\", \"name\": \"Trino engine\"},\n{\"id\": \"6\", \"type\": \"Org\", \"name\": \"Kvarn Bank\"},\n{\"id\": \"7\", \"type\": \"Person\", \"name\": \"Anders Falk\"},\n{\"id\": \"8\", \"type\": \"Product\", \"name\": \"Snowflake\"},\n{\"id\": \"9\", \"type\": \"Event\", \"name\": \"Data Cloud Summit\"}\n],\n\"relations\": [\n{\"from\": \"Mara Lindqvist\", \"to\": \"Norrsken Labs\", \"type\": \"works_at\", \"evidence\": \"Mara Lindqvist left Norrsken Labs\"},\n{\"from\": \"Mara Lindqvist\", \"to\": \"Ledger Bay\", \"type\": \"founded\", \"evidence\": \"to found Ledger Bay\"},\n{\"from\": \"Ledger Bay\", \"to\": \"Stockholm\", \"type\": \"located_in\", \"evidence\": \"a Stockholm startup\"},\n{\"from\": \"Ledger Bay\", \"to\": \"Trino engine\", \"type\": \"uses\", \"evidence\": \"builds reconciliation software on top of the open-source Trino engine\"},\n{\"from\": \"Mara Lindqvist\", \"to\": \"Kvarn Bank\", \"type\": \"works_at\", \"evidence\": \"where Lindqvist had previously run the payments team\"},\n{\"from\": \"Anders Falk\", \"to\": \"Ledger Bay\", \"type\": \"related_to\", \"evidence\": \"Falk, who now advises Ledger Bay\"},\n{\"from\": \"Mara Lindqvist\", \"to\": \"Anders Falk\", \"type\": \"works_at\", \"evidence\": \"under CTO Anders Falk\"},\n{\"from\": \"Snowflake\", \"to\": \"Stockholm\", \"type\": \"located_in\", \"evidence\": \"announced a Stockholm office\"},\n{\"from\": \"Stockholm\", \"to\": \"Data Cloud Summit\", \"type\": \"occurred_at\", \"evidence\": \"at its Data Cloud Summit in June\"}\n]\n}",
+ "reasoning": "",
+ "tool_calls": []
+}

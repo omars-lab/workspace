@@ -1,0 +1,23 @@
+{
+ "model": "qwen3.5-35b-a3b",
+ "label": "quality-ab reasoning_effort=none",
+ "prompt_file": "../prompts/agent-turn.md",
+ "extra": {
+  "reasoning_effort": "none"
+ },
+ "metrics": {
+  "ttft_s": 0.315,
+  "prefill_tps": 1016.3,
+  "decode_tps": 78.3,
+  "prompt_tokens": 320,
+  "completion_tokens": 217,
+  "reasoning_tokens": 0,
+  "wall_s": 3.085,
+  "finish_reason": "stop",
+  "run": 2,
+  "cold": false
+ },
+ "content": "{\n  \"tool\": \"write_file\",\n  \"arguments\": {\n    \"path\": \"bin/report.py\",\n    \"content\": \"import argparse, sys, json\\n\\ndef summarize(rows):\\n    total = sum(r[\\\"amount\\\"] for r in rows)\\n    return {\\\"count\\\": len(rows), \\\"total\\\": total}\\n\\ndef main():\\n    p = argparse.ArgumentParser()\\n    p.add_argument(\\\"path\\\")\\n    p.add_argument(\\\"--json\\\", action=\\\"store_true\\\", help=\\\"Output summary as JSON\\\")\\n    a = p.parse_args()\\n    rows = [dict(amount=float(x)) for x in open(a.path)]\\n    s = summarize(rows)\\n    if a.json:\\n        print(json.dumps(s))\\n    else:\\n        print(f\\\"count={s['count']} total={s['total']:.2f}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\"\n  }\n}",
+ "reasoning": "",
+ "tool_calls": []
+}
