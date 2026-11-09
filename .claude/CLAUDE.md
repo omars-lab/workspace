@@ -186,6 +186,17 @@ gist.)
 Look at the actual render before reasoning from source. A screenshot or a browser tab settles
 in seconds what reading CSS and component code only guesses at.
 
+**Which browser tool: Chrome DevTools first.** For looking at a page, checking it at 1280 and
+390 px, reading its console or network calls, or clicking through it, use the `chrome-devtools`
+tools. They run their own Chrome, so your tabs and logins are left alone. Use Claude in Chrome
+only when the step needs a page that only your own logged-in Chrome can reach, such as a dashboard
+behind your login. If `chrome-devtools` fails to connect, say so and fix it (see its log under
+`~/Library/Caches/claude-cli-nodejs/<project>/mcp-logs-chrome-devtools/`); don't quietly switch
+to the other tool. It is installed once under Node 22 and started directly, not through `npx …@latest`,
+because several sessions starting at once broke npx's shared download.
+(Omar, 2026-11-09: "i would rather we default to chrome dev tools", after it had failed to connect
+since Nov 4 with "chrome-devtools-mcp: command not found".)
+
 ## Manual computer use: drive the GUI when the harness can't
 
 Some steps have no scripted path — a first-run "trust this vault" dialog, an app's vault
