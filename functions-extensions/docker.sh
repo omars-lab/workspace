@@ -47,3 +47,9 @@ function dps () {
 # alias dm-start="docker-machine start ${DOCKER_MACHINE_NAME:-dev}"
 # alias dm-env="docker-machine env ${DOCKER_MACHINE_NAME:-dev}"
 # alias dm-ls="docker-machine list"
+
+# The Azure CLI, run from its Docker image so nothing is installed locally.
+# Logins are kept in ~/.azure-docker between runs.
+function az() {
+  docker run -v "${HOME}/.azure-docker:/root/.azure" -i mcr.microsoft.com/azure-cli az "$@"
+}
