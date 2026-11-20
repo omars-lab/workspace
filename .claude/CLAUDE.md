@@ -350,6 +350,24 @@ symlinked path broke its script. Run every new hook once through each path it is
 question tool at start of session if we detect things are stale"; "this should be the general
 pattern".)
 
+## Fail loud, with logs, over failing softly
+
+When code meets something it wasn't built for (an unknown version, a value of the wrong shape, a
+file that isn't there, a call that errors), it stops with a clear error and a log line that says
+what it met and what to do. It does not quietly fall back, skip the check, or carry on with less.
+A soft failure hides the problem until it has cost something; a loud one gets fixed the same day.
+
+- **No silent fallback.** If a fallback is worth keeping, it prints a warning each time it runs
+  and is counted where someone looks, and the default is still to refuse.
+- **The error names the fix.** Say what was expected, what was found, and the command or change
+  that clears it.
+- **Log it in the `ev=` shape** (below), so the failure can be grepped and counted.
+- **A check that couldn't run says so.** It never reads as a pass (see the hooks rule above).
+
+(Omar, 2026-11-20: "we should have a tenant on failing loud with logs so we can fix > failing
+softly". This came while deciding PR #720: when another jsonschema version is installed, the trip
+checker now refuses rather than quietly checking fewer rules.)
+
 ## Observability for long-running scripts
 
 A script left running and monitored must emit structured, greppable logs, not silence. Every long
