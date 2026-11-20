@@ -101,6 +101,33 @@ spend resistent? who told you to avoid spend? all low spend high roi are auto ap
 — after I framed a cheap new-prospect extraction as needing a spend GO and ranked make-work
 above it.)
 
+## Don't waste runs
+
+Spend that buys something is fine (above). A run whose answer is already known, or is about to
+be thrown away, buys nothing. That covers machine time, money and the person's waiting time. Cut
+it before it starts:
+
+- **Don't run what a later step will redo.** If a round will be retested anyway (a fix is about
+  to be pushed, main is about to be merged in), skip the slow step now and run it once, on the
+  result that counts.
+- **Stop at the first answer that settles it.** A check that already failed for a known reason
+  doesn't need its other steps run to the end.
+- **Check the cheap thing first.** Before a long run, confirm what it depends on: the branch has
+  the base fix, the setup is right, the input changed since the last run. A free recheck beats a
+  full rerun.
+- **Batch it.** Start related runs together, send one message per owner per batch, and fix the
+  cause of a repeat once, not each round.
+- **Don't run the same thing twice in two places.** When an owner session just ran the suite on
+  a commit, read its result instead of rerunning it unchanged.
+- **Measure it.** A long-running loop logs what each run cost (money, minutes) and whether its
+  result was used or thrown away, so the waste is a number someone can see, not a feeling.
+
+(Omar, 2026-11-19: "minimizing the unnecessary double running of tests, ending things early if we
+will retest, properly batching things"; "we should have a tenet of minimizing waste, minimizing
+useless cpu cycles"; "how can we also measure the waste?". This came after one day of adventures
+reviews: 89 rounds across 17 PRs, $273, about 12 hours of test runs, and not one round clean
+enough to merge. 57 of those rounds made their own fix, so their test run was redone anyway.)
+
 ## Backlog order: ship by feature ROI
 
 When continuing through a backlog with no order the user imposed, take items in **feature ROI
